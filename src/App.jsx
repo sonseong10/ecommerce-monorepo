@@ -3,7 +3,7 @@ import React from 'react'
 import './styles/main.css'
 
 import SideNavigation from './components/side-navigation'
-import SearchForm from './components/search-form'
+import SearchPage from './components/search-page'
 import ResultPage from './components/result-page'
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
     <div className="container">
       <div className="row">
         <SideNavigation></SideNavigation>
-        <SearchForm></SearchForm>
+        <SearchPage></SearchPage>
         <ResultPage></ResultPage>
       </div>
     </div>
