@@ -1,0 +1,26 @@
+@value white, green, green-active from '../constants/color.css';
+
+.baseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.baseBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* NOTE: Button styles */
+.primaryBtn {
+  color: white;
+  background-color: green;
+  transition: background-color 300ms ease-in-out;
+}
+
+.primaryBtn:not(:disabled):hover {
+  background-color: green-active;
+}
