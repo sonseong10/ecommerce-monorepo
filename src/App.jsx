@@ -8,10 +8,12 @@ import ResultPage from './components/result-page'
 
 const App = () => {
   return (
-    <div className="wrapper">
-      <SideNavigation></SideNavigation>
-      <SearchForm></SearchForm>
-      <ResultPage></ResultPage>
+    <div className="container">
+      <div className="row">
+        <SideNavigation></SideNavigation>
+        <SearchForm></SearchForm>
+        <ResultPage></ResultPage>
+      </div>
     </div>
   )
 }
