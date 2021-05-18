@@ -12,11 +12,6 @@
   transform: none;
 }
 
-.wrapper {
-  padding: 24px 0;
-  height: 100vh;
-}
-
 article {
   padding: 24px;
   height: 100%;
