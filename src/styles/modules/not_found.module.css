@@ -1,0 +1,41 @@
+@value primary, secondery from '../constants/color.css';
+
+@value font-size-14, line-height-14, letter-spacing-14, font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.notFoundImg {
+  margin-bottom: 24px;
+  width: 60%;
+  height: auto;
+}
+
+.notFoundTitle {
+  margin-bottom: 8px;
+  font-size: font-size-18;
+  line-height: line-height-18;
+  letter-spacing: letter-spacing-18;
+  color: primary;
+}
+
+.notFoundDesc {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: primary;
+}
+
+@media screen and (min-width: 768px) {
+  .notFoundDesc {
+    font-size: font-size-16;
+    line-height: line-height-16;
+    letter-spacing: letter-spacing-16;
+    color: primary;
+  }
+}
