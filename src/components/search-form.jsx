@@ -15,7 +15,7 @@ const SearchForm = () => {
       { id: 3, value: '회계' },
       { id: 4, value: '개발' },
       { id: 5, value: '영업' },
-      { id: 6, value: '기확' },
+      { id: 6, value: '기획' },
       { id: 7, value: '디자인' },
     ]
     return setTeams(teamsValue)
