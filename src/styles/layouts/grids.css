@@ -29,6 +29,10 @@
   width: 100%;
 }
 
+.wrapper {
+  padding: 24px 0;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 1020px;
@@ -69,6 +73,10 @@
   }
   .container .col-md-12 {
     width: 100%;
+  }
+
+  .wrapper {
+    height: 100vh;
   }
 }
 
