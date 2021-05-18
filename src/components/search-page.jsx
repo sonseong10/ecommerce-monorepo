@@ -6,7 +6,7 @@ const SearchPage = () => {
   return (
     <div className={`col-md-3 sm-hidden ${styles.isClose} ${styles.isOpen}`}>
       <div className="wrapper">
-        <article>
+        <article className={styles.article}>
           <h2 className="visually-hidden">Search Form</h2>
           <SearchForm></SearchForm>
         </article>
