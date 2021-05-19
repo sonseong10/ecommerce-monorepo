@@ -1,5 +1,5 @@
 import React from 'react'
-import NotFound from './errors/not-found'
+import NotFound from '../errors/not-found'
 
 const ResultPage = () => {
   return (

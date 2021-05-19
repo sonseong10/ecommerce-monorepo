@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { BiArrowBack, BiTrash, BiChevronUp } from 'react-icons/bi'
-import styles from '../styles/modules/search_form.module.css'
-import buttonStyles from '../styles/modules/buttons.module.css'
-import DropDown from './dropdown/dropdown'
+import styles from '../../styles/modules/search_form.module.css'
+import buttonStyles from '../../styles/modules/buttons.module.css'
+import DropDown from '../common/dropdown'
 
 const SearchForm = () => {
   const [teams, setTeams] = useState([])
