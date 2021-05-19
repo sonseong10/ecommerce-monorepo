@@ -1,0 +1,120 @@
+@value overlay-black, primary, secondery, white, green, green-active  from '../constants/color.css';
+@value overlay-level, auth-popup-level from '../constants/z-index.css';
+
+@value font-size-14,line-height-14,letter-spacing-14, font-size-16,line-height-16,letter-spacing-16, font-size-24, line-height-24, letter-spacing-24 from '../constants/typography.css';
+
+@value dropdown-shadow, popup-shadow from '../constants/box-shadow.css';
+
+/* NOTE: overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: overlay-level;
+  width: 100%;
+  height: 100vh;
+  background-color: overlay-black;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+}
+
+.overlay.isActive {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* NOTE: auth popup */
+
+.authPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  padding: 24px;
+  background-color: white;
+  border-radius: 4px;
+  z-index: auth-popup-level;
+  box-shadow: popup-shadow;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: left top;
+  transform: scale(0.8) translate(-50%, -50%);
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out,
+    transform 300ms ease-in-out;
+}
+
+.authPopup.isActive {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translate(-50%, -50%);
+}
+
+.popupTitle {
+  font-size: font-size-24;
+  line-height: line-height-24;
+  letter-spacing: letter-spacing-24;
+  font-weight: 400;
+  color: primary;
+}
+
+.popupBody {
+  width: 100%;
+  margin: 12px 0;
+}
+
+.authBtn {
+  width: 100%;
+  height: 48px;
+  background-color: white;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  font-weight: 400;
+  color: primary;
+  transition: color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+}
+
+.authBtn:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.authBtn:hover {
+  box-shadow: dropdown-shadow;
+}
+
+.authBtn:active {
+  color: green-active;
+}
+
+.authLogo {
+  margin-right: 8px;
+  font-size: font-size-24;
+  line-height: line-height-24;
+  letter-spacing: letter-spacing-24;
+  color: primary;
+}
+
+.popupFooter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.cancleBtn {
+  height: 24px;
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+}
+
+@media screen and (min-width: 768px) {
+  .authPopup {
+    width: 360px;
+  }
+}

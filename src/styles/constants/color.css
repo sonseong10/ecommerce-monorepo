@@ -12,3 +12,5 @@
 @value state-red: #ff4949;
 @value state-blue: #0066ff;
 @value state-yellow: #ffc92c;
+
+@value overlay-black: rgba(45, 53, 57, 0.5);

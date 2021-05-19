@@ -1,1 +1,4 @@
 @value snb-level: 10;
+
+@value overlay-level: 100;
+@value auth-popup-level: 200;

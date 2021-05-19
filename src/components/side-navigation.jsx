@@ -7,7 +7,7 @@ import styles from '../styles/modules/global_header.module.css'
 import buttonStyles from '../styles/modules/buttons.module.css'
 
 const SideNavigation = memo(
-  ({ menus, handleHomeActive, handleSearchActive }) => {
+  ({ menus, handleHomeActive, handleSearchActive, handleOpenPopup }) => {
     return (
       <div className="col-sm-4 col-md-3">
         <div className="wrapper">
@@ -55,12 +55,13 @@ const SideNavigation = memo(
                   </li>
                 </ul>
               </nav>
-              <a
+              <button
                 className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn}`}
-                href="/"
+                onClick={handleOpenPopup}
+                type="button"
               >
                 Login &#38; Signup
-              </a>
+              </button>
             </div>
           </header>
         </div>
