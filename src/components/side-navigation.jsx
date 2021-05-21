@@ -1,13 +1,45 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 
 import Logo from '../logo.svg'
 
 import { BiHomeAlt, BiSearch, BiMenu } from 'react-icons/bi'
-import styles from '../styles/modules/global_header.module.css'
 import buttonStyles from '../styles/modules/buttons.module.css'
+import styles from '../styles/modules/global_header.module.css'
+import { useHistory } from 'react-router-dom'
 
 const SideNavigation = memo(
-  ({ menus, handleHomeActive, handleSearchActive, handleOpenPopup }) => {
+  ({ menus, handleOpenPopup, authService, isUser }) => {
+    const [userId, setUserId] = useState()
+    const history = useHistory()
+
+    useEffect(() => {
+      authService.onAuthChange((user) => {
+        if (!user) {
+          history.push('/')
+        } else {
+          setUserId(user.uid)
+        }
+      })
+    })
+
+    const onLogout = () => {
+      authService.logout()
+    }
+
+    const onToHome = () => {
+      history.push({
+        pathname: '/home',
+        state: { id: userId },
+      })
+    }
+
+    const onToSearch = () => {
+      history.push({
+        pathname: '/search',
+        state: { id: userId },
+      })
+    }
+
     return (
       <div className="col-sm-4 col-md-3">
         <div className="wrapper">
@@ -35,8 +67,9 @@ const SideNavigation = memo(
                       className={`${styles.snbItemButton} ${
                         menus === 'home' ? styles.isActive : ''
                       }`}
-                      onClick={handleHomeActive}
+                      onClick={onToHome}
                       type="button"
+                      disabled={!isUser}
                     >
                       <BiHomeAlt className={styles.snbButtonIcon} />
                       Home
@@ -46,8 +79,9 @@ const SideNavigation = memo(
                     <button
                       className={`${styles.snbItemButton} 
                     ${menus === 'search' ? styles.isActive : ''}`}
-                      onClick={handleSearchActive}
+                      onClick={onToSearch}
                       type="button"
+                      disabled={!isUser}
                     >
                       <BiSearch className={styles.snbButtonIcon} />
                       Search
@@ -55,13 +89,22 @@ const SideNavigation = memo(
                   </li>
                 </ul>
               </nav>
-              <button
-                className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn}`}
-                onClick={handleOpenPopup}
-                type="button"
-              >
-                Login &#38; Signup
-              </button>
+              {isUser ? (
+                <button
+                  className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}
+                  onClick={onLogout}
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}
+                  onClick={handleOpenPopup}
+                  type="button"
+                >
+                  Login &#38; Signup
+                </button>
+              )}
             </div>
           </header>
         </div>
