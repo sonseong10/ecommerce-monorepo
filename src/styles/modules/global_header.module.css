@@ -46,6 +46,10 @@
   height: 32px;
 }
 
+.isLogin {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   .globalHeader {
     flex-direction: column;
@@ -83,8 +87,12 @@
     transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
   }
 
+  .snbItemButton:disabled {
+    cursor: not-allowed;
+  }
+
   .snbItemButton.isActive,
-  .snbItemButton:hover {
+  .snbItemButton:not(:disabled):hover {
     background-color: background;
     color: primary;
   }

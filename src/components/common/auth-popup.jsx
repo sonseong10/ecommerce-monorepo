@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { memo } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { FcGoogle } from 'react-icons/fc'
 import { GoMarkGithub } from 'react-icons/go'
@@ -6,8 +7,22 @@ import { GoMarkGithub } from 'react-icons/go'
 import styles from '../../styles/modules/common.module.css'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 
-const AuthPopup = ({ overlay, handleOpenPopup }) => {
+const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
   const getState = overlay === 'close' ? '' : styles.isActive
+
+  const history = useHistory()
+  const goToHome = (userId) => {
+    history.push({
+      pathname: '/home',
+      state: { id: userId },
+    })
+  }
+
+  const onLogin = (event) => {
+    authService //
+      .login(event.target.value)
+      .then((data) => goToHome(data.user.uid))
+  }
 
   return (
     <section className={`${styles.authPopup} ${getState}`}>
@@ -19,6 +34,9 @@ const AuthPopup = ({ overlay, handleOpenPopup }) => {
         <button
           className={`${buttonStyles.baseBtn} ${styles.authBtn}`}
           type="button"
+          onClick={onLogin}
+          onMouseDown={handleOpenPopup}
+          value="Google"
         >
           <FcGoogle className={styles.authLogo} />
           Start for Google
@@ -26,6 +44,9 @@ const AuthPopup = ({ overlay, handleOpenPopup }) => {
         <button
           className={`${buttonStyles.baseBtn} ${styles.authBtn}`}
           type="button"
+          onClick={onLogin}
+          onMouseDown={handleOpenPopup}
+          value="Github"
         >
           <GoMarkGithub className={styles.authLogo} />
           Start for Github
@@ -43,6 +64,6 @@ const AuthPopup = ({ overlay, handleOpenPopup }) => {
       </footer>
     </section>
   )
-}
+})
 
 export default AuthPopup
