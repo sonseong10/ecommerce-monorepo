@@ -1,4 +1,4 @@
-@value overlay-black, primary, secondery, white, green, green-active  from '../constants/color.css';
+@value overlay-black, primary, secondery, white, background,  green, green-active, state-red  from '../constants/color.css';
 @value overlay-level, auth-popup-level from '../constants/z-index.css';
 
 @value font-size-14,line-height-14,letter-spacing-14, font-size-16,line-height-16,letter-spacing-16, font-size-24, line-height-24, letter-spacing-24 from '../constants/typography.css';
@@ -117,4 +117,73 @@
   .authPopup {
     width: 360px;
   }
+}
+
+/* NOTE: MyMenu */
+.myMenu {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.myMenuList {
+  width: 100%;
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out,
+    padding 300ms ease-in-out;
+}
+
+.myMenu.isActive .myMenuList {
+  max-height: 168px;
+  padding: 8px 0;
+  opacity: 1;
+
+  pointer-events: all;
+}
+
+.toolBtn {
+  justify-content: flex-start;
+  margin: 8px 0;
+  padding: 0 12px;
+  width: 100%;
+  height: 40px;
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: primary;
+  border-radius: 4px;
+  transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out,
+    color 300ms ease-in-out;
+}
+
+.toolBtn:hover,
+.toolBtn:active {
+  background-color: background;
+  color: green;
+  box-shadow: dropdown-shadow;
+}
+
+.logout:hover,
+.logout:active {
+  color: state-red;
+}
+
+.toolIcon {
+  margin-right: 12px;
+}
+
+.logoutBtn {
+  width: 100%;
+  height: 60px;
+  border-radius: 4px;
+  transition: box-shadow 300ms ease-in-out;
+}
+
+.logoutBtn:hover {
+  box-shadow: dropdown-shadow;
 }
