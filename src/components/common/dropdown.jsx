@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from '../../styles/modules/dropdown.module.css'
 import DropdownItem from './dropdown-item'
 
-const DropDown = ({ listItems }) => {
+const DropDown = memo(({ listItems, handleEvent }) => {
   return (
-    <ul className={styles.dropdownList}>
-      {listItems.map((item) => {
-        // return console.log(item)
-        return <DropdownItem key={item.id} value={item.value} />
-      })}
-    </ul>
+    <div>
+      <ul className={styles.dropdownList}>
+        {listItems.map((item) => {
+          return (
+            <DropdownItem
+              key={item.id}
+              value={item.value}
+              handleEvent={handleEvent}
+            />
+          )
+        })}
+      </ul>
+    </div>
   )
-}
+})
 
 export default DropDown

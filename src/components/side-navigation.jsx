@@ -6,10 +6,12 @@ import { BiHomeAlt, BiSearch, BiMenu } from 'react-icons/bi'
 import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/global_header.module.css'
 import { useHistory } from 'react-router-dom'
+import MyMenu from './common/my-menu'
 
 const SideNavigation = memo(
   ({ menus, handleOpenPopup, authService, isUser }) => {
     const [userId, setUserId] = useState()
+
     const history = useHistory()
 
     useEffect(() => {
@@ -21,10 +23,6 @@ const SideNavigation = memo(
         }
       })
     })
-
-    const onLogout = () => {
-      authService.logout()
-    }
 
     const onToHome = () => {
       history.push({
@@ -65,7 +63,7 @@ const SideNavigation = memo(
                   <li className="snb-item">
                     <button
                       className={`${styles.snbItemButton} ${
-                        menus === 'home' ? styles.isActive : ''
+                        menus === 'home' && styles.isActive
                       }`}
                       onClick={onToHome}
                       type="button"
@@ -78,7 +76,7 @@ const SideNavigation = memo(
                   <li className="snb-item">
                     <button
                       className={`${styles.snbItemButton} 
-                    ${menus === 'search' ? styles.isActive : ''}`}
+                    ${menus === 'search' && styles.isActive}`}
                       onClick={onToSearch}
                       type="button"
                       disabled={!isUser}
@@ -90,12 +88,7 @@ const SideNavigation = memo(
                 </ul>
               </nav>
               {isUser ? (
-                <button
-                  className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}
-                  onClick={onLogout}
-                >
-                  Logout
-                </button>
+                <MyMenu authService={authService}></MyMenu>
               ) : (
                 <button
                   className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}

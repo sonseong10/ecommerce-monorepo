@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from '../../styles/modules/dropdown.module.css'
 
-const DropdownItem = ({ value }) => {
+const DropdownItem = memo(({ value, handleEvent }) => {
+  const onValueChange = (e) => {
+    handleEvent(e.currentTarget.innerText)
+  }
   return (
     <li className={styles.listItem}>
-      <button className={styles.listBtn}>{value}</button>
+      <button className={styles.listBtn} onClick={onValueChange}>
+        {value}
+      </button>
     </li>
   )
-}
+})
 
 export default DropdownItem

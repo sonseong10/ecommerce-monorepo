@@ -1,12 +1,53 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { BiArrowBack, BiTrash, BiChevronUp } from 'react-icons/bi'
 import styles from '../../styles/modules/search_form.module.css'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import DropDown from '../common/dropdown'
 
-const SearchForm = () => {
+const SearchForm = memo(({ onSearchOpen }) => {
   const [teams, setTeams] = useState([])
   const [ranks, setRanks] = useState([])
+  const [teamsIsOpen, setTeamsIsOpen] = useState(false)
+  const [ranksIsOpen, setRanksIsOpen] = useState(false)
+  const [valueCheck, setValueCheck] = useState(true)
+  const [teamsType, setTeamsType] = useState('전체')
+  const [ranksType, setRanksType] = useState('전체')
+
+  const inputName = useRef()
+
+  const onValueCheck = () => {
+    inputName.current.value ? setValueCheck(false) : setValueCheck(true)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+  }
+
+  const onTeamsOpen = () => {
+    setTeamsIsOpen(!teamsIsOpen)
+  }
+
+  const onRanksOpen = () => {
+    setRanksIsOpen(!ranksIsOpen)
+  }
+
+  const handleTeamsValue = (value) => {
+    onTeamsOpen()
+    setTeamsType(value)
+  }
+
+  const handleRanksValue = (value) => {
+    onRanksOpen()
+    setRanksType(value)
+  }
+
+  const onRemoveAll = () => {
+    setValueCheck(true)
+    setTeamsType('전체')
+    setRanksType('전체')
+    inputName.current.value = ''
+    inputName.current.focus()
+  }
 
   useEffect(() => {
     const teamsValue = [
@@ -38,19 +79,21 @@ const SearchForm = () => {
       <header className={styles.formHeader}>
         <button
           className={`${styles.formHideBtn} ${buttonStyles.baseBtn}`}
+          onClick={onSearchOpen}
           type="button"
         >
           <BiArrowBack />
         </button>
         <button
           className={`${styles.resetBtn} ${buttonStyles.baseBtn}`}
+          onClick={onRemoveAll}
           type="reset"
         >
           <BiTrash className="lg-only" />
           Rmove All
         </button>
       </header>
-      <form className={styles.from}>
+      <form className={styles.from} onSubmit={handleSubmit}>
         <div className={styles.name}>
           <p className={styles.formLabel}>직원명</p>
           <input
@@ -58,41 +101,46 @@ const SearchForm = () => {
             type="text"
             autoComplete="off"
             placeholder="Anna"
+            onChange={onValueCheck}
+            ref={inputName}
           />
         </div>
 
-        <div className={`${styles.teams} ${styles.isActive}`}>
+        <div className={`${styles.teams} ${teamsIsOpen && styles.isActive}`}>
           <p className={styles.formLabel}>부서명</p>
           <button
             className={`${styles.formInput} ${buttonStyles.baseBtn}`}
+            onClick={onTeamsOpen}
             type="button"
           >
-            전체 <BiChevronUp className={styles.dropdownIcon} />
+            {teamsType} <BiChevronUp className={styles.dropdownIcon} />
           </button>
           <div className={styles.teamsList}>
-            <DropDown listItems={teams} />
+            <DropDown listItems={teams} handleEvent={handleTeamsValue} />
           </div>
         </div>
 
-        <div className={`${styles.ranks} ${styles.isActive}`}>
+        <div className={`${styles.ranks} ${ranksIsOpen && styles.isActive}`}>
           <p className={styles.formLabel}>직급명</p>
 
           <button
             className={`${styles.formInput} ${buttonStyles.baseBtn}`}
+            onClick={onRanksOpen}
             type="button"
           >
-            전체 <BiChevronUp className={styles.dropdownIcon} />
+            {ranksType}
+            <BiChevronUp className={styles.dropdownIcon} />
           </button>
 
           <div className={styles.ranksList}>
-            <DropDown listItems={ranks} />
+            <DropDown listItems={ranks} handleEvent={handleRanksValue} />
           </div>
         </div>
 
         <button
           className={`${styles.formSubmit} ${buttonStyles.baseBtn} ${buttonStyles.primaryBtn}`}
           type="submit"
-          disabled
+          disabled={valueCheck}
         >
           OK
         </button>
@@ -104,6 +152,6 @@ const SearchForm = () => {
       </footer>
     </>
   )
-}
+})
 
 export default SearchForm
