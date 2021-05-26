@@ -8,9 +8,25 @@
 @value green: #009EB4;
 @value green-active: #028597;
 
-@value state-green: #00B489;
-@value state-red: #ff4949;
-@value state-blue: #0066ff;
-@value state-yellow: #ffc92c;
+@value primary: #2C3438;
+@value secondery: #959CA0;
+
+@value white: #fff;
+@value black: #000;
+@value background: #F5F4F6;
+
+@value green: #009EB4;
+@value green-active: #028597;
+
+@value login: #6EE443;
+@value login-border: #62CC3C;
+
+@value logout: #ff4949;
+@value logout-border: #ff4949;
+
+@value overlay-black: rgba(45, 53, 57, 0.5);
+
+@value blue: #a8dafe;
+@value yellow: #FEF0A8;
 
 @value overlay-black: rgba(45, 53, 57, 0.5);
