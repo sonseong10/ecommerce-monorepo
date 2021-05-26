@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 import MyMenu from './common/my-menu'
 
 const SideNavigation = memo(
-  ({ menus, handleOpenPopup, authService, isUser }) => {
+  ({ menus, handleOpenPopup, authService, isUser, setSearchIsOpen }) => {
     const [userId, setUserId] = useState()
 
     const history = useHistory()
@@ -32,6 +32,8 @@ const SideNavigation = memo(
     }
 
     const onToSearch = () => {
+      setSearchIsOpen(true)
+
       history.push({
         pathname: '/search',
         state: { id: userId },

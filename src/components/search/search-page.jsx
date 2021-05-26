@@ -1,14 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SearchForm from './search-form'
 import styles from '../../styles/modules/search_page.module.css'
 
-const SearchPage = () => {
-  const [searchIsOpen, setSearchIsOpen] = useState(true)
-
-  const onSearchOpen = () => {
-    setSearchIsOpen(!searchIsOpen)
-  }
-
+const SearchPage = ({ onSearchOpen, searchIsOpen }) => {
   return (
     <div
       className={`col-md-3 sm-hidden ${styles.isClose} ${

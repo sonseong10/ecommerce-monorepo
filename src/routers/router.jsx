@@ -12,6 +12,8 @@ const Router = ({
   isUser,
   handleSearchActive,
   handleHomeActive,
+  searchIsOpen,
+  onSearchOpen,
 }) => {
   return (
     <Switch>
@@ -31,8 +33,14 @@ const Router = ({
       <Route path="/search">
         {isUser ? (
           <>
-            <SearchPage></SearchPage>
-            <ResultPage handleSearchActive={handleSearchActive}></ResultPage>
+            <SearchPage
+              onSearchOpen={onSearchOpen}
+              searchIsOpen={searchIsOpen}
+            ></SearchPage>
+            <ResultPage
+              handleSearchActive={handleSearchActive}
+              searchIsOpen={searchIsOpen}
+            ></ResultPage>
           </>
         ) : (
           <NotLogin />

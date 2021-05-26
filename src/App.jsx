@@ -12,6 +12,11 @@ const App = ({ authService }) => {
   const [menus, setMenus] = useState('home')
   const [overlay, setOverlay] = useState('close')
   const [isUser, setIsUser] = useState(false)
+  const [searchIsOpen, setSearchIsOpen] = useState(true)
+
+  const onSearchOpen = () => {
+    setSearchIsOpen()
+  }
 
   const handleHomeActive = () => {
     setMenus('home')
@@ -42,12 +47,15 @@ const App = ({ authService }) => {
             menus={menus}
             isUser={isUser}
             authService={authService}
+            setSearchIsOpen={setSearchIsOpen}
           ></SideNavigation>
           <Router
             authService={authService}
             isUser={isUser}
             handleHomeActive={handleHomeActive}
             handleSearchActive={handleSearchActive}
+            searchIsOpen={searchIsOpen}
+            onSearchOpen={onSearchOpen}
           ></Router>
         </div>
       </div>
