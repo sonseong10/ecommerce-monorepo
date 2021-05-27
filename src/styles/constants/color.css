@@ -22,9 +22,7 @@
 @value login-border: #62CC3C;
 
 @value logout: #ff4949;
-@value logout-border: #ff4949;
-
-@value overlay-black: rgba(45, 53, 57, 0.5);
+@value logout-border: #cc3c3c;
 
 @value blue: #a8dafe;
 @value yellow: #FEF0A8;
