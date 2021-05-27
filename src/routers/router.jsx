@@ -14,6 +14,7 @@ const Router = ({
   handleHomeActive,
   searchIsOpen,
   onSearchOpen,
+  cards,
 }) => {
   return (
     <Switch>
@@ -40,6 +41,7 @@ const Router = ({
             <ResultPage
               handleSearchActive={handleSearchActive}
               searchIsOpen={searchIsOpen}
+              cards={cards}
             ></ResultPage>
           </>
         ) : (

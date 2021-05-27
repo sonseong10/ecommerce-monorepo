@@ -13,6 +13,22 @@ const App = ({ authService }) => {
   const [overlay, setOverlay] = useState('close')
   const [isUser, setIsUser] = useState(false)
   const [searchIsOpen, setSearchIsOpen] = useState(true)
+  const [cards] = useState([
+    {
+      uid: '1',
+      time: '10:00',
+      team: '개발',
+      ramk: '대리',
+      name: 'Anna',
+      theme: '1',
+      msg: '오늘도 화이팅!',
+      phone: '010-1234-5678',
+      telephone: '9101',
+      imgURL: null,
+      email: 'test123@abc.com',
+      position: '3층 E5',
+    },
+  ])
 
   const onSearchOpen = () => {
     setSearchIsOpen()
@@ -56,6 +72,7 @@ const App = ({ authService }) => {
             handleSearchActive={handleSearchActive}
             searchIsOpen={searchIsOpen}
             onSearchOpen={onSearchOpen}
+            cards={cards}
           ></Router>
         </div>
       </div>
