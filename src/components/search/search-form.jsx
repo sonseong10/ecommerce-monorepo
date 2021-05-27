@@ -1,12 +1,10 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import { BiArrowBack, BiTrash, BiChevronUp } from 'react-icons/bi'
 import styles from '../../styles/modules/search_form.module.css'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import DropDown from '../common/dropdown'
 
-const SearchForm = memo(({ onSearchOpen }) => {
-  const [teams, setTeams] = useState([])
-  const [ranks, setRanks] = useState([])
+const SearchForm = memo(({ onSearchOpen, teams, ranks }) => {
   const [teamsIsOpen, setTeamsIsOpen] = useState(false)
   const [ranksIsOpen, setRanksIsOpen] = useState(false)
   const [valueCheck, setValueCheck] = useState(true)
@@ -48,31 +46,6 @@ const SearchForm = memo(({ onSearchOpen }) => {
     inputName.current.value = ''
     inputName.current.focus()
   }
-
-  useEffect(() => {
-    const teamsValue = [
-      { id: 1, value: '전체' },
-      { id: 2, value: '인사' },
-      { id: 3, value: '회계' },
-      { id: 4, value: '개발' },
-      { id: 5, value: '영업' },
-      { id: 6, value: '기획' },
-      { id: 7, value: '디자인' },
-    ]
-    return setTeams(teamsValue)
-  }, [])
-
-  useEffect(() => {
-    const ranksValue = [
-      { id: 1, value: '전체' },
-      { id: 2, value: '부장' },
-      { id: 3, value: '차장' },
-      { id: 4, value: '과장' },
-      { id: 5, value: '대리' },
-      { id: 6, value: '직원' },
-    ]
-    return setRanks(ranksValue)
-  }, [])
 
   return (
     <>

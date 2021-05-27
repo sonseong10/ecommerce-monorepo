@@ -15,6 +15,8 @@ const Router = ({
   searchIsOpen,
   onSearchOpen,
   cards,
+  teams,
+  ranks,
 }) => {
   return (
     <Switch>
@@ -37,6 +39,8 @@ const Router = ({
             <SearchPage
               onSearchOpen={onSearchOpen}
               searchIsOpen={searchIsOpen}
+              teams={teams}
+              ranks={ranks}
             ></SearchPage>
             <ResultPage
               handleSearchActive={handleSearchActive}

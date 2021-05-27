@@ -45,7 +45,7 @@ const MyMenu = ({ authService }) => {
         </li>
         <li>
           <button
-            className={`${buttonStyles.baseBtn} ${styles.toolBtn} ${styles.logout}`}
+            className={`${buttonStyles.baseBtn} ${styles.toolBtn} ${styles.logoutBtn}`}
             type="button"
             onClick={onLogout}
           >
@@ -55,7 +55,7 @@ const MyMenu = ({ authService }) => {
         </li>
       </ul>
       <button
-        className={`${styles.logoutBtn} ${buttonStyles.baseBtn} `}
+        className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
         onClick={onIsActive}
       >
         User

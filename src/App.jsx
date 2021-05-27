@@ -13,6 +13,23 @@ const App = ({ authService }) => {
   const [overlay, setOverlay] = useState('close')
   const [isUser, setIsUser] = useState(false)
   const [searchIsOpen, setSearchIsOpen] = useState(true)
+  const [teams] = useState([
+    { id: 1, value: '전체' },
+    { id: 2, value: '인사' },
+    { id: 3, value: '회계' },
+    { id: 4, value: '개발' },
+    { id: 5, value: '영업' },
+    { id: 6, value: '기획' },
+    { id: 7, value: '디자인' },
+  ])
+  const [ranks] = useState([
+    { id: 1, value: '전체' },
+    { id: 2, value: '부장' },
+    { id: 3, value: '차장' },
+    { id: 4, value: '과장' },
+    { id: 5, value: '대리' },
+    { id: 6, value: '직원' },
+  ])
   const [cards] = useState([
     {
       uid: '1',
@@ -73,6 +90,8 @@ const App = ({ authService }) => {
             searchIsOpen={searchIsOpen}
             onSearchOpen={onSearchOpen}
             cards={cards}
+            teams={teams}
+            ranks={ranks}
           ></Router>
         </div>
       </div>
