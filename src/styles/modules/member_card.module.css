@@ -2,7 +2,7 @@
 
 @value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
-@value popup-shadow from '../constants/box-shadow.css';
+@value card-shadow from '../constants/box-shadow.css';
 
 .memberListWrap {
   position: relative;
@@ -36,11 +36,12 @@
   padding: 22px;
   background-color: white;
   border-radius: 22px;
-  transition: box-shadow 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
 }
 
 .card:active {
-  box-shadow: popup-shadow;
+  box-shadow: card-shadow;
+  transform: translate3d(0px, -0.25rem, 0px);
 }
 
 .cardHeader {
@@ -150,7 +151,8 @@
   }
 
   .card:hover {
-    box-shadow: popup-shadow;
+    box-shadow: card-shadow;
+    transform: translate3d(0px, -0.25rem, 0px);
   }
 
   .meberItem {
