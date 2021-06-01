@@ -1,0 +1,67 @@
+@value white, primary, background from '../constants/color.css';
+
+@value font-size-14, line-height-14, letter-spacing-14, font-size-16,line-height-16,letter-spacing-16 from '../constants/typography.css';
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.profileBtn {
+  margin-bottom: 16px;
+  width: 150px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.profileBtn svg {
+  display: block;
+  margin-right: 8px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.authFormInput {
+  margin-bottom: 8px;
+  padding: 0 10px;
+  height: 38px;
+  background: white;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  color: primary;
+  border-radius: 4px;
+  border: 2px solid background;
+}
+
+.typeBtnList {
+  display: flex;
+  flex-direction: column;
+}
+
+.typeBtnItem {
+  flex-grow: 1;
+}
+
+.typeBtn {
+  width: 100%;
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: primary;
+}
+
+.submitBtn {
+  width: 180px;
+  height: 42px;
+  align-self: center;
+}
+
+@media screen and (min-width: 768px) {
+  .typeBtnList {
+    flex-direction: row;
+  }
+}
