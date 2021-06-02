@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+
+import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
+
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/common.module.css'
+
 import { FaUserAlt, FaSignOutAlt, FaMoon } from 'react-icons/fa'
-import { useHistory } from 'react-router-dom'
 
 const MyMenu = ({ authService }) => {
   const [myMenuOpen, setMyMenuOpen] = useState(false)
@@ -58,7 +62,8 @@ const MyMenu = ({ authService }) => {
         className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
         onClick={onIsActive}
       >
-        User
+        <img className={styles.userIcon} src={DEFAULT_USER_IMG} alt="default" />
+        No data yet...
       </button>
     </div>
   )
