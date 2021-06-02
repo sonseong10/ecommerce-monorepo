@@ -1,12 +1,8 @@
+@value teams-count, ranks-count, dropdown-height, dropdown-padding from '../constants/dropdownList.css';
+
 @value primary, secondery, white, background, green, green-active from '../constants/color.css';
 
 @value font-size-12, line-height-12, letter-spacing-12, font-size-14,line-height-14, letter-spacing-14, font-size-16, line-height-16,letter-spacing-16 from '../constants/typography.css';
-
-@value teams-count: 7;
-@value ranks-count: 6;
-
-@value dropdown-height: 24px;
-@value dropdown-padding: 8px;
 
 /* NOTE: form header */
 .formHeader {
