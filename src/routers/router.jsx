@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import NotLogin from '../components/errors/not-login'
 import NotPage from '../components/errors/not-page'
 import HomePage from '../components/home/home-page'
+import Maker from '../components/maker/maker'
 import ResultPage from '../components/search/result-page'
 import SearchPage from '../components/search/search-page'
 
@@ -50,6 +51,13 @@ const Router = ({
           </>
         ) : (
           <NotLogin />
+        )}
+      </Route>
+      <Route path="/maker">
+        {isUser ? (
+          <Maker cards={cards} teams={teams} ranks={ranks}></Maker>
+        ) : (
+          <NotPage></NotPage>
         )}
       </Route>
       <Route path="*">

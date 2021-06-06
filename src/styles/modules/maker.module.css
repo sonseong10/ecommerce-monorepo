@@ -1,3 +1,5 @@
+@value teams-count, ranks-count, theme-count, dropdown-height, dropdown-padding from '../constants/dropdownList.css';
+
 @value white, primary, background from '../constants/color.css';
 
 @value font-size-14, line-height-14, letter-spacing-14, font-size-16,line-height-16,letter-spacing-16 from '../constants/typography.css';
@@ -22,6 +24,14 @@
 
 input[type='file'] {
   display: none;
+}
+
+.formLabel {
+  margin-bottom: 6px;
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: primary;
 }
 
 .authFormInput {
@@ -58,6 +68,31 @@ input[type='file'] {
   width: 180px;
   height: 42px;
   align-self: center;
+}
+
+.themesList,
+.teamsList,
+.ranksList {
+  margin-bottom: 20px;
+  max-height: 0;
+  opacity: 0;
+  overflow-y: hidden;
+  transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.themes.isActive .themesList {
+  opacity: 1;
+  max-height: calc(dropdown-height * theme-count + dropdown-padding * 2);
+}
+
+.teams.isActive .teamsList {
+  opacity: 1;
+  max-height: calc(dropdown-height * teams-count + dropdown-padding * 2);
+}
+
+.ranks.isActive .ranksList {
+  opacity: 1;
+  max-height: calc(dropdown-height * ranks-count + dropdown-padding * 2);
 }
 
 @media screen and (min-width: 768px) {
