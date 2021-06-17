@@ -18,6 +18,7 @@ const Router = ({
   cards,
   teams,
   ranks,
+  addCard,
 }) => {
   return (
     <Switch>
@@ -55,7 +56,12 @@ const Router = ({
       </Route>
       <Route path="/maker">
         {isUser ? (
-          <Maker cards={cards} teams={teams} ranks={ranks}></Maker>
+          <Maker
+            cards={cards}
+            teams={teams}
+            ranks={ranks}
+            onSubmit={addCard}
+          ></Maker>
         ) : (
           <NotPage></NotPage>
         )}

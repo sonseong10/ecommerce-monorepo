@@ -6,16 +6,21 @@ import DropDown from '../common/dropdown'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/maker.module.css'
 
-const Maker = ({ teams, ranks }) => {
+const Maker = ({ teams, ranks, onSubmit }) => {
   const nameRef = useRef()
   const emailRef = useRef()
   const phoneRef = useRef()
   const telephoneRef = useRef()
   const msgRef = useRef()
+  const themeRef = useRef()
+  const teamRef = useRef()
+  const rankRef = useRef()
+  const fileRef = useRef()
+  const formRef = useRef()
 
   const [themesType, setThemesType] = useState('Gray')
-  const [teamsType, setTeamsType] = useState('전체')
-  const [ranksType, setRanksType] = useState('전체')
+  const [teamsType, setTeamsType] = useState('인사')
+  const [ranksType, setRanksType] = useState('부장')
   const [themesToggle, setthemesToggle] = useState(false)
   const [teamsToggle, setTeamsToggle] = useState(false)
   const [ranksToggle, setRanksToggle] = useState(false)
@@ -26,8 +31,22 @@ const Maker = ({ teams, ranks }) => {
     { id: 3, value: 'yellow' },
   ])
 
-  const onSubmit = (e) => {
+  const submitForm = (e) => {
     e.preventDefault()
+    const card = {
+      uid: Date.now(),
+      name: nameRef.current.value,
+      msg: msgRef.current.value,
+      telephone: telephoneRef.current.value,
+      phone: phoneRef.current.value,
+      email: emailRef.current.value,
+      theme: themeRef.current.innerText,
+      team: teamRef.current.innerText,
+      rank: rankRef.current.innerText,
+      imgURL: '',
+    }
+    formRef.current.reset()
+    onSubmit(card)
   }
 
   const onThemesOpen = () => {
@@ -66,14 +85,19 @@ const Maker = ({ teams, ranks }) => {
   return (
     <div className="col-sm-4 col-md-9">
       <div className="wrapper">
-        <form className={styles.authForm} onSubmit={onSubmit}>
+        <form className={styles.authForm} ref={formRef} onSubmit={submitForm}>
           <label
             className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.profileBtn}`}
             htmlFor="profile"
           >
             <FiCamera /> Add to profile
           </label>
-          <input type="file" id="profile" accept="image/png, image/jpeg" />
+          <input
+            ref={fileRef}
+            type="file"
+            id="profile"
+            accept="image/png, image/jpeg"
+          />
 
           <p className={styles.formLabel}>이름</p>
           <input
@@ -135,6 +159,7 @@ const Maker = ({ teams, ranks }) => {
                 ${buttonStyles.baseBtn}
                 ${buttonStyles.ghostBtn}
                 ${styles.typeBtn}`}
+                ref={themeRef}
                 onClick={onThemesOpen}
                 type="button"
               >
@@ -155,6 +180,7 @@ const Maker = ({ teams, ranks }) => {
               <button
                 className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.typeBtn}`}
                 onClick={onTeamsOpen}
+                ref={teamRef}
                 type="button"
               >
                 {teamsType}
@@ -175,6 +201,7 @@ const Maker = ({ teams, ranks }) => {
               <button
                 className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.typeBtn}`}
                 onClick={onRanksOpen}
+                ref={rankRef}
                 type="button"
               >
                 {ranksType}

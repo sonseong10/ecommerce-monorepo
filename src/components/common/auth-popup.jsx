@@ -13,7 +13,7 @@ const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
   const history = useHistory()
   const goToHome = (userId) => {
     history.push({
-      pathname: '/home',
+      pathname: '/maker',
       state: { id: userId },
     })
   }
