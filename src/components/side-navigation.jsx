@@ -34,10 +34,7 @@ const SideNavigation = memo(
     const onToSearch = () => {
       setSearchIsOpen(true)
 
-      history.push({
-        pathname: '/search',
-        state: { id: userId },
-      })
+      history.push('/search')
     }
 
     return (

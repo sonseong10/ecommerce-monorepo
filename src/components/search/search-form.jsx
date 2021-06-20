@@ -1,15 +1,14 @@
 import React, { memo, useRef, useState } from 'react'
-import { BiArrowBack, BiTrash, BiChevronUp } from 'react-icons/bi'
-import styles from '../../styles/modules/search_form.module.css'
-import buttonStyles from '../../styles/modules/buttons.module.css'
-import DropDown from '../common/dropdown'
+import { BiArrowBack, BiTrash } from 'react-icons/bi'
 
-const SearchForm = memo(({ onSearchOpen, teams, ranks }) => {
-  const [teamsIsOpen, setTeamsIsOpen] = useState(false)
-  const [ranksIsOpen, setRanksIsOpen] = useState(false)
+import TeamsDropdown from '../common/dropdown/teams-dropdown'
+import RanksDropdown from '../common/dropdown/ranks-dropdown'
+
+import buttonStyles from '../../styles/modules/buttons.module.css'
+import styles from '../../styles/modules/search_form.module.css'
+
+const SearchForm = memo(({ onSearchOpen, dropDown }) => {
   const [valueCheck, setValueCheck] = useState(true)
-  const [teamsType, setTeamsType] = useState('전체')
-  const [ranksType, setRanksType] = useState('전체')
 
   const inputName = useRef()
 
@@ -21,28 +20,8 @@ const SearchForm = memo(({ onSearchOpen, teams, ranks }) => {
     event.preventDefault()
   }
 
-  const onTeamsOpen = () => {
-    setTeamsIsOpen(!teamsIsOpen)
-  }
-
-  const onRanksOpen = () => {
-    setRanksIsOpen(!ranksIsOpen)
-  }
-
-  const handleTeamsValue = (value) => {
-    onTeamsOpen()
-    setTeamsType(value)
-  }
-
-  const handleRanksValue = (value) => {
-    onRanksOpen()
-    setRanksType(value)
-  }
-
-  const onRemoveAll = () => {
+  const onRemove = () => {
     setValueCheck(true)
-    setTeamsType('전체')
-    setRanksType('전체')
     inputName.current.value = ''
     inputName.current.focus()
   }
@@ -59,7 +38,7 @@ const SearchForm = memo(({ onSearchOpen, teams, ranks }) => {
         </button>
         <button
           className={`${styles.resetBtn} ${buttonStyles.baseBtn}`}
-          onClick={onRemoveAll}
+          onClick={onRemove}
           type="reset"
         >
           <BiTrash className="lg-only" />
@@ -79,36 +58,9 @@ const SearchForm = memo(({ onSearchOpen, teams, ranks }) => {
           />
         </div>
 
-        <div className={`${styles.teams} ${teamsIsOpen && styles.isActive}`}>
-          <p className={styles.formLabel}>부서명</p>
-          <button
-            className={`${styles.formInput} ${buttonStyles.baseBtn}`}
-            onClick={onTeamsOpen}
-            type="button"
-          >
-            {teamsType} <BiChevronUp className={styles.dropdownIcon} />
-          </button>
-          <div className={styles.teamsList}>
-            <DropDown listItems={teams} handleEvent={handleTeamsValue} />
-          </div>
-        </div>
+        <TeamsDropdown dropDown={dropDown}></TeamsDropdown>
 
-        <div className={`${styles.ranks} ${ranksIsOpen && styles.isActive}`}>
-          <p className={styles.formLabel}>직급명</p>
-
-          <button
-            className={`${styles.formInput} ${buttonStyles.baseBtn}`}
-            onClick={onRanksOpen}
-            type="button"
-          >
-            {ranksType}
-            <BiChevronUp className={styles.dropdownIcon} />
-          </button>
-
-          <div className={styles.ranksList}>
-            <DropDown listItems={ranks} handleEvent={handleRanksValue} />
-          </div>
-        </div>
+        <RanksDropdown dropDown={dropDown}></RanksDropdown>
 
         <button
           className={`${styles.formSubmit} ${buttonStyles.baseBtn} ${buttonStyles.primaryBtn}`}

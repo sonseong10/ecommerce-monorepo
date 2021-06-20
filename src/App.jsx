@@ -8,26 +8,12 @@ import AuthPopup from './components/common/auth-popup'
 import Router from './routers/router'
 import { BrowserRouter } from 'react-router-dom'
 
-const App = ({ authService }) => {
+const App = ({ FileInput, authService, dropDown }) => {
   const [menus, setMenus] = useState('')
   const [overlay, setOverlay] = useState('close')
   const [isUser, setIsUser] = useState(false)
   const [searchIsOpen, setSearchIsOpen] = useState(true)
-  const [teams] = useState([
-    { id: 2, value: '인사' },
-    { id: 3, value: '회계' },
-    { id: 4, value: '개발' },
-    { id: 5, value: '영업' },
-    { id: 6, value: '기획' },
-    { id: 7, value: '디자인' },
-  ])
-  const [ranks] = useState([
-    { id: 2, value: '부장' },
-    { id: 3, value: '차장' },
-    { id: 4, value: '과장' },
-    { id: 5, value: '대리' },
-    { id: 6, value: '직원' },
-  ])
+
   const [cards, setCards] = useState([
     {
       uid: '1',
@@ -85,15 +71,15 @@ const App = ({ authService }) => {
           ></SideNavigation>
           <Router
             authService={authService}
+            dropDown={dropDown}
             isUser={isUser}
             handleHomeActive={handleHomeActive}
             handleSearchActive={handleSearchActive}
             searchIsOpen={searchIsOpen}
             onSearchOpen={onSearchOpen}
             cards={cards}
-            teams={teams}
-            ranks={ranks}
             addCard={addCard}
+            FileInput={FileInput}
           ></Router>
         </div>
       </div>

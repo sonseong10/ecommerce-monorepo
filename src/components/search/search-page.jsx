@@ -2,7 +2,7 @@ import React from 'react'
 import SearchForm from './search-form'
 import styles from '../../styles/modules/search_page.module.css'
 
-const SearchPage = ({ onSearchOpen, searchIsOpen, teams, ranks }) => {
+const SearchPage = ({ onSearchOpen, searchIsOpen, dropDown }) => {
   return (
     <div
       className={`col-md-3 sm-hidden ${styles.isClose} ${
@@ -14,8 +14,7 @@ const SearchPage = ({ onSearchOpen, searchIsOpen, teams, ranks }) => {
           <h2 className="visually-hidden">Search Form</h2>
           <SearchForm
             onSearchOpen={onSearchOpen}
-            teams={teams}
-            ranks={ranks}
+            dropDown={dropDown}
           ></SearchForm>
         </article>
       </div>

@@ -16,9 +16,8 @@ const Router = ({
   searchIsOpen,
   onSearchOpen,
   cards,
-  teams,
-  ranks,
   addCard,
+  dropDown,
 }) => {
   return (
     <Switch>
@@ -41,8 +40,7 @@ const Router = ({
             <SearchPage
               onSearchOpen={onSearchOpen}
               searchIsOpen={searchIsOpen}
-              teams={teams}
-              ranks={ranks}
+              dropDown={dropDown}
             ></SearchPage>
             <ResultPage
               handleSearchActive={handleSearchActive}
@@ -56,12 +54,7 @@ const Router = ({
       </Route>
       <Route path="/maker">
         {isUser ? (
-          <Maker
-            cards={cards}
-            teams={teams}
-            ranks={ranks}
-            onSubmit={addCard}
-          ></Maker>
+          <Maker cards={cards} onSubmit={addCard} dropDown={dropDown}></Maker>
         ) : (
           <NotPage></NotPage>
         )}
