@@ -4,8 +4,8 @@ import styles from '../../styles/modules/member_card.module.css'
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 
 const MemberItem = ({ card }) => {
-  const { time, team, name, theme, msg, phone, telephone, imgURL } = card
-  const url = imgURL || DEFAULT_USER_IMG
+  const { team, name, theme, msg, phone, telephone, fileURL } = card
+  const url = fileURL || DEFAULT_USER_IMG
 
   return (
     <li className={styles.meberItem}>
@@ -14,7 +14,6 @@ const MemberItem = ({ card }) => {
           <div className={styles.dot}>
             <span className="visually-hidden">online</span>
           </div>
-          <span className={styles.loginTime}>{time}</span>
         </header>
         <div className={`${styles.cardContents} ${getStyles(theme)}`}>
           <figure className={styles.profile}>
@@ -47,11 +46,11 @@ const MemberItem = ({ card }) => {
 
 function getStyles(theme) {
   switch (theme) {
-    case '1':
+    case 'Gray':
       return styles.isGray
-    case '2':
+    case 'yellow':
       return styles.isYellow
-    case '3':
+    case 'Blue':
       return styles.isBlue
     default:
       throw new Error(`unknown theme: ${theme}`)

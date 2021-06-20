@@ -1,5 +1,4 @@
-import React, { useRef } from 'react'
-import { FiCamera } from 'react-icons/fi'
+import React, { useRef, useState } from 'react'
 
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/maker.module.css'
@@ -7,7 +6,7 @@ import TeamsDropdown from '../common/dropdown/teams-dropdown'
 import RanksDropdown from '../common/dropdown/ranks-dropdown'
 import ThemesDropdown from '../common/dropdown/themes-dropdown'
 
-const Maker = ({ onSubmit, dropDown }) => {
+const Maker = ({ FileInput, onSubmit, dropDown }) => {
   const nameRef = useRef()
   const emailRef = useRef()
   const phoneRef = useRef()
@@ -16,8 +15,16 @@ const Maker = ({ onSubmit, dropDown }) => {
   const themeRef = useRef()
   const teamRef = useRef()
   const rankRef = useRef()
-  const fileRef = useRef()
   const formRef = useRef()
+
+  const [file, setFile] = useState({ fileName: null, fileURL: null })
+
+  const onFileChange = (file) => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    })
+  }
 
   const submitForm = (e) => {
     e.preventDefault()
@@ -31,9 +38,11 @@ const Maker = ({ onSubmit, dropDown }) => {
       theme: themeRef.current.innerText,
       team: teamRef.current.innerText,
       rank: rankRef.current.innerText,
-      imgURL: '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
     }
     formRef.current.reset()
+    setFile({ fileName: null, fileURL: null })
     onSubmit(card)
   }
 
@@ -41,18 +50,10 @@ const Maker = ({ onSubmit, dropDown }) => {
     <div className="col-sm-4 col-md-9">
       <div className="wrapper">
         <form className={styles.authForm} ref={formRef} onSubmit={submitForm}>
-          <label
-            className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.profileBtn}`}
-            htmlFor="profile"
-          >
-            <FiCamera /> Add to profile
-          </label>
-          <input
-            ref={fileRef}
-            type="file"
-            id="profile"
-            accept="image/png, image/jpeg"
-          />
+          <FileInput
+            name={file.fileName}
+            onFileChange={onFileChange}
+          ></FileInput>
 
           <p className={styles.formLabel}>이름</p>
           <input

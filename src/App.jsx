@@ -70,16 +70,14 @@ const App = ({ FileInput, authService, dropDown }) => {
             setSearchIsOpen={setSearchIsOpen}
           ></SideNavigation>
           <Router
+            FileInput={FileInput}
             authService={authService}
             dropDown={dropDown}
             isUser={isUser}
-            handleHomeActive={handleHomeActive}
-            handleSearchActive={handleSearchActive}
             searchIsOpen={searchIsOpen}
             onSearchOpen={onSearchOpen}
             cards={cards}
             addCard={addCard}
-            FileInput={FileInput}
           ></Router>
         </div>
       </div>

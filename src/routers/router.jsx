@@ -9,10 +9,9 @@ import ResultPage from '../components/search/result-page'
 import SearchPage from '../components/search/search-page'
 
 const Router = ({
+  FileInput,
   authService,
   isUser,
-  handleSearchActive,
-  handleHomeActive,
   searchIsOpen,
   onSearchOpen,
   cards,
@@ -26,10 +25,7 @@ const Router = ({
       </Route>
       <Route path="/home">
         {isUser ? (
-          <HomePage
-            authService={authService}
-            handleHomeActive={handleHomeActive}
-          ></HomePage>
+          <HomePage authService={authService}></HomePage>
         ) : (
           <NotLogin />
         )}
@@ -42,11 +38,7 @@ const Router = ({
               searchIsOpen={searchIsOpen}
               dropDown={dropDown}
             ></SearchPage>
-            <ResultPage
-              handleSearchActive={handleSearchActive}
-              searchIsOpen={searchIsOpen}
-              cards={cards}
-            ></ResultPage>
+            <ResultPage searchIsOpen={searchIsOpen} cards={cards}></ResultPage>
           </>
         ) : (
           <NotLogin />
@@ -54,7 +46,12 @@ const Router = ({
       </Route>
       <Route path="/maker">
         {isUser ? (
-          <Maker cards={cards} onSubmit={addCard} dropDown={dropDown}></Maker>
+          <Maker
+            FileInput={FileInput}
+            cards={cards}
+            onSubmit={addCard}
+            dropDown={dropDown}
+          ></Maker>
         ) : (
           <NotPage></NotPage>
         )}
