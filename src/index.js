@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import ImageFileInput from './components/common/image-file-input'
-import AuthService from './service/auth.service'
+import AuthService from './service/auth_service'
 import ImageUploader from './service/image-uploader'
 import DropDown from './utils/dropdown'
 
