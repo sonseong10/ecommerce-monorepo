@@ -28,9 +28,9 @@
 .ghostBtn {
   color: primary;
   background-color: transparent;
-  transition: color 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
 }
 
 .ghostBtn:not(:disabled):hover {
-  color: secondery;
+  opacity: 0.4;
 }

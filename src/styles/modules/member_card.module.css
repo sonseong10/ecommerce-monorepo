@@ -89,14 +89,12 @@
   position: absolute;
   top: -24px;
   left: 22px;
-  width: 70px;
-  height: 70px;
   border-radius: 20px;
 }
 
 .profile img {
-  width: 100%;
-  height: auto;
+  width: 70px;
+  height: 70px;
   border-radius: 20px;
   object-fit: cover;
 }
