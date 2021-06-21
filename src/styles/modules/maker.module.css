@@ -1,4 +1,4 @@
-@value white, primary, background from '../constants/color.css';
+@value white, primary, background, green from '../constants/color.css';
 
 @value font-size-14, line-height-14, letter-spacing-14, font-size-16,line-height-16,letter-spacing-16 from '../constants/typography.css';
 
@@ -15,9 +15,24 @@
   cursor: pointer;
 }
 
+.profileBtn.isSucceed {
+  color: green;
+}
+
+.profileBtn.isEmpty {
+  color: primary;
+}
+
 .profileBtn svg {
   display: block;
   margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.profileBtn span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 input[type='file'] {
@@ -66,6 +81,26 @@ input[type='file'] {
   width: 180px;
   height: 42px;
   align-self: center;
+}
+
+.loding {
+  margin: 0 0 16px 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid background;
+  border-top: 3px solid green;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (min-width: 768px) {
