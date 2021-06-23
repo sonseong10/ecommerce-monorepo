@@ -18,7 +18,7 @@ const App = ({ FileInput, authService, dropDown }) => {
     {
       uid: '1',
       team: '개발',
-      ramk: '대리',
+      rank: '대리',
       name: 'Anna',
       theme: 'Gray',
       msg: '오늘도 화이팅!',

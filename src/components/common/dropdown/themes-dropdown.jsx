@@ -7,8 +7,10 @@ import styles from '../../../styles/modules/dropdown.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import formStyles from '../../../styles/modules/search_form.module.css'
 
-const ThemesDropdown = ({ dropDown, themeRef }) => {
-  const [themesType, setThemesType] = useState('Gray')
+const ThemesDropdown = ({ dropDown, themeRef, themeValue }) => {
+  const items = dropDown.getThemes()
+
+  const [themesType, setThemesType] = useState(themeValue ? themeValue : items[0].value)
   const [themesIsOpen, setthemesIsOpen] = useState(false)
 
   const handleThemesValue = (value) => {

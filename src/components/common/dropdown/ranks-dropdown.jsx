@@ -7,9 +7,12 @@ import styles from '../../../styles/modules/dropdown.module.css'
 import formStyles from '../../../styles/modules/search_form.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 
-const RanksDropdown = ({ dropDown, rankRef }) => {
-  const [ranksType, setRanksType] = useState('부장')
+const RanksDropdown = ({ dropDown, rankRef, rankValue }) => {
+  const items = dropDown.getRanks()
+
+  const [ranksType, setRanksType] = useState(rankValue ? rankValue : items[0].value)
   const [ranksIsOpen, setRanksIsOpen] = useState(false)
+
 
   const handleRanksValue = (value) => {
     onRanksOpen()
@@ -30,13 +33,12 @@ const RanksDropdown = ({ dropDown, rankRef }) => {
         type="button"
         ref={rankRef}
       >
-        {ranksType}
-        <BiChevronUp className={styles.dropdownIcon} />
+        {ranksType} <BiChevronUp className={styles.dropdownIcon} />
       </button>
 
       <div className={styles.ranksList}>
         <DropDown
-          listItems={dropDown.getRanks()}
+          listItems={items}
           handleEvent={handleRanksValue}
         />
       </div>

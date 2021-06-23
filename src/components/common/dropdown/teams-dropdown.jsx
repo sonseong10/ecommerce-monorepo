@@ -7,8 +7,9 @@ import styles from '../../../styles/modules/dropdown.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import formStyles from '../../../styles/modules/search_form.module.css'
 
-const TeamsDropdown = ({ dropDown, teamRef }) => {
-  const [teamsType, setTeamsType] = useState('인사')
+const TeamsDropdown = ({ dropDown, teamRef, teamValue }) => {
+  const items = dropDown.getTeams()
+  const [teamsType, setTeamsType] = useState(teamValue ? teamValue : items[0].value)
   const [teamsIsOpen, setTeamsIsOpen] = useState(false)
 
   const handleTeamsValue = (value) => {
@@ -33,7 +34,7 @@ const TeamsDropdown = ({ dropDown, teamRef }) => {
       </button>
       <div className={styles.teamsList}>
         <DropDown
-          listItems={dropDown.getTeams()}
+          listItems={items}
           handleEvent={handleTeamsValue}
         />
       </div>
