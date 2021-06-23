@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
-import NotLogin from '../components/errors/not-login'
 import NotPage from '../components/errors/not-page'
 import HomePage from '../components/home/home-page'
 import Maker from '../components/maker/maker'
@@ -10,51 +9,40 @@ import SearchPage from '../components/search/search-page'
 
 const Router = ({
   FileInput,
-  authService,
-  isUser,
   searchIsOpen,
   onSearchOpen,
   cards,
-  addCard,
   dropDown,
+  cardRepository,
+  createCard,
+  updateCard
 }) => {
   return (
     <Switch>
       <Route exact path="/">
-        <Redirect to="/home" />
+        <Redirect to="/maker" />
       </Route>
       <Route path="/home">
-        {isUser ? (
-          <HomePage authService={authService}></HomePage>
-        ) : (
-          <NotLogin />
-        )}
+        <HomePage></HomePage>
       </Route>
       <Route path="/search">
-        {isUser ? (
-          <>
-            <SearchPage
-              onSearchOpen={onSearchOpen}
-              searchIsOpen={searchIsOpen}
-              dropDown={dropDown}
-            ></SearchPage>
-            <ResultPage searchIsOpen={searchIsOpen} cards={cards}></ResultPage>
-          </>
-        ) : (
-          <NotLogin />
-        )}
+        <>
+          <SearchPage
+            onSearchOpen={onSearchOpen}
+            searchIsOpen={searchIsOpen}
+            dropDown={dropDown}
+          ></SearchPage>
+          <ResultPage searchIsOpen={searchIsOpen} cards={cards}></ResultPage>
+        </>
       </Route>
       <Route path="/maker">
-        {isUser ? (
-          <Maker
-            FileInput={FileInput}
-            cards={cards}
-            onSubmit={addCard}
-            dropDown={dropDown}
-          ></Maker>
-        ) : (
-          <NotPage></NotPage>
-        )}
+        <Maker
+          FileInput={FileInput}
+          dropDown={dropDown}
+          cards={cards}
+          createCard={createCard}
+          updateCard={updateCard}
+        ></Maker>
       </Route>
       <Route path="*">
         <NotPage></NotPage>

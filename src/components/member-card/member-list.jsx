@@ -7,8 +7,8 @@ const MemberList = ({ cards }) => {
   return (
     <div className={styles.memberListWrap}>
       <ul className={styles.memberList}>
-        {cards.map((card) => {
-          return <MemberItem card={card} key={card.uid}></MemberItem>
+        {Object.keys(cards).map((key) => {
+          return <MemberItem card={cards[key]} key={key}></MemberItem>
         })}
       </ul>
     </div>
