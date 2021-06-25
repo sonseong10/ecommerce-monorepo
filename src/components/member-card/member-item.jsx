@@ -4,7 +4,7 @@ import styles from '../../styles/modules/member_card.module.css'
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 
 const MemberItem = ({ card }) => {
-  const { team, name, theme, msg, phone, telephone, fileURL } = card
+  const { name, theme, msg, phone, telephone, team, rank, fileURL } = card
   const url = fileURL || DEFAULT_USER_IMG
 
   return (
@@ -26,8 +26,10 @@ const MemberItem = ({ card }) => {
         <footer className={styles.cardFooter}>
           <dl className={styles.authDetailList}>
             <div className={styles.authDetailItem}>
-              <dt className={styles.title}>소속</dt>
-              <dd className={styles.description}>{team}</dd>
+              <dt className={styles.title}>소속/직급</dt>
+              <dd className={styles.description}>
+                {team}/{rank}
+              </dd>
             </div>
             <div className={styles.authDetailItem}>
               <dt className={styles.title}>휴대전화</dt>
