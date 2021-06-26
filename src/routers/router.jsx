@@ -1,11 +1,9 @@
-import React from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 
 import NotPage from '../components/errors/not-page'
 import HomePage from '../components/home/home-page'
+import Search from '../components/search/search'
 import Maker from '../components/maker/maker'
-import ResultPage from '../components/search/result-page'
-import SearchPage from '../components/search/search-page'
 
 const Router = ({
   FileInput,
@@ -13,37 +11,37 @@ const Router = ({
   onSearchOpen,
   cards,
   dropDown,
-  cardRepository,
+  userId,
   createCard,
-  updateCard
+  updateCard,
 }) => {
   return (
     <Switch>
       <Route exact path="/">
-        <Redirect to="/maker" />
+        <Redirect to="/home" />
       </Route>
       <Route path="/home">
         <HomePage></HomePage>
       </Route>
       <Route path="/search">
-        <>
-          <SearchPage
-            onSearchOpen={onSearchOpen}
-            searchIsOpen={searchIsOpen}
-            dropDown={dropDown}
-          ></SearchPage>
-          <ResultPage searchIsOpen={searchIsOpen} cards={cards}></ResultPage>
-        </>
+        <Search
+          onSearchOpen={onSearchOpen}
+          dropDown={dropDown}
+          searchIsOpen={searchIsOpen}
+          cards={cards}
+        ></Search>
       </Route>
       <Route path="/maker">
         <Maker
           FileInput={FileInput}
           dropDown={dropDown}
           cards={cards}
+          userId={userId}
           createCard={createCard}
           updateCard={updateCard}
         ></Maker>
       </Route>
+      <Route path="/update"></Route>
       <Route path="*">
         <NotPage></NotPage>
       </Route>
