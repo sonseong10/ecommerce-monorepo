@@ -1,4 +1,4 @@
-@value primary, secondery, white, green, green-active from '../constants/color.css';
+@value primary, white, green, green-active from '../constants/color.css';
 
 .baseBtn {
   display: flex;

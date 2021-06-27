@@ -1,4 +1,4 @@
-@value primary, secondery, white, background, yellow, blue, login, login-border from '../constants/color.css';
+@value primary, secondary, white, background, yellow, blue, login, login-border from '../constants/color.css';
 
 @value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
@@ -64,7 +64,7 @@
   font-size: font-size-14;
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
-  color: secondery;
+  color: secondary;
 }
 
 .cardContents {
@@ -134,7 +134,7 @@
 
 .title {
   flex-basis: 40%;
-  color: secondery;
+  color: secondary;
 }
 
 .description {

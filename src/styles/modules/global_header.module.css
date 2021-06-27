@@ -1,4 +1,4 @@
-@value white, primary,green, green-active, secondery, background from '../constants/color.css';
+@value primary, secondary, white, background, green, green-active from '../constants/color.css';
 
 @value font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
 
@@ -82,7 +82,7 @@
     line-height: line-height-16;
     letter-spacing: letter-spacing-16;
     font-weight: 700;
-    color: secondery;
+    color: secondary;
     border-radius: 4px;
     transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
   }

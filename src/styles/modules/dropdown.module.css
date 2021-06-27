@@ -1,4 +1,4 @@
-@value primary, secondery, white, background from '../constants/color.css';
+@value primary, secondary, white, background from '../constants/color.css';
 
 @value font-size-14,line-height-14, letter-spacing-14 from '../constants/typography.css';
 
@@ -18,7 +18,7 @@
   font-size: font-size-14;
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
-  color: secondery;
+  color: secondary;
   border-radius: 4px;
 }
 

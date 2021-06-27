@@ -1,4 +1,4 @@
-@value overlay-black, primary, secondery, white, logout, background,  green, green-active  from '../constants/color.css';
+@value overlay-black, primary, secondary, white, logout, background,  green, green-active  from '../constants/color.css';
 @value overlay-level, auth-popup-level from '../constants/z-index.css';
 
 @value font-size-14,line-height-14,letter-spacing-14, font-size-16,line-height-16,letter-spacing-16, font-size-24, line-height-24, letter-spacing-24 from '../constants/typography.css';
@@ -181,7 +181,7 @@
   height: 60px;
   border-radius: 4px;
   transition: box-shadow 300ms ease-in-out;
-  color: secondery;
+  color: secondary;
 }
 
 .userIcon {
