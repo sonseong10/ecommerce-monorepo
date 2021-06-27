@@ -7,7 +7,6 @@ import Maker from '../components/maker/maker'
 
 const Router = ({
   FileInput,
-  searchIsOpen,
   onSearchOpen,
   cards,
   dropDown,
@@ -27,7 +26,6 @@ const Router = ({
         <Search
           onSearchOpen={onSearchOpen}
           dropDown={dropDown}
-          searchIsOpen={searchIsOpen}
           cards={cards}
         ></Search>
       </Route>

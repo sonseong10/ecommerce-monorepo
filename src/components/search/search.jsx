@@ -1,23 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ResultPage from './result-page'
 import SearchPage from './search-page'
 
-const Search = ({
-  onSearchOpen,
-  searchIsOpen,
-  dropDown,
-  handleSearchActive,
-  cards,
-}) => {
+const Search = ({ dropDown, cards }) => {
+  const [isOpen, setIsOpen] = useState(true)
+
+  const handleFormOpen = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <>
       <SearchPage
-        onSearchOpen={onSearchOpen}
+        isOpen={isOpen}
         dropDown={dropDown}
-        handleSearchActive={handleSearchActive}
+        handleFormOpen={handleFormOpen}
       ></SearchPage>
 
-      <ResultPage searchIsOpen={searchIsOpen} cards={cards}></ResultPage>
+      <ResultPage
+        handleFormOpen={handleFormOpen}
+        cards={cards}
+        isOpen={isOpen}
+      ></ResultPage>
     </>
   )
 }

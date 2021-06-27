@@ -2,6 +2,26 @@
 
 @value font-size-14,line-height-14, letter-spacing-14, font-size-16, line-height-16,letter-spacing-16 from '../constants/typography.css';
 
+/* NOTE: search-form state toggle btn */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.searchBtn {
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  color: secondary;
+  font-weight: 400;
+  transition: color 300ms ease-in-out;
+}
+
+.searchBtn:hover {
+  color: green-active;
+}
+
 /* NOTE: form header */
 .formHeader {
   display: flex;
@@ -19,8 +39,8 @@
   transition: color 300ms ease-in-out;
 }
 
-.resetBtn:hover {
-  color: green;
+.resetBtn:active {
+  color: green-active;
 }
 
 .resetBtn:active {
@@ -67,4 +87,10 @@ input.formInput {
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
   color: secondary;
+}
+
+@media screen and (min-width: 768px) {
+  .resetBtn:hover {
+    color: green-active;
+  }
 }

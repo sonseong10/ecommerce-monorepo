@@ -1,5 +1,5 @@
 import React, { memo, useRef, useState } from 'react'
-import { BiArrowBack, BiTrash } from 'react-icons/bi'
+import { BiTrash } from 'react-icons/bi'
 
 import TeamsDropdown from '../common/dropdown/teams-dropdown'
 import RanksDropdown from '../common/dropdown/ranks-dropdown'
@@ -7,7 +7,7 @@ import RanksDropdown from '../common/dropdown/ranks-dropdown'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/search_form.module.css'
 
-const SearchForm = memo(({ onSearchOpen, dropDown }) => {
+const SearchForm = memo(({ dropDown, handleFormOpen }) => {
   const [valueCheck, setValueCheck] = useState(true)
 
   const inputName = useRef()
@@ -30,18 +30,11 @@ const SearchForm = memo(({ onSearchOpen, dropDown }) => {
     <>
       <header className={styles.formHeader}>
         <button
-          className={`${styles.formHideBtn} ${buttonStyles.baseBtn}`}
-          onClick={onSearchOpen}
-          type="button"
-        >
-          <BiArrowBack />
-        </button>
-        <button
           className={`${styles.resetBtn} ${buttonStyles.baseBtn}`}
           onClick={onRemove}
           type="reset"
         >
-          <BiTrash className="lg-only" />
+          <BiTrash />
           Rmove All
         </button>
       </header>
