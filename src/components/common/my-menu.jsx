@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
 
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 
@@ -7,18 +6,11 @@ import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/common.module.css'
 
 import { FaUserAlt, FaSignOutAlt, FaMoon } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
-const MyMenu = ({ authService }) => {
+const MyMenu = ({ authService, userCard }) => {
   const [myMenuOpen, setMyMenuOpen] = useState(false)
-  const history = useHistory()
-
-  useEffect(() => {
-    authService.onAuthChange((user) => {
-      if (!user) {
-        history.push('/')
-      }
-    })
-  })
+  const { name, fileURL } = userCard
 
   const onLogout = () => {
     authService.logout()
@@ -40,12 +32,13 @@ const MyMenu = ({ authService }) => {
           </button>
         </li>
         <li>
-          <button
+          <Link
+            to="/update"
             className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
             type="button"
           >
             <FaUserAlt className={styles.toolIcon} /> Info Update
-          </button>
+          </Link>
         </li>
         <li>
           <button
@@ -62,8 +55,14 @@ const MyMenu = ({ authService }) => {
         className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
         onClick={onIsActive}
       >
-        <img className={styles.userIcon} src={DEFAULT_USER_IMG} alt="default" />
-        No data yet...
+        <img
+          className={styles.userIcon}
+          src={fileURL || DEFAULT_USER_IMG}
+          alt={fileURL ? 'user profile' : 'default'}
+        />
+        <span className={name && styles.isActive}>
+          {name || 'No data yet...'}
+        </span>
       </button>
     </div>
   )

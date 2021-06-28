@@ -6,24 +6,33 @@ import SideNavigation from './components/side-navigation'
 import Overlay from './components/common/overlay'
 import AuthPopup from './components/common/auth-popup'
 import Router from './routers/router'
-import { BrowserRouter, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import NotLogin from './components/errors/not-login'
+import LodingSpinner from './components/common/loding-spinner'
 
 const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   const history = useHistory()
-  const historyState = history?.location?.state;
-  const [menus, setMenus] = useState('')
+  const historyState = history?.location?.state
+  const [naveState, setNavState] = useState('')
   const [overlay, setOverlay] = useState('close')
-  const [searchIsOpen, setSearchIsOpen] = useState(true)
   const [userId, setUserId] = useState(historyState && historyState.id)
 
   const [cards, setCards] = useState({})
+  const [userCard, setUserCards] = useState({})
 
-  useEffect(()=> {
-    if(!userId) {
+  useEffect(() => {
+    if (!userId) {
       return
     }
-    const stopSync = cardRepository.syncCards(userId, cards => {
-      setCards(cards);
+    const stopSync = cardRepository.syncCards((cards) => {
+      setCards(cards)
+    })
+    return () => stopSync()
+  }, [cardRepository, userId])
+
+  useEffect(() => {
+    const stopSync = cardRepository.userCard(userId, (card) => {
+      Object.keys(card).map((item) => setUserCards(card[item]))
     })
     return () => stopSync()
   }, [cardRepository, userId])
@@ -33,21 +42,18 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
       if (user) {
         setUserId(user.uid)
       } else {
+        setUserId('')
         history.push('/')
       }
     })
-  })
+  }, [authService, history])
 
-  const onSearchOpen = () => {
-    setSearchIsOpen()
+  const homeActive = () => {
+    setNavState('home')
   }
 
-  const handleHomeActive = () => {
-    setMenus('home')
-  }
-
-  const handleSearchActive = () => {
-    setMenus('search')
+  const searchActive = () => {
+    setNavState('search')
   }
 
   const handleOpenPopup = () => {
@@ -55,36 +61,42 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   }
 
   const createOrUpdateCard = (card) => {
-    setCards(cards => {
-      const updated = {...cards}
-      updated[card.uid] = card;
+    setCards((cards) => {
+      const updated = { ...cards }
+      updated[userId] = card
       return updated
     })
     cardRepository.saveCard(userId, card)
   }
 
   return (
-    <BrowserRouter>
+    <>
       <div className="container">
         <div className="row">
           <SideNavigation
-            handleHomeActive={handleHomeActive}
-            handleSearchActive={handleSearchActive}
             handleOpenPopup={handleOpenPopup}
-            menus={menus}
+            naveState={naveState}
             authService={authService}
-            setSearchIsOpen={setSearchIsOpen}
+            loginState={userId}
+            userCard={userCard}
           ></SideNavigation>
-          <Router
-            FileInput={FileInput}
-            dropDown={dropDown}
-            searchIsOpen={searchIsOpen}
-            onSearchOpen={onSearchOpen}
-            cards={cards}
-            createCard={createOrUpdateCard}
-            updateCard={createOrUpdateCard}
-            cardRepository={cardRepository}
-          ></Router>
+          {userId ? (
+            <Router
+              cards={cards}
+              FileInput={FileInput}
+              cardRepository={cardRepository}
+              dropDown={dropDown}
+              userId={userId}
+              userCard={userCard}
+              createCard={createOrUpdateCard}
+              updateCard={createOrUpdateCard}
+              homeActive={homeActive}
+              searchActive={searchActive}
+            ></Router>
+          ) : (
+            <NotLogin></NotLogin>
+          )}
+          <LodingSpinner></LodingSpinner>
         </div>
       </div>
       <AuthPopup
@@ -93,7 +105,7 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
         authService={authService}
       ></AuthPopup>
       <Overlay overlay={overlay} handleOpenPopup={handleOpenPopup}></Overlay>
-    </BrowserRouter>
+    </>
   )
 }
 

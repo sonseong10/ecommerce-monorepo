@@ -1,5 +1,4 @@
-import React, { memo, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { memo } from 'react'
 
 import { FcGoogle } from 'react-icons/fc'
 import { GoMarkGithub } from 'react-icons/go'
@@ -10,25 +9,10 @@ import buttonStyles from '../../styles/modules/buttons.module.css'
 const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
   const getState = overlay === 'close' ? '' : styles.isActive
 
-  const history = useHistory()
-  const goToMaker = (userId) => {
-    history.push({
-      pathname: '/maker',
-      state: { id: userId },
-    })
-  }
-
   const onLogin = (event) => {
     authService //
       .login(event.target.value)
-      .then((data) => goToMaker(data.user.uid))
   }
-
-  useEffect(() => {
-    authService.onAuthChange((user) => {
-      user && goToMaker(user.uid)
-    })
-  })
 
   return (
     <section className={`${styles.authPopup} ${getState}`}>

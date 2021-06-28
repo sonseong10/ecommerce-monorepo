@@ -1,10 +1,7 @@
-import { useEffect } from 'react'
+import React from 'react'
 import styles from '../../styles/modules/home_page.module.css'
 
-const HomePage = ({ handleHomeActive }) => {
-  useEffect(() => {
-    handleHomeActive()
-  })
+const HomePage = () => {
   return (
     <div className="col-sm-4 col-md-9">
       <div className={`wrapper ${styles.articleWrap}`}>

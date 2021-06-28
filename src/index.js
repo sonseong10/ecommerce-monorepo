@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import ImageFileInput from './components/common/image-file-input'
 import AuthService from './service/auth_service'
@@ -17,13 +18,15 @@ const FileInput = (props) => (
 )
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App
-      authService={authService}
-      dropDown={dropDown}
-      FileInput={FileInput}
-      cardRepository={cardRepository}
-    />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <App
+        authService={authService}
+        dropDown={dropDown}
+        FileInput={FileInput}
+        cardRepository={cardRepository}
+      />
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 )

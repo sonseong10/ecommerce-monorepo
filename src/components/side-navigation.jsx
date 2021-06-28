@@ -1,42 +1,15 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo } from 'react'
 
 import Logo from '../logo.svg'
 
 import { BiHomeAlt, BiSearch, BiMenu } from 'react-icons/bi'
 import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/global_header.module.css'
-import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import MyMenu from './common/my-menu'
 
 const SideNavigation = memo(
-  ({ menus, handleOpenPopup, authService, isUser, setSearchIsOpen }) => {
-    const [userId, setUserId] = useState()
-
-    const history = useHistory()
-
-    useEffect(() => {
-      authService.onAuthChange((user) => {
-        if (!user) {
-          history.push('/')
-        } else {
-          setUserId(user.uid)
-        }
-      })
-    })
-
-    const onToHome = () => {
-      history.push({
-        pathname: '/home',
-        state: { id: userId },
-      })
-    }
-
-    const onToSearch = () => {
-      setSearchIsOpen(true)
-
-      history.push('/search')
-    }
-
+  ({ naveState, handleOpenPopup, authService, loginState, userCard }) => {
     return (
       <div className="col-sm-4 col-md-3">
         <div className="wrapper">
@@ -60,34 +33,32 @@ const SideNavigation = memo(
                 <h2 className="visually-hidden">Side Navigation Bar</h2>
                 <ul className="snb-list">
                   <li className="snb-item">
-                    <button
+                    <Link
+                      to={loginState ? '/main' : '#'}
                       className={`${styles.snbItemButton} ${
-                        menus === 'home' && styles.isActive
+                        naveState === 'home' && styles.isActive
                       }`}
-                      onClick={onToHome}
                       type="button"
-                      disabled={!isUser}
                     >
                       <BiHomeAlt className={styles.snbButtonIcon} />
                       Home
-                    </button>
+                    </Link>
                   </li>
                   <li className="snb-item">
-                    <button
+                    <Link
+                      to={loginState ? '/search' : '#'}
                       className={`${styles.snbItemButton} 
-                    ${menus === 'search' && styles.isActive}`}
-                      onClick={onToSearch}
+                    ${naveState === 'search' && styles.isActive}`}
                       type="button"
-                      disabled={!isUser}
                     >
                       <BiSearch className={styles.snbButtonIcon} />
                       Search
-                    </button>
+                    </Link>
                   </li>
                 </ul>
               </nav>
-              {isUser ? (
-                <MyMenu authService={authService}></MyMenu>
+              {loginState ? (
+                <MyMenu authService={authService} userCard={userCard}></MyMenu>
               ) : (
                 <button
                   className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}

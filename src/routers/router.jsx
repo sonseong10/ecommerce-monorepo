@@ -4,6 +4,7 @@ import NotPage from '../components/errors/not-page'
 import HomePage from '../components/home/home-page'
 import Search from '../components/search/search'
 import Maker from '../components/maker/maker'
+import Update from '../components/update/update'
 
 const Router = ({
   FileInput,
@@ -11,16 +12,27 @@ const Router = ({
   cards,
   dropDown,
   userId,
+  userCard,
   createCard,
   updateCard,
 }) => {
+  const check = Object.keys(userCard).length === 0
   return (
     <Switch>
       <Route exact path="/">
-        <Redirect to="/home" />
+        <Redirect to="/main" />
       </Route>
-      <Route path="/home">
-        <HomePage></HomePage>
+      <Route path="/main">
+        {!check ? (
+          <HomePage></HomePage>
+        ) : (
+          <Maker
+            FileInput={FileInput}
+            dropDown={dropDown}
+            userId={userId}
+            createCard={createCard}
+          ></Maker>
+        )}
       </Route>
       <Route path="/search">
         <Search
@@ -29,17 +41,14 @@ const Router = ({
           cards={cards}
         ></Search>
       </Route>
-      <Route path="/maker">
-        <Maker
+      <Route path="/update">
+        <Update
           FileInput={FileInput}
+          userCard={userCard}
           dropDown={dropDown}
-          cards={cards}
-          userId={userId}
-          createCard={createCard}
           updateCard={updateCard}
-        ></Maker>
+        ></Update>
       </Route>
-      <Route path="/update"></Route>
       <Route path="*">
         <NotPage></NotPage>
       </Route>
