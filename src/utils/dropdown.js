@@ -18,7 +18,7 @@ const ranks = [
 const themes = [
   { id: 1, value: 'Gray' },
   { id: 2, value: 'Blue' },
-  { id: 3, value: 'yellow' },
+  { id: 3, value: 'Yellow' },
 ]
 
 class DropDown {

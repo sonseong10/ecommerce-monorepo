@@ -50,7 +50,7 @@ function getStyles(theme) {
   switch (theme) {
     case 'Gray':
       return styles.isGray
-    case 'yellow':
+    case 'Yellow':
       return styles.isYellow
     case 'Blue':
       return styles.isBlue
