@@ -1,44 +1,57 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/maker.module.css'
 
 import RanksDropdown from '../common/dropdown/ranks-dropdown'
 import TeamsDropdown from '../common/dropdown/teams-dropdown'
 import ThemesDropdown from '../common/dropdown/themes-dropdown'
 
-const EditCardForm = ({ FileInput, card, dropDown, updateCard }) => {
-  const nameRef = useRef()
-  const emailRef = useRef()
-  const phoneRef = useRef()
-  const telephoneRef = useRef()
-  const msgRef = useRef()
-  const themeRef = useRef()
-  const teamRef = useRef()
-  const rankRef = useRef()
-
-  const { name, email, phone, telephone, msg, theme, team, rank, fileName } = card
+const EditCardForm = ({ FileInput, userCard, dropDown, updateCard }) => {
+  const { name, email, phone, telephone, msg, theme, team, rank, fileName } =
+    userCard
 
   const onFileChange = (file) => {
     updateCard({
-      ...card,
+      ...userCard,
       fileName: file.name,
       fileURL: file.url,
     })
   }
 
-  const onChange = (event)=>{
-    if(event.currentTarget === null) {
-      return;
+  const onChange = (event) => {
+    if (event.currentTarget === null) {
+      return
     }
     event.preventDefault()
     updateCard({
-      ...card,
-      [event.currentTarget.name]: event.currentTarget.value,
+      ...userCard,
+      [event.currentTarget.id]: event.currentTarget.value,
     })
   }
+
+  const onThemeChange = (value) => {
+    updateCard({
+      ...userCard,
+      [`theme`]: value,
+    })
+  }
+
+  const onTeamChange = (value) => {
+    updateCard({
+      ...userCard,
+      [`team`]: value,
+    })
+  }
+
+  const onRankChange = (value) => {
+    updateCard({
+      ...userCard,
+      [`rank`]: value,
+    })
+  }
+
   return (
-    <form className={styles.authForm} onSubmit={updateCard}>
+    <form className={styles.authForm}>
       <FileInput name={fileName} onFileChange={onFileChange} />
 
       <p className={styles.formLabel}>이름</p>
@@ -46,9 +59,9 @@ const EditCardForm = ({ FileInput, card, dropDown, updateCard }) => {
         className={styles.authFormInput}
         type="text"
         id="name"
-        ref={nameRef}
         defaultValue={name}
         placeholder="Name"
+        onChange={onChange}
       />
 
       <p className={styles.formLabel}>이메일</p>
@@ -56,7 +69,6 @@ const EditCardForm = ({ FileInput, card, dropDown, updateCard }) => {
         className={styles.authFormInput}
         type="email"
         id="email"
-        ref={emailRef}
         defaultValue={email}
         placeholder="Email"
         onChange={onChange}
@@ -67,7 +79,6 @@ const EditCardForm = ({ FileInput, card, dropDown, updateCard }) => {
         className={styles.authFormInput}
         type="text"
         id="phone"
-        ref={phoneRef}
         defaultValue={phone}
         placeholder="Phone"
         onChange={onChange}
@@ -78,7 +89,6 @@ const EditCardForm = ({ FileInput, card, dropDown, updateCard }) => {
         className={styles.authFormInput}
         type="text"
         id="telephone"
-        ref={telephoneRef}
         defaultValue={telephone}
         placeholder="TelePhone"
         onChange={onChange}
@@ -92,7 +102,6 @@ const EditCardForm = ({ FileInput, card, dropDown, updateCard }) => {
         rows="3"
         maxLength="100"
         placeholder="Msg"
-        ref={msgRef}
         defaultValue={msg}
         onChange={onChange}
       ></textarea>
@@ -101,19 +110,21 @@ const EditCardForm = ({ FileInput, card, dropDown, updateCard }) => {
         <ThemesDropdown
           dropDown={dropDown}
           themeValue={theme}
-          themeRef={themeRef}
+          onThemeChange={onThemeChange}
         ></ThemesDropdown>
 
-        <TeamsDropdown dropDown={dropDown} teamValue={team} teamRef={teamRef}></TeamsDropdown>
+        <TeamsDropdown
+          dropDown={dropDown}
+          teamValue={team}
+          onTeamChange={onTeamChange}
+        ></TeamsDropdown>
 
-        <RanksDropdown dropDown={dropDown} rankValue={rank} rankRef={rankRef}></RanksDropdown>
+        <RanksDropdown
+          dropDown={dropDown}
+          rankValue={rank}
+          onRankChange={onRankChange}
+        ></RanksDropdown>
       </div>
-      <button
-        className={`${buttonStyles.baseBtn} ${buttonStyles.primaryBtn} ${styles.submitBtn}`}
-        type="submit"
-      >
-        Ok
-      </button>
     </form>
   )
 }
