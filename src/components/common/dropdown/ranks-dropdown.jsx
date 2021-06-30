@@ -7,16 +7,29 @@ import styles from '../../../styles/modules/dropdown.module.css'
 import formStyles from '../../../styles/modules/search_form.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 
-const RanksDropdown = ({ dropDown, rankRef, rankValue }) => {
+const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard }) => {
   const items = dropDown.getRanks()
 
-  const [ranksType, setRanksType] = useState(rankValue ? rankValue : items[0].value)
+  const [ranksType, setRanksType] = useState(
+    userCard ? userCard.rank : items[0].value
+  )
   const [ranksIsOpen, setRanksIsOpen] = useState(false)
 
-
   const handleRanksValue = (value) => {
+    userCard ? update(value) : add(value)
     onRanksOpen()
+  }
+
+  const add = (value) => {
     setRanksType(value)
+  }
+
+  const update = (value) => {
+    setRanksType(value)
+    updateCard({
+      ...userCard,
+      [`rank`]: value,
+    })
   }
 
   const onRanksOpen = () => {
@@ -37,10 +50,7 @@ const RanksDropdown = ({ dropDown, rankRef, rankValue }) => {
       </button>
 
       <div className={styles.ranksList}>
-        <DropDown
-          listItems={items}
-          handleEvent={handleRanksValue}
-        />
+        <DropDown listItems={items} handleEvent={handleRanksValue} />
       </div>
     </div>
   )

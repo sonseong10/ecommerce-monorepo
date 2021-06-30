@@ -1,12 +1,16 @@
 import React, { useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
-import styles from '../../styles/modules/maker.module.css'
 import TeamsDropdown from '../common/dropdown/teams-dropdown'
 import RanksDropdown from '../common/dropdown/ranks-dropdown'
 import ThemesDropdown from '../common/dropdown/themes-dropdown'
 
+import buttonStyles from '../../styles/modules/buttons.module.css'
+import styles from '../../styles/modules/maker.module.css'
+
 const AddCardForm = ({ FileInput, createCard, dropDown }) => {
+  const history = useHistory()
+
   const nameRef = useRef()
   const emailRef = useRef()
   const phoneRef = useRef()
@@ -29,7 +33,7 @@ const AddCardForm = ({ FileInput, createCard, dropDown }) => {
   const submitForm = (e) => {
     e.preventDefault()
     const card = {
-      uid: Date.now(),
+      login: true,
       name: nameRef.current.value || '',
       msg: msgRef.current.value || '',
       telephone: telephoneRef.current.value || '',
@@ -43,8 +47,8 @@ const AddCardForm = ({ FileInput, createCard, dropDown }) => {
     }
     formRef.current.reset()
     setFile({ fileName: null, fileURL: null })
-    console.log(card)
     createCard(card)
+    history.push('/main')
   }
 
   return (

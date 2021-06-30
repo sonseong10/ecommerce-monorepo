@@ -31,10 +31,16 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   }, [cardRepository, userId])
 
   useEffect(() => {
-    const stopSync = cardRepository.userCard(userId, (card) => {
-      Object.keys(card).map((item) => setUserCards(card[item]))
-    })
-    return () => stopSync()
+    if (!userId) {
+      return
+    }
+    async function fetchAndSetUser() {
+      const stopSync = await cardRepository.userCard(userId, (card) => {
+        Object.keys(card).map((item) => setUserCards(card[item]))
+      })
+      return () => stopSync()
+    }
+    fetchAndSetUser()
   }, [cardRepository, userId])
 
   useEffect(() => {

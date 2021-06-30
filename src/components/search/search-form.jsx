@@ -7,7 +7,7 @@ import RanksDropdown from '../common/dropdown/ranks-dropdown'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/search_form.module.css'
 
-const SearchForm = memo(({ dropDown, handleFormOpen }) => {
+const SearchForm = memo(({ dropDown }) => {
   const [valueCheck, setValueCheck] = useState(true)
 
   const inputName = useRef()

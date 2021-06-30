@@ -11,7 +11,6 @@ const Router = ({
   onSearchOpen,
   cards,
   dropDown,
-  userId,
   userCard,
   createCard,
   updateCard,
@@ -29,7 +28,6 @@ const Router = ({
           <Maker
             FileInput={FileInput}
             dropDown={dropDown}
-            userId={userId}
             createCard={createCard}
           ></Maker>
         )}

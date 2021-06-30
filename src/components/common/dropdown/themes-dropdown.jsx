@@ -7,15 +7,29 @@ import styles from '../../../styles/modules/dropdown.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import formStyles from '../../../styles/modules/search_form.module.css'
 
-const ThemesDropdown = ({ dropDown, themeRef, themeValue }) => {
+const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard }) => {
   const items = dropDown.getThemes()
 
-  const [themesType, setThemesType] = useState(themeValue ? themeValue : items[0].value)
+  const [themesType, setThemesType] = useState(
+    userCard ? userCard.theme : items[0].value
+  )
   const [themesIsOpen, setthemesIsOpen] = useState(false)
 
   const handleThemesValue = (value) => {
+    userCard ? update(value) : add(value)
     onThemesOpen()
+  }
+
+  const add = (value) => {
     setThemesType(value)
+  }
+
+  const update = (value) => {
+    setThemesType(value)
+    updateCard({
+      ...userCard,
+      [`theme`]: value,
+    })
   }
 
   const onThemesOpen = () => {

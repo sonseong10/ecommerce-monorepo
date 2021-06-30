@@ -7,8 +7,7 @@ import TeamsDropdown from '../common/dropdown/teams-dropdown'
 import ThemesDropdown from '../common/dropdown/themes-dropdown'
 
 const EditCardForm = ({ FileInput, userCard, dropDown, updateCard }) => {
-  const { name, email, phone, telephone, msg, theme, team, rank, fileName } =
-    userCard
+  const { name, email, phone, telephone, msg, fileName } = userCard
 
   const onFileChange = (file) => {
     updateCard({
@@ -26,27 +25,6 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard }) => {
     updateCard({
       ...userCard,
       [event.currentTarget.id]: event.currentTarget.value,
-    })
-  }
-
-  const onThemeChange = (value) => {
-    updateCard({
-      ...userCard,
-      [`theme`]: value,
-    })
-  }
-
-  const onTeamChange = (value) => {
-    updateCard({
-      ...userCard,
-      [`team`]: value,
-    })
-  }
-
-  const onRankChange = (value) => {
-    updateCard({
-      ...userCard,
-      [`rank`]: value,
     })
   }
 
@@ -109,20 +87,20 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard }) => {
       <div className={styles.typeBtnList}>
         <ThemesDropdown
           dropDown={dropDown}
-          themeValue={theme}
-          onThemeChange={onThemeChange}
+          updateCard={updateCard}
+          userCard={userCard}
         ></ThemesDropdown>
 
         <TeamsDropdown
           dropDown={dropDown}
-          teamValue={team}
-          onTeamChange={onTeamChange}
+          updateCard={updateCard}
+          userCard={userCard}
         ></TeamsDropdown>
 
         <RanksDropdown
           dropDown={dropDown}
-          rankValue={rank}
-          onRankChange={onRankChange}
+          updateCard={updateCard}
+          userCard={userCard}
         ></RanksDropdown>
       </div>
     </form>

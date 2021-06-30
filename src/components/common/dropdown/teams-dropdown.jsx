@@ -7,14 +7,28 @@ import styles from '../../../styles/modules/dropdown.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import formStyles from '../../../styles/modules/search_form.module.css'
 
-const TeamsDropdown = ({ dropDown, teamRef, teamValue }) => {
+const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard }) => {
   const items = dropDown.getTeams()
-  const [teamsType, setTeamsType] = useState(teamValue ? teamValue : items[0].value)
+  const [teamsType, setTeamsType] = useState(
+    userCard ? userCard.team : items[0].value
+  )
   const [teamsIsOpen, setTeamsIsOpen] = useState(false)
 
   const handleTeamsValue = (value) => {
+    userCard ? update(value) : add(value)
     onTeamsOpen()
+  }
+
+  const add = (value) => {
     setTeamsType(value)
+  }
+
+  const update = (value) => {
+    setTeamsType(value)
+    updateCard({
+      ...userCard,
+      [`team`]: value,
+    })
   }
 
   const onTeamsOpen = () => {
@@ -33,10 +47,7 @@ const TeamsDropdown = ({ dropDown, teamRef, teamValue }) => {
         {teamsType} <BiChevronUp className={styles.dropdownIcon} />
       </button>
       <div className={styles.teamsList}>
-        <DropDown
-          listItems={items}
-          handleEvent={handleTeamsValue}
-        />
+        <DropDown listItems={items} handleEvent={handleTeamsValue} />
       </div>
     </div>
   )
