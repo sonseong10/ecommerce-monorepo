@@ -99,7 +99,15 @@
   object-fit: cover;
 }
 
+.authName,
+.authMsg {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .authName {
+  display: block;
   font-size: font-size-18;
   line-height: line-height-18;
   letter-spacing: letter-spacing-18;
@@ -111,10 +119,6 @@
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
   color: primary;
-  word-break: break-all;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .cardFooter {
