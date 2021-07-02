@@ -23,9 +23,9 @@ const SideNavigation = memo(
                 <BiMenu />
               </button>
               <strong className={styles.logo}>
-                <a href="/">
+                <Link to="/">
                   <img className="logo-img" src={Logo} alt="WhoMember" />
-                </a>
+                </Link>
               </strong>
             </div>
             <div className={`${styles.snbRight} sm-hidden`}>
@@ -34,7 +34,7 @@ const SideNavigation = memo(
                 <ul className="snb-list">
                   <li className="snb-item">
                     <Link
-                      to={loginState ? '/main' : '#'}
+                      to={loginState ? '/' : '#'}
                       className={`${styles.snbItemButton} ${
                         naveState === 'home' && styles.isActive
                       }`}
