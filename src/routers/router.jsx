@@ -22,11 +22,12 @@ const Router = ({
         {isCard ? <Redirect to="/maker" /> : <Redirect to="/main" />}
       </Route>
       <Route path="/main">
-        <HomePage isCard={isCard}></HomePage>
+        {isCard && <Redirect to="/maker" />}
+        <HomePage></HomePage>
       </Route>
       <Route path="/maker">
+        {!isCard && <Redirect to="/main" />}
         <Maker
-          isCard={isCard}
           FileInput={FileInput}
           dropDown={dropDown}
           createCard={createCard}
