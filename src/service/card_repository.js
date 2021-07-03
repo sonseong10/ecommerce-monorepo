@@ -24,6 +24,10 @@ class CardRepository {
   saveCard(userId, card) {
     firebaseApp.database().ref(`cards/${userId}`).set(card)
   }
+
+  removeCard(userId) {
+    firebaseApp.database().ref(`cards/${userId}`).remove()
+  }
 }
 
 export default CardRepository
