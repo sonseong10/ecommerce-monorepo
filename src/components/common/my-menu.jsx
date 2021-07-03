@@ -8,7 +8,7 @@ import styles from '../../styles/modules/common.module.css'
 import { FaUserAlt, FaSignOutAlt, FaMoon } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const MyMenu = ({ authService, userCard }) => {
+const MyMenu = ({ authService, userCard, isCard }) => {
   const [myMenuOpen, setMyMenuOpen] = useState(false)
   const { name, fileURL } = userCard
 
@@ -33,11 +33,12 @@ const MyMenu = ({ authService, userCard }) => {
         </li>
         <li>
           <Link
-            to="/update"
+            to={isCard ? '#' : '/update'}
             className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
             type="button"
           >
-            <FaUserAlt className={styles.toolIcon} /> Info Update
+            <FaUserAlt className={styles.toolIcon} />
+            {isCard ? 'Disable' : 'Info Update'}
           </Link>
         </li>
         <li>
@@ -51,19 +52,33 @@ const MyMenu = ({ authService, userCard }) => {
           </button>
         </li>
       </ul>
-      <button
-        className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
-        onClick={onIsActive}
-      >
-        <img
-          className={styles.userIcon}
-          src={fileURL || DEFAULT_USER_IMG}
-          alt={fileURL ? 'user profile' : 'default'}
-        />
-        <span className={name && styles.isActive}>
-          {name || 'No data yet...'}
-        </span>
-      </button>
+      {isCard ? (
+        <button
+          className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
+          onClick={onIsActive}
+        >
+          <img
+            className={styles.userIcon}
+            src={DEFAULT_USER_IMG}
+            alt="default"
+          />
+          <span>No data yet...</span>
+        </button>
+      ) : (
+        <button
+          className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
+          onClick={onIsActive}
+        >
+          <img
+            className={styles.userIcon}
+            src={fileURL || DEFAULT_USER_IMG}
+            alt={fileURL ? 'user profile' : 'default'}
+          />
+          <span className={name && styles.isActive}>
+            {name || 'No data yet...'}
+          </span>
+        </button>
+      )}
     </div>
   )
 }

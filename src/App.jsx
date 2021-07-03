@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from 'react'
-
-import './styles/main.css'
-
-import SideNavigation from './components/side-navigation'
-import Overlay from './components/common/overlay'
-import AuthPopup from './components/common/auth-popup'
 import Router from './routers/router'
 import { useHistory } from 'react-router-dom'
+
+import SideNavigation from './components/side-navigation'
 import NotLogin from './components/errors/not-login'
-import LodingSpinner from './components/common/loding-spinner'
+import Overlay from './components/common/overlay'
+import AuthPopup from './components/common/auth-popup'
+
+import './styles/main.css'
 
 const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   const history = useHistory()
   const historyState = history?.location?.state
-  const [naveState, setNavState] = useState('')
   const [overlay, setOverlay] = useState('close')
   const [userId, setUserId] = useState(historyState && historyState.id)
-
   const [cards, setCards] = useState({})
-  const [userCard, setUserCards] = useState({})
+  const [userCard, setUserCard] = useState({})
+  const [isCard, setIsCard] = useState(false)
 
   useEffect(() => {
-    if (!userId) {
-      return
-    }
+    authService.onAuthChange((user) => {
+      if (user) {
+        setUserId(user.uid)
+        setIsCard(true)
+      } else {
+        setUserId(null)
+        setIsCard(false)
+      }
+    })
+  }, [authService])
+
+  useEffect(() => {
     const stopSync = cardRepository.syncCards((cards) => {
       setCards(cards)
     })
@@ -31,36 +38,17 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   }, [cardRepository, userId])
 
   useEffect(() => {
-    if (!userId) {
-      return
-    }
-    async function fetchAndSetUser() {
-      const stopSync = await cardRepository.userCard(userId, (card) => {
-        Object.keys(card).map((item) => setUserCards(card[item]))
+    const stopSync = cardRepository.userCard(userId, (card) => {
+      Object.keys(card).map((item) => {
+        return setUserCard(card[item])
       })
-      return () => stopSync()
-    }
-    fetchAndSetUser()
+    })
+    return () => stopSync()
   }, [cardRepository, userId])
 
   useEffect(() => {
-    authService.onAuthChange((user) => {
-      if (user) {
-        setUserId(user.uid)
-      } else {
-        setUserId('')
-        history.push('/')
-      }
-    })
-  }, [authService, history])
-
-  const homeActive = () => {
-    setNavState('home')
-  }
-
-  const searchActive = () => {
-    setNavState('search')
-  }
+    Object.keys(userCard).length === 0 ? setIsCard(true) : setIsCard(false)
+  }, [userCard])
 
   const handleOpenPopup = () => {
     overlay === 'close' ? setOverlay('open') : setOverlay('close')
@@ -75,34 +63,43 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
     cardRepository.saveCard(userId, card)
   }
 
+  const deleteCard = () => {
+    setCards((cards) => {
+      const updated = { ...cards }
+      delete updated[userId]
+      return updated
+    })
+    setUserCard({})
+    setIsCard(true)
+    cardRepository.removeCard(userId)
+    history.push('/')
+  }
+
   return (
     <>
       <div className="container">
         <div className="row">
           <SideNavigation
             handleOpenPopup={handleOpenPopup}
-            naveState={naveState}
             authService={authService}
-            loginState={userId}
+            userId={userId}
             userCard={userCard}
+            isCard={isCard}
           ></SideNavigation>
-          {userId ? (
+          {!userId ? (
+            <NotLogin isCard={isCard} />
+          ) : (
             <Router
-              cards={cards}
               FileInput={FileInput}
-              cardRepository={cardRepository}
+              cards={cards}
               dropDown={dropDown}
-              userId={userId}
               userCard={userCard}
+              isCard={isCard}
               createCard={createOrUpdateCard}
               updateCard={createOrUpdateCard}
-              homeActive={homeActive}
-              searchActive={searchActive}
+              deleteCard={deleteCard}
             ></Router>
-          ) : (
-            <NotLogin></NotLogin>
           )}
-          <LodingSpinner></LodingSpinner>
         </div>
       </div>
       <AuthPopup

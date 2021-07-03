@@ -1,12 +1,19 @@
 import React from 'react'
 
+import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/maker.module.css'
 
 import RanksDropdown from '../common/dropdown/ranks-dropdown'
 import TeamsDropdown from '../common/dropdown/teams-dropdown'
 import ThemesDropdown from '../common/dropdown/themes-dropdown'
 
-const EditCardForm = ({ FileInput, userCard, dropDown, updateCard }) => {
+const EditCardForm = ({
+  FileInput,
+  userCard,
+  dropDown,
+  updateCard,
+  deleteCard,
+}) => {
   const { name, email, phone, telephone, msg, fileName } = userCard
 
   const onFileChange = (file) => {
@@ -26,6 +33,10 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard }) => {
       ...userCard,
       [event.currentTarget.id]: event.currentTarget.value,
     })
+  }
+
+  const onRemove = () => {
+    deleteCard()
   }
 
   return (
@@ -103,6 +114,14 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard }) => {
           userCard={userCard}
         ></RanksDropdown>
       </div>
+
+      <button
+        type="button"
+        className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.removeBtn}`}
+        onClick={onRemove}
+      >
+        Remove
+      </button>
     </form>
   )
 }

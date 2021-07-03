@@ -5,13 +5,16 @@ import { GoMarkGithub } from 'react-icons/go'
 
 import styles from '../../styles/modules/common.module.css'
 import buttonStyles from '../../styles/modules/buttons.module.css'
+import { useHistory } from 'react-router-dom'
 
 const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
+  const history = useHistory()
   const getState = overlay === 'close' ? '' : styles.isActive
 
   const onLogin = (event) => {
     authService //
       .login(event.target.value)
+    history.push('/')
   }
 
   return (

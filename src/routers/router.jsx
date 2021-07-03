@@ -8,36 +8,32 @@ import Update from '../components/update/update'
 
 const Router = ({
   FileInput,
-  onSearchOpen,
   cards,
   dropDown,
   userCard,
+  isCard,
   createCard,
   updateCard,
+  deleteCard,
 }) => {
-  const check = Object.keys(userCard).length === 0
   return (
     <Switch>
-      <Route exact path="/">
-        <Redirect to="/main" />
+      <Route path="/" exact>
+        {isCard ? <Redirect to="/maker" /> : <Redirect to="/main" />}
       </Route>
       <Route path="/main">
-        {!check ? (
-          <HomePage></HomePage>
-        ) : (
-          <Maker
-            FileInput={FileInput}
-            dropDown={dropDown}
-            createCard={createCard}
-          ></Maker>
-        )}
+        <HomePage isCard={isCard}></HomePage>
+      </Route>
+      <Route path="/maker">
+        <Maker
+          isCard={isCard}
+          FileInput={FileInput}
+          dropDown={dropDown}
+          createCard={createCard}
+        ></Maker>
       </Route>
       <Route path="/search">
-        <Search
-          onSearchOpen={onSearchOpen}
-          dropDown={dropDown}
-          cards={cards}
-        ></Search>
+        <Search dropDown={dropDown} cards={cards}></Search>
       </Route>
       <Route path="/update">
         <Update
@@ -45,6 +41,7 @@ const Router = ({
           userCard={userCard}
           dropDown={dropDown}
           updateCard={updateCard}
+          deleteCard={deleteCard}
         ></Update>
       </Route>
       <Route path="*">
