@@ -10,7 +10,7 @@ import Logo from '../logo.svg'
 
 const SideNavigation = ({
   naveState,
-  handleOpenPopup,
+  ToggleOverlay,
   authService,
   userId,
   userCard,
@@ -74,7 +74,7 @@ const SideNavigation = ({
             ) : (
               <button
                 className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}
-                onClick={handleOpenPopup}
+                onClick={ToggleOverlay}
                 type="button"
                 disabled={loding}
               >

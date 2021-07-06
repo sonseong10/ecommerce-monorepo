@@ -12,12 +12,12 @@ import './styles/main.css'
 const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   const history = useHistory()
   const historyState = history?.location?.state
-  const [overlay, setOverlay] = useState('close')
   const [userId, setUserId] = useState(historyState && historyState.id)
   const [cards, setCards] = useState({})
   const [userCard, setUserCard] = useState({})
   const [isCard, setIsCard] = useState(false)
   const [loding, setLoding] = useState(false)
+  const [overlay, setOverlay] = useState(false)
 
   useEffect(() => {
     const stopSync = cardRepository.syncCards((cards) => {
@@ -59,8 +59,8 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
     })
   }, [authService, history])
 
-  const handleOpenPopup = () => {
-    overlay === 'close' ? setOverlay('open') : setOverlay('close')
+  const ToggleOverlay = () => {
+    setOverlay(!overlay)
   }
 
   const createOrUpdateCard = (card) => {
@@ -88,7 +88,7 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
       <div className="container">
         <div className="row">
           <SideNavigation
-            handleOpenPopup={handleOpenPopup}
+            ToggleOverlay={ToggleOverlay}
             authService={authService}
             userId={userId}
             userCard={userCard}
@@ -113,10 +113,10 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
       </div>
       <AuthPopup
         overlay={overlay}
-        handleOpenPopup={handleOpenPopup}
+        ToggleOverlay={ToggleOverlay}
         authService={authService}
       ></AuthPopup>
-      <Overlay overlay={overlay} handleOpenPopup={handleOpenPopup}></Overlay>
+      <Overlay overlay={overlay} ToggleOverlay={ToggleOverlay}></Overlay>
     </>
   )
 }

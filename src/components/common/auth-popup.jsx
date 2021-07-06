@@ -7,9 +7,8 @@ import styles from '../../styles/modules/common.module.css'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import { useHistory } from 'react-router-dom'
 
-const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
+const AuthPopup = memo(({ overlay, ToggleOverlay, authService }) => {
   const history = useHistory()
-  const getState = overlay === 'close' ? '' : styles.isActive
 
   const onLogin = (event) => {
     authService //
@@ -18,7 +17,7 @@ const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
   }
 
   return (
-    <section className={`${styles.authPopup} ${getState}`}>
+    <section className={`${styles.authPopup} ${overlay && styles.isActive}`}>
       <header className={styles.popupHeader}>
         <h2 className={styles.popupTitle}>Join us</h2>
       </header>
@@ -28,7 +27,7 @@ const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
           className={`${buttonStyles.baseBtn} ${styles.authBtn}`}
           type="button"
           onClick={onLogin}
-          onMouseDown={handleOpenPopup}
+          onMouseDown={ToggleOverlay}
           value="Google"
         >
           <FcGoogle className={styles.authLogo} />
@@ -38,7 +37,7 @@ const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
           className={`${buttonStyles.baseBtn} ${styles.authBtn}`}
           type="button"
           onClick={onLogin}
-          onMouseDown={handleOpenPopup}
+          onMouseDown={ToggleOverlay}
           value="Github"
         >
           <GoMarkGithub className={styles.authLogo} />
@@ -49,7 +48,7 @@ const AuthPopup = memo(({ overlay, handleOpenPopup, authService }) => {
       <footer className={styles.popupFooter}>
         <button
           className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.cancleBtn}`}
-          onClick={handleOpenPopup}
+          onClick={ToggleOverlay}
           type="button"
         >
           Cancle

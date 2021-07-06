@@ -1,13 +1,11 @@
 import React from 'react'
 import styles from '../../styles/modules/common.module.css'
 
-const Overlay = ({ overlay, handleOpenPopup }) => {
-  const getState = overlay === 'close' ? '' : styles.isActive
-
+const Overlay = ({ overlay, ToggleOverlay }) => {
   return (
     <div
-      className={`${styles.overlay} ${getState}`}
-      onClick={handleOpenPopup}
+      className={`${styles.overlay} ${overlay && styles.isActive}`}
+      onClick={ToggleOverlay}
       aria-hidden
     ></div>
   )
