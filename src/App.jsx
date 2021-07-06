@@ -17,38 +17,47 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   const [cards, setCards] = useState({})
   const [userCard, setUserCard] = useState({})
   const [isCard, setIsCard] = useState(false)
-
-  useEffect(() => {
-    authService.onAuthChange((user) => {
-      if (user) {
-        setUserId(user.uid)
-        setIsCard(true)
-      } else {
-        setUserId(null)
-        setIsCard(false)
-      }
-    })
-  }, [authService])
+  const [loding, setLoding] = useState(false)
 
   useEffect(() => {
     const stopSync = cardRepository.syncCards((cards) => {
       setCards(cards)
     })
-    return () => stopSync()
+    return () => {
+      stopSync()
+    }
   }, [cardRepository, userId])
 
   useEffect(() => {
+    if (!userId) {
+      return
+    }
     const stopSync = cardRepository.userCard(userId, (card) => {
-      Object.keys(card).map((item) => {
-        return setUserCard(card[item])
-      })
+      if (card) {
+        Object.keys(card).map((item) => {
+          setIsCard(true)
+          return setUserCard(card[item])
+        })
+      } else {
+        setIsCard(false)
+        return setUserCard({})
+      }
     })
     return () => stopSync()
   }, [cardRepository, userId])
 
   useEffect(() => {
-    Object.keys(userCard).length === 0 ? setIsCard(true) : setIsCard(false)
-  }, [userCard])
+    setLoding(true)
+    authService.onAuthChange((user) => {
+      if (user) {
+        setUserId(user.uid)
+      } else {
+        setUserId('')
+        history.push('/')
+      }
+      setLoding(false)
+    })
+  }, [authService, history])
 
   const handleOpenPopup = () => {
     overlay === 'close' ? setOverlay('open') : setOverlay('close')
@@ -74,7 +83,6 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
     cardRepository.removeCard(userId)
     history.push('/')
   }
-
   return (
     <>
       <div className="container">
@@ -84,10 +92,11 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
             authService={authService}
             userId={userId}
             userCard={userCard}
+            loding={loding}
             isCard={isCard}
           ></SideNavigation>
           {!userId ? (
-            <NotLogin isCard={isCard} />
+            <NotLogin loding={loding} />
           ) : (
             <Router
               FileInput={FileInput}

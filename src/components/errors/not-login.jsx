@@ -3,11 +3,11 @@ import notResult from '../../assets/images/security_on.svg'
 import styles from '../../styles/modules/error_page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 
-const NotLogin = ({ isCard }) => {
+const NotLogin = ({ loding }) => {
   return (
     <div className="col-sm-4 col-md-9">
       <div className="wrapper">
-        {isCard ? (
+        {loding ? (
           <LodingSpinner></LodingSpinner>
         ) : (
           <section className={styles.error}>

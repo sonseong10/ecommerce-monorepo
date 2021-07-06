@@ -19,18 +19,17 @@ const Router = ({
   return (
     <Switch>
       <Route path="/" exact>
-        {isCard ? <Redirect to="/maker" /> : <Redirect to="/main" />}
+        {isCard ? <Redirect to="/main" /> : <Redirect to="/maker" />}
       </Route>
       <Route path="/main">
-        {isCard && <Redirect to="/maker" />}
-        <HomePage></HomePage>
+        <HomePage isCard={isCard}></HomePage>
       </Route>
       <Route path="/maker">
-        {!isCard && <Redirect to="/main" />}
         <Maker
           FileInput={FileInput}
           dropDown={dropDown}
           createCard={createCard}
+          isCard={isCard}
         ></Maker>
       </Route>
       <Route path="/search">

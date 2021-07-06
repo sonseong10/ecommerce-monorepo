@@ -19,7 +19,6 @@ const MyMenu = ({ authService, userCard, isCard }) => {
   const onIsActive = () => {
     setMyMenuOpen(!myMenuOpen)
   }
-
   return (
     <div className={`${styles.myMenu} ${myMenuOpen && styles.isActive}`}>
       <ul className={styles.myMenuList}>
@@ -33,12 +32,12 @@ const MyMenu = ({ authService, userCard, isCard }) => {
         </li>
         <li>
           <Link
-            to={isCard ? '#' : '/update'}
+            to={isCard ? '/update' : '#'}
             className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
             type="button"
           >
             <FaUserAlt className={styles.toolIcon} />
-            {isCard ? 'Disable' : 'Info Update'}
+            {isCard ? 'Info Update' : 'Disable'}
           </Link>
         </li>
         <li>
@@ -52,33 +51,19 @@ const MyMenu = ({ authService, userCard, isCard }) => {
           </button>
         </li>
       </ul>
-      {isCard ? (
-        <button
-          className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
-          onClick={onIsActive}
-        >
-          <img
-            className={styles.userIcon}
-            src={DEFAULT_USER_IMG}
-            alt="default"
-          />
-          <span>No data yet...</span>
-        </button>
-      ) : (
-        <button
-          className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
-          onClick={onIsActive}
-        >
-          <img
-            className={styles.userIcon}
-            src={fileURL || DEFAULT_USER_IMG}
-            alt={fileURL ? 'user profile' : 'default'}
-          />
-          <span className={name && styles.isActive}>
-            {name || 'No data yet...'}
-          </span>
-        </button>
-      )}
+      <button
+        className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
+        onClick={onIsActive}
+      >
+        <img
+          className={styles.userIcon}
+          src={fileURL || DEFAULT_USER_IMG}
+          alt={fileURL ? 'user profile' : 'default'}
+        />
+        <span className={name && styles.isActive}>
+          {name || 'No data yet...'}
+        </span>
+      </button>
     </div>
   )
 }

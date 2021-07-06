@@ -1,12 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-import Logo from '../logo.svg'
-
+import MyMenu from './common/my-menu'
 import { BiHomeAlt, BiSearch, BiMenu } from 'react-icons/bi'
+
 import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/global_header.module.css'
-import { Link } from 'react-router-dom'
-import MyMenu from './common/my-menu'
+import Logo from '../logo.svg'
 
 const SideNavigation = ({
   naveState,
@@ -14,8 +14,10 @@ const SideNavigation = ({
   authService,
   userId,
   userCard,
+  loding,
   isCard,
 }) => {
+  console.log(loding)
   return (
     <div className="col-sm-4 col-md-3">
       <div className="wrapper">
@@ -74,9 +76,9 @@ const SideNavigation = ({
                 className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}
                 onClick={handleOpenPopup}
                 type="button"
-                disabled={isCard}
+                disabled={loding}
               >
-                {isCard ? 'Loding' : `Login & Signup`}
+                {loding ? `Loding` : `Login & Signup`}
               </button>
             )}
           </div>
