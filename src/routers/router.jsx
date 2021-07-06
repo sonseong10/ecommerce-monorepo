@@ -15,6 +15,8 @@ const Router = ({
   createCard,
   updateCard,
   deleteCard,
+  onSetHome,
+  onSetSearch,
 }) => {
   return (
     <Switch>
@@ -22,7 +24,7 @@ const Router = ({
         {isCard ? <Redirect to="/main" /> : <Redirect to="/maker" />}
       </Route>
       <Route path="/main">
-        <HomePage isCard={isCard}></HomePage>
+        <HomePage isCard={isCard} onSetHome={onSetHome}></HomePage>
       </Route>
       <Route path="/maker">
         <Maker
@@ -30,10 +32,15 @@ const Router = ({
           dropDown={dropDown}
           createCard={createCard}
           isCard={isCard}
+          onSetHome={onSetHome}
         ></Maker>
       </Route>
       <Route path="/search">
-        <Search dropDown={dropDown} cards={cards}></Search>
+        <Search
+          dropDown={dropDown}
+          cards={cards}
+          onSetSearch={onSetSearch}
+        ></Search>
       </Route>
       <Route path="/update">
         <Update

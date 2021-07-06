@@ -13,6 +13,8 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
   const history = useHistory()
   const historyState = history?.location?.state
   const [userId, setUserId] = useState(historyState && historyState.id)
+  const [home, setHome] = useState(false)
+  const [search, setSerch] = useState(false)
   const [cards, setCards] = useState({})
   const [userCard, setUserCard] = useState({})
   const [isCard, setIsCard] = useState(false)
@@ -63,6 +65,16 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
     setOverlay(!overlay)
   }
 
+  const onSetHome = () => {
+    setSerch(false)
+    setHome(true)
+  }
+
+  const onSetSearch = () => {
+    setHome(false)
+    setSerch(true)
+  }
+
   const createOrUpdateCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards }
@@ -94,6 +106,8 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
             userCard={userCard}
             loding={loding}
             isCard={isCard}
+            home={home}
+            search={search}
           ></SideNavigation>
           {!userId ? (
             <NotLogin loding={loding} />
@@ -104,6 +118,8 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
               dropDown={dropDown}
               userCard={userCard}
               isCard={isCard}
+              onSetHome={onSetHome}
+              onSetSearch={onSetSearch}
               createCard={createOrUpdateCard}
               updateCard={createOrUpdateCard}
               deleteCard={deleteCard}

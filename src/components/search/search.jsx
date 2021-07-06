@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ResultPage from './result-page'
 import SearchPage from './search-page'
 
-const Search = ({ dropDown, cards }) => {
+const Search = ({ dropDown, cards, onSetSearch }) => {
   const [isOpen, setIsOpen] = useState(true)
+
+  useEffect(() => {
+    onSetSearch()
+  })
 
   const handleFormOpen = () => {
     setIsOpen(!isOpen)

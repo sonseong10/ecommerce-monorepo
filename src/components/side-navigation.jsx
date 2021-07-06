@@ -9,15 +9,15 @@ import styles from '../styles/modules/global_header.module.css'
 import Logo from '../logo.svg'
 
 const SideNavigation = ({
-  naveState,
   ToggleOverlay,
   authService,
   userId,
   userCard,
   loding,
   isCard,
+  home,
+  search,
 }) => {
-  console.log(loding)
   return (
     <div className="col-sm-4 col-md-3">
       <div className="wrapper">
@@ -44,7 +44,7 @@ const SideNavigation = ({
                   <Link
                     to={userId ? '/' : '#'}
                     className={`${styles.snbItemButton} ${
-                      naveState === 'home' && styles.isActive
+                      home && styles.isActive
                     }`}
                     type="button"
                   >
@@ -56,7 +56,7 @@ const SideNavigation = ({
                   <Link
                     to={userId ? '/search' : '#'}
                     className={`${styles.snbItemButton} 
-                    ${naveState === 'search' && styles.isActive}`}
+                    ${search && styles.isActive}`}
                     type="button"
                   >
                     <BiSearch className={styles.snbButtonIcon} />

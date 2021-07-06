@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../../styles/modules/home_page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 
-const HomePage = ({ isCard }) => {
+const HomePage = ({ isCard, onSetHome }) => {
+  useEffect(() => {
+    onSetHome()
+  })
   return (
     <div className="col-sm-4 col-md-9">
       <div className="wrapper">
