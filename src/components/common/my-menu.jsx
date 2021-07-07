@@ -52,7 +52,7 @@ const MyMenu = ({ authService, userCard, isCard }) => {
         </li>
       </ul>
       <button
-        className={`${styles.mymemuBtn} ${buttonStyles.baseBtn} `}
+        className={`${buttonStyles.baseBtn} ${styles.mymemuBtn}`}
         onClick={onIsActive}
       >
         <img

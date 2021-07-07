@@ -3,15 +3,21 @@ import React from 'react'
 import styles from '../../styles/modules/member_card.module.css'
 import MemberItem from './member-item'
 
-const MemberList = ({ cards }) => {
+const MemberList = ({ cards, searchValue }) => {
+  const filterCards = Object.keys(cards).filter(
+    (key) => cards[key].name === searchValue
+  )
+
   return (
-    <div className={styles.memberListWrap}>
-      <ul className={styles.memberList}>
-        {Object.keys(cards).map((key) => {
-          return <MemberItem card={cards[key]} key={key}></MemberItem>
-        })}
-      </ul>
-    </div>
+    <ul className={styles.memberList}>
+      {filterCards.length
+        ? filterCards.map((key) => {
+            return <MemberItem card={cards[key]} key={key}></MemberItem>
+          })
+        : Object.keys(cards).map((key) => (
+            <MemberItem card={cards[key]} key={key}></MemberItem>
+          ))}
+    </ul>
   )
 }
 

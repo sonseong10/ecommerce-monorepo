@@ -3,9 +3,8 @@ import { BiChevronUp } from 'react-icons/bi'
 
 import DropDown from './dropdown'
 
-import styles from '../../../styles/modules/dropdown.module.css'
-import formStyles from '../../../styles/modules/search_form.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
+import styles from '../../../styles/modules/dropdown.module.css'
 
 const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard }) => {
   const items = dropDown.getRanks()
@@ -38,10 +37,10 @@ const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard }) => {
 
   return (
     <div className={`${styles.ranks} ${ranksIsOpen && styles.isActive}`}>
-      <p className={formStyles.formLabel}>직급명</p>
+      <p className={styles.formLabel}>직급명</p>
 
       <button
-        className={`${formStyles.formInput} ${buttonStyles.baseBtn}`}
+        className={`${styles.formInput} ${buttonStyles.baseBtn}`}
         onClick={onRanksOpen}
         type="button"
         ref={rankRef}

@@ -176,7 +176,7 @@
   margin-right: 12px;
 }
 
-.mymemuBtn {
+button.mymemuBtn {
   justify-content: flex-start;
   width: 100%;
   height: 60px;

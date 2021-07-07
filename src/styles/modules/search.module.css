@@ -1,0 +1,48 @@
+@value primary, secondary, white, background from '../constants/color.css';
+
+@value font-size-16,line-height-16, letter-spacing-16 from '../constants/typography.css';
+
+.memberListWrap {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.serchInput {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 26px;
+  color: primary;
+  padding: 8px 4px;
+}
+
+.serchInput::after {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: background;
+  content: '';
+}
+
+.serchInput svg {
+  font-size: 18px;
+  color: secondary;
+}
+
+.serchInput input {
+  margin-left: 2px;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  color: primary;
+}

@@ -3,9 +3,8 @@ import { BiChevronUp } from 'react-icons/bi'
 
 import DropDown from './dropdown'
 
-import styles from '../../../styles/modules/dropdown.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
-import formStyles from '../../../styles/modules/search_form.module.css'
+import styles from '../../../styles/modules/dropdown.module.css'
 
 const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard }) => {
   const items = dropDown.getThemes()
@@ -38,9 +37,9 @@ const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard }) => {
 
   return (
     <div className={`${styles.themes} ${themesIsOpen && styles.isActive}`}>
-      <p className={formStyles.formLabel}>색상 테마</p>
+      <p className={styles.formLabel}>색상 테마</p>
       <button
-        className={`${formStyles.formInput} ${buttonStyles.baseBtn}`}
+        className={`${styles.formInput} ${buttonStyles.baseBtn}`}
         onClick={onThemesOpen}
         type="button"
         ref={themeRef}

@@ -3,12 +3,11 @@ import { BiChevronUp } from 'react-icons/bi'
 
 import DropDown from './dropdown'
 
-import styles from '../../../styles/modules/dropdown.module.css'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
-import formStyles from '../../../styles/modules/search_form.module.css'
+import styles from '../../../styles/modules/dropdown.module.css'
 
 const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard }) => {
-  const items = dropDown.getTeams()
+  const items = [...dropDown.getTeams()]
   const [teamsType, setTeamsType] = useState(
     userCard ? userCard.team : items[0].value
   )
@@ -37,9 +36,9 @@ const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard }) => {
 
   return (
     <div className={`${styles.teams} ${teamsIsOpen && styles.isActive}`}>
-      <p className={formStyles.formLabel}>부서명</p>
+      <p className={styles.formLabel}>부서명</p>
       <button
-        className={`${formStyles.formInput} ${buttonStyles.baseBtn}`}
+        className={`${styles.formInput} ${buttonStyles.baseBtn}`}
         onClick={onTeamsOpen}
         type="button"
         ref={teamRef}

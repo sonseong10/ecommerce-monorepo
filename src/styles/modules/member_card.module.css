@@ -4,12 +4,6 @@
 
 @value card-shadow from '../constants/box-shadow.css';
 
-.memberListWrap {
-  position: relative;
-  height: 100%;
-  overflow-y: auto;
-}
-
 .memberList {
   display: flex;
   flex-wrap: wrap;
