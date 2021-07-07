@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import LodingSpinner from '../common/loding-spinner'
 import AddCardForm from './add-card-form'
 
-const Maker = ({ FileInput, dropDown, createCard, isCard, onSetHome }) => {
+const Maker = ({ FileInput, dropDown, createCard, onSetHome }) => {
   useEffect(() => {
     onSetHome()
   })
@@ -10,15 +9,11 @@ const Maker = ({ FileInput, dropDown, createCard, isCard, onSetHome }) => {
   return (
     <div className="col-sm-4 col-md-9">
       <div className="wrapper">
-        {isCard ? (
-          <LodingSpinner></LodingSpinner>
-        ) : (
-          <AddCardForm
-            FileInput={FileInput}
-            createCard={createCard}
-            dropDown={dropDown}
-          />
-        )}
+        <AddCardForm
+          FileInput={FileInput}
+          createCard={createCard}
+          dropDown={dropDown}
+        />
       </div>
     </div>
   )

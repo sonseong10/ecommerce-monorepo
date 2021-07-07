@@ -27,11 +27,11 @@ const Router = ({
         <HomePage isCard={isCard} onSetHome={onSetHome}></HomePage>
       </Route>
       <Route path="/maker">
+        {isCard && <Redirect to="/main" />}
         <Maker
           FileInput={FileInput}
           dropDown={dropDown}
           createCard={createCard}
-          isCard={isCard}
           onSetHome={onSetHome}
         ></Maker>
       </Route>
