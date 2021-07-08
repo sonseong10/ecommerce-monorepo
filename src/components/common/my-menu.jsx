@@ -8,13 +8,9 @@ import styles from '../../styles/modules/common.module.css'
 import { FaUserAlt, FaSignOutAlt, FaMoon } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const MyMenu = ({ authService, userCard, isCard }) => {
+const MyMenu = ({ userCard, isCard, onLogout }) => {
   const [myMenuOpen, setMyMenuOpen] = useState(false)
   const { name, fileURL } = userCard
-
-  const onLogout = () => {
-    authService.logout()
-  }
 
   const onIsActive = () => {
     setMyMenuOpen(!myMenuOpen)

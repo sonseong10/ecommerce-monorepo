@@ -4,16 +4,21 @@ import styles from '../../styles/modules/member_card.module.css'
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 
 const MemberItem = ({ card }) => {
-  const { name, theme, msg, phone, telephone, team, rank, fileURL } = card
+  const { name, login, theme, msg, phone, telephone, team, rank, fileURL } =
+    card
   const url = fileURL || DEFAULT_USER_IMG
 
   return (
     <li className={styles.meberItem}>
       <a href="/" className={styles.card}>
         <header className={styles.cardHeader}>
-          <div className={styles.dot}>
-            <span className="visually-hidden">online</span>
-          </div>
+          <>
+            <div
+              className={`${styles.dot} 
+              ${login ? styles.online : styles.offline}`}
+            ></div>
+            <span>{login ? 'online' : 'offline'}</span>
+          </>
         </header>
         <div className={`${styles.cardContents} ${getStyles(theme)}`}>
           <figure className={styles.profile}>

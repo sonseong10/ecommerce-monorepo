@@ -5,17 +5,8 @@ import { GoMarkGithub } from 'react-icons/go'
 
 import styles from '../../styles/modules/common.module.css'
 import buttonStyles from '../../styles/modules/buttons.module.css'
-import { useHistory } from 'react-router-dom'
 
-const AuthPopup = memo(({ overlay, ToggleOverlay, authService }) => {
-  const history = useHistory()
-
-  const onLogin = (event) => {
-    authService //
-      .login(event.target.value)
-    history.push('/')
-  }
-
+const AuthPopup = memo(({ overlay, ToggleOverlay, authService, onLogin }) => {
   return (
     <section className={`${styles.authPopup} ${overlay && styles.isActive}`}>
       <header className={styles.popupHeader}>

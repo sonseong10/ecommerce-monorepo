@@ -75,6 +75,23 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
     setSerch(true)
   }
 
+  const onLogin = (event) => {
+    authService //
+      .login(event.currentTarget.value)
+      .then(
+        (data) =>
+          isCard &&
+          cardRepository.saveCard(data.user.uid, { ...userCard, login: true })
+      )
+      .then(history.push('/'))
+  }
+
+  const onLogout = () => {
+    isCard && createOrUpdateCard({ ...userCard, login: false })
+    authService.logout()
+    history.push('/')
+  }
+
   const createOrUpdateCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards }
@@ -108,6 +125,7 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
             isCard={isCard}
             home={home}
             search={search}
+            onLogout={onLogout}
           ></SideNavigation>
           {!userId ? (
             <NotLogin loding={loding} />
@@ -131,6 +149,7 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
         overlay={overlay}
         ToggleOverlay={ToggleOverlay}
         authService={authService}
+        onLogin={onLogin}
       ></AuthPopup>
       <Overlay overlay={overlay} ToggleOverlay={ToggleOverlay}></Overlay>
     </>

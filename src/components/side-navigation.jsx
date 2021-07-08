@@ -17,6 +17,7 @@ const SideNavigation = ({
   isCard,
   home,
   search,
+  onLogout,
 }) => {
   return (
     <div className="col-sm-4 col-md-3">
@@ -54,7 +55,7 @@ const SideNavigation = ({
                 </li>
                 <li className="snb-item">
                   <Link
-                    to={userId ? '/search' : '#'}
+                    to={isCard ? '/search' : '#'}
                     className={`${styles.snbItemButton} 
                     ${search && styles.isActive}`}
                     type="button"
@@ -70,6 +71,7 @@ const SideNavigation = ({
                 authService={authService}
                 userCard={userCard}
                 isCard={isCard}
+                onLogout={onLogout}
               ></MyMenu>
             ) : (
               <button

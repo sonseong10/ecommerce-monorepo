@@ -1,4 +1,4 @@
-@value primary, secondary, white, background, yellow, blue, login, login-border from '../constants/color.css';
+@value primary, secondary, white, background, yellow, blue, login, login-border, logout, logout-border from '../constants/color.css';
 
 @value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
@@ -52,6 +52,16 @@
   background-color: login;
   border: 2px solid login-border;
   border-radius: 50%;
+}
+
+.dot.online {
+  background-color: login;
+  border: 2px solid login-border;
+}
+
+.dot.offline {
+  background-color: logout;
+  border: 2px solid logout-border;
 }
 
 .loginTime {
