@@ -1,4 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {
+  validateEmail,
+  validateName,
+  validatePhone,
+} from '../../utils/validation'
 
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/maker.module.css'
@@ -16,6 +21,37 @@ const EditCardForm = ({
 }) => {
   const { name, email, phone, telephone, msg, fileName } = userCard
 
+  const [nameError, setNameError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
+  const [phoneError, setPhoneError] = useState(false)
+
+  const nameValidate = (event) => {
+    if (validateName(event.currentTarget.value)) {
+      setNameError(false)
+    } else {
+      setNameError(true)
+    }
+    onChange(event, validateName(event.currentTarget.value))
+  }
+
+  const emailValidate = (event) => {
+    if (validateEmail(event.currentTarget.value)) {
+      setEmailError(false)
+    } else {
+      setEmailError(true)
+    }
+    onChange(event, validateEmail(event.currentTarget.value))
+  }
+
+  const phoneValidate = (event) => {
+    if (validatePhone(event.currentTarget.value)) {
+      setPhoneError(false)
+    } else {
+      setPhoneError(true)
+    }
+    onChange(event, validatePhone(event.currentTarget.value))
+  }
+
   const onFileChange = (file) => {
     updateCard({
       ...userCard,
@@ -24,15 +60,18 @@ const EditCardForm = ({
     })
   }
 
-  const onChange = (event) => {
-    if (event.currentTarget === null) {
+  const onChange = ({ currentTarget }, validated = true) => {
+    if (currentTarget.value === null) {
       return
     }
-    event.preventDefault()
-    updateCard({
-      ...userCard,
-      [event.currentTarget.id]: event.currentTarget.value,
-    })
+    if (!validated) {
+      return
+    } else {
+      updateCard({
+        ...userCard,
+        [currentTarget.id]: currentTarget.value,
+      })
+    }
   }
 
   const onRemove = () => {
@@ -45,33 +84,48 @@ const EditCardForm = ({
 
       <p className={styles.formLabel}>이름</p>
       <input
-        className={styles.authFormInput}
+        className={`${styles.authFormInput} ${nameError && styles.isError}`}
         type="text"
         id="name"
         defaultValue={name}
         placeholder="Name"
-        onChange={onChange}
+        onChange={nameValidate}
       />
+      {nameError && (
+        <strong className={styles.errorText}>
+          should only be used in English or Korean without spaces.
+        </strong>
+      )}
 
       <p className={styles.formLabel}>이메일</p>
       <input
-        className={styles.authFormInput}
+        className={`${styles.authFormInput} ${emailError && styles.isError}`}
         type="email"
         id="email"
         defaultValue={email}
         placeholder="Email"
-        onChange={onChange}
+        onChange={emailValidate}
       />
+      {emailError && (
+        <strong className={styles.errorText}>
+          Please maintain the email format.
+        </strong>
+      )}
 
       <p className={styles.formLabel}>휴대전화</p>
       <input
-        className={styles.authFormInput}
+        className={`${styles.authFormInput} ${phoneError && styles.isError}`}
         type="text"
         id="phone"
         defaultValue={phone}
         placeholder="Phone"
-        onChange={onChange}
+        onChange={phoneValidate}
       />
+      {phoneError && (
+        <strong className={styles.errorText}>
+          Please enter your phone number including "-"
+        </strong>
+      )}
 
       <p className={styles.formLabel}>유선전화</p>
       <input

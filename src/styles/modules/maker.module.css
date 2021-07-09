@@ -60,6 +60,10 @@ input[type='file'] {
   border: 2px solid background;
 }
 
+.authFormInput.isError {
+  border-color: logout;
+}
+
 .typeBtnList {
   display: flex;
   flex-direction: column;
@@ -87,6 +91,15 @@ input[type='file'] {
   align-self: flex-end;
   color: logout;
   height: 44px;
+}
+
+.errorText {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: logout;
+  text-align: right;
+  font-weight: 400;
 }
 
 @media screen and (min-width: 768px) {
