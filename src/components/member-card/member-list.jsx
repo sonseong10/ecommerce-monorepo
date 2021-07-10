@@ -4,8 +4,8 @@ import styles from '../../styles/modules/member_card.module.css'
 import MemberItem from './member-item'
 
 const MemberList = ({ cards, searchValue }) => {
-  const filterCards = Object.keys(cards).filter(
-    (key) => cards[key].name === searchValue
+  const filterCards = Object.keys(cards).filter((key) =>
+    cards[key].name.includes(searchValue)
   )
 
   return (
