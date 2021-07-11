@@ -23,42 +23,55 @@ const Router = ({
       <Route path="/" exact>
         {isCard ? <Redirect to="/main" /> : <Redirect to="/maker" />}
       </Route>
-      <Route path="/main">
-        <HomePage
-          isCard={isCard}
-          cards={cards}
-          userCard={userCard}
-          onSetHome={onSetHome}
-        ></HomePage>
-      </Route>
-      <Route path="/maker">
-        {isCard && <Redirect to="/main" />}
-        <Maker
-          FileInput={FileInput}
-          dropDown={dropDown}
-          createCard={createCard}
-          onSetHome={onSetHome}
-        ></Maker>
-      </Route>
-      <Route path="/search">
-        <Search
-          dropDown={dropDown}
-          cards={cards}
-          onSetSearch={onSetSearch}
-        ></Search>
-      </Route>
-      <Route path="/update">
-        <Update
-          FileInput={FileInput}
-          userCard={userCard}
-          dropDown={dropDown}
-          updateCard={updateCard}
-          deleteCard={deleteCard}
-        ></Update>
-      </Route>
-      <Route path="*">
-        <NotPage></NotPage>
-      </Route>
+      <Route
+        path="/main"
+        render={() => (
+          <HomePage
+            isCard={isCard}
+            cards={cards}
+            userCard={userCard}
+            onSetHome={onSetHome}
+          ></HomePage>
+        )}
+      ></Route>
+      <Route
+        path="/maker"
+        render={() => {
+          isCard ? (
+            <Redirect to="/main" />
+          ) : (
+            <Maker
+              FileInput={FileInput}
+              dropDown={dropDown}
+              createCard={createCard}
+              onSetHome={onSetHome}
+            ></Maker>
+          )
+        }}
+      ></Route>
+      <Route
+        path="/search"
+        render={() => (
+          <Search
+            dropDown={dropDown}
+            cards={cards}
+            onSetSearch={onSetSearch}
+          ></Search>
+        )}
+      ></Route>
+      <Route
+        path="/update"
+        render={() => (
+          <Update
+            FileInput={FileInput}
+            userCard={userCard}
+            dropDown={dropDown}
+            updateCard={updateCard}
+            deleteCard={deleteCard}
+          ></Update>
+        )}
+      ></Route>
+      <Route path="*" component={NotPage}></Route>
     </Switch>
   )
 }
