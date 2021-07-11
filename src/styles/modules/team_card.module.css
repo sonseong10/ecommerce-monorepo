@@ -109,13 +109,49 @@
 }
 
 @media screen and (min-width: 768px) {
+  .teamListWrapper {
+    position: relative;
+  }
+
   .teamList {
     flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .teamList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .moveBtn {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 400;
+    color: secondary;
+    transform: translateY(-50%);
+    transition: color 300ms ease-in-out;
+  }
+
+  .moveBtn.prevBtn {
+    left: 0;
+  }
+
+  .moveBtn.nextBtn {
+    right: 0;
+  }
+
+  .moveBtn:hover {
+    color: primary;
   }
 
   .teamItem {
     margin: 10px;
     width: 240px;
+    flex-shrink: 0;
   }
 
   .teamItem:hover {
