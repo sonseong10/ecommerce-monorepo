@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import styles from '../../styles/modules/home_page.module.css'
 import LodingSpinner from '../common/loding-spinner'
+import TeamList from '../team-card/team-list'
 
-const HomePage = ({ isCard, onSetHome }) => {
+const HomePage = ({ isCard, onSetHome, cards, userCard }) => {
   useEffect(() => {
     onSetHome()
   })
+
   return (
     <div className="col-sm-4 col-md-9">
       <div className="wrapper">
@@ -21,6 +23,7 @@ const HomePage = ({ isCard, onSetHome }) => {
             </div>
             <article className={styles.member}>
               <h2 className={styles.articleTitle}>팀원정보</h2>
+              <TeamList cards={cards} userCard={userCard}></TeamList>
             </article>
           </div>
         ) : (

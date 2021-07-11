@@ -24,7 +24,12 @@ const Router = ({
         {isCard ? <Redirect to="/main" /> : <Redirect to="/maker" />}
       </Route>
       <Route path="/main">
-        <HomePage isCard={isCard} onSetHome={onSetHome}></HomePage>
+        <HomePage
+          isCard={isCard}
+          cards={cards}
+          userCard={userCard}
+          onSetHome={onSetHome}
+        ></HomePage>
       </Route>
       <Route path="/maker">
         {isCard && <Redirect to="/main" />}

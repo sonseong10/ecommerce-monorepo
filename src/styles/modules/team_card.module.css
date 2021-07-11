@@ -1,0 +1,125 @@
+@value primary, secondary, white, background, yellow, blue, login, logout from '../constants/color.css';
+
+@value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
+
+@value card-shadow from '../constants/box-shadow.css';
+
+.teamList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.teamItem {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 8px;
+  height: 160px;
+  margin: 10px 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+  transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.teamItem:active {
+  box-shadow: card-shadow;
+  transform: translate3d(0px, -0.25rem, 0px);
+}
+
+.itemTop {
+  margin: 0 -8px;
+  display: flex;
+  padding: 8px 0;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.imgWrapper {
+  position: relative;
+}
+
+.teamCardImg {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.teamCardImg img {
+  width: 60px;
+  height: 60px;
+}
+
+.itemTop.isGray {
+  background-color: background;
+}
+
+.itemTop.isYellow {
+  background-color: yellow;
+}
+
+.itemTop.isBlue {
+  background-color: blue;
+}
+
+.dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-color: login;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+.dot.online {
+  background-color: online;
+}
+
+.dot.offline {
+  background-color: logout;
+}
+
+.teamCardInfo {
+  text-align: center;
+}
+
+.userName {
+  font-size: font-size-18;
+  line-height: line-height-18;
+  letter-spacing: letter-spacing-18;
+  color: primary;
+  font-weight: 400;
+}
+
+.userTeam,
+.userRank {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: secondary;
+}
+
+.userTeam::after {
+  margin: 0 2px;
+  content: '/';
+}
+
+@media screen and (min-width: 768px) {
+  .teamList {
+    flex-direction: row;
+  }
+
+  .teamItem {
+    margin: 10px;
+    width: 240px;
+  }
+
+  .teamItem:hover {
+    box-shadow: card-shadow;
+    transform: translate3d(0px, -0.25rem, 0px);
+  }
+}
