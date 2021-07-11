@@ -81,13 +81,16 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
       .then(
         (data) =>
           isCard &&
-          cardRepository.saveCard(data.user.uid, { ...userCard, login: true })
+          cardRepository.saveCard(data.user.uid, {
+            ...cards[data.user.uid],
+            login: true,
+          })
       )
       .then(history.push('/'))
   }
 
   const onLogout = () => {
-    isCard && createOrUpdateCard({ ...userCard, login: false })
+    isCard && createOrUpdateCard({ ...cards[userId], login: false })
     authService.logout()
     history.push('/')
   }
