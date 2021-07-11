@@ -8,6 +8,10 @@
   overflow-y: auto;
 }
 
+.memberListWrap::-webkit-scrollbar {
+  display: none;
+}
+
 .header {
   display: flex;
   justify-content: flex-end;
