@@ -12,10 +12,12 @@ const MemberList = ({ cards, searchValue }) => {
     <ul className={styles.memberList}>
       {filterCards.length
         ? filterCards.map((key) => {
-            return <MemberItem card={cards[key]} key={key}></MemberItem>
+            return (
+              <MemberItem card={cards[key]} key={key} uid={key}></MemberItem>
+            )
           })
         : Object.keys(cards).map((key) => (
-            <MemberItem card={cards[key]} key={key}></MemberItem>
+            <MemberItem card={cards[key]} key={key} uid={key}></MemberItem>
           ))}
     </ul>
   )

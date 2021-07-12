@@ -1,0 +1,112 @@
+@value primary, secondary, background, login, logout from '../constants/color.css';
+
+@value font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
+
+.infoGroup,
+.contentsGroup {
+  margin-bottom: 32px;
+}
+
+.infoGroup {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.header .pageTitle {
+  margin-bottom: 38px;
+  font-size: font-size-18;
+  line-height: line-height-18;
+  letter-spacing: letter-spacing-18;
+  color: primary;
+}
+
+.imgWrapper {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 22px;
+  overflow: hidden;
+  margin-right: 38px;
+}
+
+.imgWrapper img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.userInfoList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.userInfoItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 24px;
+  margin-bottom: 8px;
+}
+
+.userInfoItem.msg {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-right: 0;
+}
+
+.userInfoItem dt,
+.userInfoItem dd {
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+}
+
+.userInfoItem dt {
+  margin-right: 8px;
+  color: secondary;
+}
+
+.userInfoItem.msg dt {
+  margin-bottom: 8px;
+}
+
+.userInfoItem dd {
+  color: primary;
+}
+
+.msgBox {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 8px;
+  background-color: background;
+  border-radius: 4px;
+}
+
+.loginState {
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+}
+
+.loginState.isLogin {
+  color: login;
+}
+
+.loginState.isOffline {
+  color: logout;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.returnBtn {
+  width: 120px;
+  height: 36px;
+}

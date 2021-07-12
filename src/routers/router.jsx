@@ -5,6 +5,7 @@ import HomePage from '../components/home/home-page'
 import Search from '../components/search/search'
 import Maker from '../components/maker/maker'
 import Update from '../components/update/update'
+import Detail from '../components/detail/detail'
 
 const Router = ({
   FileInput,
@@ -34,21 +35,18 @@ const Router = ({
           ></HomePage>
         )}
       ></Route>
-      <Route
-        path="/maker"
-        render={() => {
-          isCard ? (
-            <Redirect to="/main" />
-          ) : (
-            <Maker
-              FileInput={FileInput}
-              dropDown={dropDown}
-              createCard={createCard}
-              onSetHome={onSetHome}
-            ></Maker>
-          )
-        }}
-      ></Route>
+      <Route path="/maker">
+        {isCard ? (
+          <Redirect to="/main" />
+        ) : (
+          <Maker
+            FileInput={FileInput}
+            dropDown={dropDown}
+            createCard={createCard}
+            onSetHome={onSetHome}
+          ></Maker>
+        )}
+      </Route>
       <Route
         path="/search"
         render={() => (
@@ -69,6 +67,12 @@ const Router = ({
             updateCard={updateCard}
             deleteCard={deleteCard}
           ></Update>
+        )}
+      ></Route>
+      <Route
+        path="/detail"
+        render={({ location }) => (
+          <Detail location={location} cards={cards}></Detail>
         )}
       ></Route>
       <Route path="*" component={NotPage}></Route>

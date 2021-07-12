@@ -2,15 +2,18 @@ import React from 'react'
 
 import styles from '../../styles/modules/member_card.module.css'
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
+import { Link } from 'react-router-dom'
 
-const MemberItem = ({ card }) => {
+const MemberItem = ({ card, uid }) => {
   const { name, login, theme, msg, phone, telephone, team, rank, fileURL } =
     card
   const url = fileURL || DEFAULT_USER_IMG
-
   return (
     <li className={styles.meberItem}>
-      <a href="/" className={styles.card}>
+      <Link
+        to={{ pathname: '/detail', state: { id: uid } }}
+        className={styles.card}
+      >
         <header className={styles.cardHeader}>
           <>
             <div
@@ -46,7 +49,7 @@ const MemberItem = ({ card }) => {
             </div>
           </dl>
         </footer>
-      </a>
+      </Link>
     </li>
   )
 }
