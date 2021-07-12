@@ -1,9 +1,11 @@
-@value primary: #2C3438;
-@value secondary: #959CA0;
+@value primary: #263238;
+@value secondary: #546e7a;
 
 @value white: #fff;
 @value black: #000;
-@value background: #F5F4F6;
+
+@value light-background: #f5f5f5;
+@value background: #eceff1;
 
 @value green: #009EB4;
 @value green-active: #028597;

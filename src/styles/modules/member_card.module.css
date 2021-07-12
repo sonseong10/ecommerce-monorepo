@@ -1,4 +1,4 @@
-@value primary, secondary, white, background, yellow, blue, login, login-border, logout, logout-border from '../constants/color.css';
+@value primary, secondary, white, light-background, yellow, blue, login, login-border, logout, logout-border from '../constants/color.css';
 
 @value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
@@ -78,7 +78,7 @@
 }
 
 .cardContents.isGray {
-  background-color: background;
+  background-color: light-background;
 }
 
 .cardContents.isYellow {

@@ -1,4 +1,4 @@
-@value primary, secondary, background, login, logout from '../constants/color.css';
+@value primary, secondary, light-background, login, logout from '../constants/color.css';
 
 @value font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
 
@@ -81,7 +81,7 @@
   width: 100%;
   flex-shrink: 0;
   padding: 8px;
-  background-color: background;
+  background-color: light-background;
   border-radius: 4px;
 }
 
