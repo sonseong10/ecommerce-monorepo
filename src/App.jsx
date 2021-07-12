@@ -33,19 +33,14 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
     if (!userId) {
       return
     }
-    const stopSync = cardRepository.userCard(userId, (card) => {
-      if (card) {
-        Object.keys(card).map((item) => {
-          setIsCard(true)
-          return setUserCard(card[item])
-        })
-      } else {
-        setIsCard(false)
-        return setUserCard({})
-      }
-    })
-    return () => stopSync()
-  }, [cardRepository, userId])
+    if (Object.keys(cards).find((item) => item === userId)) {
+      setIsCard(true)
+      setUserCard({ ...cards[userId] })
+    } else {
+      setIsCard(false)
+      setUserCard({})
+    }
+  }, [cards, userId])
 
   useEffect(() => {
     setLoding(true)
@@ -104,7 +99,7 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
       return updated
     })
     setUserCard({})
-    setIsCard(true)
+    setIsCard(false)
     cardRepository.removeCard(userId)
     history.push('/')
   }

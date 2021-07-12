@@ -9,18 +9,6 @@ class CardRepository {
     return () => ref.off()
   }
 
-  userCard(userId, onUpdate) {
-    const ref = firebaseApp.database().ref(`cards`)
-    ref
-      .orderByKey()
-      .equalTo(`${userId}`)
-      .on('value', (snapshot) => {
-        const value = snapshot.val()
-        onUpdate(value)
-      })
-    return () => ref.off()
-  }
-
   saveCard(userId, card) {
     firebaseApp.database().ref(`cards/${userId}`).set(card)
   }
