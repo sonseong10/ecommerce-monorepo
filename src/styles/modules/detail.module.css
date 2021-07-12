@@ -9,6 +9,7 @@
 
 .infoGroup {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
@@ -23,11 +24,11 @@
 
 .imgWrapper {
   flex-shrink: 0;
+  margin-bottom: 38px;
   width: 120px;
   height: 120px;
   border-radius: 22px;
   overflow: hidden;
-  margin-right: 38px;
 }
 
 .imgWrapper img {
@@ -47,14 +48,12 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   margin-right: 24px;
   margin-bottom: 8px;
 }
 
 .userInfoItem.msg {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   margin-right: 0;
 }
 
@@ -109,4 +108,14 @@
 .returnBtn {
   width: 120px;
   height: 36px;
+}
+
+@media screen and (min-width: 768px) {
+  .infoGroup {
+    flex-direction: row;
+  }
+
+  .imgWrapper {
+    margin-right: 38px;
+  }
 }
