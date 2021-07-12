@@ -3,9 +3,9 @@ import styles from '../../styles/modules/home_page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 import TeamList from '../team-card/team-list'
 
-const HomePage = ({ isCard, onSetHome, cards, userCard }) => {
+const HomePage = ({ isCard, cards, userCard, onMenuChange }) => {
   useEffect(() => {
-    onSetHome()
+    onMenuChange('home')
   })
 
   return (

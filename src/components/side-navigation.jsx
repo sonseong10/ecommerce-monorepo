@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import MyMenu from './common/my-menu'
-import { BiHomeAlt, BiSearch, BiMenu } from 'react-icons/bi'
+import { BiHomeAlt, BiGroup, BiFile, BiMenu } from 'react-icons/bi'
 
 import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/global_header.module.css'
@@ -15,9 +15,8 @@ const SideNavigation = ({
   userCard,
   loding,
   isCard,
-  home,
-  search,
   onLogout,
+  menuActive,
 }) => {
   return (
     <div className="col-sm-4 col-md-3">
@@ -45,7 +44,7 @@ const SideNavigation = ({
                   <Link
                     to={userId ? '/' : '#'}
                     className={`${styles.snbItemButton} ${
-                      home && styles.isActive
+                      menuActive === 'home' && styles.isActive
                     }`}
                     type="button"
                   >
@@ -57,11 +56,22 @@ const SideNavigation = ({
                   <Link
                     to={isCard ? '/search' : '#'}
                     className={`${styles.snbItemButton} 
-                    ${search && styles.isActive}`}
+                    ${menuActive === 'search' && styles.isActive}`}
                     type="button"
                   >
-                    <BiSearch className={styles.snbButtonIcon} />
+                    <BiGroup className={styles.snbButtonIcon} />
                     Search
+                  </Link>
+                </li>
+                <li className="snb-item">
+                  <Link
+                    to={isCard ? '/work' : '#'}
+                    className={`${styles.snbItemButton} 
+                    ${menuActive === 'work' && styles.isActive}`}
+                    type="button"
+                  >
+                    <BiFile className={styles.snbButtonIcon} />
+                    Work
                   </Link>
                 </li>
               </ul>

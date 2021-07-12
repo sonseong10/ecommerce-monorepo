@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import AddCardForm from './add-card-form'
 
-const Maker = ({ FileInput, dropDown, createCard, onSetHome }) => {
+const Maker = ({ FileInput, dropDown, createCard, onMenuChange }) => {
   useEffect(() => {
-    onSetHome()
+    onMenuChange('home')
   })
 
   return (

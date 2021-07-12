@@ -6,18 +6,18 @@ import Search from '../components/search/search'
 import Maker from '../components/maker/maker'
 import Update from '../components/update/update'
 import Detail from '../components/detail/detail'
+import Work from '../components/work/work'
 
 const Router = ({
   FileInput,
-  cards,
   dropDown,
-  userCard,
+  cards,
   isCard,
+  userCard,
+  onMenuChange,
   createCard,
   updateCard,
   deleteCard,
-  onSetHome,
-  onSetSearch,
 }) => {
   return (
     <Switch>
@@ -31,7 +31,7 @@ const Router = ({
             isCard={isCard}
             cards={cards}
             userCard={userCard}
-            onSetHome={onSetHome}
+            onMenuChange={onMenuChange}
           ></HomePage>
         )}
       ></Route>
@@ -43,7 +43,7 @@ const Router = ({
             FileInput={FileInput}
             dropDown={dropDown}
             createCard={createCard}
-            onSetHome={onSetHome}
+            onMenuChange={onMenuChange}
           ></Maker>
         )}
       </Route>
@@ -53,9 +53,13 @@ const Router = ({
           <Search
             dropDown={dropDown}
             cards={cards}
-            onSetSearch={onSetSearch}
+            onMenuChange={onMenuChange}
           ></Search>
         )}
+      ></Route>
+      <Route
+        path="/work"
+        render={() => <Work onMenuChange={onMenuChange}></Work>}
       ></Route>
       <Route
         path="/update"
