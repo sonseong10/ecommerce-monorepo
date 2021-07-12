@@ -30,7 +30,7 @@ const TeamList = ({ cards, userCard }) => {
       </ul>
 
       <button
-        className={`${styles.moveBtn} ${styles.prevBtn}`}
+        className={`lg-only ${styles.moveBtn} ${styles.prevBtn}`}
         onClick={onPrevScroll}
       >
         <BiChevronLeft />
@@ -38,7 +38,7 @@ const TeamList = ({ cards, userCard }) => {
       </button>
 
       <button
-        className={`${styles.moveBtn} ${styles.nextBtn}`}
+        className={`lg-only ${styles.moveBtn} ${styles.nextBtn}`}
         onClick={onNextScroll}
       >
         <BiChevronRight />
