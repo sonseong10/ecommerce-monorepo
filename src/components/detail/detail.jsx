@@ -14,6 +14,8 @@ const Detail = ({ location, cards }) => {
   }, [cards, location.state.id])
 
   const { login, name, phone, email, msg, team, rank, fileURL } = card
+  const replaceMsg =
+    msg && msg.replace(/\n/g, '<br/>').replace(/<br\/>/g, '\r\n')
 
   return (
     <div className={`col-sm-4 col-md-9`}>
@@ -71,7 +73,9 @@ const Detail = ({ location, cards }) => {
               </div>
               <div className={`${styles.userInfoItem} ${styles.msg}`}>
                 <dt>남긴말</dt>
-                <dd className={styles.msgBox}>{msg ? msg : '없음'}</dd>
+                <dd className={styles.msgBox}>
+                  {replaceMsg ? replaceMsg : '없음'}
+                </dd>
               </div>
             </dl>
           </div>

@@ -75,6 +75,7 @@
 
 .userInfoItem dd {
   color: primary;
+  white-space: pre;
 }
 
 .msgBox {
