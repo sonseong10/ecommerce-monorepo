@@ -5,7 +5,7 @@ import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/common.module.css'
 
-import { FaUserAlt, FaSignOutAlt, FaMoon } from 'react-icons/fa'
+import { BiUser, BiX, BiMoon } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 const MyMenu = ({ userCard, isCard, onLogout }) => {
@@ -23,7 +23,8 @@ const MyMenu = ({ userCard, isCard, onLogout }) => {
             className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
             type="button"
           >
-            <FaMoon className={styles.toolIcon} /> Dark Mode
+            <BiMoon className={styles.toolIcon} />
+            <span className="lg-only">Dark Mode</span>
           </button>
         </li>
         <li>
@@ -32,8 +33,10 @@ const MyMenu = ({ userCard, isCard, onLogout }) => {
             className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
             type="button"
           >
-            <FaUserAlt className={styles.toolIcon} />
-            {isCard ? 'Info Update' : 'Disable'}
+            <BiUser className={styles.toolIcon} />
+            <span className="lg-only">
+              {isCard ? 'Info Update' : 'Disable'}
+            </span>
           </Link>
         </li>
         <li>
@@ -42,8 +45,8 @@ const MyMenu = ({ userCard, isCard, onLogout }) => {
             type="button"
             onClick={onLogout}
           >
-            <FaSignOutAlt className={styles.toolIcon} />
-            Log out
+            <BiX className={styles.toolIcon} />
+            <span className="lg-only">Log out</span>
           </button>
         </li>
       </ul>
@@ -56,7 +59,7 @@ const MyMenu = ({ userCard, isCard, onLogout }) => {
           src={fileURL || DEFAULT_USER_IMG}
           alt={fileURL ? 'user profile' : 'default'}
         />
-        <span className={name && styles.isActive}>
+        <span className={`lg-only ${name && styles.isActive}`}>
           {name || 'No data yet...'}
         </span>
       </button>

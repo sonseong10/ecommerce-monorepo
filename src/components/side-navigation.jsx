@@ -2,11 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import MyMenu from './common/my-menu'
-import { BiHomeAlt, BiGroup, BiFile, BiMenu } from 'react-icons/bi'
+import { BiHomeAlt, BiGroup, BiFile } from 'react-icons/bi'
 
 import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/global_header.module.css'
+
 import Logo from '../logo.svg'
+import TabletLogo from '../assets/images/tablet-logo.svg'
 
 const SideNavigation = ({
   ToggleOverlay,
@@ -19,36 +21,35 @@ const SideNavigation = ({
   menuActive,
 }) => {
   return (
-    <div className="col-sm-4 col-md-3">
+    <div className="sm-hidden col-md-2 col-lg-3">
       <div className="wrapper">
-        <header className={styles.globalHeader}>
-          <div className={styles.snbLeft}>
-            <button
-              className={`${styles.snbIconButton} is-open sm-only`}
-              type="button"
-              aria-label="메뉴 열기 버튼"
-            >
-              <BiMenu />
-            </button>
-            <strong className={styles.logo}>
+        <article className={styles.article}>
+          <h2 className="visually-hidden">Side Bar</h2>
+          <header className={styles.header}>
+            <strong className={`lg-only ${styles.logo}`}>
               <Link to={userId ? '/' : '#'}>
                 <img className="logo-img" src={Logo} alt="WhoMember" />
               </Link>
             </strong>
-          </div>
-          <div className={`${styles.snbRight} sm-hidden`}>
+            <strong className={`md-only ${styles.tabletLogo}`}>
+              <Link to={userId ? '/' : '#'}>
+                <img className="logo-img" src={TabletLogo} alt="WhoMember" />
+              </Link>
+            </strong>
+          </header>
+          <div className={styles.navWrap}>
             <nav className="snb">
-              <h2 className="visually-hidden">Side Navigation Bar</h2>
+              <h3 className="visually-hidden">Side Navigation Bar</h3>
               <ul className="snb-list">
                 <li className="snb-item">
                   <Link
                     to={userId ? '/' : '#'}
-                    className={`${styles.snbItemButton} ${
-                      menuActive === 'home' && styles.isActive
-                    }`}
+                    className={`${styles.snbItemButton} 
+                    ${menuActive === 'home' && styles.isActive}
+                    ${!userId && styles.isDisable}`}
                     type="button"
                   >
-                    <BiHomeAlt className={styles.snbButtonIcon} />
+                    <BiHomeAlt />
                     Home
                   </Link>
                 </li>
@@ -56,10 +57,11 @@ const SideNavigation = ({
                   <Link
                     to={isCard ? '/search' : '#'}
                     className={`${styles.snbItemButton} 
-                    ${menuActive === 'search' && styles.isActive}`}
+                    ${menuActive === 'search' && styles.isActive} 
+                    ${!userId && styles.isDisable}`}
                     type="button"
                   >
-                    <BiGroup className={styles.snbButtonIcon} />
+                    <BiGroup />
                     Search
                   </Link>
                 </li>
@@ -67,15 +69,18 @@ const SideNavigation = ({
                   <Link
                     to={isCard ? '/work' : '#'}
                     className={`${styles.snbItemButton} 
-                    ${menuActive === 'work' && styles.isActive}`}
+                    ${menuActive === 'work' && styles.isActive} 
+                    ${!userId && styles.isDisable}`}
                     type="button"
                   >
-                    <BiFile className={styles.snbButtonIcon} />
+                    <BiFile />
                     Work
                   </Link>
                 </li>
               </ul>
             </nav>
+          </div>
+          <footer className={styles.footer}>
             {userId ? (
               <MyMenu
                 authService={authService}
@@ -93,8 +98,8 @@ const SideNavigation = ({
                 {loding ? `Loding` : `Login & Signup`}
               </button>
             )}
-          </div>
-        </header>
+          </footer>
+        </article>
       </div>
     </div>
   )

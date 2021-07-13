@@ -4,111 +4,113 @@
 
 @value snb-level from '../constants/z-index.css';
 
-.globalHeader {
+.article {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 50px;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 0 14px;
   background-color: white;
   z-index: snb-level;
 }
 
-.snbLeft {
+.header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.snbIconButton {
-  display: inline-flex;
-  font-size: 24px;
-  color: green;
+.navWrap {
+  width: 100%;
 }
 
-.snbIconButton:active {
-  color: green-active;
+.snbItemButton {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  color: secondary;
+  border-radius: 4px;
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.snbItemButton.isDisable {
+  cursor: not-allowed;
 }
 
-.logo a {
+.snbItemButton:not(.isDisable).isActive,
+.snbItemButton:not(.isDisable):hover {
+  background-color: background;
+  color: primary;
+}
+
+.snbItemButton svg {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.tabletLogo {
+  margin-bottom: 66px;
+}
+
+.tabletLogo a {
   display: inline-block;
 }
 
-.logo img {
+.tabletLogo img {
+  width: 60px;
+  height: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 32px;
+  padding: 0 14px;
 }
 
-.isLogin {
-  display: none;
+.loginBtn {
+  width: 100%;
+  height: 60px;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
 }
 
-@media screen and (min-width: 768px) {
-  .globalHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    height: 100%;
-    padding: 0 14px;
-  }
-
+@media screen and (min-width: 1200px) {
   .logo {
-    position: relative;
-    top: 0;
-    left: 0;
     margin-bottom: 66px;
-    transform: none;
   }
 
-  .snbRight {
+  .logo a {
+    display: inline-block;
+  }
+
+  .logo img {
     width: 100%;
+    height: 32px;
   }
 
   .snbItemButton {
-    display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: flex-start;
-    padding: 10px;
-    width: 100%;
-    height: 52px;
-    text-align: left;
-    font-size: font-size-16;
-    line-height: line-height-16;
-    letter-spacing: letter-spacing-16;
+    height: 60px;
     font-weight: 700;
-    color: secondary;
-    border-radius: 4px;
-    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
   }
 
-  .snbItemButton:disabled {
-    cursor: not-allowed;
-  }
-
-  .snbItemButton.isActive,
-  .snbItemButton:not(:disabled):hover {
-    background-color: background;
-    color: primary;
-  }
-
-  .snbButtonIcon {
-    font-size: 24px;
+  .snbItemButton svg {
     margin-right: 12px;
-    pointer-event: none;
   }
 
   .loginBtn {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
     font-size: font-size-18;
     line-height: line-height-18;
     letter-spacing: letter-spacing-18;

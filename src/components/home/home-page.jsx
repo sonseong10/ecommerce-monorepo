@@ -9,7 +9,7 @@ const HomePage = ({ isCard, cards, userCard, onMenuChange }) => {
   })
 
   return (
-    <div className="col-sm-4 col-md-9">
+    <div className="col-sm-4 col-md-10 col-lg-9">
       <div className="wrapper">
         {isCard ? (
           <div className={`${styles.articleWrap}`}>

@@ -5,7 +5,7 @@ const Work = ({ onMenuChange }) => {
     onMenuChange('work')
   })
   return (
-    <div className="col-sm-4 col-md-9">
+    <div className="col-sm-4 col-md-10 col-lg-9">
       <div className="wrapper">
         <h1>Work List</h1>
       </div>
