@@ -9,7 +9,13 @@ import AuthPopup from './components/common/auth-popup'
 
 import './styles/main.css'
 
-const App = ({ FileInput, authService, dropDown, cardRepository }) => {
+const App = ({
+  FileInput,
+  authService,
+  dropDown,
+  cardRepository,
+  workRepository,
+}) => {
   const history = useHistory()
   const historyState = history?.location?.state
   const [userId, setUserId] = useState(historyState && historyState.id)
@@ -123,6 +129,7 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
             <Router
               FileInput={FileInput}
               cards={cards}
+              userId={userId}
               dropDown={dropDown}
               userCard={userCard}
               isCard={isCard}
@@ -130,6 +137,7 @@ const App = ({ FileInput, authService, dropDown, cardRepository }) => {
               createCard={createOrUpdateCard}
               updateCard={createOrUpdateCard}
               deleteCard={deleteCard}
+              workRepository={workRepository}
             ></Router>
           )}
         </div>
