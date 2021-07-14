@@ -7,6 +7,12 @@
   color: primary;
 }
 
+.renderer img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .renderer ul,
 .renderer ol {
   padding-left: revert;
