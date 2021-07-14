@@ -1,132 +1,82 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import renderMarkdown from '../../utils/render-markdown'
+import { BiEdit } from 'react-icons/bi'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
+import AddWorkForm from './add-work-form'
+import WorkList from './work-list'
+
+import buttonStyle from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work.module.css'
-import markdownStyle from '../../styles/modules/markdown.module.css'
 
-const Work = ({ onMenuChange, index }) => {
-  const input = useRef()
-  const textarea = useRef()
-
-  const [isEditing, setIsEditing] = useState(true)
-  const [preview, setPreview] = useState(false)
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [isAble, setIsAble] = useState(false)
+const Work = ({ onMenuChange, userId, workRepository }) => {
+  const [works, setWorks] = useState({})
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     onMenuChange('work')
   })
 
   useEffect(() => {
-    if (title && content) {
-      setIsAble(true)
-    } else {
-      setIsAble(false)
+    const stopSync = workRepository.syncWorks(userId, (works) => {
+      setWorks(works)
+    })
+    return () => {
+      stopSync()
     }
-  }, [content, title])
+  }, [userId, workRepository])
 
-  const updateContent = () => {
-    setContent(textarea.current.value)
+  const createOrUpdateCard = (work) => {
+    setWorks((works) => {
+      const updated = { ...works }
+      updated[userId] = work
+      return updated
+    })
+    workRepository.saveWork(userId, work)
   }
 
-  const updateTitle = () => {
-    setTitle(input.current.value)
+  const deleteWork = (work) => {
+    setWorks((works) => {
+      const updated = { ...works }
+      delete updated[work.time]
+      return updated
+    })
+    workRepository.removeWork(userId, work)
   }
 
-  const startEditing = () => {
-    setIsEditing(true)
-  }
-
-  const stopEditing = () => {
-    if (content !== '') {
-      setIsEditing(false)
-    } else {
-      deleteSection(index)
-    }
-  }
-
-  const deleteSection = () => {
-    deleteSection(index)
-  }
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && e.metaKey) {
-      stopEditing()
-    }
-  }
-
-  const onSubmit = (e) => {
-    setIsEditing(false)
-    e.preventDefault()
-  }
-
-  const onTogglePrview = () => {
-    setPreview(!preview)
+  const onOpenAddForm = () => {
+    setIsOpen(!isOpen)
   }
 
   return (
     <div className="col-sm-4 col-md-10 col-lg-9">
       <div className="wrapper">
         <div className={styles.workWrapper}>
-          <h1>Work List</h1>
-          {isEditing && (
-            <section className={styles.editor}>
-              <header className={styles.editorHeader}>
-                <h2>
-                  Markdown Editor — Only press button to save
-                  <span role="img" aria-label="flower">
-                    🌹
-                  </span>
-                </h2>
-              </header>
-              <form className={styles.form}>
-                <div className={styles.inputGroup}>
-                  <input
-                    ref={input}
-                    onChange={updateTitle}
-                    type="text"
-                    placeholder="제목"
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <textarea
-                    ref={textarea}
-                    onChange={updateContent}
-                    onKeyDown={handleKeyDown}
-                    placeholder="내용"
-                  />
-                </div>
-              </form>
-              <footer className={styles.footer}>
-                <button
-                  type="button"
-                  className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.previewBtn}`}
-                  onClick={onTogglePrview}
-                >
-                  {preview ? 'Hide Preview' : 'Show Preview'}
-                </button>
-
-                <button
-                  type="submit"
-                  className={`${buttonStyles.baseBtn} ${buttonStyles.primaryBtn} ${styles.editorBtn}`}
-                  disabled={!isAble}
-                  onClick={onSubmit}
-                >
-                  Save
-                </button>
-              </footer>
-            </section>
+          <header className={styles.header}>
+            <h1>Work List</h1>
+            <button
+              className={`${buttonStyle.baseBtn} ${buttonStyle.ghostBtn} ${styles.openBtn} `}
+              onClick={onOpenAddForm}
+              type="button"
+            >
+              <BiEdit></BiEdit>
+            </button>
+            <span className={styles.toolTip}>
+              {isOpen ? 'Close Form' : 'Open Form'}
+            </span>
+          </header>
+          {isOpen && (
+            <AddWorkForm
+              userId={userId}
+              createWork={createOrUpdateCard}
+              renderMarkdown={renderMarkdown}
+            ></AddWorkForm>
           )}
-          {preview && (
-            <section className={styles.preview} onClick={startEditing}>
-              <div
-                dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
-                className={markdownStyle.renderer}
-              />
-            </section>
-          )}
+          <WorkList
+            works={works}
+            renderMarkdown={renderMarkdown}
+            update={createOrUpdateCard}
+            deleteWork={deleteWork}
+          ></WorkList>
         </div>
       </div>
     </div>

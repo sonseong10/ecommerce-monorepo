@@ -10,7 +10,9 @@ import Work from '../components/work/work'
 
 const Router = ({
   FileInput,
+  workRepository,
   dropDown,
+  userId,
   cards,
   isCard,
   userCard,
@@ -59,7 +61,13 @@ const Router = ({
       ></Route>
       <Route
         path="/work"
-        render={() => <Work onMenuChange={onMenuChange}></Work>}
+        render={() => (
+          <Work
+            onMenuChange={onMenuChange}
+            userId={userId}
+            workRepository={workRepository}
+          ></Work>
+        )}
       ></Route>
       <Route
         path="/update"
