@@ -1,0 +1,129 @@
+@value primary, secondary, white, background from '../constants/color.css';
+
+@value font-size-16,line-height-16, letter-spacing-16 from '../constants/typography.css';
+
+@value card-shadow from '../constants/box-shadow.css';
+
+.openBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  height: 50px;
+  margin: 6px 0;
+  border: 1px solid background;
+  border-radius: 4px;
+  width: 100%;
+  transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.openBtn:active {
+  transform: translate3d(0px, -0.25rem, 0px);
+  box-shadow: card-shadow;
+}
+
+.title {
+  font-size: 18px;
+  color: primary;
+  font-weight: 400;
+}
+
+.date {
+  color: secondary;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.workItemContents {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.workItemContents.isOpen {
+  max-height: 100%;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.contentsLeft {
+  flex: 1 1 94%;
+}
+
+.contentsLeft textarea {
+  width: 100%;
+  height: 300px;
+}
+
+.contentsLeft textarea {
+  width: 100%;
+  height: 300px;
+}
+
+.contentsLeft textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.contentsRight {
+  flex: 1 1 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.toolBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: secondary;
+  margin-bottom: 4px;
+  transition: color 300ms ease-in-out;
+}
+
+.toolBtn.editBtn:active,
+.toolBtn.editBtn.isActive {
+  color: #ffc92c;
+}
+
+.toolBtn.removeBtn:active {
+  color: #ff4949;
+}
+
+.toolBtn svg {
+  display: block;
+  width: 48px;
+  height: 48px;
+  padding: 14px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.closeBtn {
+  height: 48px;
+}
+
+@media screen and (min-width: 768px) {
+  .openBtn:hover {
+    transform: translate3d(0px, -0.25rem, 0px);
+    box-shadow: card-shadow;
+  }
+
+  .toolBtn.editBtn:hover {
+    color: #ffc92c;
+  }
+
+  .toolBtn.removeBtn:hover {
+    color: #ff4949;
+  }
+}

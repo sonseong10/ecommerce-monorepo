@@ -1,4 +1,4 @@
-@value primary, white, light-background, background from '../constants/color.css';
+@value primary, secondary, white, light-background, background, green from '../constants/color.css';
 
 @value font-size-14, line-height-14, letter-spacing-14, font-size-16, line-height-16, letter-spacing-16 from '../constants/typography.css';
 
@@ -10,6 +10,49 @@
 
 .workWrapper::-webkit-scrollbar {
   display: none;
+}
+
+.workWrapper .header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  color: primary;
+}
+
+.openBtn svg {
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+  color: secondary;
+}
+
+.toolTip {
+  position: absolute;
+  top: 26px;
+  right: 58px;
+  padding: 2px 10px;
+  background-color: green;
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: white;
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+.toolTip::after {
+  position: absolute;
+  top: 4px;
+  right: -14px;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent green;
+  content: '';
 }
 
 .editor {
