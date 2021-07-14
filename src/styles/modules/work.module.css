@@ -2,6 +2,16 @@
 
 @value font-size-14, line-height-14, letter-spacing-14, font-size-16, line-height-16, letter-spacing-16 from '../constants/typography.css';
 
+.workWrapper {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.workWrapper::-webkit-scrollbar {
+  display: none;
+}
+
 .editor {
   background-color: white;
   border: 1px solid background;
@@ -63,7 +73,19 @@
   padding: 8px 12px;
 }
 
+.previewBtn,
+.editorBtn {
+  height: 36px;
+}
+
+.previewBtn {
+  margin-right: 8px;
+}
+
 .editorBtn {
   width: 80px;
-  height: 36px;
+}
+
+.preview {
+  margin-top: 24px;
 }

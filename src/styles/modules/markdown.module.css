@@ -1,0 +1,51 @@
+@value primary, secondary, white, background, green, green-active from '../constants/color.css';
+
+@value font-size-12, line-height-12, letter-spacing-12, font-size-14,line-height-14, letter-spacing-14, font-size-16, line-height-16,letter-spacing-16 from '../constants/typography.css';
+
+.renderer * {
+  margin: revert;
+  color: primary;
+}
+
+.renderer ul,
+.renderer ol {
+  padding-left: revert;
+  list-style: revert;
+}
+
+.renderer blockquote {
+  margin: 8px 0;
+  padding: 2px 8px;
+  background-color: background;
+  border-radius: 6px;
+}
+
+.renderer table {
+  margin: 8px 0;
+  width: 100%;
+  border: 1px solid secondary;
+  border-collapse: collapse;
+}
+
+.renderer th,
+.renderer td {
+  border: 1px solid secondary;
+}
+
+.renderer a {
+  color: green;
+}
+
+.renderer a:hover {
+  opacity: 0.4;
+}
+
+.renderer a:active {
+  color: green-active;
+}
+
+.renderer pre {
+  background-color: #f5f5f5;
+  padding: 12px;
+  border-radius: 4px;
+}
