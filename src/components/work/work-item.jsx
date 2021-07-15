@@ -6,8 +6,8 @@ import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work-list.module.css'
 import markdownStyle from '../../styles/modules/markdown.module.css'
 
-const WorkItem = ({ work, renderMarkdown, update, deleteWork }) => {
-  const textareaRef = useRef(null)
+const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork }) => {
+  const textareaRef = useRef()
 
   const { title, contents, time } = work
   const date = formatDate(time)
@@ -20,7 +20,7 @@ const WorkItem = ({ work, renderMarkdown, update, deleteWork }) => {
   }
 
   const updateContent = (event) => {
-    update({ ...work, contents: event.currentTarget.value })
+    updateWork({ ...work, contents: event.currentTarget.value })
   }
 
   const startEditing = () => {
@@ -29,7 +29,6 @@ const WorkItem = ({ work, renderMarkdown, update, deleteWork }) => {
 
   const stopEditing = () => {
     setIsEdit(false)
-    textareaRef.current.focus()
   }
 
   const deleteSection = () => {
@@ -57,6 +56,8 @@ const WorkItem = ({ work, renderMarkdown, update, deleteWork }) => {
               ref={textareaRef}
               onChange={updateContent}
               onBlur={stopEditing}
+              placeholder="내용 (600자 제한)"
+              maxLength="600"
               autoFocus
             ></textarea>
           ) : (

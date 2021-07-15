@@ -11,18 +11,22 @@ import './styles/main.css'
 
 const App = ({
   FileInput,
-  authService,
   dropDown,
+  authService,
   cardRepository,
   workRepository,
 }) => {
   const history = useHistory()
   const historyState = history?.location?.state
   const [userId, setUserId] = useState(historyState && historyState.id)
-  const [menuActive, setMenuActive] = useState('')
+
   const [cards, setCards] = useState({})
   const [userCard, setUserCard] = useState({})
   const [isCard, setIsCard] = useState(false)
+
+  const [works, setWorks] = useState({})
+
+  const [menuActive, setMenuActive] = useState('')
   const [loding, setLoding] = useState(false)
   const [overlay, setOverlay] = useState(false)
 
@@ -61,12 +65,52 @@ const App = ({
     })
   }, [authService, history])
 
-  const ToggleOverlay = () => {
-    setOverlay(!overlay)
+  useEffect(() => {
+    const stopSync = workRepository.syncWorks(userId, (works) => {
+      setWorks(works)
+    })
+    return () => {
+      stopSync()
+    }
+  }, [userId, workRepository])
+
+  const createOrUpdateCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards }
+      updated[userId] = card
+      return updated
+    })
+    cardRepository.saveCard(userId, card)
   }
 
-  const onMenuChange = (value) => {
-    setMenuActive(value)
+  const deleteCard = () => {
+    setCards((cards) => {
+      const updated = { ...cards }
+      delete updated[userId]
+      return updated
+    })
+    setUserCard({})
+    setIsCard(false)
+    cardRepository.removeCard(userId)
+    history.push('/maker')
+  }
+
+  const createOrUpdateWork = (work) => {
+    setWorks((works) => {
+      const updated = { ...works }
+      updated[userId] = work
+      return updated
+    })
+    workRepository.saveWork(userId, work)
+  }
+
+  const deleteWork = (work) => {
+    setWorks((works) => {
+      const updated = { ...works }
+      delete updated[work.time]
+      return updated
+    })
+    workRepository.removeWork(userId, work)
   }
 
   const onLogin = (event) => {
@@ -89,26 +133,14 @@ const App = ({
     history.push('/')
   }
 
-  const createOrUpdateCard = (card) => {
-    setCards((cards) => {
-      const updated = { ...cards }
-      updated[userId] = card
-      return updated
-    })
-    cardRepository.saveCard(userId, card)
+  const ToggleOverlay = () => {
+    setOverlay(!overlay)
   }
 
-  const deleteCard = () => {
-    setCards((cards) => {
-      const updated = { ...cards }
-      delete updated[userId]
-      return updated
-    })
-    setUserCard({})
-    setIsCard(false)
-    cardRepository.removeCard(userId)
-    history.push('/')
+  const onMenuChange = (value) => {
+    setMenuActive(value)
   }
+
   return (
     <>
       <div className="container">
@@ -129,6 +161,7 @@ const App = ({
             <Router
               FileInput={FileInput}
               cards={cards}
+              works={works}
               userId={userId}
               dropDown={dropDown}
               userCard={userCard}
@@ -137,7 +170,9 @@ const App = ({
               createCard={createOrUpdateCard}
               updateCard={createOrUpdateCard}
               deleteCard={deleteCard}
-              workRepository={workRepository}
+              createWork={createOrUpdateWork}
+              updateWork={createOrUpdateWork}
+              deleteWork={deleteWork}
             ></Router>
           )}
         </div>

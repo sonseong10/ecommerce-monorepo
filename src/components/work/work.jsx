@@ -8,40 +8,19 @@ import WorkList from './work-list'
 import buttonStyle from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work.module.css'
 
-const Work = ({ onMenuChange, userId, workRepository }) => {
-  const [works, setWorks] = useState({})
+const Work = ({
+  onMenuChange,
+  userId,
+  works,
+  createWork,
+  updateWork,
+  deleteWork,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     onMenuChange('work')
   })
-
-  useEffect(() => {
-    const stopSync = workRepository.syncWorks(userId, (works) => {
-      setWorks(works)
-    })
-    return () => {
-      stopSync()
-    }
-  }, [userId, workRepository])
-
-  const createOrUpdateCard = (work) => {
-    setWorks((works) => {
-      const updated = { ...works }
-      updated[userId] = work
-      return updated
-    })
-    workRepository.saveWork(userId, work)
-  }
-
-  const deleteWork = (work) => {
-    setWorks((works) => {
-      const updated = { ...works }
-      delete updated[work.time]
-      return updated
-    })
-    workRepository.removeWork(userId, work)
-  }
 
   const onOpenAddForm = () => {
     setIsOpen(!isOpen)
@@ -67,14 +46,15 @@ const Work = ({ onMenuChange, userId, workRepository }) => {
           {isOpen && (
             <AddWorkForm
               userId={userId}
-              createWork={createOrUpdateCard}
+              createWork={createWork}
               renderMarkdown={renderMarkdown}
             ></AddWorkForm>
           )}
           <WorkList
+            MarkDown={renderMarkdown}
             works={works}
             renderMarkdown={renderMarkdown}
-            update={createOrUpdateCard}
+            updateWork={updateWork}
             deleteWork={deleteWork}
           ></WorkList>
         </div>

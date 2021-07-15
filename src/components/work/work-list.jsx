@@ -1,15 +1,22 @@
 import React from 'react'
 import WorkItem from './work-item'
 
-const WorkList = ({ works, renderMarkdown, update, deleteWork }) => {
+const WorkList = ({
+  MarkDown,
+  works,
+  renderMarkdown,
+  updateWork,
+  deleteWork,
+}) => {
   return (
     <ul>
       {Object.keys(works).map((key) => (
         <WorkItem
+          MarkDown={MarkDown}
           work={works[key]}
           key={key}
           renderMarkdown={renderMarkdown}
-          update={update}
+          updateWork={updateWork}
           deleteWork={deleteWork}
         ></WorkItem>
       ))}

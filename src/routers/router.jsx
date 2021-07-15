@@ -10,16 +10,19 @@ import Work from '../components/work/work'
 
 const Router = ({
   FileInput,
-  workRepository,
   dropDown,
   userId,
   cards,
+  works,
   isCard,
   userCard,
   onMenuChange,
   createCard,
   updateCard,
   deleteCard,
+  createWork,
+  updateWork,
+  deleteWork,
 }) => {
   return (
     <Switch>
@@ -37,10 +40,9 @@ const Router = ({
           ></HomePage>
         )}
       ></Route>
-      <Route path="/maker">
-        {isCard ? (
-          <Redirect to="/main" />
-        ) : (
+      <Route
+        path="/maker"
+        render={() => (
           <Maker
             FileInput={FileInput}
             dropDown={dropDown}
@@ -48,7 +50,7 @@ const Router = ({
             onMenuChange={onMenuChange}
           ></Maker>
         )}
-      </Route>
+      ></Route>
       <Route
         path="/search"
         render={() => (
@@ -65,7 +67,10 @@ const Router = ({
           <Work
             onMenuChange={onMenuChange}
             userId={userId}
-            workRepository={workRepository}
+            works={works}
+            createWork={createWork}
+            updateWork={updateWork}
+            deleteWork={deleteWork}
           ></Work>
         )}
       ></Route>
