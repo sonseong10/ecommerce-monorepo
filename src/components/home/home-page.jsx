@@ -31,9 +31,7 @@ const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
                     ))
                   ) : (
                     <li className={styles.workItem}>
-                      <p className={styles.lsitNone}>
-                        아직 작성된 업무가 없습니다.
-                      </p>
+                      <p className={styles.lsitNone}>리스트가 없습니다.</p>
                       <Link className={styles.lsitNone} to="/work">
                         업무 작성
                       </Link>

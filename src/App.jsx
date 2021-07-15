@@ -83,15 +83,12 @@ const App = ({
     cardRepository.saveCard(userId, card)
   }
 
-  const deleteCard = () => {
-    setCards((cards) => {
-      const updated = { ...cards }
-      delete updated[userId]
-      return updated
-    })
+  const deleteAccount = () => {
+    deleteCard()
+    setWorks({})
     setUserCard({})
     setIsCard(false)
-    cardRepository.removeCard(userId)
+    workRepository.removeWorkAll(userId)
     history.push('/maker')
   }
 
@@ -102,6 +99,15 @@ const App = ({
       return updated
     })
     workRepository.saveWork(userId, work)
+  }
+
+  const deleteCard = () => {
+    setCards((cards) => {
+      const updated = { ...cards }
+      delete updated[userId]
+      return updated
+    })
+    cardRepository.removeCard(userId)
   }
 
   const deleteWork = (work) => {
@@ -130,6 +136,7 @@ const App = ({
   const onLogout = () => {
     isCard && createOrUpdateCard({ ...cards[userId], login: false })
     authService.logout()
+    setUserCard({})
     history.push('/')
   }
 
@@ -169,7 +176,7 @@ const App = ({
               onMenuChange={onMenuChange}
               createCard={createOrUpdateCard}
               updateCard={createOrUpdateCard}
-              deleteCard={deleteCard}
+              deleteCard={deleteAccount}
               createWork={createOrUpdateWork}
               updateWork={createOrUpdateWork}
               deleteWork={deleteWork}

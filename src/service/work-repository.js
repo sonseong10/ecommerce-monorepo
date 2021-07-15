@@ -17,6 +17,10 @@ class WorkRepository {
   removeWork(userId, work) {
     firebaseApp.database().ref(`works/${userId}/${work.time}`).remove()
   }
+
+  removeWorkAll(userId) {
+    firebaseApp.database().ref(`works/${userId}`).remove()
+  }
 }
 
 export default WorkRepository

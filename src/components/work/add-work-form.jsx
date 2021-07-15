@@ -72,7 +72,8 @@ const AddWorkForm = ({ createWork, renderMarkdown }) => {
             <textarea
               ref={textareaRef}
               onChange={updateContent}
-              placeholder="내용"
+              placeholder="내용 (600자 제한)"
+              maxLength="600"
             />
           </div>
         </form>

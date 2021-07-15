@@ -174,7 +174,7 @@ const EditCardForm = ({
         className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.removeBtn}`}
         onClick={onRemove}
       >
-        Remove
+        Delete account
       </button>
     </form>
   )
