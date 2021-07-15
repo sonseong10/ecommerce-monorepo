@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
-import styles from '../../styles/modules/home_page.module.css'
+import { Link } from 'react-router-dom'
+
 import LodingSpinner from '../common/loding-spinner'
 import TeamList from '../team-card/team-list'
 
-const HomePage = ({ isCard, cards, userCard, onMenuChange }) => {
+import styles from '../../styles/modules/home_page.module.css'
+
+const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
   useEffect(() => {
     onMenuChange('home')
   })
@@ -17,8 +20,26 @@ const HomePage = ({ isCard, cards, userCard, onMenuChange }) => {
               <article className={styles.benner}>
                 <h2 className={styles.articleTitle}>회사정보</h2>
               </article>
-              <article className={styles.todo}>
-                <h2 className={styles.articleTitle}>오늘할일</h2>
+              <article className={`sm-hidden ${styles.todo}`}>
+                <h2 className={styles.articleTitle}>업무 리스트</h2>
+                <ul className={styles.workList}>
+                  {Object.keys(works).length ? (
+                    Object.keys(works).map((key) => (
+                      <li className={styles.workItem} key={works[key].time}>
+                        <Link to="/work">{works[key].title}</Link>
+                      </li>
+                    ))
+                  ) : (
+                    <li className={styles.workItem}>
+                      <p className={styles.lsitNone}>
+                        아직 작성된 업무가 없습니다.
+                      </p>
+                      <Link className={styles.lsitNone} to="/work">
+                        업무 작성
+                      </Link>
+                    </li>
+                  )}
+                </ul>
               </article>
             </div>
             <article className={styles.member}>

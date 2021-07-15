@@ -35,6 +35,7 @@ const Router = ({
           <HomePage
             isCard={isCard}
             cards={cards}
+            works={works}
             userCard={userCard}
             onMenuChange={onMenuChange}
           ></HomePage>
