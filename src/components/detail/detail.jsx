@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { formatMsg } from '../../utils/filters'
 
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 
@@ -14,8 +15,7 @@ const Detail = ({ location, cards }) => {
   }, [cards, location.state.id])
 
   const { login, name, phone, email, msg, team, rank, fileURL } = card
-  const replaceMsg =
-    msg && msg.replace(/\n/g, '<br/>').replace(/<br\/>/g, '\r\n')
+  const replaceMsg = msg && formatMsg(msg)
 
   return (
     <div className={`col-sm-4 col-md-9`}>

@@ -1,4 +1,4 @@
-export function formatDate(value) {
+function formatDate(value) {
   const date = new Date(value)
   const year = date.getFullYear()
   let month = date.getMonth() + 1
@@ -11,3 +11,11 @@ export function formatDate(value) {
 
   return `${year}-${month}-${day} ${hours}:${minutes}`
 }
+
+function formatMsg(value) {
+  value.replace(/\n/g, '<br/>').replace(/<br\/>/g, '\r\n')
+
+  return value
+}
+
+export { formatDate, formatMsg }
