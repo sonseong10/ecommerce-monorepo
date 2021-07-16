@@ -98,6 +98,26 @@ const SideNavigation = ({
                 {loding ? `Loding` : `Login & Signup`}
               </button>
             )}
+            <dl className={styles.detailList}>
+              <div className={styles.detailItem}>
+                <dt className="visually-hidden">made</dt>
+                <dd>@July 2021</dd>
+              </div>
+              <div className={styles.detailItem}>
+                <dt className="visually-hidden">github</dt>
+                <dd>
+                  <address>
+                    <button
+                      onClick={() => {
+                        window.open('https://github.com/sonseong10', '_blank')
+                      }}
+                    >
+                      sonseong10
+                    </button>
+                  </address>
+                </dd>
+              </div>
+            </dl>
           </footer>
         </article>
       </div>

@@ -1,6 +1,6 @@
 @value primary, secondary, white, background, green, green-active from '../constants/color.css';
 
-@value font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
+@value font-size-12, line-height-12, letter-spacing-12, font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
 
 @value snb-level from '../constants/z-index.css';
 
@@ -85,6 +85,32 @@
   letter-spacing: letter-spacing-16;
 }
 
+.detailList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.detailItem dd,
+.detailItem button {
+  font-size: font-size-12;
+  line-height: line-height-12;
+  letter-spacing: letter-spacing-12;
+  color: secondary;
+}
+
+.detailItem button:active {
+  text-decoration: underline;
+}
+
 @media screen and (min-width: 1200px) {
   .logo {
     margin-bottom: 66px;
@@ -114,5 +140,19 @@
     font-size: font-size-18;
     line-height: line-height-18;
     letter-spacing: letter-spacing-18;
+  }
+
+  .detailList {
+    flex-direction: row;
+  }
+
+  .detailItem button:hover {
+    text-decoration: underline;
+  }
+
+  .detailItem:not(:last-child)::after {
+    margin: 0 4px;
+    color: secondary;
+    content: '|';
   }
 }
