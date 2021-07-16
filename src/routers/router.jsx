@@ -41,9 +41,10 @@ const Router = ({
           ></HomePage>
         )}
       ></Route>
-      <Route
-        path="/maker"
-        render={() => (
+      <Route path="/maker">
+        {isCard ? (
+          <Redirect to="/main" />
+        ) : (
           <Maker
             FileInput={FileInput}
             dropDown={dropDown}
@@ -51,7 +52,7 @@ const Router = ({
             onMenuChange={onMenuChange}
           ></Maker>
         )}
-      ></Route>
+      </Route>
       <Route
         path="/search"
         render={() => (

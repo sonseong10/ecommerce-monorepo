@@ -22,7 +22,6 @@ const App = ({
 
   const [cards, setCards] = useState({})
   const [userCard, setUserCard] = useState({})
-  const [isCard, setIsCard] = useState(false)
 
   const [works, setWorks] = useState({})
 
@@ -44,10 +43,8 @@ const App = ({
       return
     }
     if (Object.keys(cards).find((item) => item === userId)) {
-      setIsCard(true)
       setUserCard({ ...cards[userId] })
     } else {
-      setIsCard(false)
       setUserCard({})
     }
   }, [cards, userId])
@@ -57,6 +54,7 @@ const App = ({
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid)
+        history.push('/')
       } else {
         setUserId('')
         history.push('/')
@@ -66,6 +64,9 @@ const App = ({
   }, [authService, history])
 
   useEffect(() => {
+    if (!userId) {
+      return
+    }
     const stopSync = workRepository.syncWorks(userId, (works) => {
       setWorks(works)
     })
@@ -87,7 +88,6 @@ const App = ({
     deleteCard()
     setWorks({})
     setUserCard({})
-    setIsCard(false)
     workRepository.removeWorkAll(userId)
     history.push('/maker')
   }
@@ -120,21 +120,24 @@ const App = ({
   }
 
   const onLogin = (event) => {
-    authService //
+    authService
       .login(event.currentTarget.value)
       .then(
         (data) =>
-          isCard &&
+          cards[data.user.uid] &&
           cardRepository.saveCard(data.user.uid, {
             ...cards[data.user.uid],
             login: true,
           })
       )
+      .then(setWorks({}))
+      .then(setUserCard({}))
       .then(history.push('/'))
   }
 
   const onLogout = () => {
-    isCard && createOrUpdateCard({ ...cards[userId], login: false })
+    Object.keys(userCard).length &&
+      createOrUpdateCard({ ...cards[userId], login: false })
     authService.logout()
     setUserCard({})
     history.push('/')
@@ -158,7 +161,7 @@ const App = ({
             userId={userId}
             userCard={userCard}
             loding={loding}
-            isCard={isCard}
+            isCard={Object.keys(userCard).length}
             onLogout={onLogout}
             menuActive={menuActive}
           ></SideNavigation>
@@ -172,7 +175,7 @@ const App = ({
               userId={userId}
               dropDown={dropDown}
               userCard={userCard}
-              isCard={isCard}
+              isCard={Object.keys(userCard).length}
               onMenuChange={onMenuChange}
               createCard={createOrUpdateCard}
               updateCard={createOrUpdateCard}

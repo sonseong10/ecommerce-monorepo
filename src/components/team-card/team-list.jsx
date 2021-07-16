@@ -8,8 +8,8 @@ import styles from '../../styles/modules/team_card.module.css'
 const TeamList = ({ cards, userCard }) => {
   const containerRef = useRef()
 
-  const filterKey = Object.keys(cards).filter((key) =>
-    cards[key].team.includes(userCard.team)
+  const filterKey = Object.keys(cards).filter(
+    (key) => key && cards[key].team.includes(userCard.team)
   )
 
   const onPrevScroll = () => {
