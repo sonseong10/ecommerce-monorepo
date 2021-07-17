@@ -54,7 +54,6 @@ const App = ({
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid)
-        history.push('/')
       } else {
         setUserId('')
         history.push('/')

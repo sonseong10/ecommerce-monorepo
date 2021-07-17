@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import AddCardForm from './add-card-form'
 
-const Maker = ({ FileInput, dropDown, createCard, onMenuChange }) => {
+const Maker = ({ FileInput, dropDown, isCard, createCard, onMenuChange }) => {
+  const history = useHistory()
+
   useEffect(() => {
     onMenuChange('home')
+  })
+
+  useEffect(() => {
+    isCard && history.push('/main')
   })
 
   return (
