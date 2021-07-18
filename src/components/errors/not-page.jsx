@@ -5,7 +5,7 @@ import styles from '../../styles/modules/error_page.module.css'
 const NotPage = () => {
   return (
     <div className="col-sm-4 col-md-9">
-      <div className="wrapper">
+      <div className={styles.errorWrapper}>
         <section className={styles.error}>
           <img className={styles.errorImg} src={notResult} alt="Not result" />
           <h2 className={styles.errorTitle}>페이지를 찾지 못 했습니다.</h2>

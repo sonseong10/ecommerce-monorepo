@@ -6,6 +6,7 @@ const Overlay = ({ overlay, ToggleOverlay }) => {
     <div
       className={`${styles.overlay} ${overlay && styles.isActive}`}
       onClick={ToggleOverlay}
+      onBlur={ToggleOverlay}
       aria-hidden
     ></div>
   )

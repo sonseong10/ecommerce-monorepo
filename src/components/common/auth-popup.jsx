@@ -6,7 +6,7 @@ import { GoMarkGithub } from 'react-icons/go'
 import styles from '../../styles/modules/common.module.css'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 
-const AuthPopup = memo(({ overlay, ToggleOverlay, authService, onLogin }) => {
+const AuthPopup = memo(({ overlay, ToggleOverlay, onLogin }) => {
   return (
     <section className={`${styles.authPopup} ${overlay && styles.isActive}`}>
       <header className={styles.popupHeader}>

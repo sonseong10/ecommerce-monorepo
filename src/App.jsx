@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Router from './routers/router'
 import { useHistory } from 'react-router-dom'
 
-import SideNavigation from './components/side-navigation'
-import NotLogin from './components/errors/not-login'
+import GlobalHeader from './components/global-header'
+import MainContent from './components/common/main-content'
+
 import Overlay from './components/common/overlay'
 import AuthPopup from './components/common/auth-popup'
 
 import './styles/main.css'
+import MobileSideBar from './components/mobile-sidebar'
 
 const App = ({
   FileInput,
@@ -18,16 +19,61 @@ const App = ({
 }) => {
   const history = useHistory()
   const historyState = history?.location?.state
+
   const [userId, setUserId] = useState(historyState && historyState.id)
 
   const [cards, setCards] = useState({})
-  const [userCard, setUserCard] = useState({})
-
   const [works, setWorks] = useState({})
+  const [userCard, setUserCard] = useState({})
 
   const [menuActive, setMenuActive] = useState('')
   const [loding, setLoding] = useState(false)
   const [overlay, setOverlay] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  useEffect(() => {
+    setLoding(true)
+    authService.onAuthChange((user) => {
+      if (user) {
+        setUserId(user.uid)
+      } else {
+        setUserId('')
+        history.push('/')
+      }
+      setLoding(false)
+    })
+  }, [authService, history])
+
+  const onLogin = (event) => {
+    authService
+      .login(event.currentTarget.value)
+      .then(
+        (data) =>
+          cards[data.user.uid] &&
+          cardRepository.saveCard(data.user.uid, {
+            ...cards[data.user.uid],
+            login: true,
+          })
+      )
+      .then(setWorks({}))
+      .then(setUserCard({}))
+      .then(history.push('/'))
+  }
+
+  const onLogout = () => {
+    Object.keys(userCard).length &&
+      cardRepository.saveCard(userId, { ...cards[userId], login: false })
+    setUserCard({})
+    history.push('/')
+    authService.logout()
+  }
+
+  const deleteAccount = () => {
+    deleteCard()
+    setWorks({})
+    setUserCard({})
+    workRepository.removeWorkAll(userId)
+    history.push('/maker')
+  }
 
   useEffect(() => {
     const stopSync = cardRepository.syncCards((cards) => {
@@ -49,18 +95,23 @@ const App = ({
     }
   }, [cards, userId])
 
-  useEffect(() => {
-    setLoding(true)
-    authService.onAuthChange((user) => {
-      if (user) {
-        setUserId(user.uid)
-      } else {
-        setUserId('')
-        history.push('/')
-      }
-      setLoding(false)
+  const createOrUpdateCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards }
+      updated[userId] = card
+      return updated
     })
-  }, [authService, history])
+    cardRepository.saveCard(userId, card)
+  }
+
+  const deleteCard = () => {
+    setCards((cards) => {
+      const updated = { ...cards }
+      delete updated[userId]
+      return updated
+    })
+    cardRepository.removeCard(userId)
+  }
 
   useEffect(() => {
     if (!userId) {
@@ -74,23 +125,6 @@ const App = ({
     }
   }, [userId, workRepository])
 
-  const createOrUpdateCard = (card) => {
-    setCards((cards) => {
-      const updated = { ...cards }
-      updated[userId] = card
-      return updated
-    })
-    cardRepository.saveCard(userId, card)
-  }
-
-  const deleteAccount = () => {
-    deleteCard()
-    setWorks({})
-    setUserCard({})
-    workRepository.removeWorkAll(userId)
-    history.push('/maker')
-  }
-
   const createOrUpdateWork = (work) => {
     setWorks((works) => {
       const updated = { ...works }
@@ -98,15 +132,6 @@ const App = ({
       return updated
     })
     workRepository.saveWork(userId, work)
-  }
-
-  const deleteCard = () => {
-    setCards((cards) => {
-      const updated = { ...cards }
-      delete updated[userId]
-      return updated
-    })
-    cardRepository.removeCard(userId)
   }
 
   const deleteWork = (work) => {
@@ -118,32 +143,12 @@ const App = ({
     workRepository.removeWork(userId, work)
   }
 
-  const onLogin = (event) => {
-    authService
-      .login(event.currentTarget.value)
-      .then(
-        (data) =>
-          cards[data.user.uid] &&
-          cardRepository.saveCard(data.user.uid, {
-            ...cards[data.user.uid],
-            login: true,
-          })
-      )
-      .then(setWorks({}))
-      .then(setUserCard({}))
-      .then(history.push('/'))
-  }
-
-  const onLogout = () => {
-    Object.keys(userCard).length &&
-      createOrUpdateCard({ ...cards[userId], login: false })
-    authService.logout()
-    setUserCard({})
-    history.push('/')
-  }
-
-  const ToggleOverlay = () => {
+  const toggleOverlay = () => {
     setOverlay(!overlay)
+  }
+
+  const toggleOpenSideBar = () => {
+    setIsOpen(!isOpen)
   }
 
   const onMenuChange = (value) => {
@@ -151,49 +156,56 @@ const App = ({
   }
 
   return (
-    <>
-      <div className="container">
-        <div className="row">
-          <SideNavigation
-            ToggleOverlay={ToggleOverlay}
-            authService={authService}
-            userId={userId}
-            userCard={userCard}
-            loding={loding}
-            isCard={Object.keys(userCard).length}
-            onLogout={onLogout}
-            menuActive={menuActive}
-          ></SideNavigation>
-          {!userId ? (
-            <NotLogin loding={loding} />
-          ) : (
-            <Router
-              FileInput={FileInput}
-              cards={cards}
-              works={works}
-              userId={userId}
-              dropDown={dropDown}
-              userCard={userCard}
-              isCard={Object.keys(userCard).length}
-              onMenuChange={onMenuChange}
-              createCard={createOrUpdateCard}
-              updateCard={createOrUpdateCard}
-              deleteCard={deleteAccount}
-              createWork={createOrUpdateWork}
-              updateWork={createOrUpdateWork}
-              deleteWork={deleteWork}
-            ></Router>
-          )}
-        </div>
-      </div>
+    <div className="app">
+      <GlobalHeader
+        userId={userId}
+        userCard={userCard}
+        toggleOverlay={toggleOverlay}
+        toggleOpenSideBar={toggleOpenSideBar}
+      ></GlobalHeader>
+
+      <MainContent
+        FileInput={FileInput}
+        dropDown={dropDown}
+        userId={userId}
+        onLogout={onLogout}
+        deleteAccount={deleteAccount}
+        cards={cards}
+        works={works}
+        userCard={userCard}
+        createOrUpdateCard={createOrUpdateCard}
+        createOrUpdateWork={createOrUpdateWork}
+        deleteWork={deleteWork}
+        loding={loding}
+        onMenuChange={onMenuChange}
+        ToggleOverlay={toggleOverlay}
+        menuActive={menuActive}
+      ></MainContent>
+
+      <MobileSideBar
+        onLogout={onLogout}
+        isCard={Object.keys(userCard).length}
+        isOpen={isOpen}
+        toggleOpenSideBar={toggleOpenSideBar}
+      ></MobileSideBar>
+
       <AuthPopup
         overlay={overlay}
-        ToggleOverlay={ToggleOverlay}
+        ToggleOverlay={toggleOverlay}
         authService={authService}
         onLogin={onLogin}
       ></AuthPopup>
-      <Overlay overlay={overlay} ToggleOverlay={ToggleOverlay}></Overlay>
-    </>
+
+      {!userId ? (
+        <Overlay overlay={overlay} ToggleOverlay={toggleOverlay}></Overlay>
+      ) : (
+        <div className="sm-only">
+          <Overlay overlay={isOpen} ToggleOverlay={toggleOpenSideBar}></Overlay>
+        </div>
+      )}
+
+      <footer></footer>
+    </div>
   )
 }
 
