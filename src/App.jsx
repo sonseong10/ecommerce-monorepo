@@ -9,6 +9,7 @@ import AuthPopup from './components/common/auth-popup'
 
 import './styles/main.css'
 import MobileSideBar from './components/mobile-sidebar'
+import GlobalFooter from './components/global-footer'
 
 const App = ({
   FileInput,
@@ -204,7 +205,7 @@ const App = ({
         </div>
       )}
 
-      <footer></footer>
+      <GlobalFooter userId={userId} menuActive={menuActive}></GlobalFooter>
     </div>
   )
 }
