@@ -31,6 +31,7 @@ const Router = ({
       </Route>
       <Route
         path="/main"
+        exact
         render={() => (
           <HomePage
             isCard={isCard}
@@ -43,6 +44,7 @@ const Router = ({
       ></Route>
       <Route
         path="/maker"
+        exact
         render={() => (
           <Maker
             FileInput={FileInput}
@@ -55,6 +57,7 @@ const Router = ({
       ></Route>
       <Route
         path="/search"
+        exact
         render={() => (
           <Search
             dropDown={dropDown}
@@ -65,6 +68,7 @@ const Router = ({
       ></Route>
       <Route
         path="/work"
+        exact
         render={() => (
           <Work
             onMenuChange={onMenuChange}
@@ -78,6 +82,7 @@ const Router = ({
       ></Route>
       <Route
         path="/update"
+        exact
         render={() => (
           <Update
             FileInput={FileInput}
@@ -90,11 +95,12 @@ const Router = ({
       ></Route>
       <Route
         path="/detail"
+        exact
         render={({ location }) => (
           <Detail location={location} cards={cards}></Detail>
         )}
       ></Route>
-      <Route path="*" component={NotPage}></Route>
+      <Route component={NotPage}></Route>
     </Switch>
   )
 }
