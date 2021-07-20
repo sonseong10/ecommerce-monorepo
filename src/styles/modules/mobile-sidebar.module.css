@@ -1,3 +1,7 @@
+@value secondary, white from '../constants/color.css';
+
+@value font-size-14, line-height-14, letter-spacing-14 from '../constants/typography.css';
+
 .sideBar {
   position: fixed;
   left: 0;
@@ -9,7 +13,7 @@
   padding: 16px;
   width: 60%;
   height: 100vh;
-  background-color: #fff;
+  background-color: white;
   transform: translate3d(-100%, 0, 0);
   transition: transform 300ms ease-in-out;
 }
@@ -17,4 +21,33 @@
 .sideBar.isActive {
   transform: none;
   z-index: 101;
+}
+
+.detailList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailItem {
+  margin-right: 12px;
+}
+
+.detailItem dd,
+.detailItem button {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: secondary;
+  height: 48px;
+}
+
+.detailItem dd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailItem button:active {
+  opacity: 0.4;
 }
