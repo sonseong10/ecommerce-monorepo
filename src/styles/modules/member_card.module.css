@@ -13,10 +13,6 @@
   border-radius: 22px;
 }
 
-.memberListWrap::-webkit-scrollbar {
-  display: none !important;
-}
-
 .meberItem {
   flex-grow: 1;
   margin-bottom: 10px;

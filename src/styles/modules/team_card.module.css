@@ -4,12 +4,21 @@
 
 @value card-shadow from '../constants/box-shadow.css';
 
+.teamListWrapper {
+  overflow: hidden;
+  position: relative;
+}
+
 .teamList {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-direction: column;
   width: 100%;
+  overflow-x: scroll;
+}
+
+.teamList::-webkit-scrollbar {
+  display: none;
 }
 
 .teamItem {
@@ -18,8 +27,9 @@
   flex-direction: column;
   padding: 0 8px;
   height: 160px;
-  margin: 10px 0;
-  width: 100%;
+  margin: 0 10px;
+  width: 240px;
+  flex-shrink: 0;
   background-color: white;
   border-radius: 4px;
   transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
@@ -147,12 +157,6 @@
   .moveBtn:hover {
     color: primary;
     background-color: #f5f5f5c7;
-  }
-
-  .teamItem {
-    margin: 10px;
-    width: 240px;
-    flex-shrink: 0;
   }
 
   .teamItem:hover {

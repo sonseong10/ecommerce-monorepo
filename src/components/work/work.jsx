@@ -28,36 +28,34 @@ const Work = ({
 
   return (
     <div className="col-sm-4 col-md-10 col-lg-9">
-      <div className="wrapper">
-        <div className={styles.workWrapper}>
-          <header className={styles.header}>
-            <h1>Work List</h1>
-            <button
-              className={`${buttonStyle.baseBtn} ${buttonStyle.ghostBtn} ${styles.openBtn} `}
-              onClick={onOpenAddForm}
-              type="button"
-            >
-              <BiEdit></BiEdit>
-            </button>
-            <span className={styles.toolTip}>
-              {isOpen ? 'Close Form' : 'Open Form'}
-            </span>
-          </header>
-          {isOpen && (
-            <AddWorkForm
-              userId={userId}
-              createWork={createWork}
-              renderMarkdown={renderMarkdown}
-            ></AddWorkForm>
-          )}
-          <WorkList
-            MarkDown={renderMarkdown}
-            works={works}
+      <div className={styles.workGroup}>
+        <header className={styles.header}>
+          <h1>Work List</h1>
+          <button
+            className={`${buttonStyle.baseBtn} ${buttonStyle.ghostBtn} ${styles.openBtn} `}
+            onClick={onOpenAddForm}
+            type="button"
+          >
+            <BiEdit></BiEdit>
+          </button>
+          <span className={styles.toolTip}>
+            {isOpen ? 'Close Form' : 'Open Form'}
+          </span>
+        </header>
+        {isOpen && (
+          <AddWorkForm
+            userId={userId}
+            createWork={createWork}
             renderMarkdown={renderMarkdown}
-            updateWork={updateWork}
-            deleteWork={deleteWork}
-          ></WorkList>
-        </div>
+          ></AddWorkForm>
+        )}
+        <WorkList
+          MarkDown={renderMarkdown}
+          works={works}
+          renderMarkdown={renderMarkdown}
+          updateWork={updateWork}
+          deleteWork={deleteWork}
+        ></WorkList>
       </div>
     </div>
   )

@@ -22,7 +22,7 @@ const MainContent = ({
   ToggleOverlay,
 }) => {
   return (
-    <div className="mainontent">
+    <div className="main-content">
       <div className="container">
         <div className="row">
           <SideNavigation

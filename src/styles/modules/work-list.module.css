@@ -4,6 +4,10 @@
 
 @value card-shadow from '../constants/box-shadow.css';
 
+.workList {
+  position: relative;
+}
+
 .openBtn {
   display: flex;
   justify-content: space-between;
@@ -53,7 +57,7 @@
 }
 
 .contentsLeft {
-  flex: 1 1 94%;
+  width: 80%;
 }
 
 .contentsLeft textarea {
@@ -71,11 +75,11 @@
 }
 
 .contentsRight {
-  flex: 1 1 6%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  width: 20%;
 }
 
 .toolBtn {
@@ -84,6 +88,7 @@
   justify-content: center;
   color: secondary;
   margin-bottom: 4px;
+  width: 100%;
   transition: color 300ms ease-in-out;
 }
 
@@ -114,6 +119,18 @@
 }
 
 @media screen and (min-width: 768px) {
+  .workList {
+    padding: 0 10px;
+  }
+
+  .contentsLeft {
+    width: 90%;
+  }
+
+  .contentsRight {
+    width: 10%;
+  }
+
   .openBtn:hover {
     transform: translate3d(0px, -0.25rem, 0px);
     box-shadow: card-shadow;

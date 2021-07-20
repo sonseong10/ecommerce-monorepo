@@ -1,16 +1,14 @@
 @value primary, white, background, green from '../constants/color.css';
 
-@value font-size-14,line-height-14, letter-spacing-14, font-size-16, line-height-16,letter-spacing-16 from '../constants/typography.css';
+@value font-size-16,line-height-16, letter-spacing-16, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
-.articleWrap {
+.articleGroup {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
-  overflow-y: auto;
 }
 
-.articleWrap::-webkit-scrollbar {
+.articleGroup::-webkit-scrollbar {
   display: none;
 }
 
@@ -18,10 +16,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 36px;
+  margin-bottom: 12px;
 }
 
 .benner {
+  width: 100%;
+}
+
+.todo {
   width: 100%;
 }
 
@@ -31,13 +33,35 @@
 }
 
 .articleTitle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 -15px;
+  padding: 0 12px;
+  height: 64px;
+}
+
+.articleTitle h2 {
   font-size: font-size-16;
   line-height: line-height-16;
   letter-spacing: letter-spacing-16;
   color: primary;
 }
 
+.articleTitle strong {
+  margin-left: 8px;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  color: green;
+}
+
 @media screen and (min-width: 768px) {
+  .articleGroup {
+    padding: 24px 0;
+    height: 100vh;
+  }
+
   .benner {
     width: 60%;
   }
@@ -46,11 +70,33 @@
     width: 40%;
     padding: 0 10px;
   }
+
+  .articleLeft {
+    margin-bottom: 36px;
+  }
+
+  .articleTitle {
+    margin: 0;
+    padding: 0;
+    height: auto;
+  }
+
+  .articleTitle h2 {
+    font-size: font-size-18;
+    line-height: line-height-18;
+    letter-spacing: letter-spacing-18;
+  }
+
+  .articleTitle strong {
+    font-size: font-size-18;
+    line-height: line-height-18;
+    letter-spacing: letter-spacing-18;
+  }
 }
 
 /* TODO: 나중애 CSS 결합하기 */
 .workList {
-  height: 340px;
+  height: 300px;
   overflow-y: scroll;
 }
 
@@ -93,6 +139,12 @@
   letter-spacing: letter-spacing-14;
   color: primary;
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .workList {
+    height: 400px;
+  }
 }
 
 @media screen and (min-width: 1200px) {

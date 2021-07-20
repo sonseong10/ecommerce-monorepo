@@ -6,7 +6,7 @@ import LodingSpinner from '../common/loding-spinner'
 const NotLogin = ({ loding }) => {
   return (
     <div className="col-sm-4 col-md-9">
-      <div className="wrapper">
+      <div className={styles.error}>
         {loding ? (
           <LodingSpinner></LodingSpinner>
         ) : (
