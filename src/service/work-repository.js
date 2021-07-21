@@ -1,8 +1,8 @@
-import firebaseApp from './firebase'
+import { firebaseDatabase } from './firebase'
 
 class WorkRepository {
   syncWorks(userId, onUpdate) {
-    const ref = firebaseApp.database().ref(`works/${userId}`)
+    const ref = firebaseDatabase.ref(`works/${userId}`)
     ref.on('value', (snapshot) => {
       const value = snapshot.val()
       value && onUpdate(value)
@@ -11,15 +11,15 @@ class WorkRepository {
   }
 
   saveWork(userId, work) {
-    firebaseApp.database().ref(`works/${userId}/${work.time}`).set(work)
+    firebaseDatabase.ref(`works/${userId}/${work.time}`).set(work)
   }
 
   removeWork(userId, work) {
-    firebaseApp.database().ref(`works/${userId}/${work.time}`).remove()
+    firebaseDatabase.ref(`works/${userId}/${work.time}`).remove()
   }
 
   removeWorkAll(userId) {
-    firebaseApp.database().ref(`works/${userId}`).remove()
+    firebaseDatabase.ref(`works/${userId}`).remove()
   }
 }
 

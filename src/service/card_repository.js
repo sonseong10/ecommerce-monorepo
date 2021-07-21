@@ -1,7 +1,7 @@
-import firebaseApp from './firebase'
+import { firebaseDatabase } from './firebase'
 class CardRepository {
   syncCards(onUpdate) {
-    const ref = firebaseApp.database().ref(`cards`)
+    const ref = firebaseDatabase.ref(`cards`)
     ref.on('value', (snapshot) => {
       const value = snapshot.val()
       value && onUpdate(value)
@@ -10,11 +10,11 @@ class CardRepository {
   }
 
   saveCard(userId, card) {
-    firebaseApp.database().ref(`cards/${userId}`).set(card)
+    firebaseDatabase.ref(`cards/${userId}`).set(card)
   }
 
   removeCard(userId) {
-    firebaseApp.database().ref(`cards/${userId}`).remove()
+    firebaseDatabase.ref(`cards/${userId}`).remove()
   }
 }
 
