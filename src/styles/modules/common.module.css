@@ -26,7 +26,8 @@
 }
 
 /* NOTE: auth popup */
-.authPopup {
+.authPopup,
+.msgPopup {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -48,7 +49,8 @@
     transform 300ms ease-in-out;
 }
 
-.authPopup.isActive {
+.authPopup.isActive,
+.msgPopup.isActive {
   opacity: 1;
   visibility: visible;
   transform: scale(1) translate(-50%, -50%);
@@ -65,6 +67,7 @@
 .popupBody {
   width: 100%;
   margin: 12px 0;
+  text-align: center;
 }
 
 .authBtn {
@@ -106,17 +109,41 @@
   width: 100%;
 }
 
-.cancleBtn {
-  height: 24px;
+.cancleBtn,
+.closeBtn {
+  height: 32px;
   font-size: font-size-14;
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
 }
 
 @media screen and (min-width: 768px) {
-  .authPopup {
+  .authPopup,
+  .msgPopup {
     width: 360px;
   }
+}
+
+/* NOTE: msg popup */
+.msgPopup .popupHeader svg {
+  display: block;
+  width: 42px;
+  height: 42px;
+  color: green;
+}
+
+.msgPopup .title {
+  font-size: font-size-24;
+  line-height: line-height-24;
+  letter-spacing: letter-spacing-24;
+  color: green;
+}
+
+.msgPopup .desc {
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  color: secondary;
 }
 
 /* NOTE: MyMenu */

@@ -10,6 +10,7 @@ import AuthPopup from './components/common/auth-popup'
 import './styles/main.css'
 import MobileSideBar from './components/mobile-sidebar'
 import GlobalFooter from './components/global-footer'
+import MsgPopup from './components/common/msg-popup'
 
 const App = ({
   FileInput,
@@ -26,11 +27,14 @@ const App = ({
   const [cards, setCards] = useState({})
   const [works, setWorks] = useState({})
   const [userCard, setUserCard] = useState({})
+  const [popupMsg, setpopupMsg] = useState({})
 
   const [menuActive, setMenuActive] = useState('')
   const [loding, setLoding] = useState(false)
   const [overlay, setOverlay] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [isOpenPopup, setIsOpenPopup] = useState(false)
+
   useEffect(() => {
     setLoding(true)
     authService.onAuthChange((user) => {
@@ -49,6 +53,7 @@ const App = ({
       .login(event.currentTarget.value)
       .then(
         (data) =>
+          data &&
           cards[data.user.uid] &&
           cardRepository.saveCard(data.user.uid, {
             ...cards[data.user.uid],
@@ -72,8 +77,9 @@ const App = ({
     deleteCard()
     setWorks({})
     setUserCard({})
+    setIsOpenPopup(true)
     workRepository.removeWorkAll(userId)
-    history.push('/maker')
+    authService.delete(setpopupMsg)
   }
 
   useEffect(() => {
@@ -152,6 +158,10 @@ const App = ({
     setIsOpen(!isOpen)
   }
 
+  const toggleMsgPopup = () => {
+    setIsOpenPopup(!isOpenPopup)
+  }
+
   const onMenuChange = (value) => {
     setMenuActive(value)
   }
@@ -164,7 +174,6 @@ const App = ({
         toggleOverlay={toggleOverlay}
         toggleOpenSideBar={toggleOpenSideBar}
       ></GlobalHeader>
-
       <MainContent
         FileInput={FileInput}
         dropDown={dropDown}
@@ -182,14 +191,12 @@ const App = ({
         ToggleOverlay={toggleOverlay}
         menuActive={menuActive}
       ></MainContent>
-
       <MobileSideBar
         onLogout={onLogout}
         isCard={Object.keys(userCard).length}
         isOpen={isOpen}
         toggleOpenSideBar={toggleOpenSideBar}
       ></MobileSideBar>
-
       <AuthPopup
         overlay={overlay}
         ToggleOverlay={toggleOverlay}
@@ -197,12 +204,21 @@ const App = ({
         onLogin={onLogin}
       ></AuthPopup>
 
-      {!userId ? (
-        <Overlay overlay={overlay} ToggleOverlay={toggleOverlay}></Overlay>
-      ) : (
-        <div className="sm-only">
-          <Overlay overlay={isOpen} ToggleOverlay={toggleOpenSideBar}></Overlay>
-        </div>
+      <Overlay
+        overlay={!userId ? overlay : isOpen}
+        ToggleOverlay={!userId ? toggleOverlay : toggleOpenSideBar}
+      ></Overlay>
+
+      {Object.keys(popupMsg).length && (
+        <MsgPopup
+          popupMsg={popupMsg}
+          isOpenPopup={isOpenPopup}
+          toggleMsgPopup={toggleMsgPopup}
+        ></MsgPopup>
+      )}
+
+      {isOpenPopup && (
+        <Overlay overlay={isOpenPopup} ToggleOverlay={toggleMsgPopup}></Overlay>
       )}
 
       <GlobalFooter userId={userId} menuActive={menuActive}></GlobalFooter>
