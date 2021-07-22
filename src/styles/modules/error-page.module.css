@@ -1,4 +1,4 @@
-@value primary from '../constants/color.css';
+@value primary, secondary from '../constants/color.css';
 
 @value font-size-14, line-height-14, letter-spacing-14, font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
 
@@ -28,7 +28,7 @@
   font-size: font-size-14;
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
-  color: primary;
+  color: secondary;
 }
 
 @media screen and (min-width: 768px) {
@@ -36,6 +36,5 @@
     font-size: font-size-16;
     line-height: line-height-16;
     letter-spacing: letter-spacing-16;
-    color: primary;
   }
 }

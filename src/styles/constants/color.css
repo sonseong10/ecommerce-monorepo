@@ -8,15 +8,22 @@
 @value background: #eceff1;
 
 @value green: #009EB4;
-@value green-active: #028597;
+@value dark-green: #028597;
 
-@value login: #6EE443;
-@value login-border: #62CC3C;
+@value light-green: #6EE443;
+@value dark-light-green: #62CC3C;
 
-@value logout: #ff4949;
-@value logout-border: #cc3c3c;
+@value red: #ff4949;
+@value dark-red: #cc3c3c;
 
 @value blue: #a8dafe;
 @value yellow: #FEF0A8;
+@value dark-yellow: #ffc92c;
 
-@value overlay-black: rgba(45, 53, 57, 0.5);
+@value overlay-black: #2d353980;
+@value green-active: dark-green;
+
+@value login: light-green;
+@value login-border: dark-light-green;
+@value logout: red;
+@value logout-border: dark-red;

@@ -1,4 +1,7 @@
-@value snb-level: 10;
+@value gnb-level: 10;
+@value snb-level: 20;
+@value mobile-level: 30;
 
 @value overlay-level: 100;
-@value auth-popup-level: 200;
+@value popup-level: 200;
+@value sidebar-level: 300;

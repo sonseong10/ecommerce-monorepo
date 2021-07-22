@@ -1,6 +1,6 @@
 import React from 'react'
 import notResult from '../../assets/images/page-not-found.svg'
-import styles from '../../styles/modules/error_page.module.css'
+import styles from '../../styles/modules/error-page.module.css'
 
 const NotPage = () => {
   return (

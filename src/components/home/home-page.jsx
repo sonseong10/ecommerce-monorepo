@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 import TeamList from './team-card/team-list'
 import LodingSpinner from '../common/loding-spinner'
 import SlickCarousel from '../common/slick-carousel'
 
-import styles from '../../styles/modules/home_page.module.css'
+import styles from '../../styles/modules/home-page.module.css'
+import WorkLinkList from './work-link-list'
 
 const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
   useEffect(() => {
@@ -24,27 +24,12 @@ const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
               <SlickCarousel></SlickCarousel>
             </article>
 
-            <article className={`${styles.todo}`}>
+            <article className={`${styles.work}`}>
               <div className={styles.articleTitle}>
                 <h2>업무</h2>
                 <strong>{Object.keys(works).length}</strong>
               </div>
-              <ul className={styles.workList}>
-                {Object.keys(works).length ? (
-                  Object.keys(works).map((key) => (
-                    <li className={styles.workItem} key={works[key].time}>
-                      <Link to="/work">{works[key].title}</Link>
-                    </li>
-                  ))
-                ) : (
-                  <li className={styles.workItem}>
-                    <p className={styles.lsitNone}>리스트가 없습니다.</p>
-                    <Link className={styles.lsitNone} to="/work">
-                      업무 작성
-                    </Link>
-                  </li>
-                )}
-              </ul>
+              <WorkLinkList works={works}></WorkLinkList>
             </article>
           </div>
 

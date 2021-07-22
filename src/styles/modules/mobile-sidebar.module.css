@@ -2,6 +2,8 @@
 
 @value font-size-14, line-height-14, letter-spacing-14 from '../constants/typography.css';
 
+@value sidebar-level from '../constants/z-index.css';
+
 .sideBar {
   position: fixed;
   left: 0;
@@ -14,13 +16,13 @@
   width: 60%;
   height: 100vh;
   background-color: white;
+  z-index: sidebar-level;
   transform: translate3d(-100%, 0, 0);
   transition: transform 300ms ease-in-out;
 }
 
 .sideBar.isActive {
   transform: none;
-  z-index: 101;
 }
 
 .detailList {

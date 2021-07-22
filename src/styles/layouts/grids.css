@@ -1,6 +1,6 @@
 .main-content {
   overflow-y: auto;
-  margin: 20px 0 80px;
+  padding: 20px 0 80px;
 }
 
 .main-content::-webkit-scrollbar {
@@ -41,7 +41,7 @@
 @media screen and (min-width: 768px) {
   .main-content {
     overflow-y: auto;
-    margin: 0;
+    padding: 0;
   }
 
   .container {
@@ -84,11 +84,6 @@
   .container .col-md-12 {
     width: 100%;
   }
-
-  /* .wrapper {
-    padding: 24px 0;
-    height: 100vh;
-  } */
 }
 
 @media screen and (min-width: 1200px) {

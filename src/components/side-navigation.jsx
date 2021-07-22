@@ -5,7 +5,7 @@ import MyMenu from './common/my-menu'
 import { BiHomeAlt, BiGroup, BiFile } from 'react-icons/bi'
 
 import buttonStyles from '../styles/modules/buttons.module.css'
-import styles from '../styles/modules/global_header.module.css'
+import styles from '../styles/modules/sidebar.module.css'
 
 import Logo from '../assets/images/logo.svg'
 import TabletLogo from '../assets/images/tablet-logo.svg'

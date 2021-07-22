@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from '../../../styles/modules/member_card.module.css'
+import styles from '../../../styles/modules/member-card.module.css'
 
 import MemberItem from './member-item'
 

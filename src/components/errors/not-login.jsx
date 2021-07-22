@@ -1,6 +1,6 @@
 import React from 'react'
 import notResult from '../../assets/images/security-on.svg'
-import styles from '../../styles/modules/error_page.module.css'
+import styles from '../../styles/modules/error-page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 
 const NotLogin = ({ loding }) => {

@@ -1,6 +1,6 @@
 @value overlay-black, primary, secondary, white, logout, background,  green, green-active  from '../constants/color.css';
 
-@value overlay-level, auth-popup-level from '../constants/z-index.css';
+@value overlay-level, popup-level from '../constants/z-index.css';
 
 @value font-size-14,line-height-14,letter-spacing-14, font-size-16,line-height-16,letter-spacing-16, font-size-24, line-height-24, letter-spacing-24 from '../constants/typography.css';
 
@@ -25,7 +25,7 @@
   visibility: visible;
 }
 
-/* NOTE: auth popup */
+/* NOTE: auth, msg popup */
 .authPopup,
 .msgPopup {
   position: absolute;
@@ -39,7 +39,7 @@
   padding: 24px;
   background-color: white;
   border-radius: 4px;
-  z-index: auth-popup-level;
+  z-index: popup-level;
   box-shadow: popup-shadow;
   opacity: 0;
   visibility: hidden;
@@ -56,18 +56,33 @@
   transform: scale(1) translate(-50%, -50%);
 }
 
-.popupTitle {
-  font-size: font-size-24;
-  line-height: line-height-24;
-  letter-spacing: letter-spacing-24;
-  font-weight: 400;
-  color: primary;
-}
-
 .popupBody {
   width: 100%;
   margin: 12px 0;
   text-align: center;
+}
+
+.popupTitle,
+.msgPopup .title {
+  font-size: font-size-24;
+  line-height: line-height-24;
+  letter-spacing: letter-spacing-24;
+}
+
+.popupTitle {
+  font-weight: 400;
+  color: primary;
+}
+
+.msgPopup .title {
+  color: green;
+}
+
+.msgPopup .desc {
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
+  color: secondary;
 }
 
 .authBtn {
@@ -86,10 +101,6 @@
   margin-bottom: 8px;
 }
 
-.authBtn:hover {
-  box-shadow: dropdown-shadow;
-}
-
 .authBtn:active {
   color: green-active;
 }
@@ -100,6 +111,13 @@
   line-height: line-height-24;
   letter-spacing: letter-spacing-24;
   color: primary;
+}
+
+.msgPopup .popupHeader svg {
+  display: block;
+  width: 42px;
+  height: 42px;
+  color: green;
 }
 
 .popupFooter {
@@ -122,28 +140,10 @@
   .msgPopup {
     width: 360px;
   }
-}
 
-/* NOTE: msg popup */
-.msgPopup .popupHeader svg {
-  display: block;
-  width: 42px;
-  height: 42px;
-  color: green;
-}
-
-.msgPopup .title {
-  font-size: font-size-24;
-  line-height: line-height-24;
-  letter-spacing: letter-spacing-24;
-  color: green;
-}
-
-.msgPopup .desc {
-  font-size: font-size-16;
-  line-height: line-height-16;
-  letter-spacing: letter-spacing-16;
-  color: secondary;
+  .authBtn:hover {
+    box-shadow: dropdown-shadow;
+  }
 }
 
 /* NOTE: MyMenu */
@@ -261,7 +261,7 @@ button.mymemuBtn {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: white;
 }
 
 .lodingSmall {

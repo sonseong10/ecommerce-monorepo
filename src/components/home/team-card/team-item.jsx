@@ -2,7 +2,7 @@ import React from 'react'
 
 import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 
-import styles from '../../../styles/modules/team_card.module.css'
+import styles from '../../../styles/modules/team-card.module.css'
 
 const TeamItem = ({ card }) => {
   const { name, login, theme, team, rank, fileURL } = card

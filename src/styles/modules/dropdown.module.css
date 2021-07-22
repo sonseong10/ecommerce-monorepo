@@ -2,7 +2,12 @@
 
 @value font-size-14,line-height-14, letter-spacing-14 from '../constants/typography.css';
 
-@value teams-count, ranks-count, theme-count, dropdown-height, dropdown-padding from '../constants/dropdownList.css';
+@value teams-count: 7;
+@value ranks-count: 6;
+@value theme-count: 3;
+
+@value dropdown-height: 44px;
+@value dropdown-padding: 8px;
 
 .formLabel {
   margin-bottom: 12px;
@@ -36,7 +41,7 @@
 
 .listBtn {
   width: 100%;
-  height: 24px;
+  height: 44px;
   font-size: font-size-14;
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
