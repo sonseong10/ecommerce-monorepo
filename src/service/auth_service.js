@@ -1,14 +1,18 @@
 import { firebaseAuth, githubProvider, googleProvider } from './firebase'
 
 class AuthService {
-  async login(provideName) {
+  async login(provideName, setMsg) {
     const authProvider = this.getProvider(provideName)
     try {
       const result = await firebaseAuth.signInWithPopup(authProvider)
       return result
     } catch (error) {
-      console.log(error.message)
-      return
+      if (error.code === 'auth/account-exists-with-different-credential') {
+        setMsg(
+          'Login Failed',
+          `The account exists with different credentials, Please select again.`
+        )
+      }
     }
   }
 
@@ -22,15 +26,12 @@ class AuthService {
     firebaseAuth.signOut()
   }
 
-  delete(setpopupMsg) {
+  delete(setMsg) {
     const user = firebaseAuth.currentUser
     user
       .delete()
       .then(() => {
-        setpopupMsg({
-          title: 'Account Deleted',
-          desc: 'See you again.',
-        })
+        setMsg('Account Deleted', 'See you again.')
       })
       .catch((error) => {
         throw new Error(`Fail to withdraw: ${error.message}`)

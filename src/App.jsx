@@ -49,20 +49,18 @@ const App = ({
   }, [authService, history])
 
   const onLogin = (event) => {
-    authService
-      .login(event.currentTarget.value)
-      .then(
-        (data) =>
-          data &&
-          cards[data.user.uid] &&
-          cardRepository.saveCard(data.user.uid, {
-            ...cards[data.user.uid],
-            login: true,
-          })
-      )
-      .then(setWorks({}))
-      .then(setUserCard({}))
-      .then(history.push('/'))
+    authService.login(event.currentTarget.value, setMsg).then(
+      (data) =>
+        data &&
+        cards[data.user.uid] &&
+        cardRepository.saveCard(data.user.uid, {
+          ...cards[data.user.uid],
+          login: true,
+        })
+    )
+    setWorks({})
+    setUserCard({})
+    history.push('/')
   }
 
   const onLogout = () => {
@@ -79,7 +77,15 @@ const App = ({
     setUserCard({})
     setIsOpenPopup(true)
     workRepository.removeWorkAll(userId)
-    authService.delete(setpopupMsg)
+    authService.delete(setMsg)
+  }
+
+  const setMsg = (title, desc) => {
+    setpopupMsg({
+      title: title,
+      desc: desc,
+    })
+    setIsOpenPopup(true)
   }
 
   useEffect(() => {
@@ -204,21 +210,26 @@ const App = ({
         onLogin={onLogin}
       ></AuthPopup>
 
-      <Overlay
-        overlay={!userId ? overlay : isOpen}
-        ToggleOverlay={!userId ? toggleOverlay : toggleOpenSideBar}
-      ></Overlay>
-
-      {Object.keys(popupMsg).length && (
-        <MsgPopup
-          popupMsg={popupMsg}
-          isOpenPopup={isOpenPopup}
-          toggleMsgPopup={toggleMsgPopup}
-        ></MsgPopup>
+      {!userId ? (
+        <Overlay overlay={overlay} ToggleOverlay={toggleOverlay}></Overlay>
+      ) : (
+        <div>
+          <Overlay overlay={isOpen} ToggleOverlay={toggleOpenSideBar}></Overlay>
+        </div>
       )}
 
       {isOpenPopup && (
-        <Overlay overlay={isOpenPopup} ToggleOverlay={toggleMsgPopup}></Overlay>
+        <>
+          <MsgPopup
+            popupMsg={popupMsg}
+            isOpenPopup={isOpenPopup}
+            toggleMsgPopup={toggleMsgPopup}
+          ></MsgPopup>
+          <Overlay
+            overlay={isOpenPopup}
+            ToggleOverlay={toggleMsgPopup}
+          ></Overlay>
+        </>
       )}
 
       <GlobalFooter userId={userId} menuActive={menuActive}></GlobalFooter>
