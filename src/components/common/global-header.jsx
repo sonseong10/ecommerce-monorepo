@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BiUserCircle } from 'react-icons/bi'
 
-import buttonStyles from '../styles/modules/buttons.module.css'
-import styles from '../styles/modules/global-header.module.css'
+import buttonStyles from '../../styles/modules/buttons.module.css'
+import styles from '../../styles/modules/global-header.module.css'
 
-import DEFAULT_USER_IMG from '../assets/images/img-user-default.png'
-import Logo from '../logo.svg'
+import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
+import Logo from '../../assets/images/logo.svg'
 
 const GlobalHeader = ({
   userId,

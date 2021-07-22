@@ -1,8 +1,8 @@
 import React from 'react'
 import { BiHeartCircle } from 'react-icons/bi'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
-import styles from '../../styles/modules/common.module.css'
+import buttonStyles from '../../../styles/modules/buttons.module.css'
+import styles from '../../../styles/modules/common.module.css'
 
 const MsgPopup = ({ popupMsg, isOpenPopup, toggleMsgPopup }) => {
   return (

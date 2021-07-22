@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Router from '../../routers/router'
-import NotLogin from '../errors/not-login'
-import SideNavigation from '../side-navigation'
+import Router from '../routers/router'
+import NotLogin from './errors/not-login'
+import SideNavigation from './side-navigation'
 
 const MainContent = ({
   FileInput,

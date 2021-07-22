@@ -3,14 +3,14 @@ import {
   validateEmail,
   validateName,
   validatePhone,
-} from '../../utils/validation'
+} from '../../../utils/validation'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
-import styles from '../../styles/modules/maker.module.css'
+import RanksDropdown from '../../common/dropdown/ranks-dropdown'
+import TeamsDropdown from '../../common/dropdown/teams-dropdown'
+import ThemesDropdown from '../../common/dropdown/themes-dropdown'
 
-import RanksDropdown from '../common/dropdown/ranks-dropdown'
-import TeamsDropdown from '../common/dropdown/teams-dropdown'
-import ThemesDropdown from '../common/dropdown/themes-dropdown'
+import buttonStyles from '../../../styles/modules/buttons.module.css'
+import styles from '../../../styles/modules/maker.module.css'
 
 const EditCardForm = ({
   FileInput,

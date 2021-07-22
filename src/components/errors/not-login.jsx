@@ -1,5 +1,5 @@
 import React from 'react'
-import notResult from '../../assets/images/security_on.svg'
+import notResult from '../../assets/images/security-on.svg'
 import styles from '../../styles/modules/error_page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 

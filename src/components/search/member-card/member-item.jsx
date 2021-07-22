@@ -1,7 +1,7 @@
 import React from 'react'
 
-import styles from '../../styles/modules/member_card.module.css'
-import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
+import styles from '../../../styles/modules/member_card.module.css'
+import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 import { Link } from 'react-router-dom'
 
 const MemberItem = ({ card, uid }) => {

@@ -3,9 +3,9 @@ import { Redirect, Route, Switch } from 'react-router-dom'
 import NotPage from '../components/errors/not-page'
 import HomePage from '../components/home/home-page'
 import Search from '../components/search/search'
-import Maker from '../components/maker/maker'
-import Update from '../components/update/update'
-import Detail from '../components/detail/detail'
+import Maker from '../components/form/maker/maker'
+import Update from '../components/form/update/update'
+import Detail from '../components/search/detail/detail'
 import Work from '../components/work/work'
 
 const Router = ({

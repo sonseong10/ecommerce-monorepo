@@ -3,8 +3,8 @@ import React, { memo } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { GoMarkGithub } from 'react-icons/go'
 
-import styles from '../../styles/modules/common.module.css'
-import buttonStyles from '../../styles/modules/buttons.module.css'
+import buttonStyles from '../../../styles/modules/buttons.module.css'
+import styles from '../../../styles/modules/common.module.css'
 
 const AuthPopup = memo(({ overlay, ToggleOverlay, onLogin }) => {
   return (

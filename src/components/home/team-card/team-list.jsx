@@ -3,7 +3,7 @@ import TeamItem from './team-item'
 
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 
-import styles from '../../styles/modules/team_card.module.css'
+import styles from '../../../styles/modules/team_card.module.css'
 
 const TeamList = ({ cards, userCard }) => {
   const containerRef = useRef()

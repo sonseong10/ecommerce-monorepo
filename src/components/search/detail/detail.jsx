@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { formatMsg } from '../../utils/filters'
+import { formatMsg } from '../../../utils/filters'
 
-import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
+import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
-import styles from '../../styles/modules/detail.module.css'
+import buttonStyles from '../../../styles/modules/buttons.module.css'
+import styles from '../../../styles/modules/detail.module.css'
 
 const Detail = ({ location, cards }) => {
   const [card, setCard] = useState({})

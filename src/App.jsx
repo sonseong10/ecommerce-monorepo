@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import GlobalHeader from './components/global-header'
-import MainContent from './components/common/main-content'
+import GlobalHeader from './components/common/global-header'
+import MainContent from './components/main-content'
 
 import Overlay from './components/common/overlay'
-import AuthPopup from './components/common/auth-popup'
+import AuthPopup from './components/common/popup/auth-popup'
 
 import './styles/main.css'
-import MobileSideBar from './components/mobile-sidebar'
-import GlobalFooter from './components/global-footer'
-import MsgPopup from './components/common/msg-popup'
+import MobileSideBar from './components/common/mobile-sidebar'
+import GlobalFooter from './components/common/global-footer'
+import MsgPopup from './components/common/popup/msg-popup'
 
 const App = ({
   FileInput,

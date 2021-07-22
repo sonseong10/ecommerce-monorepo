@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 
 import styles from '../../styles/modules/search.module.css'
-import MemberList from '../member-card/member-list'
+import MemberList from './member-card/member-list'
 
 const Search = ({ cards, onMenuChange }) => {
   const searchRef = useRef()

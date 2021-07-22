@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { BiHomeAlt, BiGroup, BiFile } from 'react-icons/bi'
 
-import styles from '../styles/modules/global-footer.module.css'
+import styles from '../../styles/modules/global-footer.module.css'
 
 const GlobalFooter = ({ userId, menuActive }) => {
   return (

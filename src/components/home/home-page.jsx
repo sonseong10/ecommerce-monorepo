@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+import TeamList from './team-card/team-list'
 import LodingSpinner from '../common/loding-spinner'
-import TeamList from '../team-card/team-list'
+import SlickCarousel from '../common/slick-carousel'
 
 import styles from '../../styles/modules/home_page.module.css'
-import SlickCarousel from '../common/slick-carousel'
 
 const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
   useEffect(() => {

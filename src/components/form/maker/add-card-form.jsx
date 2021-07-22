@@ -4,14 +4,14 @@ import {
   validateEmail,
   validateName,
   validatePhone,
-} from '../../utils/validation'
+} from '../../../utils/validation'
 
-import TeamsDropdown from '../common/dropdown/teams-dropdown'
-import RanksDropdown from '../common/dropdown/ranks-dropdown'
-import ThemesDropdown from '../common/dropdown/themes-dropdown'
+import TeamsDropdown from '../../common/dropdown/teams-dropdown'
+import RanksDropdown from '../../common/dropdown/ranks-dropdown'
+import ThemesDropdown from '../../common/dropdown/themes-dropdown'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
-import styles from '../../styles/modules/maker.module.css'
+import buttonStyles from '../../../styles/modules/buttons.module.css'
+import styles from '../../../styles/modules/maker.module.css'
 
 const AddCardForm = ({ FileInput, createCard, dropDown }) => {
   const history = useHistory()

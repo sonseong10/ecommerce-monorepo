@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom'
 
 import { BiUser, BiX, BiMoon } from 'react-icons/bi'
 
-import buttonStyles from '../styles/modules/buttons.module.css'
-import sidebarStyles from '../styles/modules/mobile-sidebar.module.css'
-import commonStyles from '../styles/modules/common.module.css'
+import buttonStyles from '../../styles/modules/buttons.module.css'
+import sidebarStyles from '../../styles/modules/mobile-sidebar.module.css'
+import commonStyles from '../../styles/modules/common.module.css'
 
 const MobileSideBar = ({ onLogout, isCard, isOpen, toggleOpenSideBar }) => {
   const history = useHistory()
