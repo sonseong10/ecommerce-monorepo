@@ -1,5 +1,7 @@
 @value primary, secondary, white, light-background, background, green, green-active from '../constants/color.css';
 
+@value dark-primary, dark-secondary, dark-light-background, dark-background from '../constants/dark-theme.css';
+
 @value font-size-12, line-height-12, letter-spacing-12, font-size-14,line-height-14, letter-spacing-14, font-size-16, line-height-16,letter-spacing-16 from '../constants/typography.css';
 
 .renderer * {
@@ -44,10 +46,6 @@
   color: green;
 }
 
-.renderer a:hover {
-  opacity: 0.4;
-}
-
 .renderer a:active {
   color: green-active;
 }
@@ -57,4 +55,27 @@
   padding: 12px;
   border-radius: 4px;
   white-space: break-spaces;
+}
+
+/* NOTE: Dark theme */
+.renderer.isDark * {
+  color: dark-primary;
+}
+
+.renderer.isDark blockquote {
+  background-color: dark-light-background;
+}
+
+.renderer.isDark pre {
+  background-color: dark-light-background;
+}
+
+.renderer.isDark a {
+  color: green;
+}
+
+@media screen and (min-width: 768px) {
+  .renderer a:hover {
+    opacity: 0.4;
+  }
 }

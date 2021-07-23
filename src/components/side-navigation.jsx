@@ -8,6 +8,7 @@ import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/sidebar.module.css'
 
 import Logo from '../assets/images/logo.svg'
+import DarkLogo from '../assets/images/darktheme-logo.svg'
 import TabletLogo from '../assets/images/tablet-logo.svg'
 
 const SideNavigation = ({
@@ -18,15 +19,21 @@ const SideNavigation = ({
   isCard,
   onLogout,
   menuActive,
+  handleModeChange,
+  dark,
 }) => {
   return (
     <div className="col-md-2 col-lg-3 sm-hidden">
-      <article className={styles.article}>
+      <article className={`${styles.article} ${dark && styles.isDark}`}>
         <h2 className="visually-hidden">Side Bar</h2>
         <header className={styles.header}>
           <strong className={`lg-only ${styles.logo}`}>
             <Link to={userId ? '/' : '#'}>
-              <img className="logo-img" src={Logo} alt="WhoMember" />
+              <img
+                className="logo-img"
+                src={!dark ? Logo : DarkLogo}
+                alt="WhoMember"
+              />
             </Link>
           </strong>
           <strong className={`md-only ${styles.tabletLogo}`}>
@@ -35,6 +42,7 @@ const SideNavigation = ({
             </Link>
           </strong>
         </header>
+
         <div className={styles.navGroup}>
           <nav className="snb">
             <h3 className="visually-hidden">Side Navigation Bar</h3>
@@ -78,12 +86,15 @@ const SideNavigation = ({
             </ul>
           </nav>
         </div>
+
         <footer className={styles.footer}>
           {userId ? (
             <MyMenu
               userCard={userCard}
               isCard={isCard}
               onLogout={onLogout}
+              handleModeChange={handleModeChange}
+              dark={dark}
             ></MyMenu>
           ) : (
             <button
@@ -95,6 +106,7 @@ const SideNavigation = ({
               {loding ? `Loding` : `Login & Signup`}
             </button>
           )}
+
           <dl className={styles.detailList}>
             <div className={styles.detailItem}>
               <dt className="visually-hidden">made</dt>

@@ -1,5 +1,7 @@
 @value primary, secondary, white, background from '../constants/color.css';
 
+@value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
+
 @value font-size-16,line-height-16, letter-spacing-16 from '../constants/typography.css';
 
 .memberGroup {
@@ -50,6 +52,23 @@
   line-height: line-height-16;
   letter-spacing: letter-spacing-16;
   color: primary;
+}
+
+/* NOTE: Dark theme */
+.memberGroup.isDark .serchInput {
+  color: dark-primary;
+}
+
+.memberGroup.isDark .serchInput::after {
+  background-color: dark-light-background;
+}
+
+.memberGroup.isDark .serchInput svg {
+  color: dark-secondary;
+}
+
+.memberGroup.isDark .serchInput input {
+  color: dark-primary;
 }
 
 @media screen and (min-width: 768px) {

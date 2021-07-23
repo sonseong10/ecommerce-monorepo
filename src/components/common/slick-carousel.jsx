@@ -9,7 +9,6 @@ import carouselImg3 from '../../assets/images/carousel/carousel-img3.jpg'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import styles from '../../styles/modules/common.module.css'
 import { Link } from 'react-router-dom'
 
 const SlickCarousel = () => {
@@ -21,14 +20,14 @@ const SlickCarousel = () => {
   return (
     <Slider {...settings}>
       {listItems.map((item) => (
-        <li className={styles.carouselItem} key={item.id}>
+        <div key={item.id}>
           <Link to={item.route}>
             <figure>
               <img src={item.imgURL} alt="" />
               <figcaption className="visually-hidden">carousel link</figcaption>
             </figure>
           </Link>
-        </li>
+        </div>
       ))}
     </Slider>
   )

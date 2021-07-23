@@ -7,12 +7,14 @@ import styles from '../../styles/modules/mobile-navbar.module.css'
 
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 import Logo from '../../assets/images/logo.svg'
+import DarkLogo from '../../assets/images/darktheme-logo.svg'
 
 const GlobalHeader = ({
   userId,
   userCard,
   toggleOverlay,
   toggleOpenSideBar,
+  dark,
 }) => {
   const [hide, setHide] = useState(false)
   const [pageY, setPageY] = useState(0)
@@ -44,11 +46,15 @@ const GlobalHeader = ({
   }, [stickyScroll, pageY])
 
   return (
-    <header className={`sm-only ${styles.header}`}>
+    <header className={`sm-only ${styles.header} ${dark && styles.isDark}`}>
       <div className={`${styles.globalHeader} ${hide && styles.hide}`}>
         <strong className={styles.logo}>
           <Link to={userId ? '/' : '#'}>
-            <img className="logo-img" src={Logo} alt="WhoMember" />
+            <img
+              className="logo-img"
+              src={!dark ? Logo : DarkLogo}
+              alt="WhoMember"
+            />
           </Link>
         </strong>
 

@@ -20,6 +20,8 @@ const MainContent = ({
   menuActive,
   onMenuChange,
   ToggleOverlay,
+  handleModeChange,
+  dark,
 }) => {
   return (
     <div className="main-content">
@@ -33,9 +35,11 @@ const MainContent = ({
             ToggleOverlay={ToggleOverlay}
             menuActive={menuActive}
             loding={loding}
+            handleModeChange={handleModeChange}
+            dark={dark}
           ></SideNavigation>
           {!userId ? (
-            <NotLogin loding={loding} />
+            <NotLogin loding={loding} dark={dark} />
           ) : (
             <Router
               FileInput={FileInput}
@@ -52,6 +56,7 @@ const MainContent = ({
               updateWork={createOrUpdateWork}
               deleteWork={deleteWork}
               onMenuChange={onMenuChange}
+              dark={dark}
             ></Router>
           )}
         </div>

@@ -5,9 +5,11 @@ import { BiHomeAlt, BiGroup, BiFile } from 'react-icons/bi'
 
 import styles from '../../styles/modules/mobile-navbar.module.css'
 
-const GlobalFooter = ({ userId, menuActive }) => {
+const GlobalFooter = ({ userId, menuActive, dark }) => {
   return (
-    <footer className={`sm-only ${styles.globalFooter}`}>
+    <footer
+      className={`sm-only ${styles.globalFooter} ${dark && styles.isDark}`}
+    >
       <Link
         to="/search"
         className={`${styles.link} 

@@ -2,7 +2,14 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import AddCardForm from './add-card-form'
 
-const Maker = ({ FileInput, dropDown, isCard, createCard, onMenuChange }) => {
+const Maker = ({
+  FileInput,
+  dropDown,
+  isCard,
+  createCard,
+  onMenuChange,
+  dark,
+}) => {
   const history = useHistory()
 
   useEffect(() => {
@@ -19,6 +26,7 @@ const Maker = ({ FileInput, dropDown, isCard, createCard, onMenuChange }) => {
         FileInput={FileInput}
         createCard={createCard}
         dropDown={dropDown}
+        dark={dark}
       />
     </div>
   )

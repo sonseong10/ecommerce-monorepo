@@ -4,10 +4,16 @@ import { useHistory } from 'react-router-dom'
 import { BiUser, BiX, BiMoon } from 'react-icons/bi'
 
 import buttonStyles from '../../styles/modules/buttons.module.css'
-import sidebarStyles from '../../styles/modules/mobile-sidebar.module.css'
-import commonStyles from '../../styles/modules/common.module.css'
+import styles from '../../styles/modules/common.module.css'
 
-const MobileSideBar = ({ onLogout, isCard, isOpen, toggleOpenSideBar }) => {
+const MobileSideBar = ({
+  onLogout,
+  isCard,
+  isOpen,
+  toggleOpenSideBar,
+  handleModeChange,
+  dark,
+}) => {
   const history = useHistory()
 
   const handleLogout = () => {
@@ -20,11 +26,16 @@ const MobileSideBar = ({ onLogout, isCard, isOpen, toggleOpenSideBar }) => {
     history.push('/update')
   }
 
+  const onDarkMode = () => {
+    toggleOpenSideBar()
+    handleModeChange()
+  }
+
   return (
     <article
-      className={`sm-only ${sidebarStyles.sideBar} ${
-        isOpen && sidebarStyles.isActive
-      }`}
+      className={`sm-only ${styles.sideBar} 
+      ${isOpen && styles.isActive} 
+      ${dark && styles.isDark}`}
     >
       <h2 className="visually-hidden">mobile menu</h2>
       <nav>
@@ -32,44 +43,44 @@ const MobileSideBar = ({ onLogout, isCard, isOpen, toggleOpenSideBar }) => {
         <ul>
           <li>
             <button
-              className={`${buttonStyles.baseBtn} ${commonStyles.toolBtn}`}
-              onClick={toggleOpenSideBar}
+              className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
+              onClick={onDarkMode}
               type="button"
             >
-              <BiMoon className={commonStyles.toolIcon} />
+              <BiMoon className={styles.toolIcon} />
               Dark Mode
             </button>
           </li>
           <li>
             <button
-              className={`${buttonStyles.baseBtn} ${commonStyles.toolBtn}`}
+              className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
               onClick={goToUpdate}
               type="button"
             >
-              <BiUser className={commonStyles.toolIcon} />
+              <BiUser className={styles.toolIcon} />
 
               {isCard ? 'Info Update' : 'Disable'}
             </button>
           </li>
           <li>
             <button
-              className={`${buttonStyles.baseBtn} ${commonStyles.toolBtn} ${commonStyles.logoutBtn}`}
+              className={`${buttonStyles.baseBtn} ${styles.toolBtn} ${styles.logoutBtn}`}
               type="button"
               onClick={handleLogout}
             >
-              <BiX className={commonStyles.toolIcon} />
+              <BiX className={styles.toolIcon} />
               Log out
             </button>
           </li>
         </ul>
       </nav>
       <footer>
-        <dl className={sidebarStyles.detailList}>
-          <div className={sidebarStyles.detailItem}>
+        <dl className={styles.detailList}>
+          <div className={styles.detailItem}>
             <dt className="visually-hidden">made</dt>
             <dd>@July 2021</dd>
           </div>
-          <div className={sidebarStyles.detailItem}>
+          <div className={styles.detailItem}>
             <dt className="visually-hidden">github</dt>
             <dd>
               <address>

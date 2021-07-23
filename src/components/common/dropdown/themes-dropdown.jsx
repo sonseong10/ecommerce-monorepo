@@ -6,7 +6,7 @@ import DropDown from './dropdown'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/dropdown.module.css'
 
-const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard }) => {
+const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard, dark }) => {
   const items = dropDown.getThemes()
 
   const [themesType, setThemesType] = useState(
@@ -36,7 +36,11 @@ const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard }) => {
   }
 
   return (
-    <div className={`${styles.themes} ${themesIsOpen && styles.isActive}`}>
+    <div
+      className={`${styles.themes} 
+      ${themesIsOpen && styles.isActive}
+      ${dark && styles.isDark}`}
+    >
       <p className={styles.formLabel}>색상 테마</p>
       <button
         className={`${styles.formInput} ${buttonStyles.baseBtn}`}
@@ -50,6 +54,7 @@ const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard }) => {
         <DropDown
           listItems={dropDown.getThemes()}
           handleEvent={handleThemesValue}
+          dark={dark}
         />
       </div>
     </div>

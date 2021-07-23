@@ -1,5 +1,7 @@
 @value white, primary, background, green, logout from '../constants/color.css';
 
+@value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
+
 @value font-size-14, line-height-14, letter-spacing-14, font-size-16,line-height-16,letter-spacing-16 from '../constants/typography.css';
 
 .authForm {
@@ -101,6 +103,21 @@ input[type='file'] {
   color: logout;
   text-align: right;
   font-weight: 400;
+}
+
+/* NOTE: Dark theme */
+.authForm.isDark .profileBtn.isEmpty {
+  color: dark-primary;
+}
+
+.authForm.isDark .authFormInput {
+  color: dark-primary;
+  background-color: dark-light-background;
+  border: none;
+}
+
+.authForm.isDark .formLabel {
+  color: dark-secondary;
 }
 
 @media screen and (min-width: 768px) {

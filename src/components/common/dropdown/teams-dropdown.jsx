@@ -6,7 +6,7 @@ import DropDown from './dropdown'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/dropdown.module.css'
 
-const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard }) => {
+const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard, dark }) => {
   const items = [...dropDown.getTeams()]
   const [teamsType, setTeamsType] = useState(
     userCard ? userCard.team : items[0].value
@@ -35,7 +35,11 @@ const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard }) => {
   }
 
   return (
-    <div className={`${styles.teams} ${teamsIsOpen && styles.isActive}`}>
+    <div
+      className={`${styles.teams} 
+      ${teamsIsOpen && styles.isActive} 
+      ${dark && styles.isDark}`}
+    >
       <p className={styles.formLabel}>부서명</p>
       <button
         className={`${styles.formInput} ${buttonStyles.baseBtn}`}
@@ -46,7 +50,11 @@ const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard }) => {
         {teamsType} <BiChevronUp className={styles.dropdownIcon} />
       </button>
       <div className={styles.teamsList}>
-        <DropDown listItems={items} handleEvent={handleTeamsValue} />
+        <DropDown
+          listItems={items}
+          handleEvent={handleTeamsValue}
+          dark={dark}
+        />
       </div>
     </div>
   )

@@ -6,7 +6,7 @@ import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work-list.module.css'
 import markdownStyle from '../../styles/modules/markdown.module.css'
 
-const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork }) => {
+const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork, dark }) => {
   const textareaRef = useRef()
 
   const { title, contents, time } = work
@@ -44,11 +44,14 @@ const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork }) => {
         }}
         type="button"
       >
-        <h3 className={styles.title}>{title}</h3>
+        <h2 className={styles.title}>{title}</h2>
         <strong className={styles.date}>{date}</strong>
       </button>
 
-      <div className={`${styles.workItemContents} ${isOpen && styles.isOpen}`}>
+      <div
+        className={`${styles.workItemContents} 
+      ${isOpen && styles.isOpen}`}
+      >
         <div className={styles.contentsLeft}>
           {isEdit ? (
             <textarea
@@ -56,15 +59,14 @@ const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork }) => {
               ref={textareaRef}
               onChange={updateContent}
               onBlur={stopEditing}
-              placeholder="내용 (600자 제한)"
-              maxLength="600"
               autoFocus
             ></textarea>
           ) : (
             <>
               <div
                 dangerouslySetInnerHTML={{ __html: renderMarkdown(contents) }}
-                className={markdownStyle.renderer}
+                className={`${markdownStyle.renderer} 
+                ${dark && markdownStyle.isDark}`}
               />
               <footer className={styles.footer}>
                 <button

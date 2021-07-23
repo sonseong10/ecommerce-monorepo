@@ -23,6 +23,7 @@ const Router = ({
   createWork,
   updateWork,
   deleteWork,
+  dark,
 }) => {
   return (
     <Switch>
@@ -39,6 +40,7 @@ const Router = ({
             works={works}
             userCard={userCard}
             onMenuChange={onMenuChange}
+            dark={dark}
           ></HomePage>
         )}
       ></Route>
@@ -52,6 +54,7 @@ const Router = ({
             isCard={isCard}
             createCard={createCard}
             onMenuChange={onMenuChange}
+            dark={dark}
           ></Maker>
         )}
       ></Route>
@@ -63,6 +66,7 @@ const Router = ({
             dropDown={dropDown}
             cards={cards}
             onMenuChange={onMenuChange}
+            dark={dark}
           ></Search>
         )}
       ></Route>
@@ -77,6 +81,7 @@ const Router = ({
             createWork={createWork}
             updateWork={updateWork}
             deleteWork={deleteWork}
+            dark={dark}
           ></Work>
         )}
       ></Route>
@@ -90,6 +95,7 @@ const Router = ({
             dropDown={dropDown}
             updateCard={updateCard}
             deleteCard={deleteCard}
+            dark={dark}
           ></Update>
         )}
       ></Route>
@@ -97,10 +103,10 @@ const Router = ({
         path="/detail"
         exact
         render={({ location }) => (
-          <Detail location={location} cards={cards}></Detail>
+          <Detail location={location} cards={cards} dark={dark}></Detail>
         )}
       ></Route>
-      <Route component={NotPage}></Route>
+      <Route path="*" render={() => <NotPage dark={dark}></NotPage>}></Route>
     </Switch>
   )
 }

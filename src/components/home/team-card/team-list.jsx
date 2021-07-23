@@ -5,7 +5,7 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 
 import styles from '../../../styles/modules/team-card.module.css'
 
-const TeamList = ({ cards, userCard }) => {
+const TeamList = ({ cards, userCard, dark }) => {
   const containerRef = useRef()
 
   const filterKey = Object.keys(cards).filter(
@@ -22,7 +22,10 @@ const TeamList = ({ cards, userCard }) => {
 
   return (
     <div className={styles.teamListWrapper}>
-      <ul className={styles.teamList} ref={containerRef}>
+      <ul
+        className={`${styles.teamList} ${dark && styles.isDark}`}
+        ref={containerRef}
+      >
         {filterKey.length &&
           filterKey.map((key) => (
             <TeamItem card={cards[key]} key={key}></TeamItem>

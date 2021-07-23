@@ -1,5 +1,7 @@
 @value primary, secondary, white, background, green, red, dark-yellow from '../constants/color.css';
 
+@value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
+
 @value font-size-16,line-height-16, letter-spacing-16 from '../constants/typography.css';
 
 @value card-shadow from '../constants/box-shadow.css';
@@ -26,12 +28,12 @@
   line-height: line-height-16;
   letter-spacing: letter-spacing-16;
   color: primary;
-  border: 1px solid #f5f5f5;
+  border: 1px solid background;
   border-radius: 8px;
   transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-.workLinkList .workItem a:hover {
+.workLinkList .workItem a:active {
   background-color: green;
   color: white;
 }
@@ -51,9 +53,31 @@
   text-align: center;
 }
 
+/* NOTEl Dark theme */
+.workLinkList.isDark .workItem a {
+  color: dark-primary;
+  background-color: dark-light-background;
+  border: none;
+}
+
+.workLinkList.isDark .workItem a:active {
+  background-color: green;
+  color: white;
+}
+
 @media screen and (min-width: 768px) {
   .workLinkList {
     height: 400px;
+  }
+
+  .workLinkList .workItem a:hover {
+    background-color: green;
+    color: white;
+  }
+
+  .workLinkList.isDark .workItem a:hover {
+    background-color: green;
+    color: dark-primary;
   }
 }
 
@@ -176,6 +200,21 @@
 
 .closeBtn {
   height: 48px;
+}
+
+/* NOTE: Dark theme */
+.workList.isDark .openBtn {
+  background-color: dark-light-background;
+  border: none;
+}
+
+.workList.isDark .title {
+  color: dark-primary;
+}
+
+.workList.isDark .date,
+.workList.isDark .closeBtn {
+  color: dark-secondary;
 }
 
 @media screen and (min-width: 768px) {

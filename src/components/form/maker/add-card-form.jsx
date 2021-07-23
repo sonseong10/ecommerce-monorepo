@@ -13,7 +13,7 @@ import ThemesDropdown from '../../common/dropdown/themes-dropdown'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
 
-const AddCardForm = ({ FileInput, createCard, dropDown }) => {
+const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
   const history = useHistory()
 
   const nameRef = useRef()
@@ -98,7 +98,11 @@ const AddCardForm = ({ FileInput, createCard, dropDown }) => {
   }
 
   return (
-    <form className={styles.authForm} ref={formRef} onSubmit={submitForm}>
+    <form
+      className={`${styles.authForm} ${dark && styles.isDark}`}
+      ref={formRef}
+      onSubmit={submitForm}
+    >
       <FileInput name={file.fileName} onFileChange={onFileChange}></FileInput>
 
       <p className={styles.formLabel}>이름*</p>
@@ -170,11 +174,20 @@ const AddCardForm = ({ FileInput, createCard, dropDown }) => {
         <ThemesDropdown
           dropDown={dropDown}
           themeRef={themeRef}
+          dark={dark}
         ></ThemesDropdown>
 
-        <TeamsDropdown dropDown={dropDown} teamRef={teamRef}></TeamsDropdown>
+        <TeamsDropdown
+          dropDown={dropDown}
+          teamRef={teamRef}
+          dark={dark}
+        ></TeamsDropdown>
 
-        <RanksDropdown dropDown={dropDown} rankRef={rankRef}></RanksDropdown>
+        <RanksDropdown
+          dropDown={dropDown}
+          rankRef={rankRef}
+          dark={dark}
+        ></RanksDropdown>
       </div>
 
       <button

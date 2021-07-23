@@ -1,5 +1,7 @@
 @value primary, secondary, white, background from '../constants/color.css';
 
+@value dark-primary, dark-secondary, dark-background, dark-light-background from '../constants/dark-theme.css';
+
 @value font-size-14,line-height-14, letter-spacing-14 from '../constants/typography.css';
 
 @value teams-count: 7;
@@ -21,7 +23,7 @@
   position: relative;
   margin-bottom: 4px;
   width: 100%;
-  height: 30px;
+  height: 42px;
   background-color: white;
   font-size: font-size-14;
   line-height: line-height-14;
@@ -49,14 +51,14 @@
   border-radius: 4px;
 }
 
-.listBtn:hover {
+.listBtn:active {
   background-color: background;
   color: primary;
 }
 
 .dropdownIcon {
   position: absolute;
-  top: 6px;
+  top: 12px;
   right: 10px;
   transform: rotate(180deg);
   font-size: 18px;
@@ -98,4 +100,43 @@
 .themes.isActive .themesList {
   opacity: 1;
   max-height: calc(dropdown-height * theme-count + dropdown-padding * 2);
+}
+
+/* NOTE: Dark theme */
+.teams.isDark .formLabel,
+.ranks.isDark .formLabel,
+.themes.isDark .formLabel {
+  color: dark-primary;
+}
+
+.teams.isDark .formInput,
+.ranks.isDark .formInput,
+.themes.isDark .formInput {
+  background-color: dark-light-background;
+  color: dark-primary;
+}
+
+.dropdownList.isDark {
+  background-color: dark-light-background;
+}
+
+.dropdownList.isDark .listBtn {
+  color: dark-secondary;
+}
+
+.dropdownList.isDark .listBtn:active {
+  background-color: dark-background;
+  color: dark-primary;
+}
+
+@media screen and (min-width: 768px) {
+  .listBtn:hover {
+    background-color: background;
+    color: primary;
+  }
+
+  .dropdownList.isDark .listBtn:hover {
+    background-color: dark-background;
+    color: dark-primary;
+  }
 }

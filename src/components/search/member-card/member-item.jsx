@@ -15,13 +15,11 @@ const MemberItem = ({ card, uid }) => {
         className={styles.card}
       >
         <header className={styles.cardHeader}>
-          <>
-            <div
-              className={`${styles.dot} 
+          <div
+            className={`${styles.dot} 
               ${login ? styles.online : styles.offline}`}
-            ></div>
-            <span>{login ? 'online' : 'offline'}</span>
-          </>
+          ></div>
+          <span>{login ? 'online' : 'offline'}</span>
         </header>
         <div className={`${styles.cardContents} ${getStyles(theme)}`}>
           <figure className={styles.profile}>

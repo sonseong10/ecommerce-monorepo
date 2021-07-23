@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../../styles/modules/work-list.module.css'
 
-const WorkLinkList = ({ works }) => {
+const WorkLinkList = ({ works, dark }) => {
   return (
-    <ul className={styles.workLinkList}>
+    <ul className={`${styles.workLinkList} ${dark && styles.isDark}`}>
       {Object.keys(works).length ? (
         Object.keys(works).map((key) => (
           <li className={styles.workItem} key={works[key].time}>

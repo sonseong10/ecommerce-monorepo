@@ -8,19 +8,25 @@ import styles from '../../styles/modules/common.module.css'
 import { BiUser, BiX, BiMoon } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
-const MyMenu = ({ userCard, isCard, onLogout }) => {
+const MyMenu = ({ userCard, isCard, onLogout, handleModeChange, dark }) => {
   const [myMenuOpen, setMyMenuOpen] = useState(false)
   const { name, fileURL } = userCard
 
   const onIsActive = () => {
     setMyMenuOpen(!myMenuOpen)
   }
+
   return (
-    <div className={`${styles.myMenu} ${myMenuOpen && styles.isActive}`}>
+    <div
+      className={`${styles.myMenu} 
+      ${myMenuOpen && styles.isActive} 
+      ${dark && styles.isDark}`}
+    >
       <ul className={styles.myMenuList}>
         <li>
           <button
             className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
+            onClick={handleModeChange}
             type="button"
           >
             <BiMoon className={styles.toolIcon} />

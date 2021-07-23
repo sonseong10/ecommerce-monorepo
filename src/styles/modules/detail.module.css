@@ -1,6 +1,14 @@
 @value primary, secondary, light-background, login, logout from '../constants/color.css';
 
+@value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
+
 @value font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
+
+.detailGroup {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+}
 
 .infoGroup,
 .contentsGroup {
@@ -111,7 +119,33 @@
   height: 36px;
 }
 
+/* NOTE: Dark theme */
+.detailGroup.isDark .header .pageTitle {
+  color: dark-primary;
+}
+
+.detailGroup.isDark .userInfoItem dt {
+  color: dark-secondary;
+}
+
+.detailGroup.isDark .userInfoItem dd {
+  color: dark-primary;
+}
+
+.detailGroup.isDark .msgBox {
+  background-color: dark-light-background;
+}
+
+.detailGroup.isDark .returnBtn {
+  color: dark-secondary;
+}
+
 @media screen and (min-width: 768px) {
+  .detailGroup {
+    padding: 24px 0;
+    height: 100vh;
+  }
+
   .infoGroup {
     flex-direction: row;
   }

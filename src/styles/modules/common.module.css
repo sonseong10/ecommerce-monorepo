@@ -1,6 +1,8 @@
-@value overlay-black, primary, secondary, white, logout, background,  green, green-active  from '../constants/color.css';
+@value overlay-black, primary, secondary, white, logout, light-background ,background,  green, green-active  from '../constants/color.css';
 
-@value overlay-level, popup-level from '../constants/z-index.css';
+@value dark-primary, dark-secondary, dark-background, dark-light-background from '../constants/dark-theme.css';
+
+@value overlay-level, popup-level, sidebar-level from '../constants/z-index.css';
 
 @value font-size-14,line-height-14,letter-spacing-14, font-size-16,line-height-16,letter-spacing-16, font-size-24, line-height-24, letter-spacing-24 from '../constants/typography.css';
 
@@ -199,6 +201,7 @@ button.mymemuBtn {
   width: 100%;
   height: 60px;
   border-radius: 22px;
+  background-color: light-background;
   transition: box-shadow 300ms ease-in-out;
 }
 
@@ -254,6 +257,38 @@ button.mymemuBtn {
   }
 }
 
+/* NOTE: Dark Mymenu */
+.myMenu.isDark a.toolBtn,
+.myMenu.isDark button.toolBtn {
+  color: dark-secondary;
+}
+
+.myMenu.isDark .toolBtn:hover {
+  background-color: dark-light-background;
+  box-shadow: dropdown-shadow;
+}
+
+.myMenu.isDark .toolBtn:not(.logoutBtn):hover {
+  color: green;
+}
+
+.myMenu.isDark .logoutBtn:hover,
+.myMenu.isDark .logoutBtn:active {
+  color: logout;
+}
+
+.myMenu.isDark button.mymemuBtn {
+  background-color: dark-light-background;
+}
+
+.myMenu.isDark .mymemuBtn span {
+  color: dark-secondary;
+}
+
+.myMenu.isDark .mymemuBtn span.isActive {
+  color: dark-primary;
+}
+
 /* NOTE: Loding spinner */
 .lodingBackGround {
   display: flex;
@@ -261,7 +296,6 @@ button.mymemuBtn {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: white;
 }
 
 .lodingSmall {
@@ -291,4 +325,77 @@ button.mymemuBtn {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* NOTE: mobile sidebar */
+.sideBar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: normal;
+  padding: 16px;
+  width: 60%;
+  height: 100vh;
+  background-color: white;
+  z-index: sidebar-level;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 300ms ease-in-out;
+}
+
+.sideBar.isActive {
+  transform: none;
+}
+
+.detailList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailItem {
+  margin-right: 12px;
+}
+
+.detailItem dd,
+.detailItem button {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  color: secondary;
+  height: 48px;
+}
+
+.detailItem dd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailItem button:active {
+  opacity: 0.4;
+}
+
+/* NOTE: Dark theme */
+.sideBar.isDark {
+  background-color: dark-light-background;
+}
+
+.sideBar.isDark .toolBtn {
+  color: dark-secondary;
+}
+
+.sideBar.isDark .toolBtn:active {
+  color: green;
+}
+
+.sideBar.isDark .logoutBtn:active {
+  color: logout;
+}
+
+.sideBar.isDark .detailItem dd,
+.sideBar.isDark .detailItem button {
+  color: dark-secondary;
 }

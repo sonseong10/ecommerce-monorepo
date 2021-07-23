@@ -1,5 +1,7 @@
 @value primary, white, background, green from '../constants/color.css';
 
+@value dark-primary from '../constants/dark-theme.css';
+
 @value font-size-16,line-height-16, letter-spacing-16, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
 .articleGroup {
@@ -92,4 +94,9 @@
     line-height: line-height-18;
     letter-spacing: letter-spacing-18;
   }
+}
+
+/* NOTE: Dark theme */
+.articleGroup.isDark .articleTitle h2 {
+  color: dark-primary;
 }

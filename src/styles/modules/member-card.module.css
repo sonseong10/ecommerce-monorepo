@@ -1,11 +1,14 @@
 @value primary, secondary, white, light-background, yellow, blue, login, login-border, logout, logout-border from '../constants/color.css';
 
-@value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
+@value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
+
+@value font-size-16,line-height-16, letter-spacing-16, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
 @value card-shadow from '../constants/box-shadow.css';
 
 .memberList {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
@@ -14,9 +17,8 @@
 }
 
 .meberItem {
-  flex-grow: 1;
   margin-bottom: 10px;
-  width: 230px;
+  width: 100%;
 }
 
 .card {
@@ -45,8 +47,6 @@
   margin-right: 8px;
   width: 14px;
   height: 14px;
-  background-color: login;
-  border: 2px solid login-border;
   border-radius: 50%;
 }
 
@@ -60,10 +60,14 @@
   border: 2px solid logout-border;
 }
 
+.cardHeader span {
+  color: primary;
+}
+
 .loginTime {
-  font-size: font-size-14;
-  line-height: line-height-14;
-  letter-spacing: letter-spacing-14;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
   color: secondary;
 }
 
@@ -115,9 +119,9 @@
 }
 
 .authMsg {
-  font-size: font-size-14;
-  line-height: line-height-14;
-  letter-spacing: letter-spacing-14;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
   color: primary;
 }
 
@@ -131,9 +135,9 @@
 
 .title,
 .description {
-  font-size: font-size-14;
-  line-height: line-height-14;
-  letter-spacing: letter-spacing-14;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
 }
 
 .title {
@@ -146,8 +150,26 @@
   color: primary;
 }
 
+/* NOTE: Dark theme */
+.memberList.isDark .card {
+  background-color: dark-light-background;
+}
+
+.memberList.isDark .cardHeader span {
+  color: dark-primary;
+}
+
+.memberList.isDark .title {
+  color: dark-secondary;
+}
+
+.memberList.isDark .description {
+  color: dark-primary;
+}
+
 @media screen and (min-width: 768px) {
   .memberList {
+    flex-direction: row;
     justify-content: space-between;
     padding: 10px;
   }
@@ -158,6 +180,6 @@
   }
 
   .meberItem {
-    flex-grow: 0;
+    width: 230px;
   }
 }

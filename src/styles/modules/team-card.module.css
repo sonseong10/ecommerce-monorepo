@@ -1,5 +1,7 @@
 @value primary, secondary, white, light-background, yellow, blue, login, logout from '../constants/color.css';
 
+@value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
+
 @value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../constants/typography.css';
 
 @value card-shadow from '../constants/box-shadow.css';
@@ -13,6 +15,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding: 10px 0;
   width: 100%;
   overflow-x: scroll;
 }
@@ -102,6 +105,9 @@
   line-height: line-height-18;
   letter-spacing: letter-spacing-18;
   color: primary;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .userTeam,
@@ -115,6 +121,24 @@
 .userTeam::after {
   margin: 0 2px;
   content: '/';
+}
+
+/* NOTE: Dark theme */
+.teamList.isDark .teamItem {
+  background-color: dark-light-background;
+}
+
+.teamList.isDark .userName {
+  color: dark-primary;
+}
+
+.teamList.isDark .teamItem {
+  background-color: dark-light-background;
+}
+
+.userTeam,
+.userRank {
+  color: dark-secondary;
 }
 
 @media screen and (min-width: 768px) {
@@ -156,7 +180,7 @@
 
   .moveBtn:hover {
     color: primary;
-    background-color: #f5f5f5c7;
+    background-color: light-background;
   }
 
   .teamItem:hover {

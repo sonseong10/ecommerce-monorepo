@@ -15,6 +15,7 @@ const Work = ({
   createWork,
   updateWork,
   deleteWork,
+  dark,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -28,7 +29,7 @@ const Work = ({
 
   return (
     <div className="col-sm-4 col-md-10 col-lg-9">
-      <div className={styles.workGroup}>
+      <div className={`${styles.workGroup} ${dark && styles.isDark}`}>
         <header className={styles.header}>
           <h1>Work List</h1>
           <button
@@ -55,6 +56,7 @@ const Work = ({
           renderMarkdown={renderMarkdown}
           updateWork={updateWork}
           deleteWork={deleteWork}
+          dark={dark}
         ></WorkList>
       </div>
     </div>

@@ -9,24 +9,25 @@ const WorkList = ({
   renderMarkdown,
   updateWork,
   deleteWork,
+  dark,
 }) => {
   return (
     <>
       {Object.keys(works).length ? (
-        <ul className={styles.workList}>
+        <ul className={`${styles.workList} ${dark && styles.isDark}`}>
           {Object.keys(works).map((key) => (
             <WorkItem
-              MarkDown={MarkDown}
               work={works[key]}
               key={key}
               renderMarkdown={renderMarkdown}
               updateWork={updateWork}
               deleteWork={deleteWork}
+              dark={dark}
             ></WorkItem>
           ))}
         </ul>
       ) : (
-        <NotFound></NotFound>
+        <NotFound dark={dark}></NotFound>
       )}
     </>
   )

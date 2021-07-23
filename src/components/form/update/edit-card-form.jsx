@@ -18,6 +18,7 @@ const EditCardForm = ({
   dropDown,
   updateCard,
   deleteCard,
+  dark,
 }) => {
   const { name, email, phone, telephone, msg, fileName } = userCard
 
@@ -79,7 +80,7 @@ const EditCardForm = ({
   }
 
   return (
-    <form className={styles.authForm}>
+    <form className={`${styles.authForm} ${dark && styles.isDark}`}>
       <FileInput name={fileName} onFileChange={onFileChange} />
 
       <p className={styles.formLabel}>이름</p>
@@ -154,18 +155,21 @@ const EditCardForm = ({
           dropDown={dropDown}
           updateCard={updateCard}
           userCard={userCard}
+          dark={dark}
         ></ThemesDropdown>
 
         <TeamsDropdown
           dropDown={dropDown}
           updateCard={updateCard}
           userCard={userCard}
+          dark={dark}
         ></TeamsDropdown>
 
         <RanksDropdown
           dropDown={dropDown}
           updateCard={updateCard}
           userCard={userCard}
+          dark={dark}
         ></RanksDropdown>
       </div>
 

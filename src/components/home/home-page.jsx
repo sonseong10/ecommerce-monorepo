@@ -7,7 +7,7 @@ import SlickCarousel from '../common/slick-carousel'
 import styles from '../../styles/modules/home-page.module.css'
 import WorkLinkList from './work-link-list'
 
-const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
+const HomePage = ({ isCard, cards, works, userCard, onMenuChange, dark }) => {
   useEffect(() => {
     onMenuChange('home')
   })
@@ -15,7 +15,7 @@ const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
   return (
     <div className="col-sm-4 col-md-10 col-lg-9">
       {isCard ? (
-        <div className={`${styles.articleGroup}`}>
+        <div className={`${styles.articleGroup} ${dark && styles.isDark}`}>
           <div className={styles.articleLeft}>
             <article className={styles.benner}>
               <div className={styles.articleTitle}>
@@ -29,7 +29,7 @@ const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
                 <h2>업무</h2>
                 <strong>{Object.keys(works).length}</strong>
               </div>
-              <WorkLinkList works={works}></WorkLinkList>
+              <WorkLinkList works={works} dark={dark}></WorkLinkList>
             </article>
           </div>
 
@@ -37,7 +37,7 @@ const HomePage = ({ isCard, cards, works, userCard, onMenuChange }) => {
             <div className={styles.articleTitle}>
               <h2>팀원</h2>
             </div>
-            <TeamList cards={cards} userCard={userCard}></TeamList>
+            <TeamList cards={cards} userCard={userCard} dark={dark}></TeamList>
           </article>
         </div>
       ) : (

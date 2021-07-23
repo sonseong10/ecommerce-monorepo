@@ -7,7 +7,7 @@ import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/detail.module.css'
 
-const Detail = ({ location, cards }) => {
+const Detail = ({ location, cards, dark }) => {
   const [card, setCard] = useState({})
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Detail = ({ location, cards }) => {
 
   return (
     <div className={`col-sm-4 col-md-9`}>
-      <div className="wrapper">
+      <div className={`${styles.detailGroup} ${dark && styles.isDark}`}>
         <header className={styles.header}>
           <h2 className={styles.pageTitle}>사용자 정보</h2>
         </header>

@@ -6,7 +6,7 @@ import DropDown from './dropdown'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/dropdown.module.css'
 
-const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard }) => {
+const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard, dark }) => {
   const items = dropDown.getRanks()
 
   const [ranksType, setRanksType] = useState(
@@ -36,7 +36,11 @@ const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard }) => {
   }
 
   return (
-    <div className={`${styles.ranks} ${ranksIsOpen && styles.isActive}`}>
+    <div
+      className={`${styles.ranks} 
+      ${ranksIsOpen && styles.isActive} 
+      ${dark && styles.isDark}`}
+    >
       <p className={styles.formLabel}>직급명</p>
 
       <button
@@ -49,7 +53,11 @@ const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard }) => {
       </button>
 
       <div className={styles.ranksList}>
-        <DropDown listItems={items} handleEvent={handleRanksValue} />
+        <DropDown
+          listItems={items}
+          handleEvent={handleRanksValue}
+          dark={dark}
+        />
       </div>
     </div>
   )

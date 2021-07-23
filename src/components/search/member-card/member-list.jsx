@@ -4,13 +4,13 @@ import styles from '../../../styles/modules/member-card.module.css'
 
 import MemberItem from './member-item'
 
-const MemberList = ({ cards, searchValue }) => {
+const MemberList = ({ cards, searchValue, dark }) => {
   const filterCards = Object.keys(cards).filter((key) =>
     cards[key].name.includes(searchValue)
   )
 
   return (
-    <ul className={styles.memberList}>
+    <ul className={`${styles.memberList} ${dark && styles.isDark}`}>
       {filterCards.length
         ? filterCards.map((key) => {
             return (

@@ -4,13 +4,13 @@ import { useHistory } from 'react-router-dom'
 import GlobalHeader from './components/common/global-header'
 import MainContent from './components/main-content'
 
+import GlobalFooter from './components/common/global-footer'
 import Overlay from './components/common/overlay'
 import AuthPopup from './components/common/popup/auth-popup'
+import MsgPopup from './components/common/popup/msg-popup'
+import MobileSideBar from './components/common/mobile-sidebar'
 
 import './styles/main.css'
-import MobileSideBar from './components/common/mobile-sidebar'
-import GlobalFooter from './components/common/global-footer'
-import MsgPopup from './components/common/popup/msg-popup'
 
 const App = ({
   FileInput,
@@ -34,6 +34,7 @@ const App = ({
   const [overlay, setOverlay] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenPopup, setIsOpenPopup] = useState(false)
+  const [dark, setDark] = useState(localStorage.getItem('darkMode') === 'true')
 
   useEffect(() => {
     setLoding(true)
@@ -81,6 +82,7 @@ const App = ({
   }
 
   const setMsg = (title, desc) => {
+    setpopupMsg({})
     setpopupMsg({
       title: title,
       desc: desc,
@@ -156,6 +158,15 @@ const App = ({
     workRepository.removeWork(userId, work)
   }
 
+  useEffect(() => {
+    localStorage.setItem('darkMode', dark)
+  }, [dark])
+
+  const handleModeChange = () => {
+    document.body.classList.toggle('isDark')
+    setDark(!dark)
+  }
+
   const toggleOverlay = () => {
     setOverlay(!overlay)
   }
@@ -173,13 +184,15 @@ const App = ({
   }
 
   return (
-    <div className="app">
+    <div className={`app ${dark && 'isDark'}`}>
       <GlobalHeader
         userId={userId}
         userCard={userCard}
         toggleOverlay={toggleOverlay}
         toggleOpenSideBar={toggleOpenSideBar}
+        dark={dark}
       ></GlobalHeader>
+
       <MainContent
         FileInput={FileInput}
         dropDown={dropDown}
@@ -196,13 +209,19 @@ const App = ({
         onMenuChange={onMenuChange}
         ToggleOverlay={toggleOverlay}
         menuActive={menuActive}
+        handleModeChange={handleModeChange}
+        dark={dark}
       ></MainContent>
+
       <MobileSideBar
         onLogout={onLogout}
         isCard={Object.keys(userCard).length}
         isOpen={isOpen}
         toggleOpenSideBar={toggleOpenSideBar}
+        handleModeChange={handleModeChange}
+        dark={dark}
       ></MobileSideBar>
+
       <AuthPopup
         overlay={overlay}
         ToggleOverlay={toggleOverlay}
@@ -213,7 +232,7 @@ const App = ({
       {!userId ? (
         <Overlay overlay={overlay} ToggleOverlay={toggleOverlay}></Overlay>
       ) : (
-        <div>
+        <div className="sm-only">
           <Overlay overlay={isOpen} ToggleOverlay={toggleOpenSideBar}></Overlay>
         </div>
       )}
@@ -232,7 +251,11 @@ const App = ({
         </>
       )}
 
-      <GlobalFooter userId={userId} menuActive={menuActive}></GlobalFooter>
+      <GlobalFooter
+        userId={userId}
+        menuActive={menuActive}
+        dark={dark}
+      ></GlobalFooter>
     </div>
   )
 }

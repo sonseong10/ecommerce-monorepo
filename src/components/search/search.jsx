@@ -4,7 +4,7 @@ import { BiSearch } from 'react-icons/bi'
 import styles from '../../styles/modules/search.module.css'
 import MemberList from './member-card/member-list'
 
-const Search = ({ cards, onMenuChange }) => {
+const Search = ({ cards, onMenuChange, dark }) => {
   const searchRef = useRef()
   const [searchValue, setSerchValue] = useState()
 
@@ -18,7 +18,7 @@ const Search = ({ cards, onMenuChange }) => {
 
   return (
     <div className="col-sm-4 col-md-10 col-lg-9">
-      <div className={styles.memberGroup}>
+      <div className={`${styles.memberGroup} ${dark && styles.isDark}`}>
         <header className={styles.header}>
           <div className={styles.serchInput}>
             <BiSearch aria-hidden />
@@ -30,7 +30,11 @@ const Search = ({ cards, onMenuChange }) => {
             />
           </div>
         </header>
-        <MemberList cards={cards} searchValue={searchValue}></MemberList>
+        <MemberList
+          cards={cards}
+          searchValue={searchValue}
+          dark={dark}
+        ></MemberList>
       </div>
     </div>
   )

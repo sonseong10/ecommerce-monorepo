@@ -3,12 +3,12 @@ import notResult from '../../assets/images/security-on.svg'
 import styles from '../../styles/modules/error-page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 
-const NotLogin = ({ loding }) => {
+const NotLogin = ({ loding, dark }) => {
   return (
     <div className="col-sm-4 col-md-9">
-      <div className={styles.error}>
+      <div className={`${styles.error} ${dark && styles.isDark}`}>
         {loding ? (
-          <LodingSpinner></LodingSpinner>
+          <LodingSpinner dark={dark}></LodingSpinner>
         ) : (
           <section className={styles.error}>
             <img className={styles.errorImg} src={notResult} alt="Not result" />
