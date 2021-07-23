@@ -25,7 +25,7 @@ const SideNavigation = ({
   return (
     <div className="col-md-2 col-lg-3 sm-hidden">
       <article className={`${styles.article} ${dark && styles.isDark}`}>
-        <h2 className="visually-hidden">Side Bar</h2>
+        <h2 className="visually-hidden">Tablet and Desktop side Bar</h2>
         <header className={styles.header}>
           <strong className={`lg-only ${styles.logo}`}>
             <Link to={userId ? '/' : '#'}>
@@ -34,11 +34,13 @@ const SideNavigation = ({
                 src={!dark ? Logo : DarkLogo}
                 alt="WhoMember"
               />
+              <span className="visually-hidden">Logo Image</span>
             </Link>
           </strong>
           <strong className={`md-only ${styles.tabletLogo}`}>
             <Link to={userId ? '/' : '#'}>
               <img className="logo-img" src={TabletLogo} alt="WhoMember" />
+              <span className="visually-hidden">Logo Image</span>
             </Link>
           </strong>
         </header>
@@ -53,7 +55,6 @@ const SideNavigation = ({
                   className={`${styles.snbItemButton} 
                     ${menuActive === 'home' && styles.isActive}
                     ${!userId && styles.isDisable}`}
-                  type="button"
                 >
                   <BiHomeAlt />
                   Home
@@ -65,7 +66,6 @@ const SideNavigation = ({
                   className={`${styles.snbItemButton} 
                     ${menuActive === 'search' && styles.isActive} 
                     ${!userId && styles.isDisable}`}
-                  type="button"
                 >
                   <BiGroup />
                   Search
@@ -77,7 +77,6 @@ const SideNavigation = ({
                   className={`${styles.snbItemButton} 
                     ${menuActive === 'work' && styles.isActive} 
                     ${!userId && styles.isDisable}`}
-                  type="button"
                 >
                   <BiFile />
                   Work
@@ -110,10 +109,10 @@ const SideNavigation = ({
           <dl className={styles.detailList}>
             <div className={styles.detailItem}>
               <dt className="visually-hidden">made</dt>
-              <dd>@July 2021</dd>
+              <dd>ⓒJuly 2021</dd>
             </div>
             <div className={styles.detailItem}>
-              <dt className="visually-hidden">github</dt>
+              <dt className="visually-hidden">github link</dt>
               <dd>
                 <address>
                   <button

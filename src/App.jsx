@@ -31,9 +31,9 @@ const App = ({
 
   const [menuActive, setMenuActive] = useState('')
   const [loding, setLoding] = useState(false)
-  const [overlay, setOverlay] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-  const [isOpenPopup, setIsOpenPopup] = useState(false)
+  const [authPopup, setAuthPopup] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [magPopup, setMagPopup] = useState(false)
   const [dark, setDark] = useState(localStorage.getItem('darkMode') === 'true')
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const App = ({
     deleteCard()
     setWorks({})
     setUserCard({})
-    setIsOpenPopup(true)
+    setMagPopup(true)
     workRepository.removeWorkAll(userId)
     authService.delete(setMsg)
   }
@@ -87,7 +87,7 @@ const App = ({
       title: title,
       desc: desc,
     })
-    setIsOpenPopup(true)
+    setMagPopup(true)
   }
 
   useEffect(() => {
@@ -168,15 +168,15 @@ const App = ({
   }
 
   const toggleOverlay = () => {
-    setOverlay(!overlay)
+    setAuthPopup(!authPopup)
   }
 
   const toggleOpenSideBar = () => {
-    setIsOpen(!isOpen)
+    setSidebarOpen(!sidebarOpen)
   }
 
   const toggleMsgPopup = () => {
-    setIsOpenPopup(!isOpenPopup)
+    setMagPopup(!magPopup)
   }
 
   const onMenuChange = (value) => {
@@ -216,38 +216,38 @@ const App = ({
       <MobileSideBar
         onLogout={onLogout}
         isCard={Object.keys(userCard).length}
-        isOpen={isOpen}
+        sidebarOpen={sidebarOpen}
         toggleOpenSideBar={toggleOpenSideBar}
         handleModeChange={handleModeChange}
         dark={dark}
       ></MobileSideBar>
 
       <AuthPopup
-        overlay={overlay}
+        authPopup={authPopup}
         ToggleOverlay={toggleOverlay}
         authService={authService}
         onLogin={onLogin}
       ></AuthPopup>
 
       {!userId ? (
-        <Overlay overlay={overlay} ToggleOverlay={toggleOverlay}></Overlay>
+        <Overlay overlay={authPopup} ToggleOverlay={toggleOverlay}></Overlay>
       ) : (
         <div className="sm-only">
-          <Overlay overlay={isOpen} ToggleOverlay={toggleOpenSideBar}></Overlay>
+          <Overlay
+            overlay={sidebarOpen}
+            ToggleOverlay={toggleOpenSideBar}
+          ></Overlay>
         </div>
       )}
 
-      {isOpenPopup && (
+      {magPopup && (
         <>
           <MsgPopup
             popupMsg={popupMsg}
-            isOpenPopup={isOpenPopup}
+            magPopup={magPopup}
             toggleMsgPopup={toggleMsgPopup}
           ></MsgPopup>
-          <Overlay
-            overlay={isOpenPopup}
-            ToggleOverlay={toggleMsgPopup}
-          ></Overlay>
+          <Overlay overlay={magPopup} ToggleOverlay={toggleMsgPopup}></Overlay>
         </>
       )}
 

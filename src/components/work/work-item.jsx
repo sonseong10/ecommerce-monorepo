@@ -62,12 +62,12 @@ const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork, dark }) => {
               autoFocus
             ></textarea>
           ) : (
-            <>
+            <div>
               <div
                 dangerouslySetInnerHTML={{ __html: renderMarkdown(contents) }}
                 className={`${markdownStyle.renderer} 
                 ${dark && markdownStyle.isDark}`}
-              />
+              ></div>
               <footer className={styles.footer}>
                 <button
                   className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.closeBtn}`}
@@ -77,7 +77,7 @@ const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork, dark }) => {
                   Close
                 </button>
               </footer>
-            </>
+            </div>
           )}
         </div>
         <aside className={styles.contentsRight}>
@@ -89,14 +89,16 @@ const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork, dark }) => {
             type="button"
             onClick={startEditing}
           >
-            <BiPencil></BiPencil>
+            <BiPencil aria-hidden />
+            <span className="visually-hidden">업무 수정하기</span>
           </button>
           <button
             className={`${styles.toolBtn} ${styles.removeBtn}`}
             type="button"
             onClick={deleteSection}
           >
-            <BiTrash></BiTrash>
+            <BiTrash aria-hidden />
+            <span className="visually-hidden">업무 삭제하기</span>
           </button>
         </aside>
       </div>

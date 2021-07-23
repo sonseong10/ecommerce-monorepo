@@ -105,7 +105,9 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
     >
       <FileInput name={file.fileName} onFileChange={onFileChange}></FileInput>
 
-      <p className={styles.formLabel}>이름*</p>
+      <label htmlFor="name" className={styles.formLabel}>
+        이름*
+      </label>
       <input
         className={`${styles.authFormInput} ${nameError && styles.isError}`}
         type="text"
@@ -116,11 +118,13 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
       />
       {nameError && (
         <strong className={styles.errorText}>
-          should only be used in English or Korean without spaces.
+          공백없는 영어 혹은 한글만 입력 가능합니다.
         </strong>
       )}
 
-      <p className={styles.formLabel}>이메일*</p>
+      <label htmlFor="email" className={styles.formLabel}>
+        이메일*
+      </label>
       <input
         className={`${styles.authFormInput} ${emailError && styles.isError}`}
         type="email"
@@ -130,12 +134,12 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
         onChange={emailValidate}
       />
       {emailError && (
-        <strong className={styles.errorText}>
-          Please maintain the email format.
-        </strong>
+        <strong className={styles.errorText}>이메일 형식에 어긋납니다.</strong>
       )}
 
-      <p className={styles.formLabel}>휴대전화*</p>
+      <label htmlFor="phone" className={styles.formLabel}>
+        휴대전화*
+      </label>
       <input
         className={`${styles.authFormInput} ${phoneError && styles.isError}`}
         type="text"
@@ -146,11 +150,13 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
       />
       {phoneError && (
         <strong className={styles.errorText}>
-          Please enter your phone number including "-"
+          휴대폰 양식에 어긋납니다 ( "-" 필수)
         </strong>
       )}
 
-      <p className={styles.formLabel}>유선전화</p>
+      <label htmlFor="telephone" className={styles.formLabel}>
+        유선전화
+      </label>
       <input
         className={styles.authFormInput}
         type="text"
@@ -159,7 +165,9 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
         placeholder="TelePhone"
       />
 
-      <p className={styles.formLabel}>남긴말</p>
+      <label htmlFor="msg" className={styles.formLabel}>
+        남긴말
+      </label>
       <textarea
         className={styles.authFormInput}
         id="msg"

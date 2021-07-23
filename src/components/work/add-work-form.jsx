@@ -101,7 +101,7 @@ const AddWorkForm = ({ createWork, renderMarkdown }) => {
           <div
             dangerouslySetInnerHTML={{ __html: renderMarkdown(contents) }}
             className={markdownStyle.renderer}
-          />
+          ></div>
         </section>
       )}
     </>

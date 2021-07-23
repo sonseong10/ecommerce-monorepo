@@ -64,7 +64,10 @@ const GlobalHeader = ({
           type="button"
         >
           {!userId ? (
-            <BiUserCircle></BiUserCircle>
+            <div>
+              <BiUserCircle aria-hidden />
+              <strong className="visually-hidden">로그인 또는 회원가입</strong>
+            </div>
           ) : (
             <figure>
               <img
@@ -72,7 +75,7 @@ const GlobalHeader = ({
                 src={userCard.fileURL || DEFAULT_USER_IMG}
                 alt=""
               />
-              <figcaption className="visually-hidden">user profile</figcaption>
+              <figcaption className="visually-hidden">사용자</figcaption>
             </figure>
           )}
         </button>

@@ -48,7 +48,7 @@ const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard, dark }) => {
         type="button"
         ref={themeRef}
       >
-        {themesType} <BiChevronUp className={styles.dropdownIcon} />
+        {themesType} <BiChevronUp className={styles.dropdownIcon} aria-hidden />
       </button>
       <div className={styles.themesList}>
         <DropDown

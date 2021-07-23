@@ -15,7 +15,8 @@ const GlobalFooter = ({ userId, menuActive, dark }) => {
         className={`${styles.link} 
         ${menuActive === 'search' && styles.isActive}`}
       >
-        <BiGroup></BiGroup>
+        <BiGroup aria-hidden />
+        <span className="visually-hidden">직원 검색으로 이동</span>
       </Link>
       <Link
         to={userId ? '/' : '#'}
@@ -23,14 +24,16 @@ const GlobalFooter = ({ userId, menuActive, dark }) => {
         ${menuActive === 'home' && styles.isActive}`}
         type="button"
       >
-        <BiHomeAlt></BiHomeAlt>
+        <BiHomeAlt aria-hidden />
+        <span className="visually-hidden">메인 홈으로 이동</span>
       </Link>
       <Link
         to="/work"
         className={`${styles.link} 
         ${menuActive === 'work' && styles.isActive}`}
       >
-        <BiFile></BiFile>
+        <BiFile aria-hidden />
+        <span className="visually-hidden">업무 리스트로 이동</span>
       </Link>
     </footer>
   )

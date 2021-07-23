@@ -4,9 +4,9 @@ import { BiHeartCircle } from 'react-icons/bi'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/common.module.css'
 
-const MsgPopup = ({ popupMsg, isOpenPopup, toggleMsgPopup }) => {
+const MsgPopup = ({ popupMsg, magPopup, toggleMsgPopup }) => {
   return (
-    <section className={`${styles.msgPopup} ${isOpenPopup && styles.isActive}`}>
+    <section className={`${styles.msgPopup} ${magPopup && styles.isActive}`}>
       <header className={styles.popupHeader}>
         <BiHeartCircle />
       </header>

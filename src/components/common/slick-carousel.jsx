@@ -24,7 +24,7 @@ const SlickCarousel = () => {
           <Link to={item.route}>
             <figure>
               <img src={item.imgURL} alt="" />
-              <figcaption className="visually-hidden">carousel link</figcaption>
+              <figcaption className="visually-hidden">링크 슬라이더</figcaption>
             </figure>
           </Link>
         </div>

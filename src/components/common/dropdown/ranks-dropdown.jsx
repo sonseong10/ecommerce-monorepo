@@ -49,7 +49,7 @@ const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard, dark }) => {
         type="button"
         ref={rankRef}
       >
-        {ranksType} <BiChevronUp className={styles.dropdownIcon} />
+        {ranksType} <BiChevronUp className={styles.dropdownIcon} aria-hidden />
       </button>
 
       <div className={styles.ranksList}>

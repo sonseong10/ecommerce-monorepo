@@ -47,7 +47,7 @@ const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard, dark }) => {
         type="button"
         ref={teamRef}
       >
-        {teamsType} <BiChevronUp className={styles.dropdownIcon} />
+        {teamsType} <BiChevronUp className={styles.dropdownIcon} aria-hidden />
       </button>
       <div className={styles.teamsList}>
         <DropDown

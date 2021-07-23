@@ -30,7 +30,7 @@ const MyMenu = ({ userCard, isCard, onLogout, handleModeChange, dark }) => {
             type="button"
           >
             <BiMoon className={styles.toolIcon} />
-            <span className="lg-only">Dark Mode</span>
+            <span className="lg-only">다크모드 {dark ? '끄기' : '켜기'}</span>
           </button>
         </li>
         <li>
@@ -41,7 +41,7 @@ const MyMenu = ({ userCard, isCard, onLogout, handleModeChange, dark }) => {
           >
             <BiUser className={styles.toolIcon} />
             <span className="lg-only">
-              {isCard ? 'Info Update' : 'Disable'}
+              {isCard ? '정보 업데이트' : '이용불가'}
             </span>
           </Link>
         </li>

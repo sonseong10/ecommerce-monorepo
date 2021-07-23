@@ -30,10 +30,14 @@ const ImageFileInput = ({ imageUploader, name, onFileChange }) => {
           ${name ? styles.isSucceed : styles.isEmpty} `}
           htmlFor="profile"
         >
-          <FiCamera /> <span>{name || 'Add to profile'}</span>
+          <FiCamera aria-hidden /> <span>{name || 'Add to profile'}</span>
         </label>
       )}
-      {loding && <div className={commonStyles.lodingSmall}></div>}
+      {loding && (
+        <div className={commonStyles.lodingSmall}>
+          <span className="visually-hidden">로딩중</span>
+        </div>
+      )}
       <input
         ref={fileRef}
         type="file"

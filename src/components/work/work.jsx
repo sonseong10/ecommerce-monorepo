@@ -37,7 +37,8 @@ const Work = ({
             onClick={onOpenAddForm}
             type="button"
           >
-            <BiEdit></BiEdit>
+            <BiEdit aria-hidden />
+            <span className="visually-hidden">업무 추가화면 열기</span>
           </button>
           <span className={styles.toolTip}>
             {isOpen ? 'Close Form' : 'Open Form'}
@@ -48,7 +49,7 @@ const Work = ({
             userId={userId}
             createWork={createWork}
             renderMarkdown={renderMarkdown}
-          ></AddWorkForm>
+          />
         )}
         <WorkList
           MarkDown={renderMarkdown}
@@ -57,7 +58,7 @@ const Work = ({
           updateWork={updateWork}
           deleteWork={deleteWork}
           dark={dark}
-        ></WorkList>
+        />
       </div>
     </div>
   )
