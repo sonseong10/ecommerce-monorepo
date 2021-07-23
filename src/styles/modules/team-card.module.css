@@ -136,8 +136,8 @@
   background-color: dark-light-background;
 }
 
-.userTeam,
-.userRank {
+.teamList.isDark .userTeam,
+.teamList.isDark .userRank {
   color: dark-secondary;
 }
 
