@@ -13,54 +13,57 @@
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  border-radius: 22px;
+  border-radius: 2.2rem;
 }
 
 .meberItem {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   width: 100%;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  margin-right: 8px;
-  padding: 22px;
+  margin-right: 0.8rem;
+  padding: 2.2rem;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
 }
 
 .card:active {
   box-shadow: card-shadow;
-  transform: translate3d(0px, -0.25rem, 0px);
+  transform: translate3d(0px, -0.4rem, 0px);
 }
 
 .cardHeader {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 42px;
+  margin-bottom: 4.2rem;
 }
 
 .dot {
-  margin-right: 8px;
-  width: 14px;
-  height: 14px;
+  margin-right: 0.8rem;
+  width: 1.4rem;
+  height: 1.4rem;
   border-radius: 50%;
 }
 
 .dot.online {
   background-color: login;
-  border: 2px solid login-border;
+  border: 0.2rem solid login-border;
 }
 
 .dot.offline {
   background-color: logout;
-  border: 2px solid logout-border;
+  border: 0.2rem solid logout-border;
 }
 
 .cardHeader span {
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
   color: primary;
 }
 
@@ -73,8 +76,8 @@
 
 .cardContents {
   position: relative;
-  margin: 0 -22px;
-  padding: 64px 22px 22px;
+  margin: 0 -2.2rem;
+  padding: 6.4rem 2.2rem 2.2rem;
 }
 
 .cardContents.isGray {
@@ -91,15 +94,15 @@
 
 .profile {
   position: absolute;
-  top: -24px;
-  left: 22px;
-  border-radius: 20px;
+  top: -2.4rem;
+  left: 2.2rem;
+  border-radius: 2rem;
 }
 
 .profile img {
-  width: 70px;
-  height: 70px;
-  border-radius: 20px;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 2rem;
   object-fit: cover;
 }
 
@@ -126,7 +129,7 @@
 }
 
 .cardFooter {
-  margin-top: 22px;
+  margin-top: 2.2rem;
 }
 
 .authDetailItem {
@@ -171,15 +174,15 @@
   .memberList {
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px;
+    padding: 1rem;
   }
 
   .card:hover {
     box-shadow: card-shadow;
-    transform: translate3d(0px, -0.25rem, 0px);
+    transform: translate3d(0px, -0.4rem, 0px);
   }
 
   .meberItem {
-    width: 230px;
+    width: 23rem;
   }
 }

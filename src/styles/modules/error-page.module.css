@@ -13,13 +13,13 @@
 }
 
 .errorImg {
-  margin-bottom: 24px;
+  margin-bottom: 2.4rem;
   width: 60%;
   height: auto;
 }
 
 .errorTitle {
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
   font-size: font-size-18;
   line-height: line-height-18;
   letter-spacing: letter-spacing-18;

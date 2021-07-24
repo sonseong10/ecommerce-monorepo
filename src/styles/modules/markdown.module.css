@@ -1,8 +1,12 @@
-@value primary, secondary, white, light-background, background, green, green-active from '../constants/color.css';
+@value primary, secondary, white, light-background, background, green, green-active, red from '../constants/color.css';
 
 @value dark-primary, dark-secondary, dark-light-background, dark-background from '../constants/dark-theme.css';
 
-@value font-size-12, line-height-12, letter-spacing-12, font-size-14,line-height-14, letter-spacing-14, font-size-16, line-height-16,letter-spacing-16 from '../constants/typography.css';
+@value font-size-16, line-height-16,letter-spacing-16 from '../constants/typography.css';
+
+.renderer {
+  font-size: 1.6rem;
+}
 
 .renderer * {
   margin: revert;
@@ -22,16 +26,16 @@
 }
 
 .renderer blockquote {
-  margin: 8px 0;
-  padding: 2px 8px;
+  margin: 0.8rem 0;
+  padding: 0.2rem 0.8rem;
   background-color: background;
-  border-radius: 6px;
+  border-radius: 0.6rem;
 }
 
 .renderer table {
-  margin: 8px 0;
+  margin: 0.8rem 0;
   width: 100%;
-  border: 1px solid secondary;
+  border: 0.1rem solid secondary;
   border-collapse: collapse;
   table-layout: fixed;
   word-wrap: break-word;
@@ -39,7 +43,7 @@
 
 .renderer th,
 .renderer td {
-  border: 1px solid secondary;
+  border: 0.1rem solid secondary;
 }
 
 .renderer a {
@@ -50,10 +54,19 @@
   color: green-active;
 }
 
+.renderer p code {
+  background-color: light-background;
+  padding: 0 0.4rem;
+  border-radius: 0.4rem;
+  font-family: 'DM Sans', sans-serif;
+  color: green;
+  white-space: break-spaces;
+}
+
 .renderer pre {
   background-color: light-background;
-  padding: 12px;
-  border-radius: 4px;
+  padding: 1.2rem;
+  border-radius: 0.4rem;
   white-space: break-spaces;
 }
 
@@ -64,6 +77,11 @@
 
 .renderer.isDark blockquote {
   background-color: dark-light-background;
+}
+
+.renderer.isDark p code {
+  background-color: dark-light-background;
+  color: green;
 }
 
 .renderer.isDark pre {

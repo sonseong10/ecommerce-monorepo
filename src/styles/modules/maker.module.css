@@ -7,14 +7,17 @@
 .authForm {
   display: flex;
   flex-direction: column;
-  padding: 24px 0;
+  padding: 2.4rem 0;
   height: 100%;
 }
 
 .profileBtn {
-  margin-bottom: 16px;
-  width: 150px;
-  height: 32px;
+  margin-bottom: 1.6rem;
+  width: 15rem;
+  height: 3.2rem;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
   cursor: pointer;
 }
 
@@ -28,7 +31,7 @@
 
 .profileBtn svg {
   display: block;
-  margin-right: 8px;
+  margin-right: 0.8rem;
   flex-shrink: 0;
 }
 
@@ -43,7 +46,7 @@ input[type='file'] {
 }
 
 .formLabel {
-  margin-bottom: 6px;
+  margin-bottom: 0.8rem;
   font-size: font-size-16;
   line-height: line-height-16;
   letter-spacing: letter-spacing-16;
@@ -51,16 +54,16 @@ input[type='file'] {
 }
 
 .authFormInput {
-  margin-bottom: 8px;
-  padding: 0 10px;
-  height: 38px;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  height: 3.8rem;
   background: white;
   font-size: font-size-14;
   line-height: line-height-14;
   letter-spacing: letter-spacing-14;
   color: primary;
   border-radius: 4px;
-  border: 2px solid background;
+  border: 0.2rem solid background;
 }
 
 .authFormInput.isError {
@@ -85,15 +88,15 @@ input[type='file'] {
 }
 
 .submitBtn {
-  width: 180px;
-  height: 42px;
+  width: 18rem;
+  height: 4.2rem;
   align-self: center;
 }
 
 .removeBtn {
   align-self: flex-end;
   color: logout;
-  height: 44px;
+  height: 4.4rem;
 }
 
 .errorText {

@@ -2,7 +2,7 @@
 
 @value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
 
-@value font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
+@value font-size-14, line-height-14, letter-spacing-14, font-size-16, line-height-16, letter-spacing-16, font-size-18,line-height-18,letter-spacing-18 from '../constants/typography.css';
 
 .detailGroup {
   position: relative;
@@ -12,7 +12,7 @@
 
 .infoGroup,
 .contentsGroup {
-  margin-bottom: 32px;
+  margin-bottom: 3.2rem;
 }
 
 .infoGroup {
@@ -23,7 +23,7 @@
 }
 
 .header .pageTitle {
-  margin-bottom: 38px;
+  margin-bottom: 3.8rem;
   font-size: font-size-18;
   line-height: line-height-18;
   letter-spacing: letter-spacing-18;
@@ -32,16 +32,16 @@
 
 .imgWrapper {
   flex-shrink: 0;
-  margin-bottom: 38px;
-  width: 120px;
-  height: 120px;
+  margin-bottom: 3.8rem;
+  width: 12rem;
+  height: 12rem;
   border-radius: 22px;
   overflow: hidden;
 }
 
 .imgWrapper img {
-  width: 120px;
-  height: 120px;
+  width: 12rem;
+  height: 12rem;
   object-fit: cover;
 }
 
@@ -57,8 +57,8 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  margin-right: 24px;
-  margin-bottom: 8px;
+  margin-right: 2.4rem;
+  margin-bottom: 0.8rem;
 }
 
 .userInfoItem.msg {
@@ -73,12 +73,12 @@
 }
 
 .userInfoItem dt {
-  margin-right: 8px;
+  margin-right: 0.8rem;
   color: secondary;
 }
 
 .userInfoItem.msg dt {
-  margin-bottom: 8px;
+  margin-bottom: 0.8rem;
 }
 
 .userInfoItem dd {
@@ -89,9 +89,9 @@
 .msgBox {
   width: 100%;
   flex-shrink: 0;
-  padding: 8px;
+  padding: 0.8rem;
   background-color: light-background;
-  border-radius: 4px;
+  border-radius: 0.4rem;
 }
 
 .loginState {
@@ -115,8 +115,11 @@
 }
 
 .returnBtn {
-  width: 120px;
-  height: 36px;
+  width: 12rem;
+  height: 3.6rem;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
 }
 
 /* NOTE: Dark theme */
@@ -142,7 +145,7 @@
 
 @media screen and (min-width: 768px) {
   .detailGroup {
-    padding: 24px 0;
+    padding: 2.4rem 0;
     height: 100vh;
   }
 
@@ -151,6 +154,6 @@
   }
 
   .imgWrapper {
-    margin-right: 38px;
+    margin-right: 3.8rem;
   }
 }
