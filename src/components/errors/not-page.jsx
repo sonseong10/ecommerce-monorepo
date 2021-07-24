@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import notResult from '../../assets/images/page-not-found.svg'
 import styles from '../../styles/modules/error-page.module.css'
 
-const NotPage = ({ dark }) => {
+const NotPage = memo(({ dark }) => {
   return (
     <div className="col-sm-4 col-md-9">
       <div className={`${styles.error} ${dark && styles.isDark}`}>
@@ -16,6 +16,6 @@ const NotPage = ({ dark }) => {
       </div>
     </div>
   )
-}
+})
 
 export default NotPage

@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import { FiCamera } from 'react-icons/fi'
 
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import commonStyles from '../../styles/modules/common.module.css'
 import styles from '../../styles/modules/maker.module.css'
 
-const ImageFileInput = ({ imageUploader, name, onFileChange }) => {
+const ImageFileInput = memo(({ imageUploader, name, onFileChange }) => {
   const [loding, setLoding] = useState(false)
   const fileRef = useRef()
 
@@ -47,6 +47,6 @@ const ImageFileInput = ({ imageUploader, name, onFileChange }) => {
       />
     </>
   )
-}
+})
 
 export default ImageFileInput

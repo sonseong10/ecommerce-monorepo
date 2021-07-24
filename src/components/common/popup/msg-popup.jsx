@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { BiHeartCircle } from 'react-icons/bi'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/common.module.css'
 
-const MsgPopup = ({ popupMsg, magPopup, toggleMsgPopup }) => {
+const MsgPopup = memo(({ popupMsg, magPopup, toggleMsgPopup }) => {
   return (
     <section className={`${styles.msgPopup} ${magPopup && styles.isActive}`}>
       <header className={styles.popupHeader}>
@@ -27,6 +27,6 @@ const MsgPopup = ({ popupMsg, magPopup, toggleMsgPopup }) => {
       </footer>
     </section>
   )
-}
+})
 
 export default MsgPopup

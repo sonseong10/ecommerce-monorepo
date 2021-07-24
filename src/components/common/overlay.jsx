@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from '../../styles/modules/common.module.css'
 
-const Overlay = ({ overlay, ToggleOverlay }) => {
+const Overlay = memo(({ overlay, ToggleOverlay }) => {
   return (
     <div
       className={`${styles.overlay} ${overlay && styles.isActive}`}
@@ -10,6 +10,6 @@ const Overlay = ({ overlay, ToggleOverlay }) => {
       aria-hidden
     ></div>
   )
-}
+})
 
 export default Overlay

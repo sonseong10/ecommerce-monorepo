@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Slider from 'react-slick'
 
 import { settings } from '../../utils/carousel'
@@ -11,7 +11,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { Link } from 'react-router-dom'
 
-const SlickCarousel = () => {
+const SlickCarousel = memo(() => {
   const listItems = [
     { id: 1, imgURL: carouselImg1, route: '/main' },
     { id: 2, imgURL: carouselImg2, route: '/work' },
@@ -31,6 +31,6 @@ const SlickCarousel = () => {
       ))}
     </Slider>
   )
-}
+})
 
 export default SlickCarousel

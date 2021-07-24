@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import notResult from '../../assets/images/security-on.svg'
 import styles from '../../styles/modules/error-page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 
-const NotLogin = ({ loding, dark }) => {
+const NotLogin = memo(({ loding, dark }) => {
   return (
     <div className="col-sm-4 col-md-9">
       <div className={`${styles.error} ${dark && styles.isDark}`}>
@@ -21,6 +21,6 @@ const NotLogin = ({ loding, dark }) => {
       </div>
     </div>
   )
-}
+})
 
 export default NotLogin

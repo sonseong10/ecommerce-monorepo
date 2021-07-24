@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from '../../styles/modules/common.module.css'
 
-const LodingSpinner = ({ dark }) => {
+const LodingSpinner = memo(({ dark }) => {
   return (
     <div className={`${styles.lodingBackGround} ${dark && styles.isDark}`}>
       <div className={`${styles.lodingMiddle}`}>
@@ -9,6 +9,6 @@ const LodingSpinner = ({ dark }) => {
       </div>
     </div>
   )
-}
+})
 
 export default LodingSpinner

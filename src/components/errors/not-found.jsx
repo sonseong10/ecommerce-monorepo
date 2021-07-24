@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import notResult from '../../assets/images/people-search.svg'
 import styles from '../../styles/modules/error-page.module.css'
 
-const NotFound = ({ dark }) => {
+const NotFound = memo(({ dark }) => {
   return (
     <section className={`${styles.error} ${dark && styles.isDark}`}>
       <img className={styles.errorImg} src={notResult} alt="Not result" />
@@ -10,6 +10,6 @@ const NotFound = ({ dark }) => {
       <p className={styles.errorDesc}>서버 오류 또는 업무 정보가 없습니다.</p>
     </section>
   )
-}
+})
 
 export default NotFound

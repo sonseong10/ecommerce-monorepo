@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
   validateEmail,
@@ -13,7 +13,7 @@ import ThemesDropdown from '../../common/dropdown/themes-dropdown'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
 
-const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
+const AddCardForm = memo(({ FileInput, createCard, dropDown, dark }) => {
   const history = useHistory()
 
   const nameRef = useRef()
@@ -207,6 +207,6 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }) => {
       </button>
     </form>
   )
-}
+})
 
 export default AddCardForm

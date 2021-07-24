@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 import { BiHomeAlt, BiGroup, BiFile } from 'react-icons/bi'
 
 import styles from '../../styles/modules/mobile-navbar.module.css'
 
-const GlobalFooter = ({ userId, menuActive, dark }) => {
+const GlobalFooter = memo(({ userId, menuActive, dark }) => {
   return (
     <footer
       className={`sm-only ${styles.globalFooter} ${dark && styles.isDark}`}
@@ -37,6 +37,6 @@ const GlobalFooter = ({ userId, menuActive, dark }) => {
       </Link>
     </footer>
   )
-}
+})
 
 export default GlobalFooter

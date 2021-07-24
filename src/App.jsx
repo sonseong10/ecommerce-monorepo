@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import GlobalHeader from './components/common/global-header'
@@ -162,26 +162,26 @@ const App = ({
     localStorage.setItem('darkMode', dark)
   }, [dark])
 
-  const handleModeChange = () => {
+  const handleModeChange = useCallback(() => {
     document.body.classList.toggle('isDark')
     setDark(!dark)
-  }
+  }, [dark])
 
-  const toggleOverlay = () => {
+  const toggleOverlay = useCallback(() => {
     setAuthPopup(!authPopup)
-  }
+  }, [authPopup])
 
-  const toggleOpenSideBar = () => {
+  const toggleOpenSideBar = useCallback(() => {
     setSidebarOpen(!sidebarOpen)
-  }
+  }, [sidebarOpen])
 
-  const toggleMsgPopup = () => {
+  const toggleMsgPopup = useCallback(() => {
     setMagPopup(!magPopup)
-  }
+  }, [magPopup])
 
-  const onMenuChange = (value) => {
+  const onMenuChange = useCallback((value) => {
     setMenuActive(value)
-  }
+  }, [])
 
   return (
     <div className={`app ${dark && 'isDark'}`}>
