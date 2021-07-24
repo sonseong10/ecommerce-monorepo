@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
@@ -15,9 +15,9 @@ const cardRepository = new CardRepository()
 const workRepository = new WorkRepository()
 const dropDown = new DropDown()
 
-const FileInput = (props) => (
+const FileInput = memo((props) => (
   <ImageFileInput {...props} imageUploader={imageUploader}></ImageFileInput>
-)
+))
 
 ReactDOM.render(
   <BrowserRouter>
