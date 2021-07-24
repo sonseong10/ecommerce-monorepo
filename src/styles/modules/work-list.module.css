@@ -2,7 +2,7 @@
 
 @value dark-primary, dark-secondary, dark-light-background from '../constants/dark-theme.css';
 
-@value font-size-16,line-height-16, letter-spacing-16 from '../constants/typography.css';
+@value font-size-16, line-height-16, letter-spacing-16 from '../constants/typography.css';
 
 @value card-shadow from '../constants/box-shadow.css';
 
@@ -46,9 +46,9 @@
 
 .workLinkList .lsitNone {
   margin: 1.2rem 0;
-  font-size: font-size-14;
-  line-height: line-height-14;
-  letter-spacing: letter-spacing-14;
+  font-size: font-size-16;
+  line-height: line-height-16;
+  letter-spacing: letter-spacing-16;
   color: primary;
   text-align: center;
 }
