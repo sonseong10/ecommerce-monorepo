@@ -49,6 +49,7 @@ const Work = ({
             userId={userId}
             createWork={createWork}
             renderMarkdown={renderMarkdown}
+            dark={dark}
           />
         )}
         <WorkList

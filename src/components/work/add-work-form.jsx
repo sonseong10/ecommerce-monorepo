@@ -4,7 +4,7 @@ import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work.module.css'
 import markdownStyle from '../../styles/modules/markdown.module.css'
 
-const AddWorkForm = ({ createWork, renderMarkdown }) => {
+const AddWorkForm = ({ createWork, renderMarkdown, dark }) => {
   const inputRef = useRef()
   const textareaRef = useRef()
   const formRef = useRef()
@@ -100,7 +100,8 @@ const AddWorkForm = ({ createWork, renderMarkdown }) => {
         <section className={styles.preview}>
           <div
             dangerouslySetInnerHTML={{ __html: renderMarkdown(contents) }}
-            className={markdownStyle.renderer}
+            className={`${markdownStyle.renderer} 
+                ${dark && markdownStyle.isDark}`}
           ></div>
         </section>
       )}
