@@ -22,7 +22,6 @@ const GlobalFooter = memo(({ userId, menuActive, dark }) => {
         to={userId ? '/' : '#'}
         className={`${styles.link} 
         ${menuActive === 'home' && styles.isActive}`}
-        type="button"
       >
         <BiHomeAlt aria-hidden />
         <span className="visually-hidden">메인 홈으로 이동</span>
