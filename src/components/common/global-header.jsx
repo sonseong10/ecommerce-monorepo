@@ -59,12 +59,12 @@ const GlobalHeader = memo(
             type="button"
           >
             {!userId ? (
-              <div>
+              <>
                 <BiUserCircle aria-hidden />
                 <strong className="visually-hidden">
                   로그인 또는 회원가입
                 </strong>
-              </div>
+              </>
             ) : (
               <figure>
                 <img
