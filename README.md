@@ -18,9 +18,19 @@
 
 ## Tool Stack
 
-<img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/> <img alt="PostCSS" src ="https://img.shields.io/badge/postcss-DD3A0A.svg?&style=for-the-badge&logo=postcss&logoColor=white"/> <img alt="Yarn" src ="https://img.shields.io/badge/Yarn-2c8ebb.svg?&style=for-the-badge&logo=yarn&logoColor=white"/> <img alt="Firebase" src ="https://img.shields.io/badge/Firebase-ffca28.svg?&style=for-the-badge&logo=firebase&logoColor=white"/>
+- [x] React
 
+  - React Funcional Component
+
+- [x] PostCSS
+- [x] Firbase
+  - Authentication
+  - Realtime Database
+  - Hosting
 - [x] PWA
+
+- [x] [slick-carousel](https://github.com/kenwheeler/slick)
+- [x] [remark](https://remark.js.org/)
 
 ## Live Demo
 
@@ -68,6 +78,10 @@
   display: none;
 }
 ```
+
+- 의식의 흐름대로 작성된 코드
+
+> 😢 전체적인 흐름을 가지고 제작했다면 발생했던 버그를 줄일 수 있었습니다.
 
 - 커밋·배포 전 세밀한 체크 필요성.
 
