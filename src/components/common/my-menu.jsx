@@ -38,7 +38,6 @@ const MyMenu = memo(
             <Link
               to={isCard ? '/update' : '#'}
               className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
-              type="button"
             >
               <BiUser className={styles.toolIcon} />
               <span className="lg-only">
