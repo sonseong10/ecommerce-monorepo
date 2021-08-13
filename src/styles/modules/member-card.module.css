@@ -173,7 +173,7 @@
 @media screen and (min-width: 768px) {
   .memberList {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 1rem;
   }
 
@@ -183,6 +183,6 @@
   }
 
   .meberItem {
-    width: 23rem;
+    width: 27rem;
   }
 }
