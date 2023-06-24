@@ -1,10 +1,11 @@
 import { firebaseAuth, githubProvider, googleProvider } from './firebase'
+import { signInWithPopup } from 'firebase/auth'
 
 class AuthService {
   async login(provideName, setMsg) {
     const authProvider = this.getProvider(provideName)
     try {
-      const result = await firebaseAuth.signInWithPopup(authProvider)
+      const result = await signInWithPopup(firebaseAuth, authProvider)
       return result
     } catch (error) {
       if (error.code === 'auth/account-exists-with-different-credential') {

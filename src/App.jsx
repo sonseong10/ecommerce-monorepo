@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import GlobalHeader from './components/common/global-header'
 import MainContent from './components/main-content'
@@ -19,8 +19,9 @@ const App = ({
   cardRepository,
   workRepository,
 }) => {
-  const history = useHistory()
-  const historyState = history?.location?.state
+  const navigate = useNavigate()
+  const location = useLocation()
+  const historyState = location?.state
 
   const [userId, setUserId] = useState(historyState && historyState.id)
 
@@ -43,11 +44,11 @@ const App = ({
         setUserId(user.uid)
       } else {
         setUserId('')
-        history.push('/')
+        navigate('/')
       }
       setLoding(false)
     })
-  }, [authService, history])
+  }, [authService, navigate])
 
   const onLogin = (event) => {
     authService.login(event.currentTarget.value, setMsg).then(
@@ -61,14 +62,14 @@ const App = ({
     )
     setWorks({})
     setUserCard({})
-    history.push('/')
+    navigate('/')
   }
 
   const onLogout = () => {
     Object.keys(userCard).length &&
       cardRepository.saveCard(userId, { ...cards[userId], login: false })
     setUserCard({})
-    history.push('/')
+    navigate('/')
     authService.logout()
   }
 
@@ -91,12 +92,10 @@ const App = ({
   }
 
   useEffect(() => {
-    const stopSync = cardRepository.syncCards((cards) => {
+    cardRepository.syncCards((cards) => {
       setCards(cards)
     })
-    return () => {
-      stopSync()
-    }
+    return () => {}
   }, [cardRepository, userId])
 
   useEffect(() => {

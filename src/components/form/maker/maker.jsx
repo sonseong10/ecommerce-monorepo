@@ -1,18 +1,18 @@
 import React, { memo, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import AddCardForm from './add-card-form'
 
 const Maker = memo(
   ({ FileInput, dropDown, isCard, createCard, onMenuChange, dark }) => {
-    const history = useHistory()
+    const navigate = useNavigate()
 
     useEffect(() => {
       onMenuChange('home')
-    })
+    }, [onMenuChange])
 
     useEffect(() => {
-      isCard && history.push('/main')
-    })
+      isCard && navigate('/main')
+    }, [isCard, navigate])
 
     return (
       <div className="col-sm-4 col-md-10 col-lg-9">

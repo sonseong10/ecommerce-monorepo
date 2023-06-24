@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import ImageFileInput from './components/common/image-file-input'
@@ -18,10 +18,11 @@ const dropDown = new DropDown()
 const FileInput = memo((props) => (
   <ImageFileInput {...props} imageUploader={imageUploader}></ImageFileInput>
 ))
-
-ReactDOM.render(
-  <BrowserRouter>
-    <React.StrictMode>
+const container = document.getElementById('root')
+const root = createRoot(container)
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
       <App
         authService={authService}
         dropDown={dropDown}
@@ -29,7 +30,8 @@ ReactDOM.render(
         cardRepository={cardRepository}
         workRepository={workRepository}
       />
-    </React.StrictMode>
-  </BrowserRouter>,
-  document.getElementById('root')
+    </BrowserRouter>
+  </React.StrictMode>
 )
+
+

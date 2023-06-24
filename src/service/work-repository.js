@@ -1,25 +1,26 @@
 import { firebaseDatabase } from './firebase'
+import { ref, onValue, off, set, remove } from 'firebase/database'
 
 class WorkRepository {
   syncWorks(userId, onUpdate) {
-    const ref = firebaseDatabase.ref(`works/${userId}`)
-    ref.on('value', (snapshot) => {
+    const query = ref(firebaseDatabase, `works/${userId}`)
+    onValue(query, (snapshot) => {
       const value = snapshot.val()
       value && onUpdate(value)
     })
-    return () => ref.off()
+    return () => off()
   }
 
   saveWork(userId, work) {
-    firebaseDatabase.ref(`works/${userId}/${work.time}`).set(work)
+    set(ref(firebaseDatabase, `works/${userId}/${work.time}`), work)
   }
 
   removeWork(userId, work) {
-    firebaseDatabase.ref(`works/${userId}/${work.time}`).remove()
+    remove(ref(firebaseDatabase, `works/${userId}/${work.time}`))
   }
 
   removeWorkAll(userId) {
-    firebaseDatabase.ref(`works/${userId}`).remove()
+    remove(ref(firebaseDatabase, `works/${userId}`))
   }
 }
 

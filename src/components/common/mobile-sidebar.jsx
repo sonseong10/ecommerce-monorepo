@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { BiUser, BiX, BiMoon } from 'react-icons/bi'
 
@@ -15,7 +15,7 @@ const MobileSideBar = memo(
     handleModeChange,
     dark,
   }) => {
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const handleLogout = () => {
       toggleOpenSideBar()
@@ -24,7 +24,7 @@ const MobileSideBar = memo(
 
     const goToUpdate = () => {
       toggleOpenSideBar()
-      history.push('/update')
+      navigate('/update')
     }
 
     const onDarkMode = () => {

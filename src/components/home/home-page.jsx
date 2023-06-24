@@ -10,7 +10,7 @@ import WorkLinkList from './work-link-list'
 const HomePage = ({ isCard, cards, works, userCard, onMenuChange, dark }) => {
   useEffect(() => {
     onMenuChange('home')
-  })
+  }, [onMenuChange])
 
   return (
     <div className="col-sm-4 col-md-10 col-lg-9">

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 
 import { FcGoogle } from 'react-icons/fc'
-import { GoMarkGithub } from 'react-icons/go'
+// import { GoMarkGithub } from 'react-icons/go'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/common.module.css'
@@ -31,7 +31,7 @@ const AuthPopup = memo(({ authPopup, ToggleOverlay, onLogin }) => {
           onMouseDown={ToggleOverlay}
           value="Github"
         >
-          <GoMarkGithub className={styles.authLogo} />
+          {/* <GoMarkGithub className={styles.authLogo} /> */}
           Start for Github
         </button>
       </div>

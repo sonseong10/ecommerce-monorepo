@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   validateEmail,
   validateName,
@@ -14,7 +14,7 @@ import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
 
 const AddCardForm = memo(({ FileInput, createCard, dropDown, dark }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const nameRef = useRef()
   const emailRef = useRef()
@@ -94,7 +94,7 @@ const AddCardForm = memo(({ FileInput, createCard, dropDown, dark }) => {
     formRef.current.reset()
     setFile({ fileName: null, fileURL: null })
     createCard(card)
-    history.push('/main')
+    navigate('/main')
   }
 
   return (
