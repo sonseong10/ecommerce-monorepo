@@ -18,7 +18,7 @@
 
 .meberItem {
   margin-bottom: 1rem;
-  width: 100%;
+ width: 100%;
 }
 
 .card {
@@ -173,7 +173,7 @@
 @media screen and (min-width: 768px) {
   .memberList {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding: 1rem;
   }
 
@@ -183,6 +183,6 @@
   }
 
   .meberItem {
-    width: 27rem;
+    width: calc(100% /3);
   }
 }

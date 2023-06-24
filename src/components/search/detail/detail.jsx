@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { formatMsg } from '../../../utils/filters'
 
 import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
@@ -7,12 +7,13 @@ import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/detail.module.css'
 
-const Detail = ({ location, cards, dark }) => {
+const Detail = ({ cards, dark }) => {
   const [card, setCard] = useState({})
+  const location = useLocation()
 
   useEffect(() => {
-    setCard({ ...cards[location.state.id] })
-  }, [cards, location.state.id])
+    setCard({ ...cards[location.state?.id] })
+  }, [cards, location.state?.id])
 
   const { login, name, phone, email, msg, team, rank, fileURL } = card
   const replaceMsg = msg && formatMsg(msg)

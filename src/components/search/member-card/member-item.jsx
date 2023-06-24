@@ -10,10 +10,7 @@ const MemberItem = ({ card, uid }) => {
   const url = fileURL || DEFAULT_USER_IMG
   return (
     <li className={styles.meberItem}>
-      <Link
-        to={{ pathname: '/detail', state: { id: uid } }}
-        className={styles.card}
-      >
+      <Link to={'/detail'} state={{ id: uid }} className={styles.card}>
         <header className={styles.cardHeader}>
           <div
             className={`${styles.dot} 
