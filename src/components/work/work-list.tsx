@@ -1,0 +1,42 @@
+import React from 'react'
+import WorkItem from './work-item'
+import NotFound from '../errors/not-found'
+import styles from '../../styles/modules/work-list.module.css'
+
+interface IWorkListProps {
+  works: any
+  renderMarkdown: any
+  updateWork: any
+  deleteWork: any
+  dark: any
+}
+const WorkList = ({
+  works,
+  renderMarkdown,
+  updateWork,
+  deleteWork,
+  dark,
+}: IWorkListProps) => {
+  return (
+    <>
+      {Object.keys(works).length ? (
+        <ul className={`${styles.workList} ${dark && styles.isDark}`}>
+          {Object.keys(works).map((key) => (
+            <WorkItem
+              work={works[key]}
+              key={key}
+              renderMarkdown={renderMarkdown}
+              updateWork={updateWork}
+              deleteWork={deleteWork}
+              dark={dark}
+            ></WorkItem>
+          ))}
+        </ul>
+      ) : (
+        <NotFound dark={dark}></NotFound>
+      )}
+    </>
+  )
+}
+
+export default WorkList
