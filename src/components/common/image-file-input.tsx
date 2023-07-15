@@ -2,8 +2,8 @@ import React, { memo, useRef, useState } from 'react'
 import { FiCamera } from 'react-icons/fi'
 
 import buttonStyles from '../../styles/modules/buttons.module.css'
-import commonStyles from '/src/styles/modules/common.module.css'
-import styles from '/src/styles/modules/maker.module.css'
+import commonStyles from '../../styles/modules/common.module.css'
+import styles from '../../styles/modules/maker.module.css'
 
 const ImageFileInput = memo(
   (props: { imageUploader: any; name: string; onFileChange: any }) => {

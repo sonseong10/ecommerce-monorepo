@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  type MemoExoticComponent,
+} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import GlobalHeader from './components/common/global-header'
@@ -11,13 +16,17 @@ import MsgPopup from './components/common/popup/msg-popup'
 import MobileSideBar from './components/common/mobile-sidebar'
 
 import './styles/main.css'
+import type WorkRepository from 'service/work-repository'
+import type CardRepository from 'service/card_repository'
+import type DropDown from 'utils/dropdown'
+import type AuthService from 'service/auth_service'
 
 interface IAppProps {
-  FileInput: any
-  dropDown: any
-  authService: any
-  cardRepository: any
-  workRepository: any
+  FileInput: MemoExoticComponent<(props: any) => React.JSX.Element>
+  dropDown: DropDown
+  authService: AuthService
+  cardRepository: CardRepository
+  workRepository: WorkRepository
 }
 
 const App = ({
@@ -47,7 +56,7 @@ const App = ({
 
   useEffect(() => {
     setLoding(true)
-    authService.onAuthChange((user: any) => {
+    authService.onAuthChange((user: { uid: string }) => {
       if (user) {
         setUserId(user.uid)
       } else {
