@@ -1,17 +1,42 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
 
 import DropDown from './dropdown'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/dropdown.module.css'
+import DropDownProps from 'utils/dropdown'
 
 interface IThemesDropdownProps {
-  dropDown: any
-  themeRef?: any
-  updateCard?: any
-  userCard?: any
-  dark: any
+  dropDown: DropDownProps
+  themeRef?: React.LegacyRef<HTMLButtonElement>
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: true
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  updateCard?: (obj: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: true
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  dark: boolean
 }
 const ThemesDropdown = memo(
   ({
@@ -23,9 +48,7 @@ const ThemesDropdown = memo(
   }: IThemesDropdownProps) => {
     const items = dropDown.getThemes()
 
-    const [themesType, setThemesType] = useState(
-      userCard ? userCard.theme : items[0].value
-    )
+    const [themesType, setThemesType] = useState('')
     const [themesIsOpen, setthemesIsOpen] = useState(false)
 
     const handleThemesValue = (value: any) => {
@@ -39,15 +62,21 @@ const ThemesDropdown = memo(
 
     const update = (value: any) => {
       setThemesType(value)
-      updateCard({
-        ...userCard,
-        [`theme`]: value,
-      })
+      if (updateCard) {
+        updateCard({
+          ...userCard!,
+          [`theme`]: value,
+        })
+      }
     }
 
     const onThemesOpen = () => {
       setthemesIsOpen(!themesIsOpen)
     }
+
+    useEffect(() => {
+      userCard ? setThemesType(userCard.theme) : setThemesType(items[0].value)
+    }, [items, userCard])
 
     return (
       <div
@@ -62,7 +91,7 @@ const ThemesDropdown = memo(
           type="button"
           ref={themeRef}
         >
-          {themesType}{' '}
+          {themesType}
           <BiChevronUp className={styles.dropdownIcon} aria-hidden />
         </button>
         <div className={styles.themesList}>

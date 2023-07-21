@@ -1,24 +1,49 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
 
 import DropDown from './dropdown'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/dropdown.module.css'
+import DropDownProps from 'utils/dropdown'
 
 interface ITeamsDropdownProps {
-  dropDown: any
-  teamRef?: any
-  userCard?: any
-  updateCard?: any
-  dark: any
+  dropDown: DropDownProps
+  teamRef?: React.LegacyRef<HTMLButtonElement>
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: true
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  updateCard?: (obj: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: true
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  dark: boolean
 }
+
 const TeamsDropdown = memo(
   ({ dropDown, teamRef, userCard, updateCard, dark }: ITeamsDropdownProps) => {
-    const items = [...dropDown.getTeams()]
-    const [teamsType, setTeamsType] = useState(
-      userCard ? userCard.team : items[0].value
-    )
+    const items = dropDown.getTeams()
+
+    const [teamsType, setTeamsType] = useState('')
     const [teamsIsOpen, setTeamsIsOpen] = useState(false)
 
     const handleTeamsValue = (value: any) => {
@@ -32,16 +57,21 @@ const TeamsDropdown = memo(
 
     const update = (value: any) => {
       setTeamsType(value)
-      updateCard({
-        ...userCard,
-        [`team`]: value,
-      })
+      if (updateCard) {
+        updateCard({
+          ...userCard!,
+          [`team`]: value,
+        })
+      }
     }
 
     const onTeamsOpen = () => {
       setTeamsIsOpen(!teamsIsOpen)
     }
 
+    useEffect(() => {
+      userCard ? setTeamsType(userCard.team) : setTeamsType(items[0].value)
+    }, [items, userCard])
     return (
       <div
         className={`${styles.teams} 

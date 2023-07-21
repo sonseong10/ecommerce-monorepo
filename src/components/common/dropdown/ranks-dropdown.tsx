@@ -1,26 +1,47 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
-
 import DropDown from './dropdown'
-
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/dropdown.module.css'
+import DropDownProps from 'utils/dropdown'
 
 interface IRanksDropdownProps {
-  dropDown: any
-  rankRef?: any
-  userCard?: any
-  updateCard?: any
-  dark: any
+  dropDown: DropDownProps
+  rankRef?: React.LegacyRef<HTMLButtonElement>
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: true
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  updateCard?: (obj: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: true
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  dark: boolean
 }
 
 const RanksDropdown = memo(
   ({ dropDown, rankRef, userCard, updateCard, dark }: IRanksDropdownProps) => {
     const items = dropDown.getRanks()
 
-    const [ranksType, setRanksType] = useState(
-      userCard ? userCard.rank : items[0].value
-    )
+    const [ranksType, setRanksType] = useState('')
     const [ranksIsOpen, setRanksIsOpen] = useState(false)
 
     const handleRanksValue = (value: any) => {
@@ -34,15 +55,21 @@ const RanksDropdown = memo(
 
     const update = (value: any) => {
       setRanksType(value)
-      updateCard({
-        ...userCard,
-        [`rank`]: value,
-      })
+      if (updateCard) {
+        updateCard({
+          ...userCard!,
+          [`rank`]: value,
+        })
+      }
     }
 
     const onRanksOpen = () => {
       setRanksIsOpen(!ranksIsOpen)
     }
+
+    useEffect(() => {
+      userCard ? setRanksType(userCard.rank) : setRanksType(items[0].value)
+    }, [items, userCard])
 
     return (
       <div
