@@ -1,14 +1,34 @@
 import React, { memo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AddCardForm from './add-card-form'
+import type ImageUploader from 'service/image-uploader'
+import type DropDown from 'utils/dropdown'
 
 interface IMakerProps {
-  FileInput: any
-  dropDown: any
-  isCard: any
-  createCard: any
-  onMenuChange: any
-  dark: any
+  FileInput: React.MemoExoticComponent<
+    (props: {
+      imageUploader?: ImageUploader
+      name: string
+      onFileChange?: (obj: { name?: string; url?: string }) => void
+    }) => React.JSX.Element
+  >
+  dropDown: DropDown
+  isCard: number
+  createCard: (card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  dark: boolean
 }
 const Maker = memo(
   ({

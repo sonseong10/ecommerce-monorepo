@@ -1,13 +1,16 @@
 import { firebaseAuth, githubProvider, googleProvider } from './firebase'
-import { signInWithPopup } from 'firebase/auth'
+import { signInWithPopup, type User } from 'firebase/auth'
 
 class AuthService {
-  async login(provideName, setMsg) {
+  async login(
+    provideName: string,
+    setMsg: (title: string, desc: string) => void
+  ) {
     const authProvider = this.getProvider(provideName)
     try {
       const result = await signInWithPopup(firebaseAuth, authProvider)
       return result
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 'auth/account-exists-with-different-credential') {
         setMsg(
           'Login Failed',
@@ -17,9 +20,9 @@ class AuthService {
     }
   }
 
-  onAuthChange(onUserChanged) {
+  onAuthChange(onUserChanged: (user: User) => void) {
     firebaseAuth.onAuthStateChanged((user) => {
-      onUserChanged(user)
+      user && onUserChanged(user)
     })
   }
 
@@ -27,10 +30,13 @@ class AuthService {
     firebaseAuth.signOut()
   }
 
-  delete(setMsg) {
+  delete(setMsg: {
+    (title: string, desc: string): void
+    (arg0: string, arg1: string): void
+  }) {
     const user = firebaseAuth.currentUser
     user
-      .delete()
+      ?.delete()
       .then(() => {
         setMsg('Account Deleted', 'See you again.')
       })
@@ -39,7 +45,7 @@ class AuthService {
       })
   }
 
-  getProvider(provideName) {
+  getProvider(provideName: string) {
     switch (provideName) {
       case 'Google':
         return googleProvider

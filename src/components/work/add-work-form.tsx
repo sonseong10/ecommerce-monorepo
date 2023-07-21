@@ -7,7 +7,7 @@ import markdownStyle from '../../styles/modules/markdown.module.css'
 interface IAddWorkFormProps {
   createWork: any
   renderMarkdown: any
-  dark: any
+  dark: boolean
   userId?: any
 }
 

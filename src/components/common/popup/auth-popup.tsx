@@ -5,12 +5,13 @@ import { FaGithub } from 'react-icons/fa'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/common.module.css'
+import type AuthService from 'service/auth_service'
 
 interface IAuthPopupProps {
-  authPopup: any
-  ToggleOverlay: any
-  onLogin: any
-  authService: any
+  authPopup: boolean
+  ToggleOverlay: () => void
+  onLogin: (e: React.MouseEvent<HTMLButtonElement>) => void
+  authService?: AuthService
 }
 
 const AuthPopup = memo(

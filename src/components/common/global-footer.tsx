@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { BiHomeAlt, BiGroup, BiFile } from 'react-icons/bi'
@@ -7,11 +7,11 @@ import styles from '../../styles/modules/mobile-navbar.module.css'
 
 interface IGlobalFooterProps {
   userId: string
-  menuActive: any
-  dark: any
+  menuActive: 'search' | 'home' | 'work'
+  dark: boolean
 }
 
-const GlobalFooter = memo(
+const GlobalFooter = React.memo(
   ({ userId, menuActive, dark }: IGlobalFooterProps) => {
     return (
       <footer

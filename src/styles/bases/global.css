@@ -17,6 +17,7 @@ body.isDark {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+  z-index: -999;
 }
 
 @media screen and (min-width: 768px) {
@@ -71,7 +72,7 @@ body.isDark {
 .slick-dots {
   padding: 6px;
   bottom: 0;
-  background-color: #f5f5f5;
+  background-color: transparent;
 }
 
 .slick-dots li button:hover:before {

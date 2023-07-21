@@ -4,7 +4,7 @@ import styles from '../../styles/modules/work-list.module.css'
 
 interface IWorkLinkListProps {
   works: any
-  dark: any
+  dark: boolean
 }
 const WorkLinkList = ({ works, dark }: IWorkLinkListProps) => {
   return (

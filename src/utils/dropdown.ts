@@ -22,6 +22,9 @@ const themes = [
 ]
 
 class DropDown {
+  teams: { id: number; value: string }[]
+  ranks: { id: number; value: string }[]
+  themes: { id: number; value: string }[]
   constructor() {
     this.teams = teams
     this.ranks = ranks

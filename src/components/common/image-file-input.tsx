@@ -4,17 +4,22 @@ import { FiCamera } from 'react-icons/fi'
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import commonStyles from '../../styles/modules/common.module.css'
 import styles from '../../styles/modules/maker.module.css'
+import type ImageUploader from 'service/image-uploader'
 
 const ImageFileInput = memo(
-  (props: { imageUploader: any; name: string; onFileChange: any }) => {
+  (props: {
+    imageUploader?: ImageUploader
+    name: string
+    onFileChange?: (obj: { name?: string; url?: string }) => void
+  }) => {
     const [loding, setLoding] = useState(false)
     const fileRef = useRef()
 
     const onChange = async (event: { target: { files: any[] } }) => {
       setLoding(true)
-      const uploaded = await props.imageUploader.upload(event.target.files[0])
+      const uploaded = await props.imageUploader!.upload(event.target.files[0])
       setLoding(false)
-      props.onFileChange({
+      props.onFileChange!({
         name: uploaded.original_filename,
         url: uploaded.url,
       })

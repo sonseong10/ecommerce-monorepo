@@ -12,15 +12,27 @@ import DarkLogo from '../assets/images/darktheme-logo.svg'
 import TabletLogo from '../assets/images/tablet-logo.svg'
 
 interface ISideNavigationProps {
-  ToggleOverlay: any
-  userId: any
-  userCard: any
-  loding: any
-  isCard: any
-  onLogout: any
-  menuActive: any
-  handleModeChange: any
-  dark: any
+  ToggleOverlay: () => void
+  userId: string
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  loding: boolean
+  isCard: number
+  onLogout: () => void
+  menuActive: 'home' | 'search' | 'work'
+  handleModeChange: () => void
+  dark: boolean
 }
 const SideNavigation = memo(
   ({

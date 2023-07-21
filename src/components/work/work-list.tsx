@@ -4,11 +4,19 @@ import NotFound from '../errors/not-found'
 import styles from '../../styles/modules/work-list.module.css'
 
 interface IWorkListProps {
-  works: any
-  renderMarkdown: any
-  updateWork: any
-  deleteWork: any
-  dark: any
+  works:
+    | {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      }
+    | undefined
+  renderMarkdown: (source?: string) => string
+  updateWork: (work: { contents: string; time: number; title: string }) => void
+  deleteWork: (work: { contents: string; time: number; title: string }) => void
+  dark: boolean
 }
 const WorkList = ({
   works,
@@ -19,7 +27,7 @@ const WorkList = ({
 }: IWorkListProps) => {
   return (
     <>
-      {Object.keys(works).length ? (
+      {works && Object.keys(works).length ? (
         <ul className={`${styles.workList} ${dark && styles.isDark}`}>
           {Object.keys(works).map((key) => (
             <WorkItem

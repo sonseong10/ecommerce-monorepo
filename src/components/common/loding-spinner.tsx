@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import styles from '../../styles/modules/common.module.css'
 
 interface ILodingSpinner {
-  dark?: any
+  dark?: boolean
 }
 
 const LodingSpinner = memo(({ dark }: ILodingSpinner) => {

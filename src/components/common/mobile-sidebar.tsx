@@ -7,12 +7,12 @@ import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/common.module.css'
 
 interface IMobileSideBarProps {
-  onLogout: any
-  isCard: any
-  sidebarOpen: any
-  toggleOpenSideBar: any
-  handleModeChange: any
-  dark: any
+  onLogout: () => void
+  isCard: number
+  sidebarOpen: boolean
+  toggleOpenSideBar: () => void
+  handleModeChange: () => void
+  dark: boolean
 }
 
 const MobileSideBar = memo(

@@ -2,8 +2,8 @@ import React, { memo } from 'react'
 import styles from '../../styles/modules/common.module.css'
 
 interface IOverlayProps {
-  overlay: any
-  ToggleOverlay: any
+  overlay: boolean
+  ToggleOverlay: () => void
 }
 const Overlay = memo(({ overlay, ToggleOverlay }: IOverlayProps) => {
   return (

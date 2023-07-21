@@ -11,14 +11,46 @@ import ThemesDropdown from '../../common/dropdown/themes-dropdown'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
+import type DropDown from 'utils/dropdown'
+import type ImageUploader from 'service/image-uploader'
 
 interface IEditCardFormProps {
-  FileInput: any
-  userCard: any
-  dropDown: any
-  updateCard: any
-  deleteCard: any
-  dark: any
+  FileInput: React.MemoExoticComponent<
+    (props: {
+      imageUploader?: ImageUploader
+      name: string
+      onFileChange?: (obj: { name?: string; url?: string }) => void
+    }) => React.JSX.Element
+  >
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  dropDown: DropDown
+  updateCard: (card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  deleteCard: () => void
+  dark: boolean
 }
 const EditCardForm = ({
   FileInput,
@@ -28,8 +60,6 @@ const EditCardForm = ({
   deleteCard,
   dark,
 }: IEditCardFormProps) => {
-  const { name, email, phone, telephone, msg, fileName } = userCard
-
   const [nameError, setNameError] = useState(false)
   const [emailError, setEmailError] = useState(false)
   const [phoneError, setPhoneError] = useState(false)
@@ -63,7 +93,7 @@ const EditCardForm = ({
 
   const onFileChange = (file: any) => {
     updateCard({
-      ...userCard,
+      ...userCard!,
       fileName: file.name,
       fileURL: file.url,
     })
@@ -77,7 +107,7 @@ const EditCardForm = ({
       return
     } else {
       updateCard({
-        ...userCard,
+        ...userCard!,
         [currentTarget.id]: currentTarget.value,
       })
     }
@@ -89,7 +119,10 @@ const EditCardForm = ({
 
   return (
     <form className={`${styles.authForm} ${dark && styles.isDark}`}>
-      <FileInput name={fileName} onFileChange={onFileChange} />
+      <FileInput
+        name={userCard?.fileName ? userCard?.fileName : ''}
+        onFileChange={onFileChange}
+      />
 
       <label htmlFor="name" className={styles.formLabel}>
         이름
@@ -98,7 +131,7 @@ const EditCardForm = ({
         className={`${styles.authFormInput} ${nameError && styles.isError}`}
         type="text"
         id="name"
-        defaultValue={name}
+        defaultValue={userCard?.name}
         placeholder="Name"
         onChange={nameValidate}
       />
@@ -115,7 +148,7 @@ const EditCardForm = ({
         className={`${styles.authFormInput} ${emailError && styles.isError}`}
         type="email"
         id="email"
-        defaultValue={email}
+        defaultValue={userCard?.email}
         placeholder="Email"
         onChange={emailValidate}
       />
@@ -130,7 +163,7 @@ const EditCardForm = ({
         className={`${styles.authFormInput} ${phoneError && styles.isError}`}
         type="text"
         id="phone"
-        defaultValue={phone}
+        defaultValue={userCard?.phone}
         placeholder="Phone"
         onChange={phoneValidate}
       />
@@ -147,7 +180,7 @@ const EditCardForm = ({
         className={styles.authFormInput}
         type="text"
         id="telephone"
-        defaultValue={telephone}
+        defaultValue={userCard?.telephone}
         placeholder="TelePhone"
         onChange={onChange}
       />
@@ -162,7 +195,7 @@ const EditCardForm = ({
         rows={3}
         maxLength={100}
         placeholder="Msg"
-        defaultValue={msg}
+        defaultValue={userCard?.msg}
         onChange={onChange}
       ></textarea>
 

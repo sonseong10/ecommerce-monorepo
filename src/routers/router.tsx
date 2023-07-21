@@ -8,13 +8,99 @@ import Update from '../components/form/update/update'
 import Detail from '../components/search/detail/detail'
 import Work from '../components/work/work'
 import React, { useEffect } from 'react'
+import type ImageUploader from 'service/image-uploader'
+import type DropDown from 'utils/dropdown'
 
-const Redirect = ({ router }) => {
+const Redirect = ({ router }: any) => {
   const navigate = useNavigate()
   useEffect(() => {
     navigate(router)
   }, [navigate, router])
   return <React.Fragment></React.Fragment>
+}
+
+interface IRouterProps {
+  FileInput: React.MemoExoticComponent<
+    (props: {
+      imageUploader?: ImageUploader
+      name: string
+      onFileChange?: (obj: { name?: string; url?: string }) => void
+    }) => React.JSX.Element
+  >
+  dropDown: DropDown
+  userId: string
+  cards:
+    | {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      }
+    | undefined
+  works:
+    | {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      }
+    | undefined
+  isCard: number
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  createCard: (card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  updateCard: (card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  deleteCard: () => void
+  createWork: (work: { contents: string; time: number; title: string }) => void
+  updateWork: (work: { contents: string; time: number; title: string }) => void
+  deleteWork: (work: { contents: string; time: number; title: string }) => void
+  dark: boolean
 }
 
 const Router = ({
@@ -33,7 +119,7 @@ const Router = ({
   updateWork,
   deleteWork,
   dark,
-}) => {
+}: IRouterProps) => {
   return (
     <Routes>
       <Route path="/">

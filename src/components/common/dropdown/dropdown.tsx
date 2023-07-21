@@ -14,7 +14,7 @@ const DropDown = memo(({ listItems, handleEvent, dark }: IDropDownProps) => {
   return (
     <div>
       <ul className={`${styles.dropdownList} ${dark && styles.isDark}`}>
-        {listItems.map((item: any) => {
+        {listItems.map((item) => {
           return (
             <li className={styles.listItem} key={item.id}>
               <button

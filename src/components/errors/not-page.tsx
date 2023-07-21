@@ -3,7 +3,7 @@ import notResult from '../../assets/images/page-not-found.svg'
 import styles from '../../styles/modules/error-page.module.css'
 
 interface INotPageProps {
-  dark: any
+  dark: boolean
 }
 const NotPage = memo(({ dark }: INotPageProps) => {
   return (

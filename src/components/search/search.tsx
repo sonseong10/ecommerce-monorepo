@@ -3,11 +3,29 @@ import { BiSearch } from 'react-icons/bi'
 
 import styles from '../../styles/modules/search.module.css'
 import MemberList from './member-card/member-list'
+import type DropDown from 'utils/dropdown'
 
 interface ISearchProps {
-  cards: any
-  onMenuChange: any
-  dark: any
+  cards:
+    | {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      }
+    | undefined
+  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  dark: boolean
+  dropDown?: DropDown
 }
 
 const Search = ({ cards, onMenuChange, dark }: ISearchProps) => {

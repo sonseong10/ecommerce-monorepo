@@ -12,7 +12,7 @@ interface IRanksDropdownProps {
     email: string
     fileName: string
     fileURL: string
-    login: true
+    login: boolean
     msg: string
     name: string
     phone: string
@@ -25,7 +25,7 @@ interface IRanksDropdownProps {
     email: string
     fileName: string
     fileURL: string
-    login: true
+    login: boolean
     msg: string
     name: string
     phone: string

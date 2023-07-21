@@ -7,12 +7,50 @@ import SlickCarousel from '../common/slick-carousel'
 import styles from '../../styles/modules/home-page.module.css'
 import WorkLinkList from './work-link-list'
 interface IHomePageProps {
-  isCard: any
-  cards: any
-  works: any
-  userCard: any
-  onMenuChange: any
-  dark: any
+  isCard: number
+  cards:
+    | {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      }
+    | undefined
+  works:
+    | {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      }
+    | undefined
+  userCard:
+    | {
+        email: string
+        fileName: string
+        fileURL: string
+        login: boolean
+        msg: string
+        name: string
+        phone: string
+        rank: string
+        team: string
+        telephone: string
+        theme: string
+      }
+    | undefined
+  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  dark: boolean
 }
 const HomePage = ({
   isCard,
@@ -41,7 +79,7 @@ const HomePage = ({
             <article className={`${styles.work}`}>
               <div className={styles.articleTitle}>
                 <h2>업무</h2>
-                <strong>{Object.keys(works).length}</strong>
+                <strong>{works ? Object.keys(works).length : 0}</strong>
               </div>
               <WorkLinkList works={works} dark={dark}></WorkLinkList>
             </article>

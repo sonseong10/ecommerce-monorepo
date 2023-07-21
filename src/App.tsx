@@ -20,9 +20,17 @@ import type WorkRepository from 'service/work-repository'
 import type CardRepository from 'service/card_repository'
 import type DropDown from 'utils/dropdown'
 import type AuthService from 'service/auth_service'
+import type { User } from 'firebase/auth'
+import type ImageUploader from 'service/image-uploader'
 
 interface IAppProps {
-  FileInput: MemoExoticComponent<(props: any) => React.JSX.Element>
+  FileInput: MemoExoticComponent<
+    (props: {
+      imageUploader?: ImageUploader
+      name: string
+      onFileChange?: (obj: { name?: string; url?: string }) => void
+    }) => React.JSX.Element
+  >
   dropDown: DropDown
   authService: AuthService
   cardRepository: CardRepository
@@ -38,16 +46,61 @@ const App = ({
 }: IAppProps) => {
   const navigate = useNavigate()
   const location = useLocation()
+
   const historyState = location?.state
 
   const [userId, setUserId] = useState(historyState && historyState.id)
 
-  const [cards, setCards] = useState({})
-  const [works, setWorks] = useState({})
-  const [userCard, setUserCard] = useState({})
-  const [popupMsg, setpopupMsg] = useState({})
+  const [cards, setCards] = useState<
+    | {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      }
+    | undefined
+  >(undefined)
+  const [works, setWorks] = useState<
+    | {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      }
+    | undefined
+  >(undefined)
 
-  const [menuActive, setMenuActive] = useState('')
+  const [userCard, setUserCard] = useState<
+    | {
+        email: string
+        fileName: string
+        fileURL: string
+        login: boolean
+        msg: string
+        name: string
+        phone: string
+        rank: string
+        team: string
+        telephone: string
+        theme: string
+      }
+    | undefined
+  >(undefined)
+  const [popupMsg, setpopupMsg] = useState({ title: '', desc: '' })
+
+  const [menuActive, setMenuActive] = useState<'search' | 'work' | 'home'>(
+    'home'
+  )
   const [loding, setLoding] = useState(false)
   const [authPopup, setAuthPopup] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -56,7 +109,7 @@ const App = ({
 
   useEffect(() => {
     setLoding(true)
-    authService.onAuthChange((user: { uid: string }) => {
+    authService.onAuthChange((user: User) => {
       if (user) {
         setUserId(user.uid)
       } else {
@@ -67,8 +120,8 @@ const App = ({
     })
   }, [authService, navigate])
 
-  const onLogin = (event: any) => {
-    authService.login(event.currentTarget.value, setMsg).then(
+  const onLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
+    authService.login(event.currentTarget!.value, setMsg).then(
       (data: any) =>
         data &&
         (cards as any)[data.user.uid] &&
@@ -78,17 +131,18 @@ const App = ({
         })
     )
     setWorks({})
-    setUserCard({})
+    setUserCard(undefined)
     navigate('/')
   }
 
   const onLogout = () => {
-    Object.keys(userCard).length &&
+    userCard &&
+      Object.keys(userCard!).length &&
       cardRepository.saveCard(userId, {
         ...(cards as any)[userId],
         login: false,
       })
-    setUserCard({})
+    setUserCard(undefined)
     navigate('/')
     authService.logout()
   }
@@ -96,14 +150,17 @@ const App = ({
   const deleteAccount = () => {
     deleteCard()
     setWorks({})
-    setUserCard({})
+    setUserCard(undefined)
     setMagPopup(true)
     workRepository.removeWorkAll(userId)
     authService.delete(setMsg)
   }
 
   const setMsg = (title: string, desc: string) => {
-    setpopupMsg({})
+    setpopupMsg({
+      title: '',
+      desc: '',
+    })
     setpopupMsg({
       title: title,
       desc: desc,
@@ -122,10 +179,11 @@ const App = ({
     if (!userId) {
       return
     }
-    if (Object.keys(cards).find((item) => item === userId)) {
+
+    if (cards && Object.keys(cards).find((item) => item === userId)) {
       setUserCard({ ...(cards as any)[userId] })
     } else {
-      setUserCard({})
+      setUserCard(undefined)
     }
   }, [cards, userId])
 
@@ -198,7 +256,7 @@ const App = ({
     setMagPopup(!magPopup)
   }, [magPopup])
 
-  const onMenuChange = useCallback((value: any) => {
+  const onMenuChange = useCallback((value: 'search' | 'work' | 'home') => {
     setMenuActive(value)
   }, [])
 
@@ -234,7 +292,7 @@ const App = ({
 
       <MobileSideBar
         onLogout={onLogout}
-        isCard={Object.keys(userCard).length}
+        isCard={userCard !== undefined ? Object.keys(userCard).length : 0}
         sidebarOpen={sidebarOpen}
         toggleOpenSideBar={toggleOpenSideBar}
         handleModeChange={handleModeChange}

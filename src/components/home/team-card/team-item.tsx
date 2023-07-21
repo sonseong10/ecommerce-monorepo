@@ -5,7 +5,19 @@ import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 import styles from '../../../styles/modules/team-card.module.css'
 
 interface ITeamItemProps {
-  card: any
+  card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
 }
 const TeamItem = ({ card }: ITeamItemProps) => {
   const { name, login, theme, team, rank, fileURL } = card

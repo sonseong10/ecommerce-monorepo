@@ -8,7 +8,7 @@ import styles from '../../../styles/modules/team-card.module.css'
 interface ITeamListProps {
   cards: any
   userCard: any
-  dark: any
+  dark: boolean
 }
 const TeamList = ({ cards, userCard, dark }: ITeamListProps) => {
   const containerRef = useRef<HTMLUListElement>(null)

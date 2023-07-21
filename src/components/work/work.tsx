@@ -9,13 +9,21 @@ import buttonStyle from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work.module.css'
 
 interface IWorkProps {
-  onMenuChange: any
-  userId: any
-  works: any
-  createWork: any
-  updateWork: any
-  deleteWork: any
-  dark: any
+  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  userId: string
+  works:
+    | {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      }
+    | undefined
+  createWork: (work: { contents: string; time: number; title: string }) => void
+  updateWork: (work: { contents: string; time: number; title: string }) => void
+  deleteWork: (work: { contents: string; time: number; title: string }) => void
+  dark: boolean
 }
 const Work = ({
   onMenuChange,

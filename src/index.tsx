@@ -16,7 +16,11 @@ const cardRepository = new CardRepository()
 const workRepository = new WorkRepository()
 const dropDown = new DropDown()
 
-const FileInput = (props: any) => {
+const FileInput = (props: {
+  imageUploader?: ImageUploader
+  name: string
+  onFileChange?: (obj: { name?: string; url?: string }) => void
+}) => {
   return (
     <>
       <ImageFileInput {...props} imageUploader={imageUploader} />

@@ -12,12 +12,32 @@ import ThemesDropdown from '../../common/dropdown/themes-dropdown'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
+import type ImageUploader from 'service/image-uploader'
+import type DropDown from 'utils/dropdown'
 
 interface IAddCardForm {
-  FileInput: any
-  createCard: any
-  dropDown: any
-  dark: any
+  FileInput: React.MemoExoticComponent<
+    (props: {
+      imageUploader?: ImageUploader
+      name: string
+      onFileChange?: (obj: { name?: string; url?: string }) => void
+    }) => React.JSX.Element
+  >
+  createCard: (card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  dropDown: DropDown
+  dark: boolean
 }
 const AddCardForm = memo(
   ({ FileInput, createCard, dropDown, dark }: IAddCardForm) => {
@@ -28,9 +48,9 @@ const AddCardForm = memo(
     const phoneRef = useRef<HTMLInputElement>(null)
     const telephoneRef = useRef<HTMLInputElement>(null)
     const msgRef = useRef<HTMLTextAreaElement>(null)
-    const themeRef = useRef<HTMLInputElement>(null)
-    const teamRef = useRef<HTMLInputElement>(null)
-    const rankRef = useRef<HTMLInputElement>(null)
+    const themeRef = useRef<HTMLButtonElement>(null)
+    const teamRef = useRef<HTMLButtonElement>(null)
+    const rankRef = useRef<HTMLButtonElement>(null)
     const formRef = useRef<HTMLFormElement>(null)
 
     const [file, setFile] = useState({ fileName: null, fileURL: null })
@@ -83,14 +103,14 @@ const AddCardForm = memo(
       e.preventDefault()
       const card = {
         login: true,
-        name: (nameRef.current! as any).value,
-        msg: (msgRef.current! as any).value || '',
-        telephone: (telephoneRef.current! as any).value || '',
-        phone: (phoneRef.current! as any).value,
-        email: (emailRef.current! as any).value,
-        theme: (themeRef.current! as any).innerText,
-        team: (teamRef.current! as any).innerText,
-        rank: (rankRef.current! as any).innerText,
+        name: nameRef.current!.value,
+        msg: msgRef.current!.value || '',
+        telephone: telephoneRef.current!.value || '',
+        phone: phoneRef.current!.value,
+        email: emailRef.current!.value,
+        theme: themeRef.current!.innerText,
+        team: teamRef.current!.innerText,
+        rank: rankRef.current!.innerText,
         fileName: file.fileName || '',
         fileURL: file.fileURL || '',
       }
@@ -108,7 +128,10 @@ const AddCardForm = memo(
         ref={formRef}
         onSubmit={submitForm}
       >
-        <FileInput name={file.fileName} onFileChange={onFileChange}></FileInput>
+        <FileInput
+          name={file.fileName ? file.fileName : ''}
+          onFileChange={onFileChange}
+        ></FileInput>
 
         <label htmlFor="name" className={styles.formLabel}>
           이름*

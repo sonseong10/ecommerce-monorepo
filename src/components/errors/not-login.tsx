@@ -4,8 +4,8 @@ import styles from '../../styles/modules/error-page.module.css'
 import LodingSpinner from '../common/loding-spinner'
 
 interface INotLoginProps {
-  loding: any
-  dark: any
+  loding: boolean
+  dark: boolean
 }
 const NotLogin = memo(({ loding, dark }: INotLoginProps) => {
   return (

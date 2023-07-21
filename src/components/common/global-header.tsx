@@ -10,11 +10,23 @@ import Logo from '../../assets/images/logo.svg'
 import DarkLogo from '../../assets/images/darktheme-logo.svg'
 
 interface IGlobalHeaderProps {
-  userId: any
-  userCard: any
-  toggleOverlay: any
-  toggleOpenSideBar: any
-  dark: any
+  userId: string
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  toggleOverlay: () => void
+  toggleOpenSideBar: () => void
+  dark: boolean
 }
 const GlobalHeader = memo(
   ({
@@ -27,12 +39,12 @@ const GlobalHeader = memo(
     const [hide, setHide] = useState(false)
     const [pageY, setPageY] = useState(0)
 
-    const sticky = function (stickyScroll: any, waitTime: any) {
-      let timerId: any = null
-      return (event: any) => {
+    const sticky = function (stickyScroll: () => void, waitTime: number) {
+      let timerId: NodeJS.Timeout | null = null
+      return () => {
         if (timerId) return
         timerId = setTimeout(() => {
-          stickyScroll.call(null, event)
+          stickyScroll.call(null)
           timerId = null
         }, waitTime)
       }
@@ -82,7 +94,7 @@ const GlobalHeader = memo(
               <figure>
                 <img
                   className={styles.smProfile}
-                  src={userCard.fileURL || DEFAULT_USER_IMG}
+                  src={userCard ? userCard!.fileURL : DEFAULT_USER_IMG}
                   alt=""
                 />
                 <figcaption className="visually-hidden">사용자</figcaption>

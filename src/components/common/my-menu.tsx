@@ -10,15 +10,14 @@ import { Link } from 'react-router-dom'
 
 interface IMyMenuProps {
   userCard: any
-  isCard: any
-  onLogout: any
-  handleModeChange: any
-  dark: any
+  isCard: number
+  onLogout: () => void
+  handleModeChange: () => void
+  dark: boolean
 }
 const MyMenu = memo(
   ({ userCard, isCard, onLogout, handleModeChange, dark }: IMyMenuProps) => {
-    const [myMenuOpen, setMyMenuOpen] = useState(false)
-    const { name, fileURL } = userCard
+    const [myMenuOpen, setMyMenuOpen] = useState<boolean>(false)
 
     const onIsActive = () => {
       setMyMenuOpen(!myMenuOpen)
@@ -69,11 +68,11 @@ const MyMenu = memo(
         >
           <img
             className={styles.userIcon}
-            src={fileURL || DEFAULT_USER_IMG}
-            alt={fileURL ? 'user profile' : 'default'}
+            src={userCard?.fileURL || DEFAULT_USER_IMG}
+            alt={userCard?.fileURL ? 'user profile' : 'default'}
           />
-          <span className={`lg-only ${name && styles.isActive}`}>
-            {name || 'No data yet...'}
+          <span className={`lg-only ${userCard?.name && styles.isActive}`}>
+            {userCard?.name || 'No data yet...'}
           </span>
         </button>
       </div>

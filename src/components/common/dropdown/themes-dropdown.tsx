@@ -14,7 +14,7 @@ interface IThemesDropdownProps {
     email: string
     fileName: string
     fileURL: string
-    login: true
+    login: boolean
     msg: string
     name: string
     phone: string
@@ -27,7 +27,7 @@ interface IThemesDropdownProps {
     email: string
     fileName: string
     fileURL: string
-    login: true
+    login: boolean
     msg: string
     name: string
     phone: string

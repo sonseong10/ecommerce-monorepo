@@ -5,9 +5,9 @@ import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/common.module.css'
 
 interface IMsgPopupProps {
-  popupMsg: any
-  magPopup: any
-  toggleMsgPopup: any
+  popupMsg: { title: string; desc: string }
+  magPopup: boolean
+  toggleMsgPopup: () => void
 }
 const MsgPopup = memo(
   ({ popupMsg, magPopup, toggleMsgPopup }: IMsgPopupProps) => {

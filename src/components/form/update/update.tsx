@@ -7,7 +7,7 @@ interface IUpdateProps {
   dropDown: any
   updateCard: any
   deleteCard: any
-  dark: any
+  dark: boolean
 }
 const Update = ({
   FileInput,

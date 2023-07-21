@@ -5,46 +5,56 @@ import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 import { Link } from 'react-router-dom'
 
 interface IMemberItemProps {
-  card: any
-  uid: any
+  card?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  uid: string
 }
 const MemberItem = ({ card, uid }: IMemberItemProps) => {
-  const { name, login, theme, msg, phone, telephone, team, rank, fileURL } =
-    card
-  const url = fileURL || DEFAULT_USER_IMG
+  const url = card?.fileURL || DEFAULT_USER_IMG
   return (
     <li className={styles.meberItem}>
       <Link to={'/detail'} state={{ id: uid }} className={styles.card}>
         <header className={styles.cardHeader}>
           <div
             className={`${styles.dot} 
-              ${login ? styles.online : styles.offline}`}
+              ${card?.login ? styles.online : styles.offline}`}
           ></div>
-          <span>{login ? 'online' : 'offline'}</span>
+          <span>{card?.login ? 'online' : 'offline'}</span>
         </header>
-        <div className={`${styles.cardContents} ${getStyles(theme)}`}>
+        <div className={`${styles.cardContents} ${getStyles(card!.theme)}`}>
           <figure className={styles.profile}>
             <img src={url} alt="" />
             <figcaption className="visually-hidden">사용자 이미지</figcaption>
           </figure>
-          <strong className={styles.authName}>{name}</strong>
-          <p className={styles.authMsg}>{msg}</p>
+          <strong className={styles.authName}>{card?.name}</strong>
+          <p className={styles.authMsg}>{card?.msg}</p>
         </div>
         <footer className={styles.cardFooter}>
           <dl className={styles.authDetailList}>
             <div className={styles.authDetailItem}>
               <dt className={styles.title}>소속/직급</dt>
               <dd className={styles.description}>
-                {team}/{rank}
+                {card?.team}/{card?.rank}
               </dd>
             </div>
             <div className={styles.authDetailItem}>
               <dt className={styles.title}>휴대전화</dt>
-              <dd className={styles.description}>{phone}</dd>
+              <dd className={styles.description}>{card?.phone}</dd>
             </div>
             <div className={styles.authDetailItem}>
               <dt className={styles.title}>유선전화</dt>
-              <dd className={styles.description}>{telephone}</dd>
+              <dd className={styles.description}>{card?.telephone}</dd>
             </div>
           </dl>
         </footer>

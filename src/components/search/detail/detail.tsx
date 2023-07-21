@@ -8,15 +8,31 @@ import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/detail.module.css'
 
 interface IDetailProps {
-  cards: any
-  dark: any
+  cards:
+    | {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      }
+    | undefined
+  dark: boolean
 }
 const Detail = ({ cards, dark }: IDetailProps) => {
   const [card, setCard] = useState({})
   const location = useLocation()
 
   useEffect(() => {
-    setCard({ ...cards[location.state?.id] })
+    setCard({ ...cards![location.state?.id] })
   }, [cards, location.state?.id])
 
   const { login, name, phone, email, msg, team, rank, fileURL } = card as any
