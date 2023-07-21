@@ -6,16 +6,46 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import styles from '../../../styles/modules/team-card.module.css'
 
 interface ITeamListProps {
-  cards: any
-  userCard: any
+  cards:
+    | {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      }
+    | undefined
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
   dark: boolean
 }
 const TeamList = ({ cards, userCard, dark }: ITeamListProps) => {
   const containerRef = useRef<HTMLUListElement>(null)
 
-  const filterKey = Object.keys(cards).filter(
-    (key) => key && cards[key].team.includes(userCard.team)
-  )
+  const filterKey = cards
+    ? Object.keys(cards).filter(
+        (key) => key && cards[key].team.includes(userCard!.team)
+      )
+    : []
 
   const onPrevScroll = () => {
     containerRef.current!.scrollLeft -= 260
@@ -33,7 +63,10 @@ const TeamList = ({ cards, userCard, dark }: ITeamListProps) => {
       >
         {filterKey.length &&
           filterKey.map((key) => (
-            <TeamItem card={cards[key]} key={key}></TeamItem>
+            <TeamItem
+              card={cards ? cards[key] : undefined}
+              key={key}
+            ></TeamItem>
           ))}
       </ul>
 

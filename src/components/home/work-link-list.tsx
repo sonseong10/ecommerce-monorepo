@@ -3,13 +3,21 @@ import { Link } from 'react-router-dom'
 import styles from '../../styles/modules/work-list.module.css'
 
 interface IWorkLinkListProps {
-  works: any
+  works:
+    | {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      }
+    | undefined
   dark: boolean
 }
 const WorkLinkList = ({ works, dark }: IWorkLinkListProps) => {
   return (
     <ul className={`${styles.workLinkList} ${dark && styles.isDark}`}>
-      {Object.keys(works).length ? (
+      {works && Object.keys(works).length ? (
         Object.keys(works).map((key) => (
           <li className={styles.workItem} key={works[key].time}>
             <Link to="/work">{works[key].title}</Link>

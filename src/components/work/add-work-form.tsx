@@ -5,10 +5,10 @@ import styles from '../../styles/modules/work.module.css'
 import markdownStyle from '../../styles/modules/markdown.module.css'
 
 interface IAddWorkFormProps {
-  createWork: any
-  renderMarkdown: any
+  createWork: (work: { contents: string; time: number; title: string }) => void
+  renderMarkdown: (source?: string) => string
   dark: boolean
-  userId?: any
+  userId?: string
 }
 
 const AddWorkForm = ({
@@ -45,7 +45,7 @@ const AddWorkForm = ({
     setPreview(!preview)
   }
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const work = {
       time: Date.now(), // NOTE: uid

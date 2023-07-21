@@ -64,7 +64,7 @@ const EditCardForm = ({
   const [emailError, setEmailError] = useState(false)
   const [phoneError, setPhoneError] = useState(false)
 
-  const nameValidate = (event: any) => {
+  const nameValidate = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (validateName(event.currentTarget.value)) {
       setNameError(false)
     } else {
@@ -73,7 +73,7 @@ const EditCardForm = ({
     onChange(event, validateName(event.currentTarget.value))
   }
 
-  const emailValidate = (event: any) => {
+  const emailValidate = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (validateEmail(event.currentTarget.value)) {
       setEmailError(false)
     } else {
@@ -82,7 +82,7 @@ const EditCardForm = ({
     onChange(event, validateEmail(event.currentTarget.value))
   }
 
-  const phoneValidate = (event: any) => {
+  const phoneValidate = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (validatePhone(event.currentTarget.value)) {
       setPhoneError(false)
     } else {
@@ -91,15 +91,20 @@ const EditCardForm = ({
     onChange(event, validatePhone(event.currentTarget.value))
   }
 
-  const onFileChange = (file: any) => {
+  const onFileChange = (file: { name?: string; url?: string }) => {
     updateCard({
       ...userCard!,
-      fileName: file.name,
-      fileURL: file.url,
+      fileName: file.name!,
+      fileURL: file.url!,
     })
   }
 
-  const onChange = ({ currentTarget }: any, validated = true) => {
+  const onChange = (
+    {
+      currentTarget,
+    }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    validated = true
+  ) => {
     if (currentTarget.value === null) {
       return
     }

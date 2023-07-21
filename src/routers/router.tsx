@@ -11,7 +11,10 @@ import React, { useEffect } from 'react'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'
 
-const Redirect = ({ router }: any) => {
+interface IRedirectProps {
+  router: string
+}
+const Redirect = ({ router }: IRedirectProps) => {
   const navigate = useNavigate()
   useEffect(() => {
     navigate(router)

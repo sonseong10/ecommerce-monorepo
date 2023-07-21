@@ -51,16 +51,16 @@ const ThemesDropdown = memo(
     const [themesType, setThemesType] = useState('')
     const [themesIsOpen, setthemesIsOpen] = useState(false)
 
-    const handleThemesValue = (value: any) => {
+    const handleThemesValue = (value: string) => {
       userCard ? update(value) : add(value)
       onThemesOpen()
     }
 
-    const add = (value: any) => {
+    const add = (value: string) => {
       setThemesType(value)
     }
 
-    const update = (value: any) => {
+    const update = (value: string) => {
       setThemesType(value)
       if (updateCard) {
         updateCard({

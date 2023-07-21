@@ -46,16 +46,16 @@ const TeamsDropdown = memo(
     const [teamsType, setTeamsType] = useState('')
     const [teamsIsOpen, setTeamsIsOpen] = useState(false)
 
-    const handleTeamsValue = (value: any) => {
+    const handleTeamsValue = (value: string) => {
       userCard ? update(value) : add(value)
       onTeamsOpen()
     }
 
-    const add = (value: any) => {
+    const add = (value: string) => {
       setTeamsType(value)
     }
 
-    const update = (value: any) => {
+    const update = (value: string) => {
       setTeamsType(value)
       if (updateCard) {
         updateCard({

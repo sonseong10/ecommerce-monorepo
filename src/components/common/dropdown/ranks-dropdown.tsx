@@ -44,16 +44,16 @@ const RanksDropdown = memo(
     const [ranksType, setRanksType] = useState('')
     const [ranksIsOpen, setRanksIsOpen] = useState(false)
 
-    const handleRanksValue = (value: any) => {
+    const handleRanksValue = (value: string) => {
       userCard ? update(value) : add(value)
       onRanksOpen()
     }
 
-    const add = (value: any) => {
+    const add = (value: string) => {
       setRanksType(value)
     }
 
-    const update = (value: any) => {
+    const update = (value: string) => {
       setRanksType(value)
       if (updateCard) {
         updateCard({

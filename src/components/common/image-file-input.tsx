@@ -15,9 +15,9 @@ const ImageFileInput = memo(
     const [loding, setLoding] = useState(false)
     const fileRef = useRef()
 
-    const onChange = async (event: { target: { files: any[] } }) => {
+    const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
       setLoding(true)
-      const uploaded = await props.imageUploader!.upload(event.target.files[0])
+      const uploaded = await props.imageUploader!.upload(event.target.files![0])
       setLoding(false)
       props.onFileChange!({
         name: uploaded.original_filename,

@@ -35,7 +35,7 @@ const WorkItem = ({
     setIsOpen(false)
   }
 
-  const updateContent = (event: any) => {
+  const updateContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     updateWork({ ...work, contents: event.currentTarget.value })
   }
 

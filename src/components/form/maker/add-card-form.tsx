@@ -53,7 +53,13 @@ const AddCardForm = memo(
     const rankRef = useRef<HTMLButtonElement>(null)
     const formRef = useRef<HTMLFormElement>(null)
 
-    const [file, setFile] = useState({ fileName: null, fileURL: null })
+    const [file, setFile] = useState<{
+      fileName: string | undefined
+      fileURL: string | undefined
+    }>({
+      fileName: undefined,
+      fileURL: undefined,
+    })
     const [nameError, setNameError] = useState(false)
     const [emailError, setEmailError] = useState(false)
     const [phoneError, setPhoneError] = useState(false)
@@ -72,19 +78,29 @@ const AddCardForm = memo(
       }
     }, [nameError, emailError, phoneError])
 
-    const nameValidate = ({ currentTarget: { value } }: any) => {
+    const nameValidate = ({
+      currentTarget: { value },
+    }: React.ChangeEvent<HTMLInputElement>) => {
       onValidate(value, validateName, setNameError)
     }
 
-    const emailValidate = ({ currentTarget: { value } }: any) => {
+    const emailValidate = ({
+      currentTarget: { value },
+    }: React.ChangeEvent<HTMLInputElement>) => {
       onValidate(value, validateEmail, setEmailError)
     }
 
-    const phoneValidate = ({ currentTarget: { value } }: any) => {
+    const phoneValidate = ({
+      currentTarget: { value },
+    }: React.ChangeEvent<HTMLInputElement>) => {
       onValidate(value, validatePhone, setPhoneError)
     }
 
-    const onValidate = (value: any, valudate: any, errorType: any) => {
+    const onValidate = (
+      value: string,
+      valudate: (value: string) => boolean,
+      errorType: (v: boolean) => void
+    ) => {
       if (valudate(value)) {
         errorType(false)
       } else {
@@ -92,14 +108,14 @@ const AddCardForm = memo(
       }
     }
 
-    const onFileChange = (file: any) => {
+    const onFileChange = (file: { name?: string; url?: string }) => {
       setFile({
         fileName: file.name,
         fileURL: file.url,
       })
     }
 
-    const submitForm = (e: any) => {
+    const submitForm = (e: React.FormEvent) => {
       e.preventDefault()
       const card = {
         login: true,
@@ -117,7 +133,7 @@ const AddCardForm = memo(
       if (formRef?.current) {
         ;(formRef.current as any).reset()
       }
-      setFile({ fileName: null, fileURL: null })
+      setFile({ fileName: undefined, fileURL: undefined })
       createCard(card)
       navigate('/main')
     }

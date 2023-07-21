@@ -1,12 +1,44 @@
-import React from 'react'
+import React, { type MemoExoticComponent } from 'react'
 import EditCardForm from './edit-card-form'
+import type ImageUploader from 'service/image-uploader'
+import type DropDown from 'utils/dropdown'
 
 interface IUpdateProps {
-  FileInput: any
-  userCard: any
-  dropDown: any
-  updateCard: any
-  deleteCard: any
+  FileInput: MemoExoticComponent<
+    (props: {
+      imageUploader?: ImageUploader
+      name: string
+      onFileChange?: (obj: { name?: string; url?: string }) => void
+    }) => React.JSX.Element
+  >
+  userCard?: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }
+  dropDown: DropDown
+  updateCard: (card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => void
+  deleteCard: () => void
   dark: boolean
 }
 const Update = ({

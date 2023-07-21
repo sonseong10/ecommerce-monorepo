@@ -9,7 +9,21 @@ import { BiUser, BiX, BiMoon } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 interface IMyMenuProps {
-  userCard: any
+  userCard:
+    | {
+        email: string
+        fileName: string
+        fileURL: string
+        login: boolean
+        msg: string
+        name: string
+        phone: string
+        rank: string
+        team: string
+        telephone: string
+        theme: string
+      }
+    | undefined
   isCard: number
   onLogout: () => void
   handleModeChange: () => void

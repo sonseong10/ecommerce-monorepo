@@ -5,27 +5,28 @@ import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 import styles from '../../../styles/modules/team-card.module.css'
 
 interface ITeamItemProps {
-  card: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
+  card:
+    | {
+        email: string
+        fileName: string
+        fileURL: string
+        login: boolean
+        msg: string
+        name: string
+        phone: string
+        rank: string
+        team: string
+        telephone: string
+        theme: string
+      }
+    | undefined
 }
 const TeamItem = ({ card }: ITeamItemProps) => {
-  const { name, login, theme, team, rank, fileURL } = card
-  const url = fileURL || DEFAULT_USER_IMG
+  const url = card?.fileURL || DEFAULT_USER_IMG
 
   return (
     <li className={styles.teamItem}>
-      <div className={`${styles.itemTop} ${getStyles(theme)}`}>
+      <div className={`${styles.itemTop} ${getStyles(card!.theme)}`}>
         <div className={styles.imgWrapper}>
           <figure className={styles.teamCardImg}>
             <img src={url} alt="" />
@@ -33,15 +34,17 @@ const TeamItem = ({ card }: ITeamItemProps) => {
           </figure>
           <div
             className={`${styles.dot} 
-              ${login ? styles.online : styles.offline}`}
+              ${card?.login ? styles.online : styles.offline}`}
           ></div>
         </div>
-        <span className="visually-hidden">{login ? 'online' : 'offline'}</span>
+        <span className="visually-hidden">
+          {card?.login ? 'online' : 'offline'}
+        </span>
       </div>
       <div className={styles.teamCardInfo}>
-        <h3 className={styles.userName}>{name}</h3>
-        <span className={styles.userTeam}>{team}</span>
-        <span className={styles.userRank}>{rank}</span>
+        <h3 className={styles.userName}>{card?.name}</h3>
+        <span className={styles.userTeam}>{card?.team}</span>
+        <span className={styles.userRank}>{card?.rank}</span>
       </div>
     </li>
   )

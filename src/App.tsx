@@ -122,11 +122,11 @@ const App = ({
 
   const onLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
     authService.login(event.currentTarget!.value, setMsg).then(
-      (data: any) =>
+      (data) =>
         data &&
-        (cards as any)[data.user.uid] &&
+        cards![data.user.uid] &&
         cardRepository.saveCard(data.user.uid, {
-          ...(cards as any)[data.user.uid],
+          ...cards![data.user.uid],
           login: true,
         })
     )
@@ -139,7 +139,23 @@ const App = ({
     userCard &&
       Object.keys(userCard!).length &&
       cardRepository.saveCard(userId, {
-        ...(cards as any)[userId],
+        ...(
+          cards as {
+            [key: string]: {
+              email: string
+              fileName: string
+              fileURL: string
+              login: boolean
+              msg: string
+              name: string
+              phone: string
+              rank: string
+              team: string
+              telephone: string
+              theme: string
+            }
+          }
+        )[userId],
         login: false,
       })
     setUserCard(undefined)
@@ -169,9 +185,25 @@ const App = ({
   }
 
   useEffect(() => {
-    cardRepository.syncCards((cards: any) => {
-      setCards(cards)
-    })
+    cardRepository.syncCards(
+      (cards: {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      }) => {
+        setCards(cards)
+      }
+    )
     return () => {}
   }, [cardRepository, userId])
 
@@ -181,15 +213,41 @@ const App = ({
     }
 
     if (cards && Object.keys(cards).find((item) => item === userId)) {
-      setUserCard({ ...(cards as any)[userId] })
+      setUserCard({ ...cards![userId] })
     } else {
       setUserCard(undefined)
     }
   }, [cards, userId])
 
-  const createOrUpdateCard = (card: any) => {
+  const createOrUpdateCard = (card: {
+    email: string
+    fileName: string
+    fileURL: string
+    login: boolean
+    msg: string
+    name: string
+    phone: string
+    rank: string
+    team: string
+    telephone: string
+    theme: string
+  }) => {
     setCards((cards) => {
-      const updated: any = { ...cards }
+      const updated: {
+        [key: string]: {
+          email: string
+          fileName: string
+          fileURL: string
+          login: boolean
+          msg: string
+          name: string
+          phone: string
+          rank: string
+          team: string
+          telephone: string
+          theme: string
+        }
+      } = { ...cards }
       updated[userId] = card
       return updated
     })
@@ -198,7 +256,7 @@ const App = ({
 
   const deleteCard = () => {
     setCards((cards) => {
-      const updated: any = { ...cards }
+      const updated = { ...cards }
       delete updated[userId]
       return updated
     })
@@ -209,26 +267,55 @@ const App = ({
     if (!userId) {
       return
     }
-    const stopSync = workRepository.syncWorks(userId, (works: any) => {
-      setWorks(works)
-    })
+    const stopSync = workRepository.syncWorks(
+      userId,
+      (works: {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      }) => {
+        setWorks(works)
+      }
+    )
     return () => {
       stopSync()
     }
   }, [userId, workRepository])
 
-  const createOrUpdateWork = (work: any) => {
+  const createOrUpdateWork = (work: {
+    contents: string
+    time: number
+    title: string
+  }) => {
     setWorks((works) => {
-      const updated: any = { ...works }
+      const updated: {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      } = { ...works }
       updated[userId] = work
       return updated
     })
     workRepository.saveWork(userId, work)
   }
 
-  const deleteWork = (work: any) => {
+  const deleteWork = (work: {
+    contents: string
+    time: number
+    title: string
+  }) => {
     setWorks((works) => {
-      const updated: any = { ...works }
+      const updated: {
+        [key: string]: {
+          contents: string
+          time: number
+          title: string
+        }
+      } = { ...works }
       delete updated[work.time]
       return updated
     })
@@ -236,7 +323,7 @@ const App = ({
   }
 
   useEffect(() => {
-    localStorage.setItem('darkMode', dark as any)
+    localStorage.setItem('darkMode', JSON.stringify(dark))
   }, [dark])
 
   const handleModeChange = useCallback(() => {
