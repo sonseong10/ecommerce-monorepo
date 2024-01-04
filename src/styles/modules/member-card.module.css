@@ -18,7 +18,7 @@
 
 .meberItem {
   margin-bottom: 1rem;
- width: 100%;
+  width: 100%;
 }
 
 .card {
@@ -183,10 +183,6 @@
   }
 
   .meberItem {
-<<<<<<< HEAD
-    width: calc(100% /3);
-=======
     width: calc(100% / 2);
->>>>>>> 8cf8ee5 (내부스타일 수정)
   }
 }

@@ -37,13 +37,8 @@ const MemberItem = ({ card, uid }: IMemberItemProps) => {
             <img src={url} alt="" />
             <figcaption className="visually-hidden">사용자 이미지</figcaption>
           </figure>
-<<<<<<< HEAD:src/components/search/member-card/member-item.tsx
-          <strong className={styles.authName}>{card?.name}</strong>
-          <p className={styles.authMsg}>{card?.msg}</p>
-=======
-          <strong className={styles.authName}>{name}</strong>
-          <p className={styles.authMsg}>{msg ? msg : '내용없음'}</p>
->>>>>>> 8cf8ee5 (내부스타일 수정):src/components/search/member-card/member-item.jsx
+          <strong className={styles.authName}>{card!.name}</strong>
+          <p className={styles.authMsg}>{card!.msg ? card!.msg : '내용없음'}</p>
         </div>
         <footer className={styles.cardFooter}>
           <dl className={styles.authDetailList}>

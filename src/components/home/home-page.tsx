@@ -70,13 +70,8 @@ const HomePage = ({
           <div className={styles.articleLeft}>
             <article className={`${styles.work}`}>
               <div className={styles.articleTitle}>
-<<<<<<< HEAD:src/components/home/home-page.tsx
-                <h2>업무</h2>
-                <strong>{works ? Object.keys(works).length : 0}</strong>
-=======
                 <h2>작업중인 업무</h2>
-                <strong>{Object.keys(works).length}</strong>
->>>>>>> 8cf8ee5 (내부스타일 수정):src/components/home/home-page.jsx
+                <strong>{Object.keys(works!).length}</strong>
               </div>
               <WorkLinkList works={works} dark={dark}></WorkLinkList>
             </article>
