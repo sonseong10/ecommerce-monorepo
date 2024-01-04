@@ -183,6 +183,10 @@
   }
 
   .meberItem {
+<<<<<<< HEAD
     width: calc(100% /3);
+=======
+    width: calc(100% / 2);
+>>>>>>> 8cf8ee5 (내부스타일 수정)
   }
 }
