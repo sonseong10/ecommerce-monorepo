@@ -4,11 +4,7 @@ import type { StorybookConfig } from "@storybook/react-webpack5";
 const config: StorybookConfig = {
   stories: [
     "../stories/Introduction.stories.mdx",
-    // "../stories/guide/*.stories.@(mdx)",
-    // "../stories/components/**/*.stories.@(mdx)",
-    // "../stories/components/*.stories.@(mdx)",
-    // "../stories/customHook/**/*.stories.@(mdx)",
-    // "../stories/utils/**/*.stories.@(mdx)",
+    "../stories/components/**/*.stories.@(mdx)",
     "../stories/design/*.stories.@(mdx)",
     "../stories/**/*.stories.@(ts|tsx)",
   ],
