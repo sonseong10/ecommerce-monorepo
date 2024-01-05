@@ -9,3 +9,7 @@
 - styled-component v6.x
 - storybook v7.x
 - typescript v5.x
+
+### Prebiew
+
+<img width="1599" alt="스크린샷 2024-01-05 오후 6 46 24" src="https://github.com/sonseong10/my-storybook/assets/68719427/85f0ad3d-3a6a-422c-93ed-2c0e6b82d658">
