@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006 -s public",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_4d5b030008896d5"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "@babel/preset-typescript": "^7.23.3",
     "@storybook/addon-actions": "^7.6.7",
     "@storybook/addon-essentials": "^7.6.7",
+    "@storybook/addon-interactions": "^7.6.7",
     "@storybook/addon-links": "^7.6.7",
     "@storybook/addon-mdx-gfm": "^7.6.7",
     "@storybook/html": "^7.6.7",
@@ -25,6 +27,8 @@
     "@types/styled-components": "^5.1.34",
     "babel-loader": "^9.1.3",
     "babel-plugin-styled-components": "^2.1.4",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "chromatic": "^10.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
@@ -43,7 +47,8 @@
     "html-entities": "^2.4.0",
     "styled-components": "^5.3.9",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "fsevents": "*"
   },
   "overrides": {
     "typescript": "^5.3.3",
@@ -88,5 +93,7 @@
   },
   "browser": {
     "crypto": false
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "pure-storybook@1.0.0"
 }
