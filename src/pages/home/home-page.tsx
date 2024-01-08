@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import TeamList from './team-card/team-list'
-import LodingSpinner from '../common/loding-spinner'
+import LodingSpinner from '../../components/common/loding-spinner'
 
 import styles from '../../styles/modules/home-page.module.css'
 import WorkLinkList from './work-link-list'
