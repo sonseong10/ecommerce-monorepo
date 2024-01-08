@@ -8,7 +8,6 @@
 
 /* NOTE: home section */
 .workLinkList {
-  height: 30rem;
   overflow-y: scroll;
 }
 
@@ -66,9 +65,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .workLinkList {
-    height: 40rem;
-  }
+ 
 
   .workLinkList .workItem a:hover {
     background-color: green;
@@ -81,11 +78,7 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .workLinkList {
-    height: 50rem;
-  }
-}
+
 
 /* NOTE: work section */
 .workList {

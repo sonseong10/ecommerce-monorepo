@@ -7,7 +7,7 @@ import styles from '../../styles/modules/mobile-navbar.module.css'
 
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 import Logo from '../../assets/images/logo.svg'
-import DarkLogo from '../../assets/images/darktheme-logo.svg'
+// import DarkLogo from '../../assets/images/darktheme-logo.svg'
 
 interface IGlobalHeaderProps {
   userId: string
@@ -72,7 +72,7 @@ const GlobalHeader = memo(
             <Link to={userId ? '/' : '#'}>
               <img
                 className="logo-img"
-                src={!dark ? Logo : DarkLogo}
+                src={!dark ? Logo : ''}
                 alt="WhoMember"
               />
             </Link>

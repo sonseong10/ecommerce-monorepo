@@ -62,14 +62,6 @@ const AddWorkForm = ({
   return (
     <>
       <section className={styles.editor}>
-        <header className={styles.editorHeader}>
-          <h2>
-            Markdown Editor — Only press button to save
-            <span role="img" aria-label="flower">
-              🌹
-            </span>
-          </h2>
-        </header>
         <form className={styles.form} ref={formRef}>
           <div className={styles.inputGroup}>
             <input
@@ -93,7 +85,7 @@ const AddWorkForm = ({
             className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.previewBtn}`}
             onClick={onTogglePrview}
           >
-            {preview ? 'Hide Preview' : 'Show Preview'}
+            {preview ? '미리보기 숨기기' : '미리보기'}
           </button>
 
           <button

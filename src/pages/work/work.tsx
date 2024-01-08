@@ -48,18 +48,15 @@ const Work = ({
     <div className="col-sm-4 col-md-10 col-lg-9">
       <div className={`${styles.workGroup} ${dark && styles.isDark}`}>
         <header className={styles.header}>
-          <h1>Work List</h1>
+          <h1>일지목록</h1>
           <button
             className={`${buttonStyle.baseBtn} ${buttonStyle.ghostBtn} ${styles.openBtn} `}
             onClick={onOpenAddForm}
             type="button"
           >
             <BiEdit aria-hidden />
-            <span className="visually-hidden">업무 추가화면 열기</span>
+            <span>{isOpen ? '작성 취소' : '일지 작성'}</span>
           </button>
-          <span className={styles.toolTip}>
-            {isOpen ? 'Close Form' : 'Open Form'}
-          </span>
         </header>
         {isOpen && (
           <AddWorkForm

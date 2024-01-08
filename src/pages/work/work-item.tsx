@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { BiPencil, BiTrash } from 'react-icons/bi'
-import { formatDate } from '../../utils/filters'
+import moment from 'moment'
 
 import buttonStyles from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work-list.module.css'
@@ -25,8 +25,6 @@ const WorkItem = ({
   dark,
 }: IWorkItemProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-
-  const date = formatDate(work?.time.toString())
 
   const [isOpen, setIsOpen] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
@@ -61,7 +59,9 @@ const WorkItem = ({
         type="button"
       >
         <h2 className={styles.title}>{work?.title}</h2>
-        <strong className={styles.date}>{date}</strong>
+        <strong className={styles.date}>
+          {moment(work?.time).format('YYYY-MM-DD')}
+        </strong>
       </button>
 
       <div

@@ -34,7 +34,7 @@ const Search = ({ cards, onMenuChange, dark }: ISearchProps) => {
 
   useEffect(() => {
     onMenuChange('search')
-  })
+  }, [onMenuChange])
 
   const onSearchValue = () => {
     setSerchValue(searchRef.current?.value)

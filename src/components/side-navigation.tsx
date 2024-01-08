@@ -2,14 +2,14 @@ import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 import MyMenu from './common/my-menu'
-import { BiHomeAlt, BiGroup, BiFile } from 'react-icons/bi'
+import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar } from 'react-icons/bi'
 
 import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/sidebar.module.css'
 
 import Logo from '../assets/images/logo.svg'
-import DarkLogo from '../assets/images/darktheme-logo.svg'
-import TabletLogo from '../assets/images/tablet-logo.svg'
+import DarkLogo from '../assets/images/dark-logo.svg'
+// import TabletLogo from '../assets/images/tablet-logo.svg'
 
 interface ISideNavigationProps {
   ToggleOverlay: () => void
@@ -30,7 +30,7 @@ interface ISideNavigationProps {
   loding: boolean
   isCard: number
   onLogout: () => void
-  menuActive: 'home' | 'search' | 'work'
+  menuActive: 'home' | 'search' | 'work' | 'product' | 'delivery'
   handleModeChange: () => void
   dark: boolean
 }
@@ -63,7 +63,7 @@ const SideNavigation = memo(
             </strong>
             <strong className={`md-only ${styles.tabletLogo}`}>
               <Link to={userId ? '/' : '#'}>
-                <img className="logo-img" src={TabletLogo} alt="WhoMember" />
+                <img className="logo-img" src={Logo} alt="WhoMember" />
                 <span className="visually-hidden">Logo Image</span>
               </Link>
             </strong>
@@ -81,7 +81,7 @@ const SideNavigation = memo(
                     ${!userId && styles.isDisable}`}
                   >
                     <BiHomeAlt />
-                    Home
+                    메인
                   </Link>
                 </li>
                 <li className="snb-item">
@@ -92,7 +92,7 @@ const SideNavigation = memo(
                     ${!userId && styles.isDisable}`}
                   >
                     <BiGroup />
-                    Search
+                    사원찾기
                   </Link>
                 </li>
                 <li className="snb-item">
@@ -103,7 +103,29 @@ const SideNavigation = memo(
                     ${!userId && styles.isDisable}`}
                   >
                     <BiFile />
-                    Work
+                    업무일지
+                  </Link>
+                </li>
+                <li className="snb-item">
+                  <Link
+                    to={isCard ? '/product' : '#'}
+                    className={`${styles.snbItemButton} 
+                    ${menuActive === 'product' && styles.isActive} 
+                    ${!userId && styles.isDisable}`}
+                  >
+                    <BiCart />
+                    상품관리
+                  </Link>
+                </li>
+                <li className="snb-item">
+                  <Link
+                    to={isCard ? '/delivery' : '#'}
+                    className={`${styles.snbItemButton} 
+                    ${menuActive === 'delivery' && styles.isActive} 
+                    ${!userId && styles.isDisable}`}
+                  >
+                    <BiCar />
+                    배송관리
                   </Link>
                 </li>
               </ul>

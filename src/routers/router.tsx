@@ -10,6 +10,7 @@ import Work from '../pages/work/work'
 import React, { useEffect } from 'react'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'
+import ProductList from 'pages/product/list'
 
 interface IRedirectProps {
   router: string
@@ -72,7 +73,7 @@ interface IRouterProps {
     telephone: string
     theme: string
   }
-  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  onMenuChange: (v: 'search' | 'work' | 'home' | 'product') => void
   createCard: (card: {
     email: string
     fileName: string
@@ -206,6 +207,10 @@ const Router = ({
           path="detail"
           element={<Detail cards={cards} dark={dark}></Detail>}
         ></Route>
+        <Route
+          path="product"
+          element={<ProductList onMenuChange={onMenuChange} dark={dark} />}
+        />
         <Route path="*" element={<NotPage dark={dark}></NotPage>}></Route>
       </Route>
     </Routes>
