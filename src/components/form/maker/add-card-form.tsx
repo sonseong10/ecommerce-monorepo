@@ -117,6 +117,7 @@ const AddCardForm = memo(
 
     const submitForm = (e: React.FormEvent) => {
       e.preventDefault()
+
       const card = {
         login: true,
         name: nameRef.current!.value,
@@ -130,11 +131,14 @@ const AddCardForm = memo(
         fileName: file.fileName || '',
         fileURL: file.fileURL || '',
       }
+
       if (formRef?.current) {
-        ;(formRef.current as any).reset()
+        formRef.current.reset()
       }
+
       setFile({ fileName: undefined, fileURL: undefined })
       createCard(card)
+
       navigate('/main')
     }
 

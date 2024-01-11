@@ -4,38 +4,13 @@ import TeamItem from './team-item'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 
 import styles from '../../../styles/modules/team-card.module.css'
+import type { ICardVo } from 'types/grobal-type'
 
 interface ITeamListProps {
-  cards:
-    | {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
-      }
-    | undefined
-  userCard?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
+  cards?: {
+    [key: string]: ICardVo
   }
+  userCard?: ICardVo
   dark: boolean
 }
 const TeamList = ({ cards, userCard, dark }: ITeamListProps) => {

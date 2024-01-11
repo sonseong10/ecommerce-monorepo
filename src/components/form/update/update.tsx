@@ -2,6 +2,7 @@ import React, { type MemoExoticComponent } from 'react'
 import EditCardForm from './edit-card-form'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IUpdateProps {
   FileInput: MemoExoticComponent<
@@ -11,36 +12,13 @@ interface IUpdateProps {
       onFileChange?: (obj: { name?: string; url?: string }) => void
     }) => React.JSX.Element
   >
-  userCard?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
+  userCard?: ICardVo
   dropDown: DropDown
-  updateCard: (card: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }) => void
+  updateCard: (card: ICardVo) => void
   deleteCard: () => void
   dark: boolean
 }
+
 const Update = ({
   FileInput,
   userCard,

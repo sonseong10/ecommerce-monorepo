@@ -3,23 +3,10 @@ import React from 'react'
 import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 
 import styles from '../../../styles/modules/team-card.module.css'
+import type { ICardVo } from 'types/grobal-type'
 
 interface ITeamItemProps {
-  card:
-    | {
-        email: string
-        fileName: string
-        fileURL: string
-        login: boolean
-        msg: string
-        name: string
-        phone: string
-        rank: string
-        team: string
-        telephone: string
-        theme: string
-      }
-    | undefined
+  card?: ICardVo
 }
 const TeamItem = ({ card }: ITeamItemProps) => {
   const url = card?.fileURL || DEFAULT_USER_IMG

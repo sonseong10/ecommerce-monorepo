@@ -4,20 +4,19 @@ import NotFound from '../../components/errors/not-found'
 import styles from '../../styles/modules/work-list.module.css'
 
 interface IWorkListProps {
-  works:
-    | {
-        [key: string]: {
-          contents: string
-          time: number
-          title: string
-        }
-      }
-    | undefined
+  works?: {
+    [key: string]: {
+      contents: string
+      time: number
+      title: string
+    }
+  }
   renderMarkdown: (source?: string) => string
   updateWork: (work: { contents: string; time: number; title: string }) => void
   deleteWork: (work: { contents: string; time: number; title: string }) => void
   dark: boolean
 }
+
 const WorkList = ({
   works,
   renderMarkdown,

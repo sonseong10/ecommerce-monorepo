@@ -5,6 +5,7 @@ import styles from '../../styles/modules/error-page.module.css'
 interface INotPageProps {
   dark: boolean
 }
+
 const NotPage = memo(({ dark }: INotPageProps) => {
   return (
     <div className="col-sm-4 col-md-9">

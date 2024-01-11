@@ -53,7 +53,7 @@ const AuthPopup = memo(
             onClick={ToggleOverlay}
             type="button"
           >
-            Cancle
+            취소
           </button>
         </footer>
       </section>

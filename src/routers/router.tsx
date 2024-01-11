@@ -11,6 +11,7 @@ import React, { useEffect } from 'react'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'
 import ProductList from 'pages/product/list'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IRedirectProps {
   router: string
@@ -35,19 +36,7 @@ interface IRouterProps {
   userId: string
   cards:
     | {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
+        [key: string]: ICardVo
       }
     | undefined
   works:
@@ -60,46 +49,10 @@ interface IRouterProps {
       }
     | undefined
   isCard: number
-  userCard?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
-  onMenuChange: (v: 'search' | 'work' | 'home' | 'product') => void
-  createCard: (card: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }) => void
-  updateCard: (card: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }) => void
+  userCard?: ICardVo
+  onMenuChange: (v: string) => void
+  createCard: (card: ICardVo) => void
+  updateCard: (card: ICardVo) => void
   deleteCard: () => void
   createWork: (work: { contents: string; time: number; title: string }) => void
   updateWork: (work: { contents: string; time: number; title: string }) => void

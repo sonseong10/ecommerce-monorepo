@@ -9,28 +9,17 @@ import styles from '../styles/modules/sidebar.module.css'
 
 import Logo from '../assets/images/logo.svg'
 import DarkLogo from '../assets/images/dark-logo.svg'
+import type { ICardVo } from 'types/grobal-type'
 // import TabletLogo from '../assets/images/tablet-logo.svg'
 
 interface ISideNavigationProps {
   ToggleOverlay: () => void
   userId: string
-  userCard?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
+  userCard?: ICardVo
   loding: boolean
   isCard: number
   onLogout: () => void
-  menuActive: 'home' | 'search' | 'work' | 'product' | 'delivery'
+  menuActive: string
   handleModeChange: () => void
   dark: boolean
 }

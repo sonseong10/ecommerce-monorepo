@@ -1,24 +1,9 @@
+import type { ICardVo } from 'types/grobal-type'
 import { firebaseDatabase } from './firebase'
 import { ref, onValue, off, set, remove } from 'firebase/database'
 
 class CardRepository {
-  syncCards(
-    onUpdate: (value: {
-      [key: string]: {
-        email: string
-        fileName: string
-        fileURL: string
-        login: boolean
-        msg: string
-        name: string
-        phone: string
-        rank: string
-        team: string
-        telephone: string
-        theme: string
-      }
-    }) => void
-  ) {
+  syncCards(onUpdate: (value: { [key: string]: ICardVo }) => void) {
     const query = ref(firebaseDatabase, `cards`)
     onValue(query, (snapshot) => {
       const value = snapshot.val()

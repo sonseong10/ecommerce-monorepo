@@ -13,6 +13,7 @@ import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
 import type DropDown from 'utils/dropdown'
 import type ImageUploader from 'service/image-uploader'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IEditCardFormProps {
   FileInput: React.MemoExoticComponent<
@@ -22,36 +23,13 @@ interface IEditCardFormProps {
       onFileChange?: (obj: { name?: string; url?: string }) => void
     }) => React.JSX.Element
   >
-  userCard?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
+  userCard?: ICardVo
   dropDown: DropDown
-  updateCard: (card: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }) => void
+  updateCard: (card: ICardVo) => void
   deleteCard: () => void
   dark: boolean
 }
+
 const EditCardForm = ({
   FileInput,
   userCard,

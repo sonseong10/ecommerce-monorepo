@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { BiHeartCircle } from 'react-icons/bi'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
@@ -9,31 +9,30 @@ interface IMsgPopupProps {
   magPopup: boolean
   toggleMsgPopup: () => void
 }
-const MsgPopup = memo(
-  ({ popupMsg, magPopup, toggleMsgPopup }: IMsgPopupProps) => {
-    return (
-      <section className={`${styles.msgPopup} ${magPopup && styles.isActive}`}>
-        <header className={styles.popupHeader}>
-          <BiHeartCircle />
-        </header>
 
-        <div className={styles.popupBody}>
-          <h2 className={styles.title}>{popupMsg.title}</h2>
-          <p className={styles.desc}>{popupMsg.desc}</p>
-        </div>
+const MsgPopup = ({ popupMsg, magPopup, toggleMsgPopup }: IMsgPopupProps) => {
+  return (
+    <section className={`${styles.msgPopup} ${magPopup && styles.isActive}`}>
+      <header className={styles.popupHeader}>
+        <BiHeartCircle />
+      </header>
 
-        <footer className={styles.popupFooter}>
-          <button
-            className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.closeBtn}`}
-            onClick={toggleMsgPopup}
-            type="button"
-          >
-            Close
-          </button>
-        </footer>
-      </section>
-    )
-  }
-)
+      <div className={styles.popupBody}>
+        <h2 className={styles.title}>{popupMsg.title}</h2>
+        <p className={styles.desc}>{popupMsg.desc}</p>
+      </div>
 
-export default MsgPopup
+      <footer className={styles.popupFooter}>
+        <button
+          className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.closeBtn}`}
+          onClick={toggleMsgPopup}
+          type="button"
+        >
+          Close
+        </button>
+      </footer>
+    </section>
+  )
+}
+
+export default React.memo(MsgPopup)

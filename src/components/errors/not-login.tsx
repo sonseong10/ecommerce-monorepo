@@ -7,6 +7,7 @@ interface INotLoginProps {
   loding: boolean
   dark: boolean
 }
+
 const NotLogin = memo(({ loding, dark }: INotLoginProps) => {
   return (
     <div className="col-sm-4 col-md-9">

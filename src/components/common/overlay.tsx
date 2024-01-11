@@ -1,11 +1,11 @@
-import React, { memo } from 'react'
+import React from 'react'
 import styles from '../../styles/modules/common.module.css'
 
 interface IOverlayProps {
   overlay: boolean
   ToggleOverlay: () => void
 }
-const Overlay = memo(({ overlay, ToggleOverlay }: IOverlayProps) => {
+const Overlay = ({ overlay, ToggleOverlay }: IOverlayProps) => {
   return (
     <div
       className={`${styles.overlay} ${overlay && styles.isActive}`}
@@ -14,6 +14,6 @@ const Overlay = memo(({ overlay, ToggleOverlay }: IOverlayProps) => {
       aria-hidden
     ></div>
   )
-})
+}
 
-export default Overlay
+export default React.memo(Overlay)

@@ -22,6 +22,7 @@ import type DropDown from 'utils/dropdown'
 import type AuthService from 'service/auth_service'
 import type { User } from 'firebase/auth'
 import type ImageUploader from 'service/image-uploader'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IAppProps {
   FileInput: MemoExoticComponent<
@@ -53,19 +54,7 @@ const App = ({
 
   const [cards, setCards] = useState<
     | {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
+        [key: string]: ICardVo
       }
     | undefined
   >(undefined)
@@ -80,31 +69,15 @@ const App = ({
     | undefined
   >(undefined)
 
-  const [userCard, setUserCard] = useState<
-    | {
-        email: string
-        fileName: string
-        fileURL: string
-        login: boolean
-        msg: string
-        name: string
-        phone: string
-        rank: string
-        team: string
-        telephone: string
-        theme: string
-      }
-    | undefined
-  >(undefined)
+  const [userCard, setUserCard] = useState<ICardVo | undefined>(undefined)
   const [popupMsg, setpopupMsg] = useState({ title: '', desc: '' })
 
-  const [menuActive, setMenuActive] = useState<'search' | 'work' | 'home'>(
-    'home'
-  )
+  const [menuActive, setMenuActive] = useState<string>('home')
   const [loding, setLoding] = useState(false)
   const [authPopup, setAuthPopup] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [magPopup, setMagPopup] = useState(false)
+
   const [dark, setDark] = useState(localStorage.getItem('darkMode') === 'true')
 
   useEffect(() => {
@@ -141,19 +114,7 @@ const App = ({
       cardRepository.saveCard(userId, {
         ...(
           cards as {
-            [key: string]: {
-              email: string
-              fileName: string
-              fileURL: string
-              login: boolean
-              msg: string
-              name: string
-              phone: string
-              rank: string
-              team: string
-              telephone: string
-              theme: string
-            }
+            [key: string]: ICardVo
           }
         )[userId],
         login: false,
@@ -185,25 +146,9 @@ const App = ({
   }
 
   useEffect(() => {
-    cardRepository.syncCards(
-      (cards: {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
-      }) => {
-        setCards(cards)
-      }
-    )
+    cardRepository.syncCards((cards: { [key: string]: ICardVo }) => {
+      setCards(cards)
+    })
     return () => {}
   }, [cardRepository, userId])
 
@@ -219,34 +164,10 @@ const App = ({
     }
   }, [cards, userId])
 
-  const createOrUpdateCard = (card: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }) => {
+  const createOrUpdateCard = (card: ICardVo) => {
     setCards((cards) => {
       const updated: {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
+        [key: string]: ICardVo
       } = { ...cards }
       updated[userId] = card
       return updated
@@ -343,9 +264,9 @@ const App = ({
     setMagPopup(!magPopup)
   }, [magPopup])
 
-  const onMenuChange = useCallback((value: 'search' | 'work' | 'home') => {
+  const onMenuChange = (value: string) => {
     setMenuActive(value)
-  }, [])
+  }
 
   return (
     <div className={`app ${dark && 'isDark'}`}>

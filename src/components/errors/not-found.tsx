@@ -5,6 +5,7 @@ import styles from '../../styles/modules/error-page.module.css'
 interface INotFoundProps {
   dark: boolean
 }
+
 const NotFound = memo(({ dark }: INotFoundProps) => {
   return (
     <section className={`${styles.error} ${dark && styles.isDark}`}>

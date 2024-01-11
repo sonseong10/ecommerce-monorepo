@@ -5,49 +5,21 @@ import LodingSpinner from '../../components/common/loding-spinner'
 
 import styles from '../../styles/modules/home-page.module.css'
 import WorkLinkList from './work-link-list'
+import type { ICardVo } from 'types/grobal-type'
 interface IHomePageProps {
   isCard: number
-  cards:
-    | {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
-      }
-    | undefined
-  works:
-    | {
-        [key: string]: {
-          contents: string
-          time: number
-          title: string
-        }
-      }
-    | undefined
-  userCard:
-    | {
-        email: string
-        fileName: string
-        fileURL: string
-        login: boolean
-        msg: string
-        name: string
-        phone: string
-        rank: string
-        team: string
-        telephone: string
-        theme: string
-      }
-    | undefined
+  cards?: {
+    [key: string]: ICardVo
+  }
+
+  works?: {
+    [key: string]: {
+      contents: string
+      time: number
+      title: string
+    }
+  }
+  userCard?: ICardVo
   onMenuChange: (v: 'search' | 'work' | 'home') => void
   dark: boolean
 }

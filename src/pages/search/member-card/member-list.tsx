@@ -3,25 +3,12 @@ import React from 'react'
 import styles from '../../../styles/modules/member-card.module.css'
 
 import MemberItem from './member-item'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IMemberListProps {
-  cards:
-    | {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
-      }
-    | undefined
+  cards?: {
+    [key: string]: ICardVo
+  }
   searchValue?: string
   dark: boolean
 }

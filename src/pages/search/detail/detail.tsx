@@ -6,27 +6,15 @@ import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/detail.module.css'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IDetailProps {
-  cards:
-    | {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
-      }
-    | undefined
+  cards?: {
+    [key: string]: ICardVo
+  }
   dark: boolean
 }
+
 const Detail = ({ cards, dark }: IDetailProps) => {
   const [card, setCard] = useState({})
   const location = useLocation()
@@ -39,7 +27,7 @@ const Detail = ({ cards, dark }: IDetailProps) => {
   const replaceMsg = msg && formatMsg(msg)
 
   return (
-    <div className={`col-sm-4 col-md-9`}>
+    <div className="col-sm-4 col-md-9">
       <div className={`${styles.detailGroup} ${dark && styles.isDark}`}>
         <header className={styles.header}>
           <h2 className={styles.pageTitle}>사용자 정보</h2>

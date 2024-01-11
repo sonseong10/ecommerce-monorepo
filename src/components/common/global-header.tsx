@@ -7,23 +7,11 @@ import styles from '../../styles/modules/mobile-navbar.module.css'
 
 import DEFAULT_USER_IMG from '../../assets/images/img-user-default.png'
 import Logo from '../../assets/images/logo.svg'
-// import DarkLogo from '../../assets/images/darktheme-logo.svg'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IGlobalHeaderProps {
   userId: string
-  userCard?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
+  userCard?: ICardVo
   toggleOverlay: () => void
   toggleOpenSideBar: () => void
   dark: boolean

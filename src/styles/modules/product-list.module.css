@@ -1,0 +1,26 @@
+@value overlay-black, primary, secondary, white, logout, light-background ,background,  green, green-active  from '../constants/color.css';
+
+@value dark-primary, dark-secondary, dark-background, dark-light-background from '../constants/dark-theme.css';
+
+@value overlay-level, popup-level, sidebar-level from '../constants/z-index.css';
+
+@value font-size-14,line-height-14,letter-spacing-14, font-size-16,line-height-16,letter-spacing-16, font-size-24, line-height-24, letter-spacing-24 from '../constants/typography.css';
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.title h3 {
+  font-size: font-size-24;
+  line-height: line-height-24;
+  letter-spacing: letter-spacing-24;
+}
+
+@media screen and (min-width: 768px) {
+  .product {
+    height: 100vh;
+    padding: 2.4rem 0;
+  }
+}

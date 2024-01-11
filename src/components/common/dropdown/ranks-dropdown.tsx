@@ -4,36 +4,13 @@ import DropDown from './dropdown'
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/dropdown.module.css'
 import DropDownProps from 'utils/dropdown'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IRanksDropdownProps {
   dropDown: DropDownProps
   rankRef?: React.LegacyRef<HTMLButtonElement>
-  userCard?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
-  updateCard?: (obj: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }) => void
+  userCard?: ICardVo
+  updateCard?: (obj: ICardVo) => void
   dark: boolean
 }
 

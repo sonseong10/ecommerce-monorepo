@@ -3,23 +3,13 @@ import React from 'react'
 import styles from '../../../styles/modules/member-card.module.css'
 import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
 import { Link } from 'react-router-dom'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IMemberItemProps {
-  card?: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }
+  card?: ICardVo
   uid: string
 }
+
 const MemberItem = ({ card, uid }: IMemberItemProps) => {
   const url = card?.fileURL || DEFAULT_USER_IMG
   return (

@@ -7,7 +7,7 @@ import styles from '../../styles/modules/mobile-navbar.module.css'
 
 interface IGlobalFooterProps {
   userId: string
-  menuActive: 'search' | 'home' | 'work'
+  menuActive: string
   dark: boolean
 }
 

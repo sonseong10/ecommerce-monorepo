@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import AddCardForm from './add-card-form'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'
+import type { ICardVo } from 'types/grobal-type'
 
 interface IMakerProps {
   FileInput: React.MemoExoticComponent<
@@ -14,19 +15,7 @@ interface IMakerProps {
   >
   dropDown: DropDown
   isCard: number
-  createCard: (card: {
-    email: string
-    fileName: string
-    fileURL: string
-    login: boolean
-    msg: string
-    name: string
-    phone: string
-    rank: string
-    team: string
-    telephone: string
-    theme: string
-  }) => void
+  createCard: (card: ICardVo) => void
   onMenuChange: (v: 'search' | 'work' | 'home') => void
   dark: boolean
 }

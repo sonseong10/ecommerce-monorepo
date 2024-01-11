@@ -4,26 +4,13 @@ import { BiSearch } from 'react-icons/bi'
 import styles from '../../styles/modules/search.module.css'
 import MemberList from './member-card/member-list'
 import type DropDown from 'utils/dropdown'
+import type { ICardVo } from 'types/grobal-type'
 
 interface ISearchProps {
-  cards:
-    | {
-        [key: string]: {
-          email: string
-          fileName: string
-          fileURL: string
-          login: boolean
-          msg: string
-          name: string
-          phone: string
-          rank: string
-          team: string
-          telephone: string
-          theme: string
-        }
-      }
-    | undefined
-  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  cards?: {
+    [key: string]: ICardVo
+  }
+  onMenuChange: (v: string) => void
   dark: boolean
   dropDown?: DropDown
 }

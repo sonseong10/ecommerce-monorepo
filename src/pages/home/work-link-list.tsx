@@ -3,17 +3,16 @@ import { Link } from 'react-router-dom'
 import styles from '../../styles/modules/work-list.module.css'
 
 interface IWorkLinkListProps {
-  works:
-    | {
-        [key: string]: {
-          contents: string
-          time: number
-          title: string
-        }
-      }
-    | undefined
+  works?: {
+    [key: string]: {
+      contents: string
+      time: number
+      title: string
+    }
+  }
   dark: boolean
 }
+
 const WorkLinkList = ({ works, dark }: IWorkLinkListProps) => {
   return (
     <ul className={`${styles.workLinkList} ${dark && styles.isDark}`}>
