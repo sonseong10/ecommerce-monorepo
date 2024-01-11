@@ -48,7 +48,7 @@ const SideNavigation = memo(
           <h2 className="visually-hidden">Tablet and Desktop side Bar</h2>
           <header className={styles.header}>
             <strong className={`lg-only ${styles.logo}`}>
-              <Link to={userId ? '/' : '#'}>
+              <Link to={userId ? '/main' : '#'}>
                 <img
                   className="logo-img"
                   src={!dark ? Logo : DarkLogo}
@@ -58,7 +58,7 @@ const SideNavigation = memo(
               </Link>
             </strong>
             <strong className={`md-only ${styles.tabletLogo}`}>
-              <Link to={userId ? '/' : '#'}>
+              <Link to={userId ? '/main' : '#'}>
                 <img className="logo-img" src={Logo} alt="WhoMember" />
                 <span className="visually-hidden">Logo Image</span>
               </Link>
@@ -71,7 +71,7 @@ const SideNavigation = memo(
               <ul className="snb-list">
                 <li className="snb-item">
                   <Link
-                    to={userId ? '/' : '#'}
+                    to={userId ? '/main' : '#'}
                     className={`${styles.snbItemButton} 
                     ${menuActive === 'home' && styles.isActive}
                     ${!userId && styles.isDisable}`}
