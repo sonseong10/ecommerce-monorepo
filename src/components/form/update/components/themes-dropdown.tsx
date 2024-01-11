@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
 
-import DropDown from './dropdown'
-
-import buttonStyles from '../../../styles/modules/buttons.module.css'
-import styles from '../../../styles/modules/dropdown.module.css'
+import buttonStyles from 'styles/modules/buttons.module.css'
+import styles from 'styles/modules/dropdown.module.css'
 import DropDownProps from 'utils/dropdown'
 import type { ICardVo } from 'types/grobal-type'
+import DropDown from 'components/common/dropdown/dropdown'
 
 interface IThemesDropdownProps {
   dropDown: DropDownProps
@@ -73,7 +72,7 @@ const ThemesDropdown = ({
       </button>
       <div className={styles.themesList}>
         <DropDown
-          listItems={dropDown.getThemes()}
+          listItems={items}
           handleEvent={handleThemesValue}
           dark={dark}
         />

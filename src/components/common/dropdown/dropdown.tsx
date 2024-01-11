@@ -12,23 +12,21 @@ const DropDown = memo(({ listItems, handleEvent, dark }: IDropDownProps) => {
   }
 
   return (
-    <div>
-      <ul className={`${styles.dropdownList} ${dark && styles.isDark}`}>
-        {listItems.map((item) => {
-          return (
-            <li className={styles.listItem} key={item.id}>
-              <button
-                className={styles.listBtn}
-                onClick={onValueChange.bind(null, item.id)}
-                type="button"
-              >
-                {item.value}
-              </button>
-            </li>
-          )
-        })}
-      </ul>
-    </div>
+    <ul className={`${styles.dropdownList} ${dark && styles.isDark}`}>
+      {listItems.map((item) => {
+        return (
+          <li className={styles.listItem} key={item.id}>
+            <button
+              className={styles.listBtn}
+              onClick={onValueChange.bind(null, item.id)}
+              type="button"
+            >
+              {item.value}
+            </button>
+          </li>
+        )
+      })}
+    </ul>
   )
 })
 

@@ -2,7 +2,14 @@ import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
 import MyMenu from './common/my-menu'
-import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar } from 'react-icons/bi'
+import {
+  BiHomeAlt,
+  BiGroup,
+  BiFile,
+  BiCart,
+  BiCar,
+  BiSitemap,
+} from 'react-icons/bi'
 
 import buttonStyles from '../styles/modules/buttons.module.css'
 import styles from '../styles/modules/sidebar.module.css'
@@ -115,6 +122,18 @@ const SideNavigation = memo(
                   >
                     <BiCar />
                     배송관리
+                  </Link>
+                </li>
+
+                <li className="snb-item">
+                  <Link
+                    to={isCard ? '/display' : '#'}
+                    className={`${styles.snbItemButton} 
+                    ${menuActive === 'display' && styles.isActive} 
+                    ${!userId && styles.isDisable}`}
+                  >
+                    <BiSitemap />
+                    진열관리
                   </Link>
                 </li>
               </ul>

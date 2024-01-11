@@ -1,10 +1,11 @@
-@value primary, white, green, green-active from '../constants/color.css';
+@value barnd-color, white, green, blue from '../constants/color.css';
 
 .baseBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 0.8rem;
+  height: 3em;
   font-weight: 700;
   border-radius: 0.4rem;
 }
@@ -17,16 +18,16 @@
 /* NOTE: Button styles */
 .primaryBtn {
   color: white;
-  background-color: green;
+  background-color: barnd-color;
   transition: background-color 300ms ease-in-out;
 }
 
 .primaryBtn:not(:disabled):hover {
-  background-color: green-active;
+  background-color: blue;
 }
 
 .ghostBtn {
-  color: primary;
+  color: barnd-color;
   background-color: transparent;
   transition: opacity 300ms ease-in-out;
 }

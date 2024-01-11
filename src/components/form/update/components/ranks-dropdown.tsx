@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
-import DropDown from './dropdown'
-import buttonStyles from '../../../styles/modules/buttons.module.css'
-import styles from '../../../styles/modules/dropdown.module.css'
+import DropDown from '../../../common/dropdown/dropdown'
+import buttonStyles from 'styles/modules/buttons.module.css'
+import styles from 'styles/modules/dropdown.module.css'
 import DropDownProps from 'utils/dropdown'
 import type { ICardVo } from 'types/grobal-type'
 

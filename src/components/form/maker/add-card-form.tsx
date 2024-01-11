@@ -6,14 +6,13 @@ import {
   validatePhone,
 } from '../../../utils/validation'
 
-import TeamsDropdown from '../../common/dropdown/teams-dropdown'
-import RanksDropdown from '../../common/dropdown/ranks-dropdown'
-import ThemesDropdown from '../../common/dropdown/themes-dropdown'
-
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'
+import ThemesDropdown from '../update/components/themes-dropdown'
+import TeamsDropdown from '../update/components/teams-dropdown'
+import RanksDropdown from '../update/components/ranks-dropdown'
 
 interface IAddCardForm {
   FileInput: React.MemoExoticComponent<

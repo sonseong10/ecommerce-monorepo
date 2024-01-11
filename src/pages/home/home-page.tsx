@@ -47,6 +47,8 @@ const HomePage = ({
               </div>
               <WorkLinkList works={works} dark={dark}></WorkLinkList>
             </article>
+
+            <div>운영중인 서비스 바로가기</div>
           </div>
 
           <article className={styles.member}>

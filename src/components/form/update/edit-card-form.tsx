@@ -5,15 +5,15 @@ import {
   validatePhone,
 } from '../../../utils/validation'
 
-import RanksDropdown from '../../common/dropdown/ranks-dropdown'
-import TeamsDropdown from '../../common/dropdown/teams-dropdown'
-import ThemesDropdown from '../../common/dropdown/themes-dropdown'
+import RanksDropdown from './components/ranks-dropdown'
 
 import buttonStyles from '../../../styles/modules/buttons.module.css'
 import styles from '../../../styles/modules/maker.module.css'
 import type DropDown from 'utils/dropdown'
 import type ImageUploader from 'service/image-uploader'
 import type { ICardVo } from 'types/grobal-type'
+import ThemesDropdown from './components/themes-dropdown'
+import TeamsDropdown from './components/teams-dropdown'
 
 interface IEditCardFormProps {
   FileInput: React.MemoExoticComponent<

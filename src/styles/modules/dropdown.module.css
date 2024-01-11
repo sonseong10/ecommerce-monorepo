@@ -34,6 +34,7 @@
 }
 
 .dropdownList {
+  position: absolute;
   padding: 0.8rem;
   width: 100%;
   background-color: white;
@@ -68,6 +69,7 @@
 .themes,
 .teams,
 .ranks {
+  position: relative;
   flex-grow: 1;
 }
 
@@ -80,26 +82,28 @@
 .themesList,
 .teamsList,
 .ranksList {
+  position: absolute;
+  width: 100%;
   margin-bottom: 2rem;
-  max-height: 0;
+  height: 0;
   opacity: 0;
   overflow-y: hidden;
-  transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+  transition: height 300ms ease-in-out, opacity 300ms ease-in-out;
 }
 
 .teams.isActive .teamsList {
   opacity: 1;
-  max-height: calc(dropdown-height * teams-count + dropdown-padding * 2);
+  height: calc(dropdown-height * teams-count + dropdown-padding * 2);
 }
 
 .ranks.isActive .ranksList {
   opacity: 1;
-  max-height: calc(dropdown-height * ranks-count + dropdown-padding * 2);
+  height: calc(dropdown-height * ranks-count + dropdown-padding * 2);
 }
 
 .themes.isActive .themesList {
   opacity: 1;
-  max-height: calc(dropdown-height * theme-count + dropdown-padding * 2);
+  height: calc(dropdown-height * theme-count + dropdown-padding * 2);
 }
 
 /* NOTE: Dark theme */
