@@ -7,7 +7,7 @@ import styles from '../../styles/modules/home-page.module.css'
 import WorkLinkList from './work-link-list'
 import type { ICardVo } from 'types/grobal-type'
 interface IHomePageProps {
-  isCard: number
+  isCard?: ICardVo
   cards?: {
     [key: string]: ICardVo
   }

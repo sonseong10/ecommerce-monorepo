@@ -4,10 +4,9 @@ import React, {
   useState,
   type MemoExoticComponent,
 } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 
 import GlobalHeader from './components/common/global-header'
-import MainContent from './components/main-content'
 
 import GlobalFooter from './components/common/global-footer'
 import Overlay from './components/common/overlay'
@@ -23,6 +22,16 @@ import type AuthService from 'service/auth_service'
 import type { User } from 'firebase/auth'
 import type ImageUploader from 'service/image-uploader'
 import type { ICardVo } from 'types/grobal-type'
+import NotLogin from 'components/errors/not-login'
+import HomePage from 'pages/home/home-page'
+import Maker from 'components/form/maker/maker'
+import Search from 'pages/search/search'
+import Work from 'pages/work/work'
+import Update from 'components/form/update/update'
+import Detail from 'pages/search/detail/detail'
+import ProductList from 'pages/product/list'
+import NotPage from 'components/errors/not-page'
+import MainContent from 'components/main-content'
 
 interface IAppProps {
   FileInput: MemoExoticComponent<
@@ -278,25 +287,127 @@ const App = ({
         dark={dark}
       ></GlobalHeader>
 
-      <MainContent
-        FileInput={FileInput}
-        dropDown={dropDown}
-        userId={userId}
-        onLogout={onLogout}
-        deleteAccount={deleteAccount}
-        cards={cards}
-        works={works}
-        userCard={userCard}
-        createOrUpdateCard={createOrUpdateCard}
-        createOrUpdateWork={createOrUpdateWork}
-        deleteWork={deleteWork}
-        loding={loding}
-        onMenuChange={onMenuChange}
-        ToggleOverlay={toggleOverlay}
-        menuActive={menuActive}
-        handleModeChange={handleModeChange}
-        dark={dark}
-      ></MainContent>
+      {!userId ? (
+        <NotLogin loding={loding} dark={dark} />
+      ) : (
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainContent
+                userCard={userCard}
+                ToggleOverlay={toggleOverlay}
+                dark={dark}
+                handleModeChange={handleModeChange}
+                loding={loding}
+                menuActive={menuActive}
+                onLogout={onLogout}
+                userId={userId}
+              />
+            }
+          >
+            <Route
+              index
+              element={
+                <React.Fragment>
+                  {userCard ? (
+                    <HomePage
+                      isCard={userCard}
+                      cards={cards}
+                      works={works}
+                      userCard={userCard}
+                      onMenuChange={onMenuChange}
+                      dark={dark}
+                    />
+                  ) : (
+                    <Maker
+                      FileInput={FileInput}
+                      dropDown={dropDown}
+                      isCard={userCard}
+                      createCard={createOrUpdateCard}
+                      onMenuChange={onMenuChange}
+                      dark={dark}
+                    ></Maker>
+                  )}
+                </React.Fragment>
+              }
+            ></Route>
+            <Route
+              path="main"
+              element={
+                <HomePage
+                  isCard={userCard}
+                  cards={cards}
+                  works={works}
+                  userCard={userCard}
+                  onMenuChange={onMenuChange}
+                  dark={dark}
+                ></HomePage>
+              }
+            ></Route>
+            <Route
+              path="maker"
+              element={
+                <Maker
+                  FileInput={FileInput}
+                  dropDown={dropDown}
+                  isCard={userCard}
+                  createCard={createOrUpdateCard}
+                  onMenuChange={onMenuChange}
+                  dark={dark}
+                ></Maker>
+              }
+            ></Route>
+            <Route
+              path="search"
+              element={
+                <Search
+                  dropDown={dropDown}
+                  cards={cards}
+                  onMenuChange={onMenuChange}
+                  dark={dark}
+                ></Search>
+              }
+            ></Route>
+            <Route
+              path="work"
+              element={
+                <Work
+                  onMenuChange={onMenuChange}
+                  userId={userId}
+                  works={works}
+                  createWork={createOrUpdateWork}
+                  updateWork={createOrUpdateWork}
+                  deleteWork={deleteWork}
+                  dark={dark}
+                ></Work>
+              }
+            ></Route>
+            <Route
+              path="update"
+              element={
+                <Update
+                  FileInput={FileInput}
+                  userCard={userCard}
+                  dropDown={dropDown}
+                  updateCard={createOrUpdateCard}
+                  deleteCard={deleteAccount}
+                  dark={dark}
+                ></Update>
+              }
+            ></Route>
+            <Route
+              path="detail"
+              element={<Detail cards={cards} dark={dark}></Detail>}
+            ></Route>
+            <Route
+              path="product"
+              element={<ProductList onMenuChange={onMenuChange} dark={dark} />}
+            />
+            <Route path="*" element={<NotPage dark={dark}></NotPage>}></Route>
+          </Route>
+        </Routes>
+      )}
 
       <MobileSideBar
         onLogout={onLogout}

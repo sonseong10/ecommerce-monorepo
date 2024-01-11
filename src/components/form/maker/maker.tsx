@@ -14,7 +14,7 @@ interface IMakerProps {
     }) => React.JSX.Element
   >
   dropDown: DropDown
-  isCard: number
+  isCard?: ICardVo
   createCard: (card: ICardVo) => void
   onMenuChange: (v: 'search' | 'work' | 'home') => void
   dark: boolean
