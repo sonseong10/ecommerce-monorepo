@@ -94,7 +94,7 @@ const AddWorkForm = ({
             disabled={!isAble}
             onClick={onSubmit}
           >
-            Save
+            저장
           </button>
         </footer>
       </section>

@@ -50,7 +50,7 @@ const Work = ({
         <header className={styles.header}>
           <h1>일지관리</h1>
           <button
-            className={`${buttonStyle.baseBtn} ${buttonStyle.ghostBtn} ${styles.openBtn} `}
+            className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn} ${styles.openBtn} `}
             onClick={onOpenAddForm}
             type="button"
           >
