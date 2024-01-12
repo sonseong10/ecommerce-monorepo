@@ -172,11 +172,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .workGroup {
-    height: 100vh;
-    padding: 2.4rem 0;
-  }
-
   .header h1 {
     font-size: font-size-24;
     line-height: line-height-24;

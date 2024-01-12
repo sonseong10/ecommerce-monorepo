@@ -144,11 +144,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .detailGroup {
-    padding: 2.4rem 0;
-    height: 100vh;
-  }
-
   .infoGroup {
     flex-direction: row;
   }

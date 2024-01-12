@@ -13,6 +13,7 @@ interface IMainContentProps {
   handleModeChange: () => void
   dark: boolean
 }
+
 const MainContent = ({
   userId,
   onLogout,
@@ -37,9 +38,11 @@ const MainContent = ({
             loding={loding}
             handleModeChange={handleModeChange}
             dark={dark}
-          ></SideNavigation>
+          />
 
-          <Outlet />
+          <article className="articleGroup">
+            <Outlet />
+          </article>
         </div>
       </div>
     </div>
