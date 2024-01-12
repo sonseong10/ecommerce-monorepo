@@ -20,7 +20,7 @@ function ProductList({ onMenuChange }: IProductListProps) {
         <div className={styles.header}>
           <h3>상품목록</h3>
           <Link
-            to="/admin/product/create"
+            to="/admin/product/info"
             className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn} `}
           >
             <BiCart />

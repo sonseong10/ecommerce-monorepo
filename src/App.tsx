@@ -34,6 +34,7 @@ const ProductList = lazy(() => import('pages/product/list'))
 const NotPage = lazy(() => import('components/errors/not-page'))
 const Login = lazy(() => import('pages/auth/login'))
 const MainContent = lazy(() => import('components/main-content'))
+const ProductDetail = lazy(() => import('pages/product/detail'))
 
 interface IAppProps {
   FileInput: MemoExoticComponent<
@@ -354,30 +355,30 @@ function App({
             }
           ></Route>
           <Route path="product/*">
-              <Route
-                path="list"
-                element={
-                  <Suspense fallback={<LodingSpinner />}>
-                    <ProductList onMenuChange={onMenuChange} dark={dark} />
-                  </Suspense>
-                }
-              ></Route>
-              <Route
-                path="create"
-                element={
-                  <Suspense fallback={<LodingSpinner />}>
-                    <div>dsadsa</div>
-                  </Suspense>
-                }
-              ></Route>
-              <Route
-                path="*"
-                element={
-                  <Suspense fallback={<LodingSpinner />}>
-                    <NotPage dark={dark}></NotPage>
-                  </Suspense>
-                }
-              ></Route>
+            <Route
+              path="list"
+              element={
+                <Suspense fallback={<LodingSpinner />}>
+                  <ProductList onMenuChange={onMenuChange} dark={dark} />
+                </Suspense>
+              }
+            ></Route>
+            <Route
+              path="info"
+              element={
+                <Suspense fallback={<LodingSpinner />}>
+                  <ProductDetail />
+                </Suspense>
+              }
+            ></Route>
+            <Route
+              path="*"
+              element={
+                <Suspense fallback={<LodingSpinner />}>
+                  <NotPage dark={dark}></NotPage>
+                </Suspense>
+              }
+            ></Route>
           </Route>
           <Route
             path="*"
