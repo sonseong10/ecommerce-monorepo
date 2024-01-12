@@ -48,7 +48,7 @@ const SideNavigation = memo(
           <h2 className="visually-hidden">Tablet and Desktop side Bar</h2>
           <header className={styles.header}>
             <strong className={`lg-only ${styles.logo}`}>
-              <Link to={userId ? '/main' : '#'}>
+              <Link to={userId ? '/admin/main' : '#'}>
                 <img
                   className="logo-img"
                   src={!dark ? Logo : DarkLogo}
@@ -58,7 +58,7 @@ const SideNavigation = memo(
               </Link>
             </strong>
             <strong className={`md-only ${styles.tabletLogo}`}>
-              <Link to={userId ? '/main' : '#'}>
+              <Link to={userId ? '/admin/main' : '#'}>
                 <img className="logo-img" src={Logo} alt="WhoMember" />
                 <span className="visually-hidden">Logo Image</span>
               </Link>
@@ -71,7 +71,7 @@ const SideNavigation = memo(
               <ul className="snb-list">
                 <li className="snb-item">
                   <Link
-                    to={userId ? '/main' : '#'}
+                    to={userId ? '/admin/main' : '#'}
                     className={`${styles.snbItemButton} 
                     ${menuActive === 'home' && styles.isActive}
                     ${!userId && styles.isDisable}`}
@@ -82,9 +82,9 @@ const SideNavigation = memo(
                 </li>
                 <li className="snb-item">
                   <Link
-                    to={isCard ? '/search' : '#'}
+                    to={isCard ? '/admin/member' : '#'}
                     className={`${styles.snbItemButton} 
-                    ${menuActive === 'search' && styles.isActive} 
+                    ${menuActive === 'member' && styles.isActive} 
                     ${!userId && styles.isDisable}`}
                   >
                     <BiGroup />
@@ -93,7 +93,7 @@ const SideNavigation = memo(
                 </li>
                 <li className="snb-item">
                   <Link
-                    to={isCard ? '/work' : '#'}
+                    to={isCard ? '/admin/work' : '#'}
                     className={`${styles.snbItemButton} 
                     ${menuActive === 'work' && styles.isActive} 
                     ${!userId && styles.isDisable}`}
@@ -104,7 +104,7 @@ const SideNavigation = memo(
                 </li>
                 <li className="snb-item">
                   <Link
-                    to={isCard ? '/product' : '#'}
+                    to={isCard ? '/admin/product/list' : '#'}
                     className={`${styles.snbItemButton} 
                     ${menuActive === 'product' && styles.isActive} 
                     ${!userId && styles.isDisable}`}
@@ -115,7 +115,7 @@ const SideNavigation = memo(
                 </li>
                 <li className="snb-item">
                   <Link
-                    to={isCard ? '/delivery' : '#'}
+                    to={isCard ? '/admin/delivery' : '#'}
                     className={`${styles.snbItemButton} 
                     ${menuActive === 'delivery' && styles.isActive} 
                     ${!userId && styles.isDisable}`}
@@ -127,7 +127,7 @@ const SideNavigation = memo(
 
                 <li className="snb-item">
                   <Link
-                    to={isCard ? '/display' : '#'}
+                    to={isCard ? '/admin/display' : '#'}
                     className={`${styles.snbItemButton} 
                     ${menuActive === 'display' && styles.isActive} 
                     ${!userId && styles.isDisable}`}

@@ -3,14 +3,14 @@ import React, {
   useEffect,
   useState,
   type MemoExoticComponent,
+  lazy,
+  Suspense,
 } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 
 import GlobalHeader from './components/common/global-header'
-
 import GlobalFooter from './components/common/global-footer'
 import Overlay from './components/common/overlay'
-import AuthPopup from './components/common/popup/auth-popup'
 import MsgPopup from './components/common/popup/msg-popup'
 import MobileSideBar from './components/common/mobile-sidebar'
 
@@ -21,18 +21,19 @@ import type DropDown from 'utils/dropdown'
 import type AuthService from 'service/auth_service'
 import type { User } from 'firebase/auth'
 import type ImageUploader from 'service/image-uploader'
-import type { ICardVo } from 'types/grobal-type'
-import HomePage from 'pages/home/home-page'
-import Maker from 'components/form/maker/maker'
-import Search from 'pages/search/search'
-import Work from 'pages/work/work'
-import Update from 'components/form/update/update'
-import Detail from 'pages/search/detail/detail'
-import ProductList from 'pages/product/list'
-import NotPage from 'components/errors/not-page'
-import Login from 'pages/auth/login'
-import MainContent from 'components/main-content'
-// import MainContent from 'components/main-content'
+import type { ICardVo, IWorkVo } from 'types/grobal-type'
+import LodingSpinner from 'components/common/loding-spinner'
+
+const HomePage = lazy(() => import('pages/home/home-page'))
+const Maker = lazy(() => import('components/form/maker/maker'))
+const Search = lazy(() => import('pages/search/search'))
+const Work = lazy(() => import('pages/work/work'))
+const Update = lazy(() => import('components/form/update/update'))
+const Detail = lazy(() => import('pages/search/detail/detail'))
+const ProductList = lazy(() => import('pages/product/list'))
+const NotPage = lazy(() => import('components/errors/not-page'))
+const Login = lazy(() => import('pages/auth/login'))
+const MainContent = lazy(() => import('components/main-content'))
 
 interface IAppProps {
   FileInput: MemoExoticComponent<
@@ -48,13 +49,13 @@ interface IAppProps {
   workRepository: WorkRepository
 }
 
-const App = ({
+function App({
   FileInput,
   dropDown,
   authService,
   cardRepository,
   workRepository,
-}: IAppProps) => {
+}: IAppProps) {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -62,22 +63,12 @@ const App = ({
 
   const [userId, setUserId] = useState(historyState && historyState.id)
 
-  const [cards, setCards] = useState<
-    | {
-        [key: string]: ICardVo
-      }
-    | undefined
-  >(undefined)
-  const [works, setWorks] = useState<
-    | {
-        [key: string]: {
-          contents: string
-          time: number
-          title: string
-        }
-      }
-    | undefined
-  >(undefined)
+  const [cards, setCards] = useState<{ [key: string]: ICardVo } | undefined>(
+    undefined
+  )
+  const [works, setWorks] = useState<{ [key: string]: IWorkVo } | undefined>(
+    undefined
+  )
 
   const [userCard, setUserCard] = useState<ICardVo | undefined>(undefined)
   const [popupMsg, setpopupMsg] = useState({ title: '', desc: '' })
@@ -115,7 +106,7 @@ const App = ({
     )
     setWorks({})
     setUserCard(undefined)
-    navigate('/main')
+    navigate('/admin/main')
   }
 
   const onLogout = () => {
@@ -200,53 +191,28 @@ const App = ({
     }
     const stopSync = workRepository.syncWorks(
       userId,
-      (works: {
-        [key: string]: {
-          contents: string
-          time: number
-          title: string
-        }
-      }) => {
+      (works: { [key: string]: IWorkVo }) => {
         setWorks(works)
       }
     )
+
     return () => {
       stopSync()
     }
   }, [userId, workRepository])
 
-  const createOrUpdateWork = (work: {
-    contents: string
-    time: number
-    title: string
-  }) => {
+  const createOrUpdateWork = (work: IWorkVo) => {
     setWorks((works) => {
-      const updated: {
-        [key: string]: {
-          contents: string
-          time: number
-          title: string
-        }
-      } = { ...works }
+      const updated = { ...works }
       updated[userId] = work
       return updated
     })
     workRepository.saveWork(userId, work)
   }
 
-  const deleteWork = (work: {
-    contents: string
-    time: number
-    title: string
-  }) => {
+  const deleteWork = (work: IWorkVo) => {
     setWorks((works) => {
-      const updated: {
-        [key: string]: {
-          contents: string
-          time: number
-          title: string
-        }
-      } = { ...works }
+      const updated = { ...works }
       delete updated[work.time]
       return updated
     })
@@ -289,98 +255,138 @@ const App = ({
       ></GlobalHeader>
 
       <Routes>
+        <Route path="/" element={<Login onLogin={onLogin} />} />
         <Route
-          path="/"
+          path="/admin"
           element={
-            userId ? (
-              <MainContent
-                ToggleOverlay={toggleOverlay}
-                dark={dark}
-                handleModeChange={handleModeChange}
-                loding={loding}
-                menuActive={menuActive}
-                onLogout={onLogout}
-                userId={userId}
-                userCard={userCard}
-              />
-            ) : (
-              <Login onLogin={onLogin} />
-            )
+            <MainContent
+              ToggleOverlay={toggleOverlay}
+              dark={dark}
+              handleModeChange={handleModeChange}
+              loding={loding}
+              menuActive={menuActive}
+              onLogout={onLogout}
+              userId={userId}
+              userCard={userCard}
+            />
           }
         >
           <Route
             path="main"
             element={
-              <HomePage
-                isCard={userCard}
-                cards={cards}
-                works={works}
-                userCard={userCard}
-                onMenuChange={onMenuChange}
-                dark={dark}
-              ></HomePage>
+              <Suspense fallback={<LodingSpinner />}>
+                <HomePage
+                  isCard={userCard}
+                  cards={cards}
+                  works={works}
+                  userCard={userCard}
+                  onMenuChange={onMenuChange}
+                  dark={dark}
+                />
+              </Suspense>
             }
-          ></Route>
+          />
           <Route
             path="maker"
             element={
-              <Maker
-                FileInput={FileInput}
-                dropDown={dropDown}
-                isCard={userCard}
-                createCard={createOrUpdateCard}
-                onMenuChange={onMenuChange}
-                dark={dark}
-              ></Maker>
+              <Suspense fallback={<LodingSpinner />}>
+                <Maker
+                  FileInput={FileInput}
+                  dropDown={dropDown}
+                  isCard={userCard}
+                  createCard={createOrUpdateCard}
+                  onMenuChange={onMenuChange}
+                  dark={dark}
+                ></Maker>
+              </Suspense>
             }
-          ></Route>
+          />
           <Route
-            path="search"
+            path="member"
             element={
-              <Search
-                dropDown={dropDown}
-                cards={cards}
-                onMenuChange={onMenuChange}
-                dark={dark}
-              ></Search>
+              <Suspense fallback={<LodingSpinner />}>
+                <Search
+                  dropDown={dropDown}
+                  cards={cards}
+                  onMenuChange={onMenuChange}
+                  dark={dark}
+                ></Search>
+              </Suspense>
             }
-          ></Route>
+          />
           <Route
             path="work"
             element={
-              <Work
-                onMenuChange={onMenuChange}
-                userId={userId}
-                works={works}
-                createWork={createOrUpdateWork}
-                updateWork={createOrUpdateWork}
-                deleteWork={deleteWork}
-                dark={dark}
-              ></Work>
+              <Suspense fallback={<LodingSpinner />}>
+                <Work
+                  onMenuChange={onMenuChange}
+                  userId={userId}
+                  works={works}
+                  createWork={createOrUpdateWork}
+                  updateWork={createOrUpdateWork}
+                  deleteWork={deleteWork}
+                  dark={dark}
+                ></Work>
+              </Suspense>
             }
           ></Route>
           <Route
             path="update"
             element={
-              <Update
-                FileInput={FileInput}
-                userCard={userCard}
-                dropDown={dropDown}
-                updateCard={createOrUpdateCard}
-                deleteCard={deleteAccount}
-                dark={dark}
-              ></Update>
+              <Suspense fallback={<LodingSpinner />}>
+                <Update
+                  FileInput={FileInput}
+                  userCard={userCard}
+                  dropDown={dropDown}
+                  updateCard={createOrUpdateCard}
+                  deleteCard={deleteAccount}
+                  dark={dark}
+                ></Update>
+              </Suspense>
             }
           ></Route>
           <Route
             path="detail"
-            element={<Detail cards={cards} dark={dark}></Detail>}
+            element={
+              <Suspense fallback={<LodingSpinner />}>
+                <Detail cards={cards} dark={dark}></Detail>
+              </Suspense>
+            }
           ></Route>
+          <Route path="product/*">
+              <Route
+                path="list"
+                element={
+                  <Suspense fallback={<LodingSpinner />}>
+                    <ProductList onMenuChange={onMenuChange} dark={dark} />
+                  </Suspense>
+                }
+              ></Route>
+              <Route
+                path="create"
+                element={
+                  <Suspense fallback={<LodingSpinner />}>
+                    <div>dsadsa</div>
+                  </Suspense>
+                }
+              ></Route>
+              <Route
+                path="*"
+                element={
+                  <Suspense fallback={<LodingSpinner />}>
+                    <NotPage dark={dark}></NotPage>
+                  </Suspense>
+                }
+              ></Route>
+          </Route>
           <Route
-            path="product"
-            element={<ProductList onMenuChange={onMenuChange} dark={dark} />}
-          />
-          <Route path="*" element={<NotPage dark={dark}></NotPage>}></Route>
+            path="*"
+            element={
+              <Suspense fallback={<LodingSpinner />}>
+                <NotPage dark={dark}></NotPage>
+              </Suspense>
+            }
+          ></Route>
         </Route>
       </Routes>
 
@@ -392,24 +398,6 @@ const App = ({
         handleModeChange={handleModeChange}
         dark={dark}
       ></MobileSideBar>
-
-      <AuthPopup
-        authPopup={authPopup}
-        ToggleOverlay={toggleOverlay}
-        authService={authService}
-        onLogin={onLogin}
-      ></AuthPopup>
-
-      {!userId ? (
-        <Overlay overlay={authPopup} ToggleOverlay={toggleOverlay}></Overlay>
-      ) : (
-        <div className="sm-only">
-          <Overlay
-            overlay={sidebarOpen}
-            ToggleOverlay={toggleOpenSideBar}
-          ></Overlay>
-        </div>
-      )}
 
       {magPopup && (
         <>

@@ -11,3 +11,9 @@ export interface ICardVo {
   telephone: string
   theme: string
 }
+
+export interface IWorkVo {
+  contents: string
+  time: number
+  title: string
+}

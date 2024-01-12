@@ -14,7 +14,7 @@ const MemberItem = ({ card, uid }: IMemberItemProps) => {
   const url = card?.fileURL || DEFAULT_USER_IMG
   return (
     <li className={styles.meberItem}>
-      <Link to={'/detail'} state={{ id: uid }} className={styles.card}>
+      <Link to={'/admin/detail'} state={{ id: uid }} className={styles.card}>
         <header className={styles.cardHeader}>
           <div
             className={`${styles.dot} 

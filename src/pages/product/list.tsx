@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import styles from '../../styles/modules/product-list.module.css'
 import buttonStyle from '../../styles/modules/buttons.module.css'
+import { BiCart } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 interface IProductListProps {
   onMenuChange: (v: 'search' | 'work' | 'home' | 'product') => void
@@ -15,16 +17,19 @@ function ProductList({ onMenuChange }: IProductListProps) {
   return (
     <div className="col-sm-4 col-md-10 col-lg-9">
       <div className={styles.product}>
-        <div className={styles.title}>
+        <div className={styles.header}>
           <h3>상품목록</h3>
-          <button
-            type="button"
-            className={`${buttonStyle.baseBtn} ${buttonStyle.ghostBtn} `}
+          <Link
+            to="/admin/product/create"
+            className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn} `}
           >
+            <BiCart />
             상품등록
-          </button>
+          </Link>
         </div>
-        <div>productList</div>
+        <div>
+          <div></div>
+        </div>
         <div>pagenation</div>
       </div>
     </div>

@@ -43,7 +43,7 @@ const HomePage = ({
             <article className={`${styles.work}`}>
               <div className={styles.articleTitle}>
                 <h2>작업중인 업무</h2>
-                <strong>{Object.keys(works!).length}</strong>
+                <strong>{works && Object.keys(works).length}</strong>
               </div>
               <WorkLinkList works={works} dark={dark}></WorkLinkList>
             </article>

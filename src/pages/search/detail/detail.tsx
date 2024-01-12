@@ -91,7 +91,7 @@ const Detail = ({ cards, dark }: IDetailProps) => {
         </div>
         <footer className={styles.footer}>
           <Link
-            to="/search"
+            to="/admin/member"
             className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.returnBtn}`}
           >
             Close

@@ -48,7 +48,7 @@ const MyMenu = ({
         </li>
         <li>
           <Link
-            to={isCard ? '/update' : '#'}
+            to={isCard ? '/admin/update' : '#'}
             className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
           >
             <BiUser className={styles.toolIcon} />
