@@ -6,16 +6,26 @@
 
 @value font-size-14,line-height-14,letter-spacing-14, font-size-16,line-height-16,letter-spacing-16, font-size-24, line-height-24, letter-spacing-24 from '../constants/typography.css';
 
-.title {
+.header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 3rem;
 }
 
-.title h3 {
+.header h3 {
   font-size: font-size-24;
   line-height: line-height-24;
   letter-spacing: letter-spacing-24;
+}
+
+.header a  {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+}
+.header a svg{
+  font-size: font-size-16;
+  margin-right: 6px;
 }
 
 @media screen and (min-width: 768px) {
