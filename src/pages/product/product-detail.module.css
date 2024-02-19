@@ -1,0 +1,63 @@
+@value overlay-black, primary, white, background, green from '/src/styles/constants/color.css';
+
+@value dark-primary from '/src/styles/constants/dark-theme.css';
+
+@value font-size-14,line-height-14, letter-spacing-14, font-size-18, line-height-18,letter-spacing-18 from '../../styles/constants/typography.css';
+
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerWrapper div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerWrapper div a {
+  margin-right: 8px;
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+}
+
+.headerWrapper div button,
+.headerWrapper div a {
+  width: 4em;
+}
+
+.headerWrapper h3 {
+  font-size: font-size-18;
+  line-height: line-height-18;
+  letter-spacing: letter-spacing-18;
+}
+
+strong {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+}
+
+input {
+  border: 1px solid overlay-black;
+  border-radius: 4px;
+  height: 26px;
+  padding: 2px 4px;
+}
+
+dl {
+  width: 100%;
+}
+
+dl > div {
+  margin-bottom: 6px;
+}
+
+dt {
+  font-size: font-size-14;
+  line-height: line-height-14;
+  letter-spacing: letter-spacing-14;
+  margin-right: 6px;
+}

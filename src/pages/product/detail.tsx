@@ -1,12 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styles from './product-detail.module.css'
+import buttonStyle from '../../styles/modules/buttons.module.css'
 
 function ProductDetail() {
   return (
-    <>
-      <div>
+    <div className="col-sm-4 col-md-10 col-lg-9">
+      <div className={styles.headerWrapper}>
         <h3>상품등록</h3>
-        <Link to={'/admin/product/list'}>목록</Link>
+        <div>
+          <Link
+            className={`${buttonStyle.baseBtn} `}
+            to={'/admin/product/list'}
+          >
+            취소
+          </Link>
+          <button
+            className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn}`}
+          >
+            등록
+          </button>
+        </div>
       </div>
 
       <div>
@@ -31,7 +45,7 @@ function ProductDetail() {
             </dd>
           </div>
           <div>
-            <dt>추가이미지</dt>
+            <dt>상세정보</dt>
             <dd>
               <input type="file" />
             </dd>
@@ -97,7 +111,7 @@ function ProductDetail() {
 
         <strong>판매 및 전시상태</strong>
       </div>
-    </>
+    </div>
   )
 }
 
