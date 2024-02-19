@@ -123,8 +123,8 @@ const fonts = {
 
 const colors = {
   ...commonColors,
-  primary: "#CD3932",
-  btnPrimary: "#CD3932",
+  primary: "#3da5f5",
+  btnPrimary: "#3da5f5",
 };
 
 const hoverColors = {
