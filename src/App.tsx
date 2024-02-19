@@ -246,7 +246,7 @@ function App({
   }
 
   return (
-    <div className={`app ${dark && 'isDark'}`}>
+    <div className="app">
       <GlobalHeader
         userId={userId}
         userCard={userCard}
@@ -256,20 +256,22 @@ function App({
       ></GlobalHeader>
 
       <Routes>
-        <Route path="/" element={<Login onLogin={onLogin} />} />
+        <Route index element={<Login onLogin={onLogin} />} />
         <Route
           path="/admin"
           element={
-            <MainContent
-              ToggleOverlay={toggleOverlay}
-              dark={dark}
-              handleModeChange={handleModeChange}
-              loding={loding}
-              menuActive={menuActive}
-              onLogout={onLogout}
-              userId={userId}
-              userCard={userCard}
-            />
+            <Suspense fallback={<LodingSpinner />}>
+              <MainContent
+                ToggleOverlay={toggleOverlay}
+                dark={dark}
+                handleModeChange={handleModeChange}
+                loding={loding}
+                menuActive={menuActive}
+                onLogout={onLogout}
+                userId={userId}
+                userCard={userCard}
+              />
+            </Suspense>
           }
         >
           <Route
