@@ -38,16 +38,30 @@ function ProductDetail() {
               <input />
             </dd>
           </div>
+        </dl>
+        <dl>
           <div>
             <dt>대표이미지</dt>
             <dd>
-              <input type="file" />
+              <label htmlFor="image">이미지선택</label>
+              <input type="file" id="image" />
             </dd>
           </div>
           <div>
-            <dt>상세정보</dt>
+            <dt>추가이미지</dt>
             <dd>
-              <input type="file" />
+              <label htmlFor="addImage">이미지선택</label>
+              <input type="file" id="addImage" />
+            </dd>
+          </div>
+        </dl>
+
+        <strong>상세정보</strong>
+        <dl>
+          <div>
+            <dt>HTML작성</dt>
+            <dd>
+              <textarea name="" id=""></textarea>
             </dd>
           </div>
         </dl>
@@ -73,19 +87,17 @@ function ProductDetail() {
             </dd>
           </div>
           <div>
-            <dt>구매수량</dt>
-            <dd>
-              <input />
-            </dd>
-          </div>
-
-          <div>
-            <dt>태크 연관검색어</dt>
+            <dt>최대구매수량</dt>
             <dd>
               <input />
             </dd>
           </div>
         </dl>
+
+        <div>
+          <strong>태그&연관검색어</strong>
+          <input />
+        </div>
 
         <strong>상품옵션</strong>
         <dl>
