@@ -20,7 +20,7 @@ const Search = ({ cards, onMenuChange, dark }: ISearchProps) => {
   const [searchValue, setSerchValue] = useState<string | undefined>(undefined)
 
   useEffect(() => {
-    onMenuChange('search')
+    onMenuChange('member')
   }, [onMenuChange])
 
   const onSearchValue = () => {

@@ -5,7 +5,7 @@ import { BiCart } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 interface IProductListProps {
-  onMenuChange: (v: 'search' | 'work' | 'home' | 'product') => void
+  onMenuChange: (v: 'member' | 'work' | 'home' | 'product') => void
   dark: boolean
 }
 

@@ -16,7 +16,7 @@ interface IMakerProps {
   dropDown: DropDown
   isCard?: ICardVo
   createCard: (card: ICardVo) => void
-  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  onMenuChange: (v: 'member' | 'work' | 'home') => void
   dark: boolean
 }
 const Maker = memo(

@@ -20,7 +20,7 @@ interface IHomePageProps {
     }
   }
   userCard?: ICardVo
-  onMenuChange: (v: 'search' | 'work' | 'home') => void
+  onMenuChange: (v: 'member' | 'work' | 'home') => void
   dark: boolean
 }
 const HomePage = ({

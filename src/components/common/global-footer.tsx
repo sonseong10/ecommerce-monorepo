@@ -18,9 +18,9 @@ const GlobalFooter = React.memo(
         className={`sm-only ${styles.globalFooter} ${dark && styles.isDark}`}
       >
         <Link
-          to="/search"
+          to="/member"
           className={`${styles.link} 
-        ${menuActive === 'search' && styles.isActive}`}
+        ${menuActive === 'member' && styles.isActive}`}
         >
           <BiGroup aria-hidden />
           <span className="visually-hidden">직원 검색으로 이동</span>
