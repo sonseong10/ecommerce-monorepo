@@ -1,21 +1,21 @@
-import React from "react";
-import Spinner from "./display/Spinner";
-import useLoading from "./store/loadingHook";
-import styled from "styled-components";
+import React from 'react'
+import Spinner from './display/Spinner'
+import useLoading from './store/loadingHook'
+import styled from 'styled-components'
 
 const LoadArea = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
-`;
+`
 
 export interface IAbsLoadingProps {
-  id: string;
-  thunkType: string;
-  className?: string;
-  spinnerSize?: number;
-  children?: React.ReactNode | React.ReactNode[];
+  id: string
+  thunkType: string
+  className?: string
+  spinnerSize?: number
+  children?: React.ReactNode | React.ReactNode[]
 }
 
 /**
@@ -26,7 +26,7 @@ export interface IAbsLoadingProps {
  * @returns
  */
 function AbsLoading(props: IAbsLoadingProps) {
-  const { isLoading, areaLoading } = useLoading(props.id, props.thunkType);
+  const { isLoading, areaLoading } = useLoading(props.id, props.thunkType)
   return (
     <>
       {isLoading === false && areaLoading === false ? (
@@ -37,7 +37,7 @@ function AbsLoading(props: IAbsLoadingProps) {
         </LoadArea>
       )}
     </>
-  );
+  )
 }
 
-export default AbsLoading;
+export default AbsLoading

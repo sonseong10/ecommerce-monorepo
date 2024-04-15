@@ -1,10 +1,10 @@
-import React, { Suspense } from "react";
-import type { IInputProps } from "./InputText";
-import type { IUiInputTextProps } from "./ui/UiInputText";
+import React, { Suspense } from 'react'
+import type { IInputProps } from './InputText'
+import type { IUiInputTextProps } from './ui/UiInputText'
 
-const InputText = React.lazy(() => import("./InputText"));
-const UiInputText = React.lazy(() => import("./ui/UiInputText"));
-const ValidInputText = React.lazy(() => import("./valid/ValidInputText"));
+const InputText = React.lazy(() => import('./InputText'))
+const UiInputText = React.lazy(() => import('./ui/UiInputText'))
+const ValidInputText = React.lazy(() => import('./valid/ValidInputText'))
 
 export function LazyInputText(props: IInputProps) {
   return (
@@ -13,7 +13,7 @@ export function LazyInputText(props: IInputProps) {
         <InputText {...props} />
       </Suspense>
     </>
-  );
+  )
 }
 
 export function LazyUiInputText(props: IUiInputTextProps) {
@@ -23,7 +23,7 @@ export function LazyUiInputText(props: IUiInputTextProps) {
         <UiInputText {...props} />
       </Suspense>
     </>
-  );
+  )
 }
 
 export function LazyValidInputText(props: IUiInputTextProps) {
@@ -33,5 +33,5 @@ export function LazyValidInputText(props: IUiInputTextProps) {
         <ValidInputText {...props} />
       </Suspense>
     </>
-  );
+  )
 }

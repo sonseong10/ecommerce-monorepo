@@ -11,7 +11,7 @@ interface IWidthSubscriptionProps<T> {
 
 function WidthSubscription<T>(props: IWidthSubscriptionProps<T>) {
   if (props.data !== undefined) {
-    const dt = props.setting?.id.map((item) => {
+    const dt = props.setting?.id.map(item => {
       return subkeySplit(props.data, item)
     })
     if (props.setting && props.setting.element) {
@@ -33,11 +33,7 @@ function WidthSubscription<T>(props: IWidthSubscriptionProps<T>) {
               case 'object':
                 return <p key={idx}>{JSON.stringify(item)}</p>
               default:
-                return (
-                  <p key={idx}>
-                    {item !== undefined ? (item as unknown as ReactNode) : '-'}
-                  </p>
-                )
+                return <p key={idx}>{item !== undefined ? (item as unknown as ReactNode) : '-'}</p>
             }
           })}
         </>

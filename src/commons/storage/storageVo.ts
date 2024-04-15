@@ -1,4 +1,4 @@
 export enum Storage {
-  LOCAL = "localstorage",
-  SESSION = "sessionstorage",
+  LOCAL = 'localstorage',
+  SESSION = 'sessionstorage',
 }

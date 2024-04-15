@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import type { ICommonsStore } from "../..";
-import { useSelectorEq } from "../../store/common";
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import type { ICommonsStore } from '../..'
+import { useSelectorEq } from '../../store/common'
 import {
   addLoadingThunkKey,
   rdxAddError,
@@ -10,7 +10,7 @@ import {
   rdxSetLoading,
   rdxSetLoadingMessage,
   removeLoadingThunkKey,
-} from "./loadingR";
+} from './loadingR'
 
 /**
  * 로딩정보 hook
@@ -27,9 +27,9 @@ export const useLoadingValue = (id?: string) => {
     isLoading: state.loading?.isLoading,
     areaLoading: id ? state.loading?.area[id] : undefined,
     message: state.loading?.loadingMessage,
-  }));
-  return { isLoading, message, areaLoading };
-};
+  }))
+  return { isLoading, message, areaLoading }
+}
 
 /**
  * 로딩 상태 설정 hook
@@ -41,46 +41,46 @@ export const useLoading = (id?: string, type?: string) => {
   const { isLoading, areaLoading } = useSelectorEq((state: ICommonsStore) => ({
     isLoading: state.loading?.isLoading,
     areaLoading: id ? state.loading?.area[id] : undefined,
-  }));
-  const dispatch = useDispatch();
+  }))
+  const dispatch = useDispatch()
   /**
    * loading 켜기
    */
   const on = async () => {
     if (id) {
-      dispatch(rdxSetAreaLoading({ id, value: true }));
+      dispatch(rdxSetAreaLoading({ id, value: true }))
     } else {
-      dispatch(rdxSetLoading(true));
+      dispatch(rdxSetLoading(true))
     }
-  };
+  }
   /**
    * loading 끄기
    */
   const off = async () => {
     if (id) {
-      dispatch(rdxSetAreaLoading({ id, value: false }));
+      dispatch(rdxSetAreaLoading({ id, value: false }))
     } else {
-      dispatch(rdxSetLoading(false));
+      dispatch(rdxSetLoading(false))
     }
-  };
+  }
 
   const message = (msg: string) => {
-    dispatch(rdxSetLoadingMessage(msg));
-  };
+    dispatch(rdxSetLoadingMessage(msg))
+  }
 
   const alert = async (message: string) => {
-    dispatch(rdxAddError(message));
-  };
+    dispatch(rdxAddError(message))
+  }
   useEffect(() => {
     if (id && type) {
-      addLoadingThunkKey(id, type);
+      addLoadingThunkKey(id, type)
       return () => {
-        dispatch(rdxRemoveAreaLoading(id));
-        removeLoadingThunkKey(id);
-      };
+        dispatch(rdxRemoveAreaLoading(id))
+        removeLoadingThunkKey(id)
+      }
     }
-  }, []);
-  return { isLoading, areaLoading, on, off, alert, message };
-};
+  }, [])
+  return { isLoading, areaLoading, on, off, alert, message }
+}
 
-export default useLoading;
+export default useLoading

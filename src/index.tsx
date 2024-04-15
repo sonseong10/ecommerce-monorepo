@@ -35,8 +35,8 @@ const container = document.getElementById('root')
 const root = createRoot(container!)
 
 root.render(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
       <App
         authService={authService}
         dropDown={dropDown}
@@ -44,6 +44,6 @@ root.render(
         cardRepository={cardRepository}
         workRepository={workRepository}
       />
-    </Provider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </Provider>,
 )

@@ -33,40 +33,32 @@ const InputCheckBoxItem = styled.label<{
     background-position: center center;
     background-repeat: no-repeat;
 
-    ${(props) =>
-      `background-image: url(${CheckSvg(props.theme.colors.borderPrimary)})`};
+    ${props => `background-image: url(${CheckSvg(props.theme.colors.borderPrimary)})`};
     vertical-align: middle;
   }
 
   &:hover {
     input + i {
-      ${(props) =>
-        `background-image: url(${CheckSvg(props.theme.colors.borderHover)})`};
+      ${props => `background-image: url(${CheckSvg(props.theme.colors.borderHover)})`};
     }
     input:checked + i {
-      ${(props) =>
-        `background-image: url(${CheckdSvg(props.theme.colors.borderFocus)})`};
+      ${props => `background-image: url(${CheckdSvg(props.theme.colors.borderFocus)})`};
     }
   }
   input {
     display: none;
     &:checked + i {
-      ${(props) =>
-        `background-image: url(${CheckdSvg(props.theme.colors.borderFocus)})`};
+      ${props => `background-image: url(${CheckdSvg(props.theme.colors.borderFocus)})`};
     }
     &:disabled + i {
-      ${(props) =>
-        `background-image: url(${CheckSvg(props.theme.colors.borderPrimary)})`};
+      ${props => `background-image: url(${CheckSvg(props.theme.colors.borderPrimary)})`};
     }
     &:checked:disabled + i {
-      ${(props) =>
-        `background-image: url(${CheckdSvg(
-          props.theme.colors.borderPrimary
-        )})`};
+      ${props => `background-image: url(${CheckdSvg(props.theme.colors.borderPrimary)})`};
     }
   }
 
-  ${(props) => {
+  ${props => {
     if (props.onlyBox) {
       return css`
         & {
@@ -133,19 +125,6 @@ type IUiCheckBoxProps = Omit<ICheckBoxProps, 'id'> & {
 }
 
 export function UiCheckBox(props: IUiCheckBoxProps) {
-  const { checkValue, changeValue } = useCheckBox(
-    props.name,
-    props.id,
-    props.valid,
-    props.init,
-    props.change
-  )
-  return (
-    <CheckBox
-      name={props.name}
-      change={changeValue}
-      value={checkValue}
-      text={props.text}
-    />
-  )
+  const { checkValue, changeValue } = useCheckBox(props.name, props.id, props.valid, props.init, props.change)
+  return <CheckBox name={props.name} change={changeValue} value={checkValue} text={props.text} />
 }

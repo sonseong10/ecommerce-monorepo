@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
-import { CommonGlobal } from "../commons/styles/commonGlobalStyle";
-import type { Theme } from "./theme";
+import { createGlobalStyle } from 'styled-components'
+import { CommonGlobal } from '../commons/styles/commonGlobalStyle'
+import type { Theme } from './theme'
 
 export const GlobalStyle = createGlobalStyle<{ theme?: Theme }>`
 ${CommonGlobal};
@@ -20,4 +20,4 @@ body {
 .wrapper {
   height: 100%;
 }
-`;
+`

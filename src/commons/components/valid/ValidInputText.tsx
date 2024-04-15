@@ -1,13 +1,13 @@
-import { type IValid, useValid } from "commons/ui/useValid";
-import type { IUseInputEventParam } from "commons/hook/hookVo";
-import type { IInputProps } from "../InputText";
-import InputText from "../InputText";
+import { type IValid, useValid } from 'commons/ui/useValid'
+import type { IUseInputEventParam } from 'commons/hook/hookVo'
+import type { IInputProps } from '../InputText'
+import InputText from '../InputText'
 import React from 'react'
 
 export interface IInputValidProps extends IInputProps {
-  autocomplete?: string;
-  valid?: IValid<string>;
-  checkValid?: (value: boolean) => void;
+  autocomplete?: string
+  valid?: IValid<string>
+  checkValid?: (value: boolean) => void
 }
 
 export default function ValidInputText(props: IInputValidProps): JSX.Element {
@@ -16,23 +16,23 @@ export default function ValidInputText(props: IInputValidProps): JSX.Element {
     props.valid,
     (value?: string) => {
       if (props.change) {
-        props.change({ type: "change", value: value!, id: props.id });
+        props.change({ type: 'change', value: value!, id: props.id })
       }
       if (props.checkValid) {
-        props.checkValid(validValue!);
+        props.checkValid(validValue!)
       }
     },
     props.value,
-  );
+  )
   const onChange = (e: IUseInputEventParam) => {
-    changeValue(e.value as string, e.id);
+    changeValue(e.value as string, e.id)
     if (props.change) {
-      props.change(e);
+      props.change(e)
     }
-    if (props.next && e.type === "next") {
-      props.next(e);
+    if (props.next && e.type === 'next') {
+      props.next(e)
     }
-  };
+  }
   return (
     <InputText
       id={props.id}
@@ -48,5 +48,5 @@ export default function ValidInputText(props: IInputValidProps): JSX.Element {
       change={onChange}
       value={props.value}
     />
-  );
+  )
 }

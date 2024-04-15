@@ -1,5 +1,5 @@
-import { useState, type ChangeEventHandler } from "react";
-import type { IUseParam, IUseTextArea } from "./hookVo";
+import { useState, type ChangeEventHandler } from 'react'
+import type { IUseParam, IUseTextArea } from './hookVo'
 
 /**
  * keyboard event 중 enter 가 입력되면 passwordRef 로 이동
@@ -9,63 +9,61 @@ import type { IUseParam, IUseTextArea } from "./hookVo";
  * @returns IUseTextArea
  */
 function useTextArea<T extends HTMLElement>({
-  id = "",
+  id = '',
   key = -1,
-  initalValue = "",
-  placeholder = "",
+  initalValue = '',
+  placeholder = '',
   target = undefined,
   onChangeHandler = undefined,
   onNextHandler = undefined,
   onFocusOut = undefined,
 }: IUseParam<T>): IUseTextArea {
-  const [value, setValue] = useState(initalValue);
+  const [value, setValue] = useState(initalValue)
 
-  const onChange: ChangeEventHandler<HTMLTextAreaElement> = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ): void => {
+  const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     const {
       target: { value },
-    } = e;
-    setValue(value);
+    } = e
+    setValue(value)
     if (onChangeHandler) {
       onChangeHandler({
         id: id,
         key: key,
-        type: "change",
+        type: 'change',
         value: value,
         setValue: setValue,
-      });
+      })
     }
-  };
+  }
   const onKeyPress = (e: React.KeyboardEvent): void => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       if (onNextHandler) {
         onNextHandler({
           id: id,
           key: key,
           value: value,
-          type: "next",
+          type: 'next',
           setValue: setValue,
-        });
+        })
       }
       if (target) {
-        target?.current?.focus();
+        target?.current?.focus()
       }
     }
-  };
-  if (id !== "" && onFocusOut !== undefined) {
+  }
+  if (id !== '' && onFocusOut !== undefined) {
     const onBlur = (e: React.FocusEvent<HTMLTextAreaElement>): void => {
       const {
         target: { value },
-      } = e;
+      } = e
       onFocusOut({
         id: id,
         key: key,
         value: value,
-        type: "focusOut",
+        type: 'focusOut',
         setValue: setValue,
-      });
-    };
+      })
+    }
     return {
       value,
       placeholder,
@@ -73,10 +71,10 @@ function useTextArea<T extends HTMLElement>({
       onKeyPress,
       onBlur,
       setValue,
-    };
+    }
   } else {
-    return { value, placeholder, onChange, onKeyPress, setValue };
+    return { value, placeholder, onChange, onKeyPress, setValue }
   }
 }
 
-export default useTextArea;
+export default useTextArea

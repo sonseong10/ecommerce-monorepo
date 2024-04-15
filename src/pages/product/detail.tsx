@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styles from './product-detail.module.css'
 import buttonStyle from '../../styles/modules/buttons.module.css'
 import { BiCamera } from 'react-icons/bi'
+import UiInputText from 'commons/components/ui/UiInputText'
 
 function BaseProductInfo() {
   return (
@@ -18,7 +19,7 @@ function BaseProductInfo() {
         <div>
           <dt>상품명(100글자이내)</dt>
           <dd>
-            <input />
+            <UiInputText id="fdsds" />
           </dd>
         </div>
       </dl>
@@ -145,17 +146,10 @@ function ProductDetail() {
       <div className={styles.headerWrapper}>
         <h3>상품등록</h3>
         <div>
-          <Link
-            className={`${buttonStyle.baseBtn} `}
-            to={'/admin/product/list'}
-          >
+          <Link className={`${buttonStyle.baseBtn} `} to={'/admin/product/list'}>
             취소
           </Link>
-          <button
-            className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn}`}
-          >
-            등록
-          </button>
+          <button className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn}`}>등록</button>
         </div>
       </div>
 

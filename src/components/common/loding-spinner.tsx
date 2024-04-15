@@ -1,11 +1,11 @@
-import React, { memo } from 'react'
+import React from 'react'
 import styles from '../../styles/modules/common.module.css'
 
 interface ILodingSpinner {
   dark?: boolean
 }
 
-const LodingSpinner = memo(({ dark }: ILodingSpinner) => {
+const LodingSpinner = ({ dark }: ILodingSpinner) => {
   return (
     <div className={`${styles.lodingBackGround} ${dark && styles.isDark}`}>
       <div className={`${styles.lodingMiddle}`}>
@@ -13,6 +13,6 @@ const LodingSpinner = memo(({ dark }: ILodingSpinner) => {
       </div>
     </div>
   )
-})
+}
 
-export default LodingSpinner
+export default React.memo(LodingSpinner)

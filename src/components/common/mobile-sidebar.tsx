@@ -51,21 +51,13 @@ const MobileSideBar = ({
         <h3 className="visually-hidden">메뉴 리스트</h3>
         <ul>
           <li>
-            <button
-              className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
-              onClick={onDarkMode}
-              type="button"
-            >
+            <button className={`${buttonStyles.baseBtn} ${styles.toolBtn}`} onClick={onDarkMode} type="button">
               <BiMoon className={styles.toolIcon} aria-hidden />
               Dark Mode
             </button>
           </li>
           <li>
-            <button
-              className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
-              onClick={goToUpdate}
-              type="button"
-            >
+            <button className={`${buttonStyles.baseBtn} ${styles.toolBtn}`} onClick={goToUpdate} type="button">
               <BiUser className={styles.toolIcon} aria-hidden />
 
               {isCard ? 'Info Update' : 'Disable'}
@@ -93,11 +85,7 @@ const MobileSideBar = ({
             <dt className="visually-hidden">github 이동</dt>
             <dd>
               <address>
-                <a
-                  href="https://github.com/sonseong10"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href="https://github.com/sonseong10" target="_blank" rel="noreferrer">
                   sonseong10
                 </a>
               </address>

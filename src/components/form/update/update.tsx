@@ -19,14 +19,7 @@ interface IUpdateProps {
   dark: boolean
 }
 
-const Update = ({
-  FileInput,
-  userCard,
-  dropDown,
-  updateCard,
-  deleteCard,
-  dark,
-}: IUpdateProps) => {
+const Update = ({ FileInput, userCard, dropDown, updateCard, deleteCard, dark }: IUpdateProps) => {
   return (
     <div className="col-sm-4 col-md-9">
       <EditCardForm

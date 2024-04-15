@@ -1,20 +1,11 @@
-import {
-  type AnyAction,
-  configureStore,
-  type ThunkAction,
-} from "@reduxjs/toolkit";
-import { getLoadingMiddleware } from "../commons/loading/store/loadingR";
+import { type AnyAction, configureStore, type ThunkAction } from '@reduxjs/toolkit'
+import { getLoadingMiddleware } from '../commons/loading/store/loadingR'
 // import logger from "redux-logger";
-import rootReducer, { type IState } from "./modules/index";
+import rootReducer, { type IState } from './modules/index'
 
-export type Store = ReturnType<typeof initStore>;
-export type Dispatch = Store["dispatch"];
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  IState,
-  unknown,
-  AnyAction
->;
+export type Store = ReturnType<typeof initStore>
+export type Dispatch = Store['dispatch']
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, IState, unknown, AnyAction>
 
 const initStore = () => {
   const store = configureStore({
@@ -31,9 +22,9 @@ const initStore = () => {
       }).prepend(getLoadingMiddleware()),
     // .concat(logger)
     // 운영이 아닌곳에서만 데브툴 가능하게 처리
-    devTools: process.env.NODE_ENV !== "production",
-  });
-  return store;
-};
+    devTools: process.env.NODE_ENV !== 'production',
+  })
+  return store
+}
 
-export default initStore();
+export default initStore()

@@ -24,9 +24,7 @@ function Login({ onLogin }: ILoginProps): JSX.Element {
           <input type="text" />
           <span>패스워드</span>
           <input type="password" />
-          <button className={`${btnStyles.baseBtn} ${btnStyles.primaryBtn}`}>
-            로그인
-          </button>
+          <button className={`${btnStyles.baseBtn} ${btnStyles.primaryBtn}`}>로그인</button>
           <div className={styles.easyLogin}>
             <span>테스터&방문자용 간편로그인</span>
             <div className={styles.buttonGroup}>

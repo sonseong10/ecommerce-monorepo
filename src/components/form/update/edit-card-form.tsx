@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import {
-  validateEmail,
-  validateName,
-  validatePhone,
-} from '../../../utils/validation'
+import { validateEmail, validateName, validatePhone } from '../../../utils/validation'
 
 import RanksDropdown from './components/ranks-dropdown'
 
@@ -30,14 +26,7 @@ interface IEditCardFormProps {
   dark: boolean
 }
 
-const EditCardForm = ({
-  FileInput,
-  userCard,
-  dropDown,
-  updateCard,
-  deleteCard,
-  dark,
-}: IEditCardFormProps) => {
+const EditCardForm = ({ FileInput, userCard, dropDown, updateCard, deleteCard, dark }: IEditCardFormProps) => {
   const [nameError, setNameError] = useState(false)
   const [emailError, setEmailError] = useState(false)
   const [phoneError, setPhoneError] = useState(false)
@@ -77,12 +66,7 @@ const EditCardForm = ({
     })
   }
 
-  const onChange = (
-    {
-      currentTarget,
-    }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    validated = true
-  ) => {
+  const onChange = ({ currentTarget }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, validated = true) => {
     if (currentTarget.value === null) {
       return
     }
@@ -102,10 +86,7 @@ const EditCardForm = ({
 
   return (
     <form className={`${styles.authForm} ${dark && styles.isDark}`}>
-      <FileInput
-        name={userCard?.fileName ? userCard?.fileName : ''}
-        onFileChange={onFileChange}
-      />
+      <FileInput name={userCard?.fileName ? userCard?.fileName : ''} onFileChange={onFileChange} />
 
       <label htmlFor="name" className={styles.formLabel}>
         이름
@@ -118,11 +99,7 @@ const EditCardForm = ({
         placeholder="Name"
         onChange={nameValidate}
       />
-      {nameError && (
-        <strong className={styles.errorText}>
-          공백없는 영어 혹은 한글만 입력 가능합니다.
-        </strong>
-      )}
+      {nameError && <strong className={styles.errorText}>공백없는 영어 혹은 한글만 입력 가능합니다.</strong>}
 
       <label htmlFor="email" className={styles.formLabel}>
         이메일
@@ -135,9 +112,7 @@ const EditCardForm = ({
         placeholder="Email"
         onChange={emailValidate}
       />
-      {emailError && (
-        <strong className={styles.errorText}>이메일 형식에 어긋납니다.</strong>
-      )}
+      {emailError && <strong className={styles.errorText}>이메일 형식에 어긋납니다.</strong>}
 
       <label htmlFor="phone" className={styles.formLabel}>
         휴대전화
@@ -150,11 +125,7 @@ const EditCardForm = ({
         placeholder="Phone"
         onChange={phoneValidate}
       />
-      {phoneError && (
-        <strong className={styles.errorText}>
-          휴대폰 양식에 어긋납니다 ( "-" 필수)
-        </strong>
-      )}
+      {phoneError && <strong className={styles.errorText}>휴대폰 양식에 어긋납니다</strong>}
 
       <label htmlFor="telephone" className={styles.formLabel}>
         유선전화
@@ -183,26 +154,11 @@ const EditCardForm = ({
       ></textarea>
 
       <div className={styles.typeBtnList}>
-        <ThemesDropdown
-          dropDown={dropDown}
-          updateCard={updateCard}
-          userCard={userCard}
-          dark={dark}
-        ></ThemesDropdown>
+        <ThemesDropdown dropDown={dropDown} updateCard={updateCard} userCard={userCard} dark={dark}></ThemesDropdown>
 
-        <TeamsDropdown
-          dropDown={dropDown}
-          updateCard={updateCard}
-          userCard={userCard}
-          dark={dark}
-        ></TeamsDropdown>
+        <TeamsDropdown dropDown={dropDown} updateCard={updateCard} userCard={userCard} dark={dark}></TeamsDropdown>
 
-        <RanksDropdown
-          dropDown={dropDown}
-          updateCard={updateCard}
-          userCard={userCard}
-          dark={dark}
-        ></RanksDropdown>
+        <RanksDropdown dropDown={dropDown} updateCard={updateCard} userCard={userCard} dark={dark}></RanksDropdown>
       </div>
 
       <button

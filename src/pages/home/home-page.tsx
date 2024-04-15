@@ -23,14 +23,7 @@ interface IHomePageProps {
   onMenuChange: (v: 'member' | 'work' | 'home') => void
   dark: boolean
 }
-const HomePage = ({
-  isCard,
-  cards,
-  works,
-  userCard,
-  onMenuChange,
-  dark,
-}: IHomePageProps) => {
+const HomePage = ({ isCard, cards, works, userCard, onMenuChange, dark }: IHomePageProps) => {
   useEffect(() => {
     onMenuChange('home')
   }, [onMenuChange])

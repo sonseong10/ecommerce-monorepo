@@ -1,11 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  type MemoExoticComponent,
-  lazy,
-  Suspense,
-} from 'react'
+import React, { useCallback, useEffect, useState, type MemoExoticComponent, lazy, Suspense } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 
 import GlobalHeader from './components/common/global-header'
@@ -50,13 +43,7 @@ interface IAppProps {
   workRepository: WorkRepository
 }
 
-function App({
-  FileInput,
-  dropDown,
-  authService,
-  cardRepository,
-  workRepository,
-}: IAppProps) {
+function App({ FileInput, dropDown, authService, cardRepository, workRepository }: IAppProps) {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -64,12 +51,8 @@ function App({
 
   const [userId, setUserId] = useState(historyState && historyState.id)
 
-  const [cards, setCards] = useState<{ [key: string]: ICardVo } | undefined>(
-    undefined
-  )
-  const [works, setWorks] = useState<{ [key: string]: IWorkVo } | undefined>(
-    undefined
-  )
+  const [cards, setCards] = useState<{ [key: string]: ICardVo } | undefined>(undefined)
+  const [works, setWorks] = useState<{ [key: string]: IWorkVo } | undefined>(undefined)
 
   const [userCard, setUserCard] = useState<ICardVo | undefined>(undefined)
   const [popupMsg, setpopupMsg] = useState({ title: '', desc: '' })
@@ -97,13 +80,13 @@ function App({
 
   const onLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
     authService.login(event.currentTarget!.value, setMsg).then(
-      (data) =>
+      data =>
         data &&
         cards![data.user.uid] &&
         cardRepository.saveCard(data.user.uid, {
           ...cards![data.user.uid],
           login: true,
-        })
+        }),
     )
     setWorks({})
     setUserCard(undefined)
@@ -159,7 +142,7 @@ function App({
       return
     }
 
-    if (cards && Object.keys(cards).find((item) => item === userId)) {
+    if (cards && Object.keys(cards).find(item => item === userId)) {
       setUserCard({ ...cards![userId] })
     } else {
       setUserCard(undefined)
@@ -167,7 +150,7 @@ function App({
   }, [cards, userId])
 
   const createOrUpdateCard = (card: ICardVo) => {
-    setCards((cards) => {
+    setCards(cards => {
       const updated: {
         [key: string]: ICardVo
       } = { ...cards }
@@ -178,7 +161,7 @@ function App({
   }
 
   const deleteCard = () => {
-    setCards((cards) => {
+    setCards(cards => {
       const updated = { ...cards }
       delete updated[userId]
       return updated
@@ -190,12 +173,9 @@ function App({
     if (!userId) {
       return
     }
-    const stopSync = workRepository.syncWorks(
-      userId,
-      (works: { [key: string]: IWorkVo }) => {
-        setWorks(works)
-      }
-    )
+    const stopSync = workRepository.syncWorks(userId, (works: { [key: string]: IWorkVo }) => {
+      setWorks(works)
+    })
 
     return () => {
       stopSync()
@@ -203,7 +183,7 @@ function App({
   }, [userId, workRepository])
 
   const createOrUpdateWork = (work: IWorkVo) => {
-    setWorks((works) => {
+    setWorks(works => {
       const updated = { ...works }
       updated[userId] = work
       return updated
@@ -212,7 +192,7 @@ function App({
   }
 
   const deleteWork = (work: IWorkVo) => {
-    setWorks((works) => {
+    setWorks(works => {
       const updated = { ...works }
       delete updated[work.time]
       return updated
@@ -308,12 +288,7 @@ function App({
             path="member"
             element={
               <Suspense fallback={<LodingSpinner />}>
-                <Search
-                  dropDown={dropDown}
-                  cards={cards}
-                  onMenuChange={onMenuChange}
-                  dark={dark}
-                ></Search>
+                <Search dropDown={dropDown} cards={cards} onMenuChange={onMenuChange} dark={dark}></Search>
               </Suspense>
             }
           />
@@ -404,20 +379,12 @@ function App({
 
       {magPopup && (
         <>
-          <MsgPopup
-            popupMsg={popupMsg}
-            magPopup={magPopup}
-            toggleMsgPopup={toggleMsgPopup}
-          ></MsgPopup>
+          <MsgPopup popupMsg={popupMsg} magPopup={magPopup} toggleMsgPopup={toggleMsgPopup}></MsgPopup>
           <Overlay overlay={magPopup} ToggleOverlay={toggleMsgPopup}></Overlay>
         </>
       )}
 
-      <GlobalFooter
-        userId={userId}
-        menuActive={menuActive}
-        dark={dark}
-      ></GlobalFooter>
+      <GlobalFooter userId={userId} menuActive={menuActive} dark={dark}></GlobalFooter>
     </div>
   )
 }

@@ -1,25 +1,25 @@
-import React, { lazy } from "react";
+import React, { lazy } from 'react'
 
 // NOTE: 공통 레이어팝업
-const InputPopup = lazy(() => import("./display/InputPopup"));
-const AlertOrConfirm = lazy(() => import("./display/AlertOrConfirm"));
+const InputPopup = lazy(() => import('./display/InputPopup'))
+const AlertOrConfirm = lazy(() => import('./display/AlertOrConfirm'))
 
 export enum AbsPopupType {
-  ALERT = "alert",
-  CONFIRM = "confirm",
-  WARNING = "waring",
-  INPUT = "input",
+  ALERT = 'alert',
+  CONFIRM = 'confirm',
+  WARNING = 'waring',
+  INPUT = 'input',
 }
 
 const popups: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: React.LazyExoticComponent<React.ComponentType<any>>;
+  [key: string]: React.LazyExoticComponent<React.ComponentType<any>>
 } = {
   [AbsPopupType.ALERT]: AlertOrConfirm,
   [AbsPopupType.CONFIRM]: AlertOrConfirm,
   [AbsPopupType.WARNING]: AlertOrConfirm,
   [AbsPopupType.INPUT]: InputPopup,
-};
+}
 
 /**
  * 팝업 추가
@@ -30,7 +30,7 @@ const popups: {
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function addPopup<T = any>(key: string, popup: React.LazyExoticComponent<React.ComponentType<T>>) {
-  popups[key] = popup;
+  popups[key] = popup
 }
 
 /**
@@ -39,5 +39,5 @@ export function addPopup<T = any>(key: string, popup: React.LazyExoticComponent<
  * @returns 저장된 팝업 컴포넌트
  */
 export function getPopup(key: string) {
-  return popups[key];
+  return popups[key]
 }

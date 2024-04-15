@@ -1,6 +1,6 @@
-import { useDispatch } from "react-redux";
-import { rdxRemoveStorage, rdxSetStorage } from "./storageR";
-import { Storage } from "./storageVo";
+import { useDispatch } from 'react-redux'
+import { rdxRemoveStorage, rdxSetStorage } from './storageR'
+import { Storage } from './storageVo'
 
 /**
  * localStorage 관리 Hook
@@ -9,17 +9,17 @@ import { Storage } from "./storageVo";
  * ```
  */
 export function useLocal() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const set = (key: string, value: string) => {
-    dispatch(rdxSetStorage({ type: Storage.LOCAL, key, value }));
-  };
+    dispatch(rdxSetStorage({ type: Storage.LOCAL, key, value }))
+  }
   const remove = (key: string) => {
-    dispatch(rdxRemoveStorage({ type: Storage.LOCAL, key }));
-  };
+    dispatch(rdxRemoveStorage({ type: Storage.LOCAL, key }))
+  }
   const get = (key: string) => {
-    return localStorage.getItem(key);
-  };
-  return { set, get, remove };
+    return localStorage.getItem(key)
+  }
+  return { set, get, remove }
 }
 
 /**
@@ -29,12 +29,12 @@ export function useLocal() {
  */
 export function setLocal<T>(key: string, value: T) {
   switch (typeof value) {
-    case "string":
-      localStorage.setItem(key, value);
-      break;
+    case 'string':
+      localStorage.setItem(key, value)
+      break
     default:
-      localStorage.setItem(key, JSON.stringify(value));
-      break;
+      localStorage.setItem(key, JSON.stringify(value))
+      break
   }
 }
 
@@ -43,7 +43,7 @@ export function setLocal<T>(key: string, value: T) {
  * @param {string} key localStorage 키
  */
 export function getLocal(key: string) {
-  return localStorage.getItem(key);
+  return localStorage.getItem(key)
 }
 
 /**
@@ -51,7 +51,7 @@ export function getLocal(key: string) {
  * @param {string} key localStorage 키
  */
 export function removeLocal(key: string) {
-  return localStorage.removeItem(key);
+  return localStorage.removeItem(key)
 }
 
 /**
@@ -61,17 +61,17 @@ export function removeLocal(key: string) {
  * ```
  */
 export function useSession() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const set = (key: string, value: string) => {
-    dispatch(rdxSetStorage({ type: Storage.SESSION, key, value }));
-  };
+    dispatch(rdxSetStorage({ type: Storage.SESSION, key, value }))
+  }
   const remove = (key: string) => {
-    dispatch(rdxRemoveStorage({ type: Storage.SESSION, key }));
-  };
+    dispatch(rdxRemoveStorage({ type: Storage.SESSION, key }))
+  }
   const get = (key: string) => {
-    return sessionStorage.getItem(key);
-  };
-  return { set, get, remove };
+    return sessionStorage.getItem(key)
+  }
+  return { set, get, remove }
 }
 
 /**
@@ -80,7 +80,7 @@ export function useSession() {
  * @param {T} value sessionStorage 설정값
  */
 export function setSession(key: string, value: string) {
-  sessionStorage.setItem(key, value);
+  sessionStorage.setItem(key, value)
 }
 
 /**
@@ -88,7 +88,7 @@ export function setSession(key: string, value: string) {
  * @param {string} key sessionStorage 키
  */
 export function getSession(key: string) {
-  return sessionStorage.getItem(key);
+  return sessionStorage.getItem(key)
 }
 
 /**
@@ -96,5 +96,5 @@ export function getSession(key: string) {
  * @param {string} key sessionStorage 키
  */
 export function removeSession(key: string) {
-  return sessionStorage.removeItem(key);
+  return sessionStorage.removeItem(key)
 }

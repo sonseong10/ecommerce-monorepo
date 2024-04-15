@@ -8,7 +8,7 @@ export const LoadingArea = styled.div`
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background-color: ${(props) => props.theme.colors.bgDark};
+  background-color: ${props => props.theme.colors.bgDark};
   opacity: 0.8;
 `
 

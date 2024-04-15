@@ -16,14 +16,14 @@ interface IDetailProps {
 }
 
 const Detail = ({ cards, dark }: IDetailProps) => {
-  const [card, setCard] = useState({})
+  const [card, setCard] = useState<ICardVo | undefined>(undefined)
   const location = useLocation()
 
   useEffect(() => {
     setCard({ ...cards![location.state?.id] })
   }, [cards, location.state?.id])
 
-  const { login, name, phone, email, msg, team, rank, fileURL } = card as any
+  const { login, name, phone, email, msg, team, rank, fileURL } = card as ICardVo
   const replaceMsg = msg && formatMsg(msg)
 
   return (
@@ -71,29 +71,20 @@ const Detail = ({ cards, dark }: IDetailProps) => {
               <div className={styles.userInfoItem}>
                 <dt>상태</dt>
                 <dd>
-                  <strong
-                    className={`${styles.loginState} ${
-                      login ? styles.isLogin : styles.isOffline
-                    }`}
-                  >
+                  <strong className={`${styles.loginState} ${login ? styles.isLogin : styles.isOffline}`}>
                     {login ? '근무중' : '오프라인'}
                   </strong>
                 </dd>
               </div>
               <div className={`${styles.userInfoItem} ${styles.msg}`}>
                 <dt>남긴말</dt>
-                <dd className={styles.msgBox}>
-                  {replaceMsg ? replaceMsg : '없음'}
-                </dd>
+                <dd className={styles.msgBox}>{replaceMsg ? replaceMsg : '없음'}</dd>
               </div>
             </dl>
           </div>
         </div>
         <footer className={styles.footer}>
-          <Link
-            to="/admin/member"
-            className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.returnBtn}`}
-          >
+          <Link to="/admin/member" className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.returnBtn}`}>
             Close
           </Link>
         </footer>

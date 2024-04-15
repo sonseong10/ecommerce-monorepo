@@ -1,23 +1,23 @@
-import { useDispatch } from "react-redux";
-import { UiCenter, UiType, type IUiAction } from "./uiVo";
-import { rdxTotalRemoveUi, rdxTotalSetUi } from "./uiR";
+import { useDispatch } from 'react-redux'
+import { UiCenter, UiType, type IUiAction } from './uiVo'
+import { rdxTotalRemoveUi, rdxTotalSetUi } from './uiR'
 
 /** 액션을 한군데로 모아주는 변수 */
-const center: { [key: string]: Array<IUiAction> } = {};
-const codeCenter: { [key: string]: NodeJS.Timeout } = {};
+const center: { [key: string]: Array<IUiAction> } = {}
+const codeCenter: { [key: string]: NodeJS.Timeout } = {}
 /** UI 컴포넌트가 화면에 생성될때 처리되는 action 모음 */
-center[UiCenter.INIT] = [];
+center[UiCenter.INIT] = []
 /** UI 컴포넌트가 화면에 지워질때 처리되는 action 모음 */
-center[UiCenter.REMOVE] = [];
+center[UiCenter.REMOVE] = []
 /** 비동기로 치뤄지는 동안 Valid 가 저장되어 있는 객체 */
-center[UiCenter.BACK] = [];
+center[UiCenter.BACK] = []
 /**
  * UI 컴포넌트가 화면에 생성될때 처리되는 action 조회
  * @returns
  * @deprecated 외부 사용금지
  */
 export function getInit() {
-  return center[UiCenter.INIT];
+  return center[UiCenter.INIT]
 }
 
 /**
@@ -26,7 +26,7 @@ export function getInit() {
  * @deprecated 외부 사용금지
  */
 export function getRemove() {
-  return center[UiCenter.REMOVE];
+  return center[UiCenter.REMOVE]
 }
 
 /**
@@ -38,9 +38,9 @@ export function getRemove() {
 export function getUi(key?: string) {
   switch (key) {
     case undefined:
-      return center[UiCenter.DEFAULT];
+      return center[UiCenter.DEFAULT]
     default:
-      return center[key];
+      return center[key]
   }
 }
 
@@ -53,16 +53,16 @@ export function resetInit() {
     center[UiCenter.INIT].filter(
       a => a.type === UiType.VALID && center[UiCenter.BACK].filter(k => k.key === a.key).length === 0,
     ),
-  );
-  center[UiCenter.INIT] = [];
+  )
+  center[UiCenter.INIT] = []
 }
 /**
  * ui 삭제후 초기화를 위해 호출
  * @deprecated 외부 사용금지
  */
 export function resetRemove() {
-  center[UiCenter.BACK] = [];
-  center[UiCenter.REMOVE] = [];
+  center[UiCenter.BACK] = []
+  center[UiCenter.REMOVE] = []
 }
 /**
  * @param key
@@ -71,11 +71,11 @@ export function resetRemove() {
 export function resteUi(key?: string) {
   switch (key) {
     case undefined:
-      center[UiCenter.DEFAULT] = [];
-      break;
+      center[UiCenter.DEFAULT] = []
+      break
     default:
-      center[key] = [];
-      break;
+      center[key] = []
+      break
   }
 }
 
@@ -89,31 +89,31 @@ export function addInit(value: IUiAction, callBack?: () => void) {
   switch (value.type) {
     case UiType.CHECK_BOX:
     case UiType.CHECK_BOX_GROUP:
-      break;
+      break
     default:
       {
-        const idx = center[UiCenter.INIT].findIndex(a => a.type === value.type && a.key === value.key);
+        const idx = center[UiCenter.INIT].findIndex(a => a.type === value.type && a.key === value.key)
         if (idx !== -1) {
-          center[UiCenter.INIT].splice(idx, 1);
+          center[UiCenter.INIT].splice(idx, 1)
         }
       }
-      break;
+      break
   }
-  center[UiCenter.INIT].push(value);
+  center[UiCenter.INIT].push(value)
   if (codeCenter[UiCenter.INIT] !== undefined) {
-    clearTimeout(codeCenter[UiCenter.INIT]);
+    clearTimeout(codeCenter[UiCenter.INIT])
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     codeCenter[UiCenter.INIT] = setTimeout(() => {
       if (center[UiCenter.INIT].length > 0 && callBack !== undefined) {
-        callBack();
-        delete codeCenter[UiCenter.INIT];
+        callBack()
+        delete codeCenter[UiCenter.INIT]
       }
-    }, 100);
+    }, 100)
   } else {
     if (center[UiCenter.INIT].length > 0 && callBack !== undefined) {
-      callBack();
-      delete codeCenter[UiCenter.INIT];
+      callBack()
+      delete codeCenter[UiCenter.INIT]
     }
   }
 }
@@ -126,21 +126,21 @@ export function addInit(value: IUiAction, callBack?: () => void) {
  * @deprecated 외부 사용금지
  */
 export function removeEnd(value: IUiAction, callBack?: () => void) {
-  center[UiCenter.REMOVE].push(value);
+  center[UiCenter.REMOVE].push(value)
   if (codeCenter[UiCenter.REMOVE] !== undefined) {
-    clearTimeout(codeCenter[UiCenter.REMOVE]);
+    clearTimeout(codeCenter[UiCenter.REMOVE])
   }
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     codeCenter[UiCenter.REMOVE] = setTimeout(() => {
       if (center[UiCenter.REMOVE].length > 0 && callBack !== undefined) {
-        callBack();
-        delete codeCenter[UiCenter.REMOVE];
+        callBack()
+        delete codeCenter[UiCenter.REMOVE]
       }
-    }, 100);
+    }, 100)
   } else {
     if (center[UiCenter.REMOVE].length > 0 && callBack !== undefined) {
-      callBack();
-      delete codeCenter[UiCenter.REMOVE];
+      callBack()
+      delete codeCenter[UiCenter.REMOVE]
     }
   }
 }
@@ -156,14 +156,14 @@ export function addUi(vo: IUiAction, key?: string) {
   switch (key) {
     case undefined:
       if (center[UiCenter.DEFAULT] === undefined) {
-        center[UiCenter.DEFAULT] = [];
+        center[UiCenter.DEFAULT] = []
       }
-      return center[UiCenter.DEFAULT].push(vo);
+      return center[UiCenter.DEFAULT].push(vo)
     default:
       if (center[key] === undefined) {
-        center[key] = [];
+        center[key] = []
       }
-      return center[key].push(vo);
+      return center[key].push(vo)
   }
 }
 
@@ -178,14 +178,14 @@ export function removeUi(vo: IUiAction, key?: string) {
   switch (key) {
     case undefined:
       if (center[UiCenter.REMOVE] === undefined) {
-        center[UiCenter.REMOVE] = [];
+        center[UiCenter.REMOVE] = []
       }
-      return center[UiCenter.REMOVE].push(vo);
+      return center[UiCenter.REMOVE].push(vo)
     default:
       if (center[key] === undefined) {
-        center[key] = [];
+        center[key] = []
       }
-      return center[key].push(vo);
+      return center[key].push(vo)
   }
 }
 
@@ -196,14 +196,14 @@ export function removeUi(vo: IUiAction, key?: string) {
  * @deprecated 외부 사용금지
  */
 export const privateUseInitCallback = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return () => {
     if (getRemove().length === 0) {
-      dispatch(rdxTotalSetUi(getInit()));
-      resetInit();
+      dispatch(rdxTotalSetUi(getInit()))
+      resetInit()
     }
-  };
-};
+  }
+}
 
 /**
  * ui 컴포넌트 자동 삭제 통합 통신을 위한 callback
@@ -212,13 +212,13 @@ export const privateUseInitCallback = () => {
  * @deprecated 외부 사용금지
  */
 export const privateUseRemoveCallback = () => {
-  const dispatch = useDispatch();
-  const initCallback = privateUseInitCallback();
+  const dispatch = useDispatch()
+  const initCallback = privateUseInitCallback()
   return () => {
-    dispatch(rdxTotalRemoveUi(getRemove()));
-    resetRemove();
+    dispatch(rdxTotalRemoveUi(getRemove()))
+    resetRemove()
     if (getInit().length !== 0) {
-      initCallback();
+      initCallback()
     }
-  };
-};
+  }
+}

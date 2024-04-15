@@ -15,13 +15,7 @@ interface IThemesDropdownProps {
   dark: boolean
 }
 
-const ThemesDropdown = ({
-  dropDown,
-  themeRef,
-  updateCard,
-  userCard,
-  dark,
-}: IThemesDropdownProps) => {
+const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard, dark }: IThemesDropdownProps) => {
   const items = dropDown.getThemes()
 
   const [themesType, setThemesType] = useState('')
@@ -71,11 +65,7 @@ const ThemesDropdown = ({
         <BiChevronUp className={styles.dropdownIcon} aria-hidden />
       </button>
       <div className={styles.themesList}>
-        <DropDown
-          listItems={items}
-          handleEvent={handleThemesValue}
-          dark={dark}
-        />
+        <DropDown listItems={items} handleEvent={handleThemesValue} dark={dark} />
       </div>
     </div>
   )

@@ -10,10 +10,10 @@ class WorkRepository {
         time: number
         title: string
       }
-    }) => void
+    }) => void,
   ) {
     const query = ref(firebaseDatabase, `works/${userId}`)
-    onValue(query, (snapshot) => {
+    onValue(query, snapshot => {
       const value = snapshot.val()
       value && onUpdate(value)
     })
@@ -26,7 +26,7 @@ class WorkRepository {
       contents: string
       time: number
       title: string
-    }
+    },
   ) {
     set(ref(firebaseDatabase, `works/${userId}/${work.time}`), work)
   }
@@ -37,7 +37,7 @@ class WorkRepository {
       contents: string
       time: number
       title: string
-    }
+    },
   ) {
     remove(ref(firebaseDatabase, `works/${userId}/${work.time}`))
   }

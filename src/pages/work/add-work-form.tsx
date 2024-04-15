@@ -11,11 +11,7 @@ interface IAddWorkFormProps {
   userId?: string
 }
 
-const AddWorkForm = ({
-  createWork,
-  renderMarkdown,
-  dark,
-}: IAddWorkFormProps) => {
+const AddWorkForm = ({ createWork, renderMarkdown, dark }: IAddWorkFormProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -64,19 +60,10 @@ const AddWorkForm = ({
       <section className={styles.editor}>
         <form className={styles.form} ref={formRef}>
           <div className={styles.inputGroup}>
-            <input
-              ref={inputRef}
-              onChange={updateTitle}
-              type="text"
-              placeholder="제목"
-            />
+            <input ref={inputRef} onChange={updateTitle} type="text" placeholder="제목" />
           </div>
           <div className={styles.inputGroup}>
-            <textarea
-              ref={textareaRef}
-              onChange={updateContent}
-              placeholder="내용"
-            />
+            <textarea ref={textareaRef} onChange={updateContent} placeholder="내용" />
           </div>
         </form>
         <footer className={styles.footer}>

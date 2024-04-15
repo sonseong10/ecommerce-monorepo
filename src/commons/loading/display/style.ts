@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SpinnerWrap = styled.div`
   text-align: center;
-`;
+`
 
 export const SpinnerContent = styled.div<{ size?: number }>`
   display: inline-block;
   position: relative;
-  width: ${props => (props.size ? `${props.size}px` : "70px")};
-  height: ${props => (props.size ? `${props.size}px` : "70px")};
+  width: ${props => (props.size ? `${props.size}px` : '70px')};
+  height: ${props => (props.size ? `${props.size}px` : '70px')};
   margin: 100px 0;
 
   & > div {
@@ -40,8 +40,8 @@ export const SpinnerContent = styled.div<{ size?: number }>`
       transform: rotate(360deg);
     }
   }
-`;
+`
 
 export const SpinnerText = styled.p`
   text-align: center;
-`;
+`

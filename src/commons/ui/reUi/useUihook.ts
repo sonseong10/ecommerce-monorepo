@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import type { ICommonsStore } from "../..";
-import { useSelectorEq } from "../../store/common";
-import { rdxSetUi, rdxTotalSetUi, rdxTotalRemoveUi } from "../uiR";
-import { type IValid, changeValid, useValidChange, useValid, validInput } from "./useValid";
-import { UiCenter, type IUiActionValue, UiType, type IUiAction, type ICheckBox, type FileType } from "../uiVo";
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import type { ICommonsStore } from '../..'
+import { useSelectorEq } from '../../store/common'
+import { rdxSetUi, rdxTotalSetUi, rdxTotalRemoveUi } from '../uiR'
+import { type IValid, changeValid, useValidChange, useValid, validInput } from './useValid'
+import { UiCenter, type IUiActionValue, UiType, type IUiAction, type ICheckBox, type FileType } from '../uiVo'
 import {
   addInit,
   addUi,
@@ -16,7 +16,7 @@ import {
   removeEnd,
   removeUi,
   resteUi,
-} from "../uiCore";
+} from '../uiCore'
 
 /**
  * ui 컴포넌트에 값을 일률 적으로 전달하기 위한 hook
@@ -26,35 +26,35 @@ import {
  * @returns
  */
 export const useUiAction = (namespace?: string) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { validP } = useSelectorEq((state: ICommonsStore) => ({
     validP: state.ui.validP,
-  }));
+  }))
   const add = <T>(type: UiType, key: string | T, value: IUiActionValue) => {
-    privateAddUi(namespace, type, key, value);
-    privateAddValid(namespace, key as string, value, validP);
-  };
+    privateAddUi(namespace, type, key, value)
+    privateAddValid(namespace, key as string, value, validP)
+  }
   const remove = <T>(type: UiType, key: string | T, value: IUiActionValue) => {
-    privateRemoveUi(namespace, type, key, value);
-    privateRemoveValid(namespace, key as string);
-  };
+    privateRemoveUi(namespace, type, key, value)
+    privateRemoveValid(namespace, key as string)
+  }
   const commit = (remove?: boolean) => {
     if (remove) {
-      const uiArr = getRemove();
+      const uiArr = getRemove()
       if (uiArr && uiArr.length > 0) {
-        dispatch(rdxTotalRemoveUi(uiArr));
-        resteUi(UiCenter.REMOVE);
+        dispatch(rdxTotalRemoveUi(uiArr))
+        resteUi(UiCenter.REMOVE)
       }
     } else {
-      const uiArr = getUi(namespace);
+      const uiArr = getUi(namespace)
       if (uiArr && uiArr.length > 0) {
-        dispatch(rdxTotalSetUi(uiArr));
-        resteUi(namespace);
+        dispatch(rdxTotalSetUi(uiArr))
+        resteUi(namespace)
       }
     }
-  };
-  return { add, commit, remove };
-};
+  }
+  return { add, commit, remove }
+}
 
 /**
  * ui 컴포넌트에 값을 일률 적으로 전달하기 위한 함수
@@ -67,31 +67,31 @@ export const useUiAction = (namespace?: string) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const uiAction = (thunkApi: any, namespace?: string) => {
   const validP = thunkApi.getState().ui.validP as {
-    [key: string]: IValid<IUiActionValue>;
-  };
+    [key: string]: IValid<IUiActionValue>
+  }
   const add = <T>(type: UiType, key: string | T, value: IUiActionValue) => {
-    privateAddUi(namespace, type, key, value);
-    privateAddValid(namespace, key as string, value, validP);
-  };
+    privateAddUi(namespace, type, key, value)
+    privateAddValid(namespace, key as string, value, validP)
+  }
   const remove = <T>(type: UiType, key: string | T, value: IUiActionValue) => {
-    privateRemoveUi(namespace, type, key, value);
-    privateRemoveValid(namespace, key as string);
-  };
+    privateRemoveUi(namespace, type, key, value)
+    privateRemoveValid(namespace, key as string)
+  }
   const commit = () => {
-    const uiArr = getUi(namespace);
+    const uiArr = getUi(namespace)
     if (uiArr && uiArr.length > 0) {
-      thunkApi.dispatch(rdxTotalSetUi(uiArr));
-      resteUi(namespace);
+      thunkApi.dispatch(rdxTotalSetUi(uiArr))
+      resteUi(namespace)
     }
-  };
-  return { add, commit, remove };
-};
+  }
+  return { add, commit, remove }
+}
 
 /**
  * @deprecated 외부 사용금지
  */
 const privateAddUi = <T>(namespace: string | undefined, type: UiType, key: string | T, value: IUiActionValue) => {
-  const _namespace = getInit().length === 0 ? namespace : UiCenter.INIT;
+  const _namespace = getInit().length === 0 ? namespace : UiCenter.INIT
   addUi(
     {
       type: type,
@@ -99,8 +99,8 @@ const privateAddUi = <T>(namespace: string | undefined, type: UiType, key: strin
       value: value,
     },
     _namespace,
-  );
-};
+  )
+}
 
 /**
  * @deprecated 외부 사용금지
@@ -113,8 +113,8 @@ const privateRemoveUi = <T>(namespace: string | undefined, type: UiType, key: st
       value: value,
     },
     namespace,
-  );
-};
+  )
+}
 
 /**
  * @deprecated 외부 사용금지
@@ -124,46 +124,46 @@ const privateAddValid = (
   key: string,
   value: IUiActionValue,
   validP?: {
-    [key: string]: IValid<IUiActionValue>;
+    [key: string]: IValid<IUiActionValue>
   },
 ) => {
-  const valid = changeValid();
-  const _namespace = getInit().length === 0 ? namespace : UiCenter.INIT;
-  const backVp = getUi(UiCenter.BACK).filter(k => k.key === key);
-  let vp: IValid<IUiActionValue> | undefined = validP ? validP[key as string] : undefined;
+  const valid = changeValid()
+  const _namespace = getInit().length === 0 ? namespace : UiCenter.INIT
+  const backVp = getUi(UiCenter.BACK).filter(k => k.key === key)
+  let vp: IValid<IUiActionValue> | undefined = validP ? validP[key as string] : undefined
   if (vp === undefined) {
     if (backVp.length !== 0) {
-      vp = backVp[0].valid;
+      vp = backVp[0].valid
     } else if (getInit().length !== 0) {
-      vp = getInitValid(key as string);
+      vp = getInitValid(key as string)
     }
   }
   if (vp) {
-    const v = valid({ id: key as string, valid: vp, value });
+    const v = valid({ id: key as string, valid: vp, value })
     if (v) {
-      addUi(v, _namespace);
+      addUi(v, _namespace)
     }
   }
-};
+}
 
 /**
  * @deprecated 외부 사용금지
  */
 const privateRemoveValid = (namespace: string | undefined, key: string) => {
-  removeUi({ type: UiType.VALID, key: key } as IUiAction, namespace);
-};
+  removeUi({ type: UiType.VALID, key: key } as IUiAction, namespace)
+}
 
 /**
  * @deprecated 외부 사용금지
  */
 const getInitValid = (key: string) => {
-  const init = getInit();
-  const vp = init.filter(i => i.type === UiType.VALID && i.key === key);
+  const init = getInit()
+  const vp = init.filter(i => i.type === UiType.VALID && i.key === key)
   if (vp.length > 0) {
-    return vp[0].valid;
+    return vp[0].valid
   }
-  return undefined;
-};
+  return undefined
+}
 
 /**
  *
@@ -173,51 +173,51 @@ const getInitValid = (key: string) => {
 export const useReset = () => {
   const { uiValid } = useSelectorEq((state: ICommonsStore) => ({
     uiValid: state.ui.validP,
-  }));
-  const dispatch = useDispatch();
+  }))
+  const dispatch = useDispatch()
   const resetTotal = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     uiValue: { key: string; type: UiType; value: any; isAll?: boolean }[],
   ) => {
-    const vArr: IUiAction[] = [];
+    const vArr: IUiAction[] = []
     const temp = uiValue.map(item => {
-      const v = uiValid ? uiValid[item.key] : undefined;
+      const v = uiValid ? uiValid[item.key] : undefined
       if (v) {
-        const bo = validInput(v, item.value);
+        const bo = validInput(v, item.value)
         vArr.push({
           key: item.key,
           type: UiType.VALID,
           display: bo,
           value: bo,
-        });
+        })
       }
       return {
         key: item.key,
         type: item.type,
         isAll: item.isAll,
         value: item.value,
-      };
-    });
-    dispatch(rdxTotalSetUi(vArr.concat(temp)));
-  };
-  return { resetTotal };
-};
+      }
+    })
+    dispatch(rdxTotalSetUi(vArr.concat(temp)))
+  }
+  return { resetTotal }
+}
 
 /**
  * @deprecated 외부 사용금지
  */
 const useInitEffect = (initDo: IUiAction, removeDo?: IUiAction, isRemove?: boolean) => {
-  const initCallback = privateUseInitCallback();
-  const removeCallback = privateUseRemoveCallback();
+  const initCallback = privateUseInitCallback()
+  const removeCallback = privateUseRemoveCallback()
   useEffect(() => {
-    addInit(initDo, initCallback);
+    addInit(initDo, initCallback)
     if (isRemove === true || isRemove === undefined) {
       return () => {
-        removeEnd(removeDo ? removeDo : initDo, removeCallback);
-      };
+        removeEnd(removeDo ? removeDo : initDo, removeCallback)
+      }
     }
-  }, []);
-};
+  }, [])
+}
 
 export interface IUseInputTextParam {
   id: string
@@ -234,28 +234,28 @@ export interface IUseInputTextParam {
  * @returns
  */
 export const useInputText = (params: IUseInputTextParam) => {
-  const { inputTextValue } = useInputValue(params.id);
-  const { add, commit } = useUiAction();
-  const initValue = params.init ? params.init : inputTextValue ? inputTextValue : "";
+  const { inputTextValue } = useInputValue(params.id)
+  const { add, commit } = useUiAction()
+  const initValue = params.init ? params.init : inputTextValue ? inputTextValue : ''
   useInitEffect({
     type: UiType.INPUT_TEXT,
     key: params.id,
     value: initValue,
-  });
+  })
   const { changeValue } = useValid({
     id: params.id,
     valid: params.valid,
     setValue: (value?: string) => {
-      add(UiType.INPUT_TEXT, params.id, typeof value === "string" ? value.trim() : value);
-      commit();
+      add(UiType.INPUT_TEXT, params.id, typeof value === 'string' ? value.trim() : value)
+      commit()
       if (params.callBack) {
-        params.callBack(typeof value === "string" ? value.trim() : value);
+        params.callBack(typeof value === 'string' ? value.trim() : value)
       }
     },
-    init: typeof initValue === "string" ? initValue.trim() : initValue,
-  });
-  return { inputTextValue, changeValue };
-};
+    init: typeof initValue === 'string' ? initValue.trim() : initValue,
+  })
+  return { inputTextValue, changeValue }
+}
 
 /**
  * ui 컴포넌트에서 값 참조를 위한 hook
@@ -265,9 +265,9 @@ export const useInputText = (params: IUseInputTextParam) => {
 export const useInputValue = <T>(id: string | T) => {
   const { inputTextValue } = useSelectorEq((state: ICommonsStore) => ({
     inputTextValue: state.ui.inputText ? state.ui.inputText[id as string] : undefined,
-  }));
-  return { inputTextValue };
-};
+  }))
+  return { inputTextValue }
+}
 
 /**
  * 특정 로직에서 value 의 값을 바꾸고 싶을 때 예외 처리
@@ -276,8 +276,8 @@ export const useInputValue = <T>(id: string | T) => {
  * @returns
  */
 export const useSetInput = <T>(id: string | T) => {
-  const dispatch = useDispatch();
-  const initCallback = privateUseInitCallback();
+  const dispatch = useDispatch()
+  const initCallback = privateUseInitCallback()
   const { changeValue } = useValidChange({
     id: id as string,
     setValue: (value?: string) => {
@@ -285,16 +285,16 @@ export const useSetInput = <T>(id: string | T) => {
         type: UiType.INPUT_TEXT,
         key: id as string,
         value: value,
-      };
+      }
       if (getInit().length !== 0) {
-        addInit(actionDo, initCallback);
+        addInit(actionDo, initCallback)
       } else {
-        dispatch(rdxSetUi(actionDo));
+        dispatch(rdxSetUi(actionDo))
       }
     },
-  });
-  return { changeValue };
-};
+  })
+  return { changeValue }
+}
 
 /**
  * UiSelectBox 에서 사용되어 지고 있으며
@@ -311,28 +311,28 @@ export const useSelectBox = (
 ) => {
   const { selectValue } = useSelectorEq((state: ICommonsStore) => ({
     selectValue: state.ui.selectbox ? state.ui.selectbox[id] : undefined,
-  }));
-  const { add, commit } = useUiAction();
-  const initValue = init !== undefined ? init : selectValue !== undefined ? selectValue : undefined;
+  }))
+  const { add, commit } = useUiAction()
+  const initValue = init !== undefined ? init : selectValue !== undefined ? selectValue : undefined
   useInitEffect({
     type: UiType.SELECT_BOX,
     key: id,
     value: initValue,
-  });
+  })
   const { changeValue } = useValid({
     id,
     valid,
     setValue: (value?: string | number, keyName?: string) => {
-      add(UiType.SELECT_BOX, id, value);
-      commit();
+      add(UiType.SELECT_BOX, id, value)
+      commit()
       if (callBack) {
-        callBack(value, keyName);
+        callBack(value, keyName)
       }
     },
     init: initValue,
-  });
-  return { selectValue, changeValue };
-};
+  })
+  return { selectValue, changeValue }
+}
 
 /**
  * 예외적으로 값을 바꿨을 때 Valid 값이 명확하게 정의되는 경우 사용
@@ -340,22 +340,22 @@ export const useSelectBox = (
  * @param id
  */
 export const useSetSelectBox = (id: string) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { changeValue } = useValidChange({
     id,
     setValue: (value?: string | number) => {
-      dispatch(rdxSetUi({ type: UiType.SELECT_BOX, key: id, value: value }));
+      dispatch(rdxSetUi({ type: UiType.SELECT_BOX, key: id, value: value }))
     },
-  });
-  return { changeValue };
-};
+  })
+  return { changeValue }
+}
 
 export const useSelectBoxValue = <T>(id: string | T) => {
   const { selectValue } = useSelectorEq((state: ICommonsStore) => ({
     selectValue: state.ui.selectbox ? state.ui.selectbox[id as string] : undefined,
-  }));
-  return { selectValue };
-};
+  }))
+  return { selectValue }
+}
 
 export const useCheckBox = (
   id: string, //name
@@ -367,9 +367,9 @@ export const useCheckBox = (
   const { checkValue, validP } = useSelectorEq((state: ICommonsStore) => ({
     checkValue: state.ui.checkBox ? state.ui.checkBox[id] : undefined,
     validP: state.ui.validP,
-  }));
-  const dispatch = useDispatch();
-  const changeValidAction = changeValid();
+  }))
+  const dispatch = useDispatch()
+  const changeValidAction = changeValid()
   useInitEffect(
     {
       type: UiType.CHECK_BOX,
@@ -377,27 +377,27 @@ export const useCheckBox = (
       value: { key: key, value: init !== undefined ? init : false },
     },
     { type: UiType.CHECK_BOX, key: id, value: key },
-  );
+  )
   const checkBoxValid = useValid({
-    id: id + "_" + key,
+    id: id + '_' + key,
     valid,
     setValue: (data?: boolean) => {
       if (checkValue) {
-        const action: IUiAction[] = [];
-        if (key !== "isAll") {
-          const keyAr = Object.keys(checkValue).filter(ikey => ikey !== "isAll" && ikey !== key);
-          const cFalse = keyAr.filter(ikey => !checkValue[ikey]);
+        const action: IUiAction[] = []
+        if (key !== 'isAll') {
+          const keyAr = Object.keys(checkValue).filter(ikey => ikey !== 'isAll' && ikey !== key)
+          const cFalse = keyAr.filter(ikey => !checkValue[ikey])
           action.push({
             type: UiType.CHECK_BOX,
             key: id,
             value: { key: key, value: data! },
-          });
-          if (cFalse.length === 0 && Object.keys(checkValue).indexOf("isAll") !== -1) {
+          })
+          if (cFalse.length === 0 && Object.keys(checkValue).indexOf('isAll') !== -1) {
             action.push({
               type: UiType.CHECK_BOX,
               key: id,
-              value: { key: "isAll", value: data! },
-            });
+              value: { key: 'isAll', value: data! },
+            })
           }
         } else {
           Object.keys(checkValue).forEach(ikey => {
@@ -405,9 +405,9 @@ export const useCheckBox = (
               type: UiType.CHECK_BOX,
               key: id,
               value: { key: ikey, value: data! },
-            });
-            if (ikey !== "isAll") {
-              const vkey = id + "_" + ikey;
+            })
+            if (ikey !== 'isAll') {
+              const vkey = id + '_' + ikey
               if (validP !== undefined && validP[vkey]) {
                 action.push(
                   changeValidAction({
@@ -415,28 +415,28 @@ export const useCheckBox = (
                     valid: validP[vkey],
                     value: data!,
                   }),
-                );
+                )
               }
             }
-          });
+          })
         }
-        dispatch(rdxTotalSetUi(action));
+        dispatch(rdxTotalSetUi(action))
       }
     },
-  });
+  })
   const changeValue = (value?: boolean) => {
-    checkBoxValid.changeValue(value!);
+    checkBoxValid.changeValue(value!)
     if (change) {
-      change(value);
+      change(value)
     }
-  };
-  return { checkValue: checkValue ? checkValue[key] : false, changeValue };
-};
+  }
+  return { checkValue: checkValue ? checkValue[key] : false, changeValue }
+}
 
 export const useSetCheckbox = (id: string, key: string) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { changeValue } = useValidChange({
-    id: id + "_" + key,
+    id: id + '_' + key,
     setValue: (value?: boolean) => {
       dispatch(
         rdxSetUi({
@@ -444,37 +444,37 @@ export const useSetCheckbox = (id: string, key: string) => {
           key: id,
           value: { key: key, value: value! },
         }),
-      );
+      )
     },
-  });
+  })
 
-  return { changeValue };
-};
+  return { changeValue }
+}
 
 export const useCheckboxObjValue = (id: string) => {
   const { checkboxObjValue } = useSelectorEq((state: ICommonsStore) => ({
     checkboxObjValue: state.ui.checkBox !== undefined && state.ui.checkBox[id] ? state.ui.checkBox[id] : null,
-  }));
+  }))
 
-  return { checkboxObjValue };
-};
+  return { checkboxObjValue }
+}
 
 export const useCheckboxGroupValue = (id: string) => {
   const { checkboxGroupValue } = useSelectorEq((state: ICommonsStore) => ({
     checkboxGroupValue:
       state.ui.checkBoxGoup !== undefined && state.ui.checkBoxGoup[id] ? state.ui.checkBoxGoup[id] : null,
-  }));
+  }))
 
-  return { checkboxGroupValue };
-};
+  return { checkboxGroupValue }
+}
 
 export const useCheckboxValue = (id: string, key: string) => {
   const { checkboxValue } = useSelectorEq((state: ICommonsStore) => ({
     checkboxValue: state.ui.checkBox !== undefined && state.ui.checkBox[id] ? state.ui.checkBox[id][key] : false,
-  }));
+  }))
 
-  return { checkboxValue };
-};
+  return { checkboxValue }
+}
 
 /**
  *
@@ -491,8 +491,8 @@ export const useCheckBoxGroup = (
 ) => {
   const { checkValue } = useSelectorEq((state: ICommonsStore) => ({
     checkValue: state.ui.checkBoxGoup !== undefined ? state.ui.checkBoxGoup[id] : undefined,
-  }));
-  const dispatch = useDispatch();
+  }))
+  const dispatch = useDispatch()
   useInitEffect(
     {
       type: UiType.CHECK_BOX_GROUP,
@@ -501,7 +501,7 @@ export const useCheckBoxGroup = (
       value: init !== undefined ? init : list?.filter(i => !i.isAll).map(i => i.id),
     },
     { type: UiType.CHECK_BOX_GROUP, key: id },
-  );
+  )
   const checkBoxValid = useValid({
     id,
     valid,
@@ -513,24 +513,24 @@ export const useCheckBoxGroup = (
           isAll: data.isAll,
           value: data.value,
         }),
-      );
+      )
     },
-  });
+  })
   const changeValue = (isAll: boolean, value?: string[]) => {
     if (isAll) {
       checkBoxValid.changeValue({
         isAll: isAll,
         value: list!.filter(i => !i.isAll).map(i => i.id),
-      });
+      })
     } else {
-      checkBoxValid.changeValue({ isAll, value });
+      checkBoxValid.changeValue({ isAll, value })
     }
-  };
-  return { checkValue: checkValue ? checkValue.value : [], changeValue };
-};
+  }
+  return { checkValue: checkValue ? checkValue.value : [], changeValue }
+}
 
 export const useSetCheckBoxGroup = (id: string, list?: ICheckBox[]) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const checkBoxValid = useValidChange({
     id,
@@ -542,21 +542,21 @@ export const useSetCheckBoxGroup = (id: string, list?: ICheckBox[]) => {
           isAll: data.isAll,
           value: data.value,
         }),
-      );
+      )
     },
-  });
+  })
   const changeValue = (isAll: boolean, value?: string[]) => {
     if (isAll) {
       checkBoxValid.changeValue({
         isAll: isAll,
         value: list!.filter(i => !i.isAll).map(i => i.id),
-      });
+      })
     } else {
-      checkBoxValid.changeValue({ isAll, value });
+      checkBoxValid.changeValue({ isAll, value })
     }
-  };
-  return { changeValue };
-};
+  }
+  return { changeValue }
+}
 
 export const useRadio = (
   id: string,
@@ -566,43 +566,43 @@ export const useRadio = (
 ) => {
   const { checkValue } = useSelectorEq((state: ICommonsStore) => ({
     checkValue: state.ui.radioBox !== undefined ? state.ui.radioBox[id] : undefined,
-  }));
-  const dispatch = useDispatch();
+  }))
+  const dispatch = useDispatch()
   useInitEffect({
     type: UiType.RADIO_BOX,
     key: id,
     value: init,
-  });
+  })
   const { changeValue } = useValid({
     id,
     valid,
     setValue: (value?: string | number) => {
-      dispatch(rdxSetUi({ type: UiType.RADIO_BOX, key: id, value: value }));
+      dispatch(rdxSetUi({ type: UiType.RADIO_BOX, key: id, value: value }))
       if (callBack) {
-        callBack(value);
+        callBack(value)
       }
     },
-  });
-  return { checkValue, changeValue };
-};
+  })
+  return { checkValue, changeValue }
+}
 
 export const useRadioValue = (id: string) => {
   const { checkValue } = useSelectorEq((state: ICommonsStore) => ({
     checkValue: state.ui.radioBox ? state.ui.radioBox[id] : undefined,
-  }));
-  return { checkValue };
-};
+  }))
+  return { checkValue }
+}
 
 export const useSetRadio = (id: string) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { changeValue } = useValidChange({
     id,
     setValue: (value?: string | number) => {
-      dispatch(rdxSetUi({ type: UiType.RADIO_BOX, key: id, value: value }));
+      dispatch(rdxSetUi({ type: UiType.RADIO_BOX, key: id, value: value }))
     },
-  });
-  return { changeValue };
-};
+  })
+  return { changeValue }
+}
 
 // export const useCodebook = (id: string, init?: Array<any>) => {
 //   const { codebookData } = useSelectorEq((state: State) => ({
@@ -623,7 +623,7 @@ export const useButton = (
   id: string,
   valid?: IValid<boolean | undefined>,
   init?: boolean,
-  callBack?: (value?: boolean) => void
+  callBack?: (value?: boolean) => void,
 ) => {
   const { buttonValue } = useButtonValue(id)
   const dispatch = useDispatch()
@@ -648,40 +648,40 @@ export const useButton = (
 export const useButtonValue = (id: string) => {
   const { buttonValue } = useSelectorEq((state: ICommonsStore) => ({
     buttonValue: state.ui.button ? state.ui.button[id] : undefined,
-  }));
-  return { buttonValue };
-};
+  }))
+  return { buttonValue }
+}
 
 export const useSetButton = (id: string) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { changeValue } = useValidChange({
     id,
     setValue: (value?: boolean) => {
-      dispatch(rdxSetUi({ type: UiType.BUTTON, key: id, value: value }));
+      dispatch(rdxSetUi({ type: UiType.BUTTON, key: id, value: value }))
     },
-  });
-  return { changeValue };
-};
+  })
+  return { changeValue }
+}
 
 /** InputFile 리덕스 자동 저장 처리 */
 export const useInputFile = (id: string, init?: string) => {
-  const { inputFileValue } = useInputFileValue(id);
-  const dispatch = useDispatch();
-  const initValue = init ? { filename: init } : inputFileValue ? inputFileValue : { filename: "" };
+  const { inputFileValue } = useInputFileValue(id)
+  const dispatch = useDispatch()
+  const initValue = init ? { filename: init } : inputFileValue ? inputFileValue : { filename: '' }
   useInitEffect({
     type: UiType.INPUT_FILE,
     key: id,
     value: initValue,
-  });
+  })
   const { changeValue } = useValid({
     id,
     setValue: (value?: FileType) => {
-      dispatch(rdxSetUi({ type: UiType.INPUT_FILE, key: id, value: value }));
+      dispatch(rdxSetUi({ type: UiType.INPUT_FILE, key: id, value: value }))
     },
     init: initValue,
-  });
-  return { inputFileValue, changeValue };
-};
+  })
+  return { inputFileValue, changeValue }
+}
 
 /** 리덕스 정보 접근 */
 export const useInputFileValue = (id: string) => {
@@ -689,10 +689,10 @@ export const useInputFileValue = (id: string) => {
     inputFileValue:
       state.ui.inputFile !== undefined && state.ui.inputFile[id as string]
         ? state.ui.inputFile[id as string]
-        : { filename: "" },
-  }));
-  return { inputFileValue };
-};
+        : { filename: '' },
+  }))
+  return { inputFileValue }
+}
 
 /** 미리보기 이미지 경로 필요할때 사용 */
 export const useInputFilePrevImage = (id: string) => {
@@ -702,10 +702,10 @@ export const useInputFilePrevImage = (id: string) => {
         ? state.ui.inputFile[id as string].imageData
           ? state.ui.inputFile[id as string].imageData
           : state.ui.inputFile[id as string].filename
-        : "",
-  }));
-  return src;
-};
+        : '',
+  }))
+  return src
+}
 
 export const useInputFilePrevFile = (id: string) => {
   const { src } = useSelectorEq((state: ICommonsStore) => ({
@@ -715,9 +715,9 @@ export const useInputFilePrevFile = (id: string) => {
           ? state.ui.inputFile[id as string].file
           : undefined
         : undefined,
-  }));
-  return src;
-};
+  }))
+  return src
+}
 
 /**
  * 코드북에서 사용하기위한 용도와
@@ -728,8 +728,8 @@ export const useInputFilePrevFile = (id: string) => {
  * @returns
  */
 export const useCodeBook = <T>(id: string, isRemove?: boolean, init?: Array<T>) => {
-  const { codebookValue } = useCodeBookValue<T>(id);
-  const { add, commit } = useUiAction();
+  const { codebookValue } = useCodeBookValue<T>(id)
+  const { add, commit } = useUiAction()
   useInitEffect(
     {
       type: UiType.CODE_BOOK,
@@ -741,24 +741,24 @@ export const useCodeBook = <T>(id: string, isRemove?: boolean, init?: Array<T>) 
       key: id,
     },
     isRemove,
-  );
+  )
   const { changeValue } = useValid({
     id,
     setValue: (value?: Array<T>) => {
-      add(UiType.CODE_BOOK, id, value);
-      commit();
+      add(UiType.CODE_BOOK, id, value)
+      commit()
     },
     init: init ? init : codebookValue,
-  });
+  })
   return {
     codebookValue,
     changeValue,
-  };
-};
+  }
+}
 
 export const useCodeBookValue = <T>(id: string) => {
   const { codebookValue } = useSelectorEq((state: ICommonsStore) => ({
     codebookValue: state.ui.codebook !== undefined ? state.ui.codebook[id as string] : undefined,
-  }));
-  return { codebookValue: codebookValue as Array<T> | undefined };
-};
+  }))
+  return { codebookValue: codebookValue as Array<T> | undefined }
+}

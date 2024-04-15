@@ -1,10 +1,10 @@
-import loading from "../loading/store/loadingR";
-import popups from "../popup/store/popupR";
-import ui from "../ui/uiR";
-import storage from "../storage/storageR";
-import layers from "../layers/store/layerR";
-import cookies from "../cookies/cookiesR";
-import type { Reducer } from "@reduxjs/toolkit";
+import loading from '../loading/store/loadingR'
+import popups from '../popup/store/popupR'
+import ui from '../ui/uiR'
+import storage from '../storage/storageR'
+import layers from '../layers/store/layerR'
+import cookies from '../cookies/cookiesR'
+import type { Reducer } from '@reduxjs/toolkit'
 
 /**
  * 모든 리듀서 추가처리
@@ -13,7 +13,7 @@ import type { Reducer } from "@reduxjs/toolkit";
  */
 export default function CommonsFull(addReduce?: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: Reducer<any>;
+  [key: string]: Reducer<any>
 }) {
   return {
     ...addReduce,
@@ -23,5 +23,5 @@ export default function CommonsFull(addReduce?: {
     ui,
     storage,
     cookies,
-  };
+  }
 }

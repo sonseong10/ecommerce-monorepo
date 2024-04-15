@@ -24,9 +24,7 @@ const TeamItem = ({ card }: ITeamItemProps) => {
               ${card?.login ? styles.online : styles.offline}`}
           ></div>
         </div>
-        <span className="visually-hidden">
-          {card?.login ? 'online' : 'offline'}
-        </span>
+        <span className="visually-hidden">{card?.login ? 'online' : 'offline'}</span>
       </div>
       <div className={styles.teamCardInfo}>
         <h3 className={styles.userName}>{card?.name}</h3>

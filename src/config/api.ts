@@ -56,30 +56,29 @@ export const STORAGE_PERIOD: { [key: string]: number } = {
   WEEK: 7,
 }
 
-export const SORT_OPTIONS: { [key: string]: { type: string; value: string } } =
-  {
-    LASTEST: {
-      type: 'createdAt,desc',
-      value: '최신순',
-    },
-    SALE: {
-      type: 'saleCount,desc',
-      value: '판매순',
-    },
-    POPULAR: {
-      type: 'reviewCount,desc',
-      value: '인기순',
-    },
-    HIGH_PRICE: {
-      type: 'sellingPrice,desc',
-      value: '가격높은순',
-    },
-    LOW_PRICE: {
-      type: 'sellingPrice,asc',
-      value: '가격낮은순',
-    },
-    REVIEW: {
-      type: 'reviewCount,desc',
-      value: '리뷰순',
-    },
-  }
+export const SORT_OPTIONS: { [key: string]: { type: string; value: string } } = {
+  LASTEST: {
+    type: 'createdAt,desc',
+    value: '최신순',
+  },
+  SALE: {
+    type: 'saleCount,desc',
+    value: '판매순',
+  },
+  POPULAR: {
+    type: 'reviewCount,desc',
+    value: '인기순',
+  },
+  HIGH_PRICE: {
+    type: 'sellingPrice,desc',
+    value: '가격높은순',
+  },
+  LOW_PRICE: {
+    type: 'sellingPrice,asc',
+    value: '가격낮은순',
+  },
+  REVIEW: {
+    type: 'reviewCount,desc',
+    value: '리뷰순',
+  },
+}

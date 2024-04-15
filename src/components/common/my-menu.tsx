@@ -16,13 +16,7 @@ interface IMyMenuProps {
   handleModeChange: () => void
   dark: boolean
 }
-const MyMenu = ({
-  userCard,
-  isCard,
-  onLogout,
-  handleModeChange,
-  dark,
-}: IMyMenuProps) => {
+const MyMenu = ({ userCard, isCard, onLogout, handleModeChange, dark }: IMyMenuProps) => {
   const [myMenuOpen, setMyMenuOpen] = useState<boolean>(false)
 
   const onIsActive = () => {
@@ -37,24 +31,15 @@ const MyMenu = ({
     >
       <ul className={styles.myMenuList}>
         <li>
-          <button
-            className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
-            onClick={handleModeChange}
-            type="button"
-          >
+          <button className={`${buttonStyles.baseBtn} ${styles.toolBtn}`} onClick={handleModeChange} type="button">
             <BiMoon className={styles.toolIcon} />
             <span className="lg-only">다크모드 {dark ? '끄기' : '켜기'}</span>
           </button>
         </li>
         <li>
-          <Link
-            to={isCard ? '/admin/update' : '#'}
-            className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}
-          >
+          <Link to={isCard ? '/admin/update' : '#'} className={`${buttonStyles.baseBtn} ${styles.toolBtn}`}>
             <BiUser className={styles.toolIcon} />
-            <span className="lg-only">
-              {isCard ? '정보 업데이트' : '이용불가'}
-            </span>
+            <span className="lg-only">{isCard ? '정보 업데이트' : '이용불가'}</span>
           </Link>
         </li>
         <li>
@@ -68,18 +53,13 @@ const MyMenu = ({
           </button>
         </li>
       </ul>
-      <button
-        className={`${buttonStyles.baseBtn} ${styles.mymemuBtn}`}
-        onClick={onIsActive}
-      >
+      <button className={`${buttonStyles.baseBtn} ${styles.mymemuBtn}`} onClick={onIsActive}>
         <img
           className={styles.userIcon}
           src={userCard?.fileURL || DEFAULT_USER_IMG}
           alt={userCard?.fileURL ? 'user profile' : 'default'}
         />
-        <span className={`lg-only ${userCard?.name && styles.isActive}`}>
-          {userCard?.name || 'No data yet...'}
-        </span>
+        <span className={`lg-only ${userCard?.name && styles.isActive}`}>{userCard?.name || 'No data yet...'}</span>
       </button>
     </div>
   )

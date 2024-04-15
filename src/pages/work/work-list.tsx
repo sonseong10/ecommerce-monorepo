@@ -17,18 +17,12 @@ interface IWorkListProps {
   dark: boolean
 }
 
-const WorkList = ({
-  works,
-  renderMarkdown,
-  updateWork,
-  deleteWork,
-  dark,
-}: IWorkListProps) => {
+const WorkList = ({ works, renderMarkdown, updateWork, deleteWork, dark }: IWorkListProps) => {
   return (
     <>
       {works && Object.keys(works).length ? (
         <ul className={`${styles.workList} ${dark && styles.isDark}`}>
-          {Object.keys(works).map((key) => (
+          {Object.keys(works).map(key => (
             <WorkItem
               work={works[key]}
               key={key}

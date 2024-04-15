@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
 import DropDown from '../../../common/dropdown/dropdown'
 import buttonStyles from 'styles/modules/buttons.module.css'
@@ -14,68 +14,61 @@ interface IRanksDropdownProps {
   dark: boolean
 }
 
-const RanksDropdown = memo(
-  ({ dropDown, rankRef, userCard, updateCard, dark }: IRanksDropdownProps) => {
-    const items = dropDown.getRanks()
+const RanksDropdown = ({ dropDown, rankRef, userCard, updateCard, dark }: IRanksDropdownProps) => {
+  const items = dropDown.getRanks()
 
-    const [ranksType, setRanksType] = useState('')
-    const [ranksIsOpen, setRanksIsOpen] = useState(false)
+  const [ranksType, setRanksType] = useState('')
+  const [ranksIsOpen, setRanksIsOpen] = useState(false)
 
-    const handleRanksValue = (value: string) => {
-      userCard ? update(value) : add(value)
-      onRanksOpen()
+  const handleRanksValue = (value: string) => {
+    userCard ? update(value) : add(value)
+    onRanksOpen()
+  }
+
+  const add = (value: string) => {
+    setRanksType(value)
+  }
+
+  const update = (value: string) => {
+    setRanksType(value)
+    if (updateCard) {
+      updateCard({
+        ...userCard!,
+        [`rank`]: value,
+      })
     }
+  }
 
-    const add = (value: string) => {
-      setRanksType(value)
-    }
+  const onRanksOpen = () => {
+    setRanksIsOpen(!ranksIsOpen)
+  }
 
-    const update = (value: string) => {
-      setRanksType(value)
-      if (updateCard) {
-        updateCard({
-          ...userCard!,
-          [`rank`]: value,
-        })
-      }
-    }
+  useEffect(() => {
+    userCard ? setRanksType(userCard.rank) : setRanksType(items[0].value)
+  }, [items, userCard])
 
-    const onRanksOpen = () => {
-      setRanksIsOpen(!ranksIsOpen)
-    }
-
-    useEffect(() => {
-      userCard ? setRanksType(userCard.rank) : setRanksType(items[0].value)
-    }, [items, userCard])
-
-    return (
-      <div
-        className={`${styles.ranks} 
+  return (
+    <div
+      className={`${styles.ranks} 
       ${ranksIsOpen && styles.isActive} 
       ${dark && styles.isDark}`}
+    >
+      <p className={styles.formLabel}>직급명</p>
+
+      <button
+        className={`${styles.formInput} ${buttonStyles.baseBtn}`}
+        onClick={onRanksOpen}
+        type="button"
+        ref={rankRef}
       >
-        <p className={styles.formLabel}>직급명</p>
+        {ranksType} <BiChevronUp className={styles.dropdownIcon} aria-hidden />
+      </button>
 
-        <button
-          className={`${styles.formInput} ${buttonStyles.baseBtn}`}
-          onClick={onRanksOpen}
-          type="button"
-          ref={rankRef}
-        >
-          {ranksType}{' '}
-          <BiChevronUp className={styles.dropdownIcon} aria-hidden />
-        </button>
-
-        <div className={styles.ranksList}>
-          <DropDown
-            listItems={items}
-            handleEvent={handleRanksValue}
-            dark={dark}
-          />
-        </div>
+      <div className={styles.ranksList}>
+        <DropDown listItems={items} handleEvent={handleRanksValue} dark={dark} />
       </div>
-    )
-  }
-)
+    </div>
+  )
+}
 
-export default RanksDropdown
+export default React.memo(RanksDropdown)

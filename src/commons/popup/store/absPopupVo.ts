@@ -1,4 +1,4 @@
-import type { AbsPopupType } from "../AbsPopupType";
+import type { AbsPopupType } from '../AbsPopupType'
 
 export interface IPopupState<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -7,11 +7,11 @@ export interface IPopupState<
   K extends IButton = any,
   U extends PopupCallBackParam = ButtonState,
 > {
-  isPopup: boolean;
-  popup: { [key: string]: IPopupDo<T, K, U> };
-  popupAr: Array<IPopupDo<T, K, U>>;
+  isPopup: boolean
+  popup: { [key: string]: IPopupDo<T, K, U> }
+  popupAr: Array<IPopupDo<T, K, U>>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  returnData: { [key: string]: { [key: string]: any } };
+  returnData: { [key: string]: { [key: string]: any } }
 }
 
 /**
@@ -27,25 +27,25 @@ export enum ButtonState {
 }
 
 export interface IButton {
-  text: string;
-  state?: ButtonState;
+  text: string
+  state?: ButtonState
 }
 
 export interface IPopupButtn<T extends IButton> {
-  component: React.FC<T>;
-  style: T;
+  component: React.FC<T>
+  style: T
 }
 
 export type PopupCallBackParam =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  { state?: ButtonState; [key: string]: any } | ButtonState | undefined;
+  { state?: ButtonState; [key: string]: any } | ButtonState | undefined
 
 /** 공용 AbsPopupType 과 외부 설정 type 을 사용할수 있게 설정 */
-export type PopupType = AbsPopupType | string;
+export type PopupType = AbsPopupType | string
 /** Alert 창을 띄울때 message 만으로 띄울수 있게 설정 하기 위한 타입 */
-export type AlertParam = string | { message: string; title?: string; subMessage?: string };
+export type AlertParam = string | { message: string; title?: string; subMessage?: string }
 /** Confirm 창을 띄울때 설정 하는 변수 */
-export type ConfirmParam = AlertParam;
+export type ConfirmParam = AlertParam
 
 /**
  * 팝업 화면 데이터
@@ -68,24 +68,24 @@ export interface IPopupDo<
   U extends PopupCallBackParam = ButtonState,
 > {
   /** 팝업 타입 설정 */
-  type: PopupType;
+  type: PopupType
   /** 팝업 제목 설정 */
-  title?: string;
+  title?: string
   /** 팝업 가로 값 설정 default : 440 px */
-  width?: number | string;
+  width?: number | string
   /** 팝업 전달 데이터 */
-  data?: T;
+  data?: T
   /** 팝업 상단 X 버튼 여부 */
-  isClose?: boolean;
+  isClose?: boolean
   /** 생성될 버튼 설정 */
-  buttons?: Array<K>;
+  buttons?: Array<K>
   /** 생성할 버튼 컴포넌트 */
-  buttonComponent?: React.FC<K>;
+  buttonComponent?: React.FC<K>
   /** 하단 버튼 영역 수동 설정 컴포넌트 */
-  buttonWrapper?: React.FC;
+  buttonWrapper?: React.FC
   /** 최대 높이 설정 */
-  maxHeight?: number | string;
+  maxHeight?: number | string
   /** 팝업 닫을때 실행될 콜백 함수 */
-  isDevice?: boolean;
-  callBack?: (value?: U) => void;
+  isDevice?: boolean
+  callBack?: (value?: U) => void
 }

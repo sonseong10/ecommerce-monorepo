@@ -1,42 +1,42 @@
-import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { ICommonsStore } from "../..";
-import { useAbsApi } from "../../store/common";
-import { LayerType } from "../AbsLayerType";
-import { rdxLayerClose, rdxLayers, rdxLayerSelected, rdxContentHeignt } from "./layerR";
-import type { ILayerDo } from "./layerVo";
+import React, { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import type { ICommonsStore } from '../..'
+import { useAbsApi } from '../../store/common'
+import { LayerType } from '../AbsLayerType'
+import { rdxLayerClose, rdxLayers, rdxLayerSelected, rdxContentHeignt } from './layerR'
+import type { ILayerDo } from './layerVo'
 
 export function useCalender<T>(buttonComponent?: React.FC) {
-  const dispatch = useDispatch();
-  const { apiResult } = useAbsApi(buttonComponent);
+  const dispatch = useDispatch()
+  const { apiResult } = useAbsApi(buttonComponent)
   const open = async (data: T, position?: React.MouseEvent<HTMLElement>) => {
     const res = await apiResult(rdxLayers, {
       type: LayerType.CALENDER,
       data: data,
       rect: position?.currentTarget.getBoundingClientRect(),
-    } as ILayerDo<T>);
+    } as ILayerDo<T>)
     if (res) {
-      return res.content;
+      return res.content
     } else {
-      return undefined;
+      return undefined
     }
-  };
+  }
 
   const close = async () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    await dispatch(rdxLayerClose());
-  };
-  return { open, close };
+    await dispatch(rdxLayerClose())
+  }
+  return { open, close }
 }
 
 export function useContentHeight(): {
-  set: (getHeight: () => DOMRect) => Promise<void>;
+  set: (getHeight: () => DOMRect) => Promise<void>
 } {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const set = useCallback(async (getHeight: () => DOMRect) => {
-    dispatch(rdxContentHeignt(getHeight));
-  }, []);
-  return { set };
+    dispatch(rdxContentHeignt(getHeight))
+  }, [])
+  return { set }
 }
 
 function useLayer<T>() {
@@ -44,18 +44,18 @@ function useLayer<T>() {
     contentHeight: state.layers?.contentHeight,
     isLayer: state.layers?.isLayer,
     data: state.layers?.data,
-  }));
-  const dispatch = useDispatch();
+  }))
+  const dispatch = useDispatch()
 
   const selected = async (data: T) => {
-    await dispatch(rdxLayerSelected(data));
-  };
+    await dispatch(rdxLayerSelected(data))
+  }
 
   const close = async () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    await dispatch(rdxLayerClose());
-  };
-  return { contentHeight, isLayer, data, close, selected };
+    await dispatch(rdxLayerClose())
+  }
+  return { contentHeight, isLayer, data, close, selected }
 }
 
-export default useLayer;
+export default useLayer

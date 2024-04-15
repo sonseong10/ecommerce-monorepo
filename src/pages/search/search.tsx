@@ -33,19 +33,10 @@ const Search = ({ cards, onMenuChange, dark }: ISearchProps) => {
         <header className={styles.header}>
           <div className={styles.serchInput}>
             <BiSearch aria-hidden />
-            <input
-              type="text"
-              placeholder="직원이름 검색"
-              ref={searchRef}
-              onChange={onSearchValue}
-            />
+            <input type="text" placeholder="직원이름 검색" ref={searchRef} onChange={onSearchValue} />
           </div>
         </header>
-        <MemberList
-          cards={cards}
-          searchValue={searchValue}
-          dark={dark}
-        ></MemberList>
+        <MemberList cards={cards} searchValue={searchValue} dark={dark}></MemberList>
       </div>
     </div>
   )

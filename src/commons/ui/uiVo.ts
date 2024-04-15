@@ -1,11 +1,11 @@
-import type { IGridPageableDo } from "./grid/GridVo";
-import type { IValid } from "./useValid";
+import type { IGridPageableDo } from './grid/GridVo'
+import type { IValid } from './useValid'
 
 export enum UiCenter {
-  INIT = "init",
-  REMOVE = "remove",
-  DEFAULT = "default",
-  BACK = "backupValid",
+  INIT = 'init',
+  REMOVE = 'remove',
+  DEFAULT = 'default',
+  BACK = 'backupValid',
 }
 
 /**
@@ -32,9 +32,9 @@ export enum UiType {
 }
 
 export interface ICheckBox {
-  id: string;
-  text: string;
-  isAll?: boolean;
+  id: string
+  text: string
+  isAll?: boolean
 }
 
 export type IUiActionValue =
@@ -51,10 +51,10 @@ export type IUiActionValue =
   | { id: string; value?: string }
   | { key: string; value: boolean | undefined | string }
   | {
-      id: string;
-      value?: { [key: string]: string | boolean | number | undefined };
+      id: string
+      value?: { [key: string]: string | boolean | number | undefined }
     }
-  | { id: string; value?: IGridPageableDo };
+  | { id: string; value?: IGridPageableDo }
 /**
  * @param type {@link UiType} 저장될 uitype
  * @param key 고유 키값
@@ -64,12 +64,12 @@ export type IUiActionValue =
  * @param value ui에 저장될 값
  */
 export interface IUiAction {
-  type: UiType;
-  key: string;
-  display?: boolean;
-  isAll?: boolean;
-  valid?: IValid<IUiActionValue>;
-  value?: IUiActionValue;
+  type: UiType
+  key: string
+  display?: boolean
+  isAll?: boolean
+  valid?: IValid<IUiActionValue>
+  value?: IUiActionValue
 }
 
 /**
@@ -82,32 +82,32 @@ export interface IUiAction {
  * @param gridCheckbox
  */
 export interface IUi {
-  inputText?: { [key: string]: string | undefined };
-  radioBox?: { [key: string]: string | number | undefined };
-  checkBox?: { [key: string]: { [key: string]: boolean } };
-  checkBoxGoup?: { [key: string]: { isAll: boolean; value: Array<string> } };
-  selectbox?: { [key: string]: number | string | undefined };
-  button?: { [key: string]: boolean };
+  inputText?: { [key: string]: string | undefined }
+  radioBox?: { [key: string]: string | number | undefined }
+  checkBox?: { [key: string]: { [key: string]: boolean } }
+  checkBoxGoup?: { [key: string]: { isAll: boolean; value: Array<string> } }
+  selectbox?: { [key: string]: number | string | undefined }
+  button?: { [key: string]: boolean }
   valid?: {
-    [key: string]: { display?: boolean; value?: boolean };
-  };
-  validP?: { [key: string]: IValid<IUiActionValue> };
-  gridCheckbox?: { [key: string]: boolean };
+    [key: string]: { display?: boolean; value?: boolean }
+  }
+  validP?: { [key: string]: IValid<IUiActionValue> }
+  gridCheckbox?: { [key: string]: boolean }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  codebook?: { [key: string]: Array<any> };
+  codebook?: { [key: string]: Array<any> }
   // inputFile?: { [key: string]: FileType | FileType[] };
-  inputFile?: { [key: string]: FileType };
+  inputFile?: { [key: string]: FileType }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  gridOption?: { [key: string]: any };
+  gridOption?: { [key: string]: any }
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface FileType<T = any> {
-  filename: string;
-  filetype?: string;
-  imageData?: string;
-  file?: File;
+  filename: string
+  filetype?: string
+  imageData?: string
+  file?: File
   /** 이미지 변경시 서버에 있던 이미지 파일 링크 */
-  resrc?: string;
-  vo?: T;
+  resrc?: string
+  vo?: T
 }

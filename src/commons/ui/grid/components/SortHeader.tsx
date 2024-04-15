@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { useGridOptionInit, useGridSort, useGridSortValue } from "../store/GridHook";
-import type { IGridSetting, sortType } from "../GridVo";
+import React from 'react'
+import styled from 'styled-components'
+import { useGridOptionInit, useGridSort, useGridSortValue } from '../store/GridHook'
+import type { IGridSetting, sortType } from '../GridVo'
 
 const ThStyle = styled.th<{ color?: string }>`
   position: relative;
@@ -16,7 +16,7 @@ const ThStyle = styled.th<{ color?: string }>`
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     transform: translateY(-50%) rotate(180deg);
-    content: "";
+    content: '';
   }
   &::before {
     position: absolute;
@@ -29,46 +29,46 @@ const ThStyle = styled.th<{ color?: string }>`
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     transform: translateY(-50%);
-    content: "";
+    content: '';
   }
   &.asc {
     &::before {
-      border-bottom-color: ${props => (props.color ? props.color : "#fff")};
+      border-bottom-color: ${props => (props.color ? props.color : '#fff')};
     }
   }
   &.desc {
     &::after {
-      border-bottom-color: ${props => (props.color ? props.color : "#fff")};
+      border-bottom-color: ${props => (props.color ? props.color : '#fff')};
     }
   }
-`;
+`
 
 function SortHeader<Setting>(props: {
-  header: string;
+  header: string
   sort?: {
-    id: string;
-    init?: sortType;
-    activeColor?: string;
-  };
-  sorted: (position: number, sortId: string, sortType: sortType) => void;
-  index: number;
-  setting: Array<IGridSetting<Setting>> | undefined;
-  gridId?: string;
+    id: string
+    init?: sortType
+    activeColor?: string
+  }
+  sorted: (position: number, sortId: string, sortType: sortType) => void
+  index: number
+  setting: Array<IGridSetting<Setting>> | undefined
+  gridId?: string
 }) {
-  const click = useGridSort(props.gridId!, props.sort!.id);
-  const [key, value] = useGridSortValue(props.gridId!);
+  const click = useGridSort(props.gridId!, props.sort!.id)
+  const [key, value] = useGridSortValue(props.gridId!)
 
   const toggle = () => {
     if (props.sort && props.gridId) {
-      click(key ? (key === props.sort.id ? (value === "desc" ? "asc" : "desc") : "desc") : "desc");
+      click(key ? (key === props.sort.id ? (value === 'desc' ? 'asc' : 'desc') : 'desc') : 'desc')
       props.sorted(
         props.index,
         props.sort.id,
-        key ? (key === props.sort.id ? (value === "desc" ? "asc" : "desc") : "desc") : "desc",
-      );
+        key ? (key === props.sort.id ? (value === 'desc' ? 'asc' : 'desc') : 'desc') : 'desc',
+      )
     }
-  };
-  useGridOptionInit("gridSort", props.sort && props.sort.init && { [props.sort.id]: props.sort.init }, props.gridId);
+  }
+  useGridOptionInit('gridSort', props.sort && props.sort.init && { [props.sort.id]: props.sort.init }, props.gridId)
 
   return (
     <ThStyle
@@ -77,13 +77,13 @@ function SortHeader<Setting>(props: {
         __html: props.header,
       }}
       onClick={(e: React.MouseEvent) => {
-        e.preventDefault();
-        toggle();
+        e.preventDefault()
+        toggle()
       }}
       className={`sort ${props.sort && props.sort.id === key && value}`}
       color={props.sort?.activeColor}
     ></ThStyle>
-  );
+  )
 }
 
-export default SortHeader;
+export default SortHeader

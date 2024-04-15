@@ -16,11 +16,7 @@ interface ITeamListProps {
 const TeamList = ({ cards, userCard, dark }: ITeamListProps) => {
   const containerRef = useRef<HTMLUListElement>(null)
 
-  const filterKey = cards
-    ? Object.keys(cards).filter(
-        (key) => key && cards[key].team.includes(userCard!.team)
-      )
-    : []
+  const filterKey = cards ? Object.keys(cards).filter(key => key && cards[key].team.includes(userCard!.team)) : []
 
   const onPrevScroll = () => {
     containerRef.current!.scrollLeft -= 260
@@ -32,31 +28,17 @@ const TeamList = ({ cards, userCard, dark }: ITeamListProps) => {
 
   return (
     <div className={styles.teamListWrapper}>
-      <ul
-        className={`${styles.teamList} ${dark && styles.isDark}`}
-        ref={containerRef}
-      >
+      <ul className={`${styles.teamList} ${dark && styles.isDark}`} ref={containerRef}>
         {filterKey.length &&
-          filterKey.map((key) => (
-            <TeamItem
-              card={cards ? cards[key] : undefined}
-              key={key}
-            ></TeamItem>
-          ))}
+          filterKey.map(key => <TeamItem card={cards ? cards[key] : undefined} key={key}></TeamItem>)}
       </ul>
 
-      <button
-        className={`sm-hidden ${styles.moveBtn} ${styles.prevBtn}`}
-        onClick={onPrevScroll}
-      >
+      <button className={`sm-hidden ${styles.moveBtn} ${styles.prevBtn}`} onClick={onPrevScroll}>
         <BiChevronLeft />
         <span className="visually-hidden">preview</span>
       </button>
 
-      <button
-        className={`sm-hidden ${styles.moveBtn} ${styles.nextBtn}`}
-        onClick={onNextScroll}
-      >
+      <button className={`sm-hidden ${styles.moveBtn} ${styles.nextBtn}`} onClick={onNextScroll}>
         <BiChevronRight />
         <span className="visually-hidden">next</span>
       </button>

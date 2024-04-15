@@ -2,12 +2,7 @@ import SVG from '../../../commons/styles/svgIcon'
 import React, { useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { AbsPopupType } from '../AbsPopupType'
-import {
-  useAbsPopupButton,
-  useAbsPopupData,
-  useAbsPopupTitle,
-  useClosePopup,
-} from '../store/absPopupHook'
+import { useAbsPopupButton, useAbsPopupData, useAbsPopupTitle, useClosePopup } from '../store/absPopupHook'
 import { ButtonState, type IButton } from '../store/absPopupVo'
 
 const MsgWrapper = styled.div<{
@@ -18,7 +13,7 @@ const MsgWrapper = styled.div<{
   display: flex;
   flex-direction: column;
   position: relative;
-  width: ${(props) => {
+  width: ${props => {
     switch (typeof props.width) {
       case 'number':
         return props.width + 'px'
@@ -27,7 +22,7 @@ const MsgWrapper = styled.div<{
     }
   }};
   min-height: 150px;
-  ${(props) => {
+  ${props => {
     if (props.maxHeight) {
       switch (typeof props.maxHeight) {
         case 'string':
@@ -41,7 +36,7 @@ const MsgWrapper = styled.div<{
       }
     }
   }}
-  border-radius: ${(props) => {
+  border-radius: ${props => {
     switch (typeof props.borderShape) {
       case 'number':
         return props.borderShape + 'px'
@@ -82,9 +77,7 @@ const headerStyle = () => {
     position: relative;
     min-height: 55px;
     padding: 15px 25px;
-    border-bottom: 1px solid
-      ${(props) =>
-        props.theme.colors ? props.theme.colors.borderPrimary : '#ebebeb'};
+    border-bottom: 1px solid ${props => (props.theme.colors ? props.theme.colors.borderPrimary : '#ebebeb')};
     justify-content: center;
   `
 }
@@ -94,7 +87,7 @@ const MsgHeader = styled.div`
 `
 
 const bodyStyle = css<{ maxHeight?: number | string }>`
-  ${(props) =>
+  ${props =>
     props.maxHeight !== undefined
       ? css`
           overflow-y: auto;
@@ -133,13 +126,12 @@ const MsgBody = styled.div<{
 }>`
   ${bodyStyle};
 
-  ${(props) => {
+  ${props => {
     switch (props.type) {
       case AbsPopupType.WARNING:
         return css`
           padding: 85px 40px 5px 40px;
-          background: url('../../../images/icon/icon_error.png') no-repeat
-            center 30px;
+          background: url('../../../images/icon/icon_error.png') no-repeat center 30px;
           background-size: 40px;
         `
       case AbsPopupType.INPUT:
@@ -174,7 +166,7 @@ const MsgFooter = styled.div<{ type: AbsPopupType | string; device: boolean }>`
   align-items: center;
   justify-content: center;
 
-  ${(props) => {
+  ${props => {
     if (props.device) {
       return css`
         padding: 25px 20px 25px;
@@ -218,20 +210,12 @@ function AbsPopupTitle(props: { type: AbsPopupType | string }) {
       ) : (
         <></>
       )}
-      {isClose && (
-        <button
-          className="close"
-          onClick={close.bind(null, ButtonState.NO, undefined)}
-        ></button>
-      )}
+      {isClose && <button className="close" onClick={close.bind(null, ButtonState.NO, undefined)}></button>}
     </>
   )
 }
 
-function AbsPopupButtonList(props: {
-  type: AbsPopupType | string
-  device: boolean
-}) {
+function AbsPopupButtonList(props: { type: AbsPopupType | string; device: boolean }) {
   const { buttonOption, Button, close } = useAbsPopupButton(props.type)
 
   return (
@@ -249,11 +233,7 @@ function AbsPopupButtonList(props: {
           )
         } else {
           return (
-            <button
-              key={idx}
-              {...item}
-              onClick={close.bind(null, item?.state, undefined)}
-            >
+            <button key={idx} {...item} onClick={close.bind(null, item?.state, undefined)}>
               {item.text}
             </button>
           )
@@ -272,9 +252,7 @@ export interface IAbsPopupProps {
 }
 
 function AbsPopup(props: IAbsPopupProps) {
-  const { width, ButtonWrapper, maxHeight, isDevice } = useAbsPopupData(
-    props.type
-  )
+  const { width, ButtonWrapper, maxHeight, isDevice } = useAbsPopupData(props.type)
   const { close } = useClosePopup(props.type)
   const keyEvent = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -295,12 +273,7 @@ function AbsPopup(props: IAbsPopupProps) {
         borderShape={props.borderShape}
       >
         {props.header ? props.header : <AbsPopupTitle type={props.type} />}
-        <MsgBody
-          type={props.type}
-          device={isDevice}
-          maxHeight={maxHeight}
-          isButtonList={props.isButtonList}
-        >
+        <MsgBody type={props.type} device={isDevice} maxHeight={maxHeight} isButtonList={props.isButtonList}>
           {props.children}
         </MsgBody>
         {props.isButtonList === true || props.isButtonList === undefined ? (

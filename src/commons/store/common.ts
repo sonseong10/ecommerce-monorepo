@@ -4,21 +4,21 @@ import {
   type AsyncThunk,
   type AnyAction,
   configureStore,
-} from "@reduxjs/toolkit";
-import type { AbsIRes } from "../Http";
-import { useAbsAlert } from "../popup/store/absPopupHook";
-import { useSelector } from "react-redux";
-import { shallowEqual } from "react-redux";
-import { useDispatch } from "react-redux";
-import type { ICommonsStore } from "..";
-import { getLoadingMiddleware } from "../../commons/loading/store/loadingR";
+} from '@reduxjs/toolkit'
+import type { AbsIRes } from '../Http'
+import { useAbsAlert } from '../popup/store/absPopupHook'
+import { useSelector } from 'react-redux'
+import { shallowEqual } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import type { ICommonsStore } from '..'
+import { getLoadingMiddleware } from '../../commons/loading/store/loadingR'
 
-export type ExtraArg<T> = { store: () => T };
+export type ExtraArg<T> = { store: () => T }
 export type AbsAsyncThunkConfig<RootState extends ICommonsStore, T = unknown> = {
-  state: RootState;
+  state: RootState
   // extra: ExtraArg<RootState>;
-  rejectValue: T;
-};
+  rejectValue: T
+}
 
 /**
  * 각 프로젝트 대응을 위해 RES 리턴을 상속 구현으로 변경처리
@@ -38,14 +38,14 @@ export const absCreateThunk = <
 ): AsyncThunk<Res, ThunkArg, AbsAsyncThunkConfig<RootState>> => {
   return createAsyncThunk<Res, ThunkArg, AbsAsyncThunkConfig<RootState>>(type, async (arg, thunkAPI) => {
     try {
-      return (await thunk(arg, thunkAPI)) as Res;
+      return (await thunk(arg, thunkAPI)) as Res
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       // console.log("createAppThunk", err);
-      return await thunkAPI.rejectWithValue(err.message);
+      return await thunkAPI.rejectWithValue(err.message)
     }
-  });
-};
+  })
+}
 /**
  * 각 프로젝트 대응을 위해 RES 리턴을 상속 구현으로 변경처리
  * @param type
@@ -64,14 +64,14 @@ export const absCreatePageThunk = <
 ): AsyncThunk<Res, ThunkArg, AbsAsyncThunkConfig<RootState>> => {
   return createAsyncThunk<Res, ThunkArg, AbsAsyncThunkConfig<RootState>>(type, async (arg, thunkAPI) => {
     try {
-      return (await thunk(arg, thunkAPI)) as Res;
+      return (await thunk(arg, thunkAPI)) as Res
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       // console.log("createAppThunk", err);
-      return thunkAPI.rejectWithValue(err.message);
+      return thunkAPI.rejectWithValue(err.message)
     }
-  });
-};
+  })
+}
 
 export const useAbsApi = <State extends ICommonsStore>(
   buttonComponent?: React.FC,
@@ -79,41 +79,41 @@ export const useAbsApi = <State extends ICommonsStore>(
   inStatePayloadCode?: (code: number) => StatePayloadCodeType,
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const dispatch = useDispatch<any>();
-  const { alert } = useAbsAlert(buttonComponent, width);
+  const dispatch = useDispatch<any>()
+  const { alert } = useAbsAlert(buttonComponent, width)
   // const navigates = useNavigate();
   const apiResult = async <Res extends AbsIRes<Returned, Pageable>, Returned, Pageable, ThunkArg>(
     thunk: AsyncThunk<Res, ThunkArg, AbsAsyncThunkConfig<State>>,
     param?: ThunkArg,
     errorCallback?: () => void,
   ): Promise<Res | undefined> => {
-    const res = await dispatch(thunk(param as ThunkArg));
+    const res = await dispatch(thunk(param as ThunkArg))
     if (thunk.fulfilled.match(res)) {
-      const pcode = inStatePayloadCode ? inStatePayloadCode : statePayloadCode;
+      const pcode = inStatePayloadCode ? inStatePayloadCode : statePayloadCode
       switch (pcode(res.payload.code)) {
-        case "success":
-        case "success-none":
-          return res.payload as Res;
-        case "fail":
-          alert(res.payload.message.replace("ErrorInValidParamException:", ""), errorCallback);
-          return { ...res.payload, content: undefined } as Res;
-        case "error":
+        case 'success':
+        case 'success-none':
+          return res.payload as Res
+        case 'fail':
+          alert(res.payload.message.replace('ErrorInValidParamException:', ''), errorCallback)
+          return { ...res.payload, content: undefined } as Res
+        case 'error':
         default:
-          alert("문제있음 >> " + res.payload.apiLink + " <br/> " + res.payload.message, errorCallback);
-          return { ...res.payload, content: undefined } as Res;
+          alert('문제있음 >> ' + res.payload.apiLink + ' <br/> ' + res.payload.message, errorCallback)
+          return { ...res.payload, content: undefined } as Res
       }
     } else if (thunk.rejected.match(res)) {
-      alert("통신실패<br/>" + res.type, errorCallback);
+      alert('통신실패<br/>' + res.type, errorCallback)
       // console.log("api thunk error", res);
       // 정상적인 실패로 통신이 끝나게 하기 위해 에러처리 삭제
       // throw new Error(res.error.message);
     }
-  };
-  return { apiResult };
-};
+  }
+  return { apiResult }
+}
 
 export function useSelectorEq<STATE, T>(fn: (state: STATE) => T): T {
-  return useSelector(fn, shallowEqual);
+  return useSelector(fn, shallowEqual)
 }
 
 export function isPayloadCode(code: number) {
@@ -121,7 +121,7 @@ export function isPayloadCode(code: number) {
     case 200:
     case 201:
     case 204:
-      return true;
+      return true
     case 400:
     case 404:
     case 405:
@@ -129,38 +129,38 @@ export function isPayloadCode(code: number) {
     case 460:
     case 500:
     default:
-      return false;
+      return false
   }
 }
 
-export type StatePayloadCodeType = "success" | "success-none" | "fail" | "error";
+export type StatePayloadCodeType = 'success' | 'success-none' | 'fail' | 'error'
 
 export function statePayloadCode(code: number): StatePayloadCodeType {
   switch (code) {
     case 200:
     case 201:
-      return "success";
+      return 'success'
     case 204:
-      return "success-none";
+      return 'success-none'
     case 400:
     case 404:
     case 405:
     case 409:
     case 460:
     case 500:
-      return "fail";
+      return 'fail'
     default:
-      return "error";
+      return 'error'
   }
 }
 
 export function returnRes<Res extends AbsIRes<T, K>, T = undefined, K = undefined>(data?: T, page?: K) {
   return {
     code: 200,
-    message: "",
+    message: '',
     content: data,
     page: page,
-  } as Res;
+  } as Res
 }
 
 /**
@@ -168,9 +168,7 @@ export function returnRes<Res extends AbsIRes<T, K>, T = undefined, K = undefine
  * @param reducer 스토어 생성시 등록될 리듀서 모음
  * @returns
  */
-export const createStore = <T extends ICommonsStore>(
-  reducer: (state: T | undefined, action: AnyAction) => T,
-) => {
+export const createStore = <T extends ICommonsStore>(reducer: (state: T | undefined, action: AnyAction) => T) => {
   const store = configureStore({
     // reducer 등록
     reducer: reducer,
@@ -184,7 +182,7 @@ export const createStore = <T extends ICommonsStore>(
         serializableCheck: false,
         /** 부분 로딩을 적용하기 위한 미들웨어 등록 */
       }).prepend(getLoadingMiddleware()),
-    devTools: process.env.NODE_ENV !== "production",
-  });
-  return store;
-};
+    devTools: process.env.NODE_ENV !== 'production',
+  })
+  return store
+}

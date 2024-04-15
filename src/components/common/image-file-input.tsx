@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useState } from 'react'
 import { FiCamera } from 'react-icons/fi'
 
@@ -42,13 +43,7 @@ const ImageFileInput = (props: {
           <span className="visually-hidden">로딩중</span>
         </div>
       )}
-      <input
-        ref={fileRef as any}
-        type="file"
-        id="profile"
-        accept="image/*"
-        onChange={onChange as any}
-      />
+      <input ref={fileRef as any} type="file" id="profile" accept="image/*" onChange={onChange} />
     </>
   )
 }

@@ -22,9 +22,7 @@ const BodyContiner = styled.div`
 `
 
 function AlertOrConfirm(props: IAbsPopupProps) {
-  const { popupDo } = usePopupData<
-    string | { message: string; title?: string; subMessage?: string }
-  >(props.type)
+  const { popupDo } = usePopupData<string | { message: string; title?: string; subMessage?: string }>(props.type)
 
   return (
     <>
@@ -50,10 +48,7 @@ function AlertOrConfirm(props: IAbsPopupProps) {
                     <span
                       key={idx}
                       className={
-                        typeof popupDo.data !== 'string' &&
-                        popupDo.data?.subMessage !== undefined
-                          ? 'title'
-                          : ''
+                        typeof popupDo.data !== 'string' && popupDo.data?.subMessage !== undefined ? 'title' : ''
                       }
                     >
                       {line}
@@ -62,10 +57,9 @@ function AlertOrConfirm(props: IAbsPopupProps) {
                   )
                 })}
 
-          {typeof popupDo.data !== 'string' &&
-            popupDo.data?.subMessage !== undefined && (
-              <p className="sub-title">{popupDo.data?.subMessage}</p>
-            )}
+          {typeof popupDo.data !== 'string' && popupDo.data?.subMessage !== undefined && (
+            <p className="sub-title">{popupDo.data?.subMessage}</p>
+          )}
         </BodyContiner>
       </AbsPopup>
     </>

@@ -1,9 +1,9 @@
 export enum CookieName {
-  AUTH = "auth",
-  REFRESH = "refresh",
+  AUTH = 'auth',
+  REFRESH = 'refresh',
 }
 
 export enum SessionName {
-  DEVICE = "deviceType",
-  MOBILE_TYPE = "mobileType",
+  DEVICE = 'deviceType',
+  MOBILE_TYPE = 'mobileType',
 }

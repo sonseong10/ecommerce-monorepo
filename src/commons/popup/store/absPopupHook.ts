@@ -1,6 +1,6 @@
-import { useDispatch } from "react-redux";
-import { AbsPopupType } from "../AbsPopupType";
-import { rdxPopupClose, rdxPopupOpen } from "./popupR";
+import { useDispatch } from 'react-redux'
+import { AbsPopupType } from '../AbsPopupType'
+import { rdxPopupClose, rdxPopupOpen } from './popupR'
 import {
   ButtonState,
   type AlertParam,
@@ -8,9 +8,9 @@ import {
   type IButton,
   type IPopupDo,
   type PopupCallBackParam,
-} from "./absPopupVo";
-import type { ICommonsStore } from "../..";
-import { useSelectorEq } from "../../store/common";
+} from './absPopupVo'
+import type { ICommonsStore } from '../..'
+import { useSelectorEq } from '../../store/common'
 
 /**
  * @param type {@link AbsPopupType} 팝업 타입
@@ -20,25 +20,25 @@ export function useClosePopup(type: AbsPopupType | string) {
   const { callBack, returnData } = useSelectorEq((state: ICommonsStore) => ({
     callBack: state.popups.popup[type]?.callBack,
     returnData: state.popups.returnData[type],
-  }));
-  const dispatch = useDispatch();
+  }))
+  const dispatch = useDispatch()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const close = async (state?: ButtonState, params?: any): Promise<void> => {
-    if (callBack && typeof callBack === "function") {
-      const st = state ? state : ButtonState.NO;
+    if (callBack && typeof callBack === 'function') {
+      const st = state ? state : ButtonState.NO
       if (returnData || (params !== undefined && !(params instanceof Event))) {
         if (st === ButtonState.NO) {
-          callBack({ ...params, state: st });
+          callBack({ ...params, state: st })
         } else {
-          callBack({ ...returnData, ...params, state: st });
+          callBack({ ...returnData, ...params, state: st })
         }
       } else {
-        callBack(st);
+        callBack(st)
       }
     }
-    dispatch(rdxPopupClose(type));
-  };
-  return { close, returnData };
+    dispatch(rdxPopupClose(type))
+  }
+  return { close, returnData }
 }
 
 /**
@@ -53,8 +53,8 @@ export function usePopupData<
 >(type: AbsPopupType | string) {
   const { popupDo } = useSelectorEq((state: ICommonsStore) => ({
     popupDo: state.popups.popup[type] ? state.popups.popup[type] : undefined,
-  }));
-  return { popupDo: popupDo as IPopupDo<T, K, U> };
+  }))
+  return { popupDo: popupDo as IPopupDo<T, K, U> }
 }
 
 /**
@@ -71,8 +71,8 @@ export function useAbsPopupData(type: AbsPopupType | string) {
     ButtonWrapper: state.popups.popup[type].buttonWrapper,
     maxHeight: state.popups.popup[type].maxHeight,
     isDevice: state.popups.popup[type].isDevice === undefined ? true : state.popups.popup[type].isDevice!,
-  }));
-  return { width, type, ButtonWrapper, maxHeight, isDevice };
+  }))
+  return { width, type, ButtonWrapper, maxHeight, isDevice }
 }
 
 /**
@@ -86,9 +86,9 @@ export function useAbsPopupTitle(type: AbsPopupType | string) {
   const { title, isClose } = useSelectorEq((state: ICommonsStore) => ({
     title: state.popups.popup[type].title,
     isClose: state.popups.popup[type].isClose,
-  }));
-  const { close } = useClosePopup(type);
-  return { title, isClose, close };
+  }))
+  const { close } = useClosePopup(type)
+  return { title, isClose, close }
 }
 
 /**
@@ -102,9 +102,9 @@ export function useAbsPopupButton(type: AbsPopupType | string) {
   const { buttonOption, Button } = useSelectorEq((state: ICommonsStore) => ({
     buttonOption: state.popups.popup[type].buttons,
     Button: state.popups.popup[type].buttonComponent,
-  }));
-  const { close } = useClosePopup(type);
-  return { buttonOption, Button, close };
+  }))
+  const { close } = useClosePopup(type)
+  return { buttonOption, Button, close }
 }
 
 /**
@@ -116,25 +116,25 @@ function usePopup() {
   const { isPopup, popupDo } = useSelectorEq((state: ICommonsStore) => ({
     isPopup: state.popups.isPopup,
     popupDo: state.popups.popupAr,
-  }));
+  }))
 
   return {
     isPopup,
     popupDo,
-  };
+  }
 }
 
-export default usePopup;
+export default usePopup
 
 /**
  * @param buttonComponent 사용될 버튼컴포넌트 지정
  * @returns `alert` 안내창 띄움
  */
 export function useAbsAlert<T>(buttonComponent?: React.FC<T>, width?: string | number, isDevice?: boolean) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const alert = (params: AlertParam, callBack?: () => void) => {
-    const message = typeof params === "string" ? params : params.message;
-    const title = typeof params === "string" ? undefined : params.title;
+    const message = typeof params === 'string' ? params : params.message
+    const title = typeof params === 'string' ? undefined : params.title
     dispatch(
       rdxPopupOpen({
         type: AbsPopupType.ALERT,
@@ -143,19 +143,19 @@ export function useAbsAlert<T>(buttonComponent?: React.FC<T>, width?: string | n
         isClose: false,
         width: width,
         buttonComponent: buttonComponent,
-        buttons: [{ text: "확인", state: ButtonState.OK }],
+        buttons: [{ text: '확인', state: ButtonState.OK }],
         buttonsList: [
           {
             component: buttonComponent,
-            style: { text: "확인", state: ButtonState.OK },
+            style: { text: '확인', state: ButtonState.OK },
           },
         ],
         isDevice: isDevice,
         callBack: callBack,
       } as IPopupDo<string>),
-    );
-  };
-  return { alert };
+    )
+  }
+  return { alert }
 }
 
 /**
@@ -163,10 +163,10 @@ export function useAbsAlert<T>(buttonComponent?: React.FC<T>, width?: string | n
  * @returns `confirm` 확인창 띄움
  */
 export function useAbsConfirm(buttonComponent?: React.FC, width?: string | number, isDevice?: boolean) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const confirm = async (params: ConfirmParam, callBack?: (bo: boolean) => void) => {
     // const message = typeof params === "string" ? params : params.message;
-    const title = typeof params === "string" ? undefined : params.title;
+    const title = typeof params === 'string' ? undefined : params.title
     dispatch(
       rdxPopupOpen({
         type: AbsPopupType.CONFIRM,
@@ -176,22 +176,22 @@ export function useAbsConfirm(buttonComponent?: React.FC, width?: string | numbe
         isClose: false,
         buttonComponent: buttonComponent,
         buttons: [
-          { text: "취소", state: ButtonState.NO },
-          { text: "확인", state: ButtonState.OK },
+          { text: '취소', state: ButtonState.NO },
+          { text: '확인', state: ButtonState.OK },
         ],
         isDevice: isDevice,
         callBack: callBack,
       } as IPopupDo<string>),
-    );
-  };
-  return { confirm };
+    )
+  }
+  return { confirm }
 }
 
 /**
  * @returns `warning` 경고창 띄움
  */
 export function useWarning() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const warning = async (message: string, title?: string) => {
     dispatch(
       rdxPopupOpen({
@@ -201,9 +201,9 @@ export function useWarning() {
         isClose: true,
         buttons: [],
       }),
-    );
-  };
-  return { warning };
+    )
+  }
+  return { warning }
 }
 
 /**
@@ -211,7 +211,7 @@ export function useWarning() {
  * @returns `image` 이미지창 띄움
  */
 export function useImagePopup(buttonComponent?: React.FC) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const image = async (children: React.ReactNode | React.ReactNode[], callBack?: () => void) => {
     dispatch(
       rdxPopupOpen({
@@ -219,13 +219,13 @@ export function useImagePopup(buttonComponent?: React.FC) {
         data: children,
         width: 500,
         isClose: false,
-        buttons: [{ text: "닫기" }],
+        buttons: [{ text: '닫기' }],
         buttonComponent: buttonComponent,
         callBack: callBack,
       }),
-    );
-  };
-  return { image };
+    )
+  }
+  return { image }
 }
 
 /**
@@ -233,7 +233,7 @@ export function useImagePopup(buttonComponent?: React.FC) {
  * @returns `image` 이미지창 띄움
  */
 export function useInputPopup(buttonComponent?: React.FC) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const input = async <T>(params: { result: T; title: string }, callback?: (value: string) => void) => {
     dispatch(
       rdxPopupOpen({
@@ -242,16 +242,16 @@ export function useInputPopup(buttonComponent?: React.FC) {
         data: params.result,
         width: 500,
         buttons: [
-          { text: "확인", state: ButtonState.OK },
+          { text: '확인', state: ButtonState.OK },
           {
-            text: "취소",
+            text: '취소',
             state: ButtonState.NO,
           },
         ],
         buttonComponent: buttonComponent,
         callBack: callback,
       } as IPopupDo<T>),
-    );
-  };
-  return { input };
+    )
+  }
+  return { input }
 }

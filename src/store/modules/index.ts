@@ -33,9 +33,7 @@ const rootReducer = (state: IState | undefined, action: AnyAction) => {
   }
   switch (action.type) {
     default:
-      return combineReducers(
-        switchGradeReducers() as ReducersMapObject<IState, AnyAction>
-      )(state, action)
+      return combineReducers(switchGradeReducers() as ReducersMapObject<IState, AnyAction>)(state, action)
   }
 }
 

@@ -1,45 +1,45 @@
-import styled from "styled-components";
-import type { IGridSetting } from "../GridVo";
+import styled from 'styled-components'
+import type { IGridSetting } from '../GridVo'
 import React from 'react'
 
 const SumTr = styled.tr`
   background-color: var(--bg-table-head);
   font-weight: bold;
-`;
+`
 
 function getPropertyNumber<T, K extends keyof T>(obj: T, key: K): number {
-  return Number(obj[key]);
+  return Number(obj[key])
 }
 
 function SumRow<T>(props: {
-  data?: Array<T>;
-  setting?: Array<IGridSetting<T>>;
+  data?: Array<T>
+  setting?: Array<IGridSetting<T>>
   sumOption?: {
-    titleSpan: number;
-    titleCol: number;
-  };
+    titleSpan: number
+    titleCol: number
+  }
 }) {
-  const tdList: Array<{ value: number | null; colspan?: number }> = [];
+  const tdList: Array<{ value: number | null; colspan?: number }> = []
   props.setting?.forEach((set, idx) => {
     if (set.isSum) {
-      let sum = 0;
-      props.data?.forEach((row: T) => (sum += getPropertyNumber(row, set.id[0] as keyof T)));
+      let sum = 0
+      props.data?.forEach((row: T) => (sum += getPropertyNumber(row, set.id[0] as keyof T)))
 
-      tdList.push({ value: sum });
+      tdList.push({ value: sum })
     } else {
       if (props.sumOption && props.sumOption.titleCol === idx) {
-        tdList.push({ value: null, colspan: props.sumOption.titleSpan });
+        tdList.push({ value: null, colspan: props.sumOption.titleSpan })
       } else {
         if (
           props.sumOption &&
           props.sumOption.titleCol &&
           (idx < props.sumOption.titleCol || idx >= props.sumOption.titleCol + props.sumOption.titleSpan)
         ) {
-          tdList.push({ value: null });
+          tdList.push({ value: null })
         }
       }
     }
-  });
+  })
 
   return (
     <SumTr className="none">
@@ -49,13 +49,13 @@ function SumRow<T>(props: {
             <td key={idx} colSpan={td.colspan}>
               합계
             </td>
-          );
+          )
         } else {
-          return <td key={idx}>{td.value?.toLocaleString()}</td>;
+          return <td key={idx}>{td.value?.toLocaleString()}</td>
         }
       })}
     </SumTr>
-  );
+  )
 }
 
-export default SumRow;
+export default SumRow

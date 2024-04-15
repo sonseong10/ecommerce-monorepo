@@ -1,5 +1,5 @@
-import React from "react";
-import { SpinnerContent, SpinnerText, SpinnerWrap } from "./style";
+import React from 'react'
+import { SpinnerContent, SpinnerText, SpinnerWrap } from './style'
 
 /**
  * 로딩 컴포넌트 props
@@ -7,8 +7,8 @@ import { SpinnerContent, SpinnerText, SpinnerWrap } from "./style";
  * @property {number | undefined} size 로딩바 크기
  */
 interface ISpinnerProps {
-  text?: string | React.ReactElement;
-  size?: number;
+  text?: string | React.ReactElement
+  size?: number
 }
 
 /**
@@ -30,7 +30,7 @@ function Spinner(props: ISpinnerProps): JSX.Element {
       </SpinnerContent>
       {props.text && <SpinnerText>{props.text}</SpinnerText>}
     </SpinnerWrap>
-  );
+  )
 }
 
-export default Spinner;
+export default Spinner

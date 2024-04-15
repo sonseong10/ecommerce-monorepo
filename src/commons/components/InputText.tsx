@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import type { IUseInputEventParam, IUseInput, InputType } from "../../commons/hook/hookVo";
-import useInput from "../../commons/hook/useInput";
-import React, { type RefObject, useEffect, useState, type WheelEvent } from "react";
-import styled, { css } from "styled-components";
+import type { IUseInputEventParam, IUseInput, InputType } from '../../commons/hook/hookVo'
+import useInput from '../../commons/hook/useInput'
+import React, { type RefObject, useEffect, useState, type WheelEvent } from 'react'
+import styled, { css } from 'styled-components'
 
 /**
  * 기본 input 스타일 적용
@@ -11,26 +11,26 @@ import styled, { css } from "styled-components";
 export const Input = styled.input<{ inputSize?: string; hidden?: boolean }>`
   ${props => {
     switch (props.type) {
-      case "text":
-      case "number":
-      case "search":
-      case "password":
-      case "file":
-      case "email":
-      case "tel":
+      case 'text':
+      case 'number':
+      case 'search':
+      case 'password':
+      case 'file':
+      case 'email':
+      case 'tel':
         return css`
           ${props.hidden &&
           css`
             display: none;
           `}
-          width: ${props.inputSize ? props.inputSize : "240px"};
+          width: ${props.inputSize ? props.inputSize : '240px'};
           height: 36px;
           padding: 8px 10px;
           border: 1px solid var(--border-primary);
           border-radius: 4px;
           color: var(--font-primary);
           font-weight: 400;
-          font-size: ${props => props.theme.fontSize.default};
+          font-size: 14px;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
 
@@ -51,41 +51,41 @@ export const Input = styled.input<{ inputSize?: string; hidden?: boolean }>`
             color: var(--font-disabled);
             cursor: not-allowed;
           }
-        `;
+        `
       default:
-        return ``;
+        return ``
     }
   }}
-`;
+`
 
-export type IInputTextEventParam = IUseInputEventParam;
+export type IInputTextEventParam = IUseInputEventParam
 /** next 이벤트 발생시 실행될 핸들러 */
-export type InputTextNextHandler = (e: IInputTextEventParam) => void;
+export type InputTextNextHandler = (e: IInputTextEventParam) => void
 /** change 이벤트 발생시 실행될 핸들러 */
-export type InputTextChangeHandler = (e: IInputTextEventParam) => void;
+export type InputTextChangeHandler = (e: IInputTextEventParam) => void
 
 /**
  * InputText 기본 컴포넌트 옵션
  */
 export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /** 고유값 */
-  id?: string;
+  id?: string
   /** 텍스트 값 */
-  value?: string;
+  value?: string
   /** 가이드 텍스트 */
-  placeholder?: string;
+  placeholder?: string
   /** 인풋 타입 */
-  type?: InputType;
+  type?: InputType
   /** px % 단위 입력 */
-  inputSize?: string;
+  inputSize?: string
   /** 숨김 여부 */
-  hidden?: boolean;
-  target?: RefObject<HTMLInputElement>;
-  refTarget?: RefObject<HTMLInputElement>;
+  hidden?: boolean
+  target?: RefObject<HTMLInputElement>
+  refTarget?: RefObject<HTMLInputElement>
   /** 가격 표시 여부 */
-  isPrice?: boolean;
-  change?: InputTextChangeHandler;
-  next?: InputTextNextHandler;
+  isPrice?: boolean
+  change?: InputTextChangeHandler
+  next?: InputTextNextHandler
 }
 
 /**
@@ -95,46 +95,46 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
  * @returns
  */
 function InputText(props: IInputProps): JSX.Element {
-  const [prev, setPrev] = useState<NodeJS.Timeout>();
+  const [prev, setPrev] = useState<NodeJS.Timeout>()
 
   const test = (value?: string) => {
     if (value) {
-      return props.isPrice ? Number(value.replaceAll(",", "")).toLocaleString().toString() : value;
+      return props.isPrice ? Number(value.replaceAll(',', '')).toLocaleString().toString() : value
     } else {
-      return "";
+      return ''
     }
-  };
+  }
 
   const stepChangeHandler = (value: IUseInputEventParam) => {
     if (prev !== undefined) {
-      clearTimeout(prev);
+      clearTimeout(prev)
     }
-    if (value.type === "next") {
+    if (value.type === 'next') {
       if (props.change) {
-        props.change(value);
+        props.change(value)
       }
       if (props.next) {
-        props.next(value);
+        props.next(value)
       }
     } else {
-      if (typeof window !== "undefined") {
+      if (typeof window !== 'undefined') {
         const st = setTimeout(() => {
           if (props.change) {
             if (props.isPrice !== undefined && props.isPrice) {
               props.change({
                 ...value,
-                value: (value.value as string).replaceAll(",", ""),
-              });
+                value: (value.value as string).replaceAll(',', ''),
+              })
             } else {
-              props.change(value);
+              props.change(value)
             }
           }
-          setPrev(undefined);
-        }, 300);
-        setPrev(st);
+          setPrev(undefined)
+        }, 300)
+        setPrev(st)
       }
     }
-  };
+  }
   const inputobj: IUseInput = useInput<HTMLInputElement>({
     id: props.id,
     type: props.type,
@@ -143,15 +143,15 @@ function InputText(props: IInputProps): JSX.Element {
     target: props.target,
     onChangeHandler: stepChangeHandler,
     onNextHandler: stepChangeHandler,
-  });
+  })
 
   useEffect(() => {
     if (test(props.value) !== test(inputobj.value)) {
       if (inputobj.setValue) {
-        inputobj.setValue(props.value as string);
+        inputobj.setValue(props.value as string)
       }
     }
-  }, [props.value]);
+  }, [props.value])
 
   return (
     <Input
@@ -172,6 +172,6 @@ function InputText(props: IInputProps): JSX.Element {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onWheel={(e: WheelEvent<HTMLElement>) => e.currentTarget.blur()}
     />
-  );
+  )
 }
-export default React.memo(InputText);
+export default React.memo(InputText)

@@ -25,15 +25,7 @@ interface IWorkProps {
   deleteWork: (work: { contents: string; time: number; title: string }) => void
   dark: boolean
 }
-const Work = ({
-  onMenuChange,
-  userId,
-  works,
-  createWork,
-  updateWork,
-  deleteWork,
-  dark,
-}: IWorkProps) => {
+const Work = ({ onMenuChange, userId, works, createWork, updateWork, deleteWork, dark }: IWorkProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -58,14 +50,7 @@ const Work = ({
             <span>{isOpen ? '작성 취소' : '일지 작성'}</span>
           </button>
         </header>
-        {isOpen && (
-          <AddWorkForm
-            userId={userId}
-            createWork={createWork}
-            renderMarkdown={renderMarkdown}
-            dark={dark}
-          />
-        )}
+        {isOpen && <AddWorkForm userId={userId} createWork={createWork} renderMarkdown={renderMarkdown} dark={dark} />}
         <WorkList
           works={works}
           renderMarkdown={renderMarkdown}

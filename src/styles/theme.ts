@@ -1,10 +1,5 @@
 import baseStyled from 'styled-components'
-import {
-  commonFonts,
-  commonColors,
-  commonHoverColors,
-  commonDisabledColors,
-} from '../commons/styles/commonTheme'
+import { commonFonts, commonColors, commonHoverColors, commonDisabledColors } from '../commons/styles/commonTheme'
 import type { ThemedStyledInterface } from 'styled-components'
 
 /**

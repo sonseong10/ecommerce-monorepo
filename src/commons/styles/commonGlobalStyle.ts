@@ -1,6 +1,6 @@
-import { css } from "styled-components";
-import type { Theme } from "../../styles/theme";
-import { ResetStyle } from "./resetStyle";
+import { css } from 'styled-components'
+import type { Theme } from '../../styles/theme'
+import { ResetStyle } from './resetStyle'
 
 export const CommonGlobal = css<{ theme?: Theme }>`
   ${ResetStyle};
@@ -78,4 +78,4 @@ export const CommonGlobal = css<{ theme?: Theme }>`
     font-weight: ${props => props.theme.fontWeight.regular};
     line-height: 1.5em;
   }
-`;
+`

@@ -17,13 +17,7 @@ interface IWorkItemProps {
   dark: boolean
 }
 
-const WorkItem = ({
-  work,
-  renderMarkdown,
-  updateWork,
-  deleteWork,
-  dark,
-}: IWorkItemProps) => {
+const WorkItem = ({ work, renderMarkdown, updateWork, deleteWork, dark }: IWorkItemProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const [isOpen, setIsOpen] = useState(false)
@@ -59,9 +53,7 @@ const WorkItem = ({
         type="button"
       >
         <h2 className={styles.title}>{work?.title}</h2>
-        <strong className={styles.date}>
-          {moment(work?.time).format('YYYY-MM-DD')}
-        </strong>
+        <strong className={styles.date}>{moment(work?.time).format('YYYY-MM-DD')}</strong>
       </button>
 
       <div
@@ -101,20 +93,14 @@ const WorkItem = ({
         <aside className={styles.contentsRight}>
           <h3 className="visually-hidden">toolbar</h3>
           <button
-            className={`${styles.toolBtn} ${styles.editBtn} ${
-              isEdit && styles.isActive
-            }`}
+            className={`${styles.toolBtn} ${styles.editBtn} ${isEdit && styles.isActive}`}
             type="button"
             onClick={startEditing}
           >
             <BiPencil aria-hidden />
             <span className="visually-hidden">업무 수정하기</span>
           </button>
-          <button
-            className={`${styles.toolBtn} ${styles.removeBtn}`}
-            type="button"
-            onClick={deleteSection}
-          >
+          <button className={`${styles.toolBtn} ${styles.removeBtn}`} type="button" onClick={deleteSection}>
             <BiTrash aria-hidden />
             <span className="visually-hidden">업무 삭제하기</span>
           </button>

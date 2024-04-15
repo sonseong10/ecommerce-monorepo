@@ -17,7 +17,7 @@ const WorkLinkList = ({ works, dark }: IWorkLinkListProps) => {
   return (
     <ul className={`${styles.workLinkList} ${dark && styles.isDark}`}>
       {works && Object.keys(works).length ? (
-        Object.keys(works).map((key) => (
+        Object.keys(works).map(key => (
           <li className={styles.workItem} key={works[key].time}>
             <Link to="/work">{works[key].title}</Link>
           </li>

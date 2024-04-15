@@ -29,8 +29,7 @@ function GridHeaderFixed<Setting extends IGridSetting<any>[]>(props: {
               }
             })}
           </colgroup>
-          {props.headerInfo?.display === undefined ||
-          props.headerInfo?.display === true ? (
+          {props.headerInfo?.display === undefined || props.headerInfo?.display === true ? (
             <thead>
               <tr>
                 {props.setting?.map((item, idx) => {
@@ -48,13 +47,7 @@ function GridHeaderFixed<Setting extends IGridSetting<any>[]>(props: {
                         />
                       )
                     } else {
-                      return (
-                        <th
-                          key={idx + 1}
-                          scope="col"
-                          dangerouslySetInnerHTML={{ __html: item.header }}
-                        />
-                      )
+                      return <th key={idx + 1} scope="col" dangerouslySetInnerHTML={{ __html: item.header }} />
                     }
                   }
                 })}

@@ -1,4 +1,4 @@
-import React, { type ForwardedRef, type Key, useRef } from "react";
+import React, { type ForwardedRef, type Key, useRef } from 'react'
 import styled, { css, type StyledComponent } from 'styled-components'
 import GridHeaderFixed from './components/GridHeaderFixed'
 import GridRow from './components/GridRow'
@@ -13,13 +13,12 @@ const EmptyList = styled.tr<{ iconType?: string }>`
   > td:first-of-type::before {
     display: block;
     content: '';
-    ${(props) => {
+    ${props => {
       switch (props.iconType) {
         case 'shipping':
           return css`
             padding: 85px 60px 5px 60px;
-            background: url('../../../images/icon/icon_all_count.svg') no-repeat
-              center center;
+            background: url('../../../images/icon/icon_all_count.svg') no-repeat center center;
             background-size: 60px;
           `
         default:
@@ -30,14 +29,12 @@ const EmptyList = styled.tr<{ iconType?: string }>`
 `
 
 const ScrollTable = styled.div<{ over?: boolean; height?: number | string }>`
-  ${(props) => (props.over ? 'overflow: auto;' : '')}
-  ${(props) => {
+  ${props => (props.over ? 'overflow: auto;' : '')}
+  ${props => {
     if (props.height) {
       return css`
         display: block;
-        max-height: ${typeof props.height === 'number'
-          ? `${props.height}px`
-          : props.height};
+        max-height: ${typeof props.height === 'number' ? `${props.height}px` : props.height};
         overscroll-behavior: contain;
 
         &::-webkit-scrollbar {
@@ -107,26 +104,26 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const change = (position: IGridPosition, value?: any) => {
     if (props.change) {
-      props.change(position, value);
+      props.change(position, value)
     }
-  };
+  }
   const click = (position: IGridPosition, value?: Data) => {
     if (props.selectInfo?.click) {
-      props.selectInfo.click(position, value);
+      props.selectInfo.click(position, value)
     }
-  };
+  }
 
   const sorted = (position: number, id: string, value: sortType) => {
     if (props.sortChange) {
-      props.sortChange(position, id, value);
+      props.sortChange(position, id, value)
     }
-  };
+  }
 
-  const Table = props.container ? props.container : TableContainer;
-  const NotDisplay = props.emptyInfo?.element ? props.emptyInfo.element : undefined;
+  const Table = props.container ? props.container : TableContainer
+  const NotDisplay = props.emptyInfo?.element ? props.emptyInfo.element : undefined
 
-  const loader = useRef<HTMLDivElement>(null);
-  useIntersectionObserver(loader, props.id, props.infiniteInfo, props.data?.length);
+  const loader = useRef<HTMLDivElement>(null)
+  useIntersectionObserver(loader, props.id, props.infiniteInfo, props.data?.length)
 
   return (
     <Table
@@ -159,7 +156,7 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
           <colgroup>
             {props.setting?.map((item, idx) => {
               if (item.display === undefined || item.display) {
-                return <col key={idx} style={{ width: item.width }}></col>;
+                return <col key={idx} style={{ width: item.width }}></col>
               }
             })}
           </colgroup>
@@ -169,7 +166,7 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
                 <>
                   <tr>
                     {props.setting?.map((item, idx) => {
-                      const HeaderElement = item.headerElement;
+                      const HeaderElement = item.headerElement
                       if (HeaderElement === undefined) {
                         if (item.display === undefined || item.display) {
                           if (props.id && item.sort) {
@@ -183,7 +180,7 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
                                 setting={props.setting}
                                 sorted={sorted}
                               />
-                            );
+                            )
                           } else {
                             return (
                               <th
@@ -193,7 +190,7 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
                                   __html: item.header,
                                 }}
                               />
-                            );
+                            )
                           }
                         }
                       } else {
@@ -201,7 +198,7 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
                           <th key={idx} scope="col">
                             <HeaderElement header={item.header} />
                           </th>
-                        );
+                        )
                       }
                     })}
                   </tr>
@@ -270,6 +267,6 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
         )}
       </ScrollTable>
     </Table>
-  );
+  )
 }
-export default Grid;
+export default Grid

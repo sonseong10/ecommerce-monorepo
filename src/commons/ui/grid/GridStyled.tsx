@@ -1,13 +1,13 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components'
 
 /**
  * table
  */
 export const TableContainer = styled.div<{
-  direction?: "col" | "row";
-  over?: boolean;
-  height?: number;
-  selected?: boolean;
+  direction?: 'col' | 'row'
+  over?: boolean
+  height?: number
+  selected?: boolean
 }>`
   border-bottom: 1px solid var(--border-primary);
   & table {
@@ -38,9 +38,9 @@ export const TableContainer = styled.div<{
                 background-color: transparent;
               }
             }
-          `;
+          `
         }
-        return css``;
+        return css``
       }}
       border-top: 1px solid var(--bg-grey);
       &:first-child {
@@ -72,11 +72,11 @@ export const TableContainer = styled.div<{
       color: var(--font-primary);
     }
   }
-  ${props => (props.over ? "overflow: auto; border-bottom: 0;" : "")}
-  ${props => (props.height ? `max-height: ${props.height}px;` : "")}
+  ${props => (props.over ? 'overflow: auto; border-bottom: 0;' : '')}
+  ${props => (props.height ? `max-height: ${props.height}px;` : '')}
     ${props => {
     switch (props.direction) {
-      case "row":
+      case 'row':
         return css`
           & th,
           & td {
@@ -85,8 +85,8 @@ export const TableContainer = styled.div<{
           & tbody table thead th {
             background-color: var(--bg-table-head);
           }
-        `;
-      case "col":
+        `
+      case 'col':
       default:
         return css`
           & th,
@@ -119,7 +119,7 @@ export const TableContainer = styled.div<{
             border-left: 1px solid var(--border-primary);
             text-align: center;
           }
-        `;
+        `
     }
   }}
-`;
+`

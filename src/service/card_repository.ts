@@ -5,7 +5,7 @@ import { ref, onValue, off, set, remove } from 'firebase/database'
 class CardRepository {
   syncCards(onUpdate: (value: { [key: string]: ICardVo }) => void) {
     const query = ref(firebaseDatabase, `cards`)
-    onValue(query, (snapshot) => {
+    onValue(query, snapshot => {
       const value = snapshot.val()
       value && onUpdate(value)
     })

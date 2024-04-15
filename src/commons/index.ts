@@ -30,7 +30,7 @@ export enum CommonType {
  */
 export const getCommonsType = (type: Array<number>): number => {
   let t = 0
-  type.forEach((k) => (t += k))
+  type.forEach(k => (t += k))
   return t
 }
 
@@ -44,11 +44,7 @@ export enum CommonSetting {
     CommonType.Editor,
   ]),
   Slim = getCommonsType([CommonType.Ui, CommonType.Loading]),
-  Middle = getCommonsType([
-    CommonType.Ui,
-    CommonType.Loading,
-    CommonType.Storage,
-  ]),
+  Middle = getCommonsType([CommonType.Ui, CommonType.Loading, CommonType.Storage]),
 }
 
 /**

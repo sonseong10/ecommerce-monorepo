@@ -1,10 +1,5 @@
-import {
-  useState,
-  type ChangeEventHandler,
-  type KeyboardEventHandler,
-  type FocusEventHandler,
-} from "react";
-import type { IUseInputRef, IUserParamRef } from "./hookVo";
+import { useState, type ChangeEventHandler, type KeyboardEventHandler, type FocusEventHandler } from 'react'
+import type { IUseInputRef, IUserParamRef } from './hookVo'
 
 /**
  * change 이벤트 발생과
@@ -16,14 +11,11 @@ import type { IUseInputRef, IUserParamRef } from "./hookVo";
  * @param placeholder 기본 가이드 텍스트
  * @returns IUseInput
  */
-export default function useInputRef<
-  T extends HTMLElement,
-  Z extends HTMLElement
->({
-  id = "",
+export default function useInputRef<T extends HTMLElement, Z extends HTMLElement>({
+  id = '',
   key = -1,
-  initalValue = "",
-  placeholder = "",
+  initalValue = '',
+  placeholder = '',
   type = undefined,
   inputRef = undefined,
   target = undefined,
@@ -31,56 +23,52 @@ export default function useInputRef<
   onChangeHandler = undefined,
   onNextHandler = undefined,
 }: IUserParamRef<T, Z>): IUseInputRef<Z> {
-  const [value, setValue] = useState(initalValue);
+  const [value, setValue] = useState(initalValue)
 
-  const onChange: ChangeEventHandler<HTMLInputElement> = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const {
       target: { value },
-    } = e;
-    setValue(value);
+    } = e
+    setValue(value)
     if (onChangeHandler) {
       onChangeHandler({
         id: id,
         key: key,
         value: value,
-        type: "change",
+        type: 'change',
         setValue: setValue,
-      });
+      })
     }
-  };
-  const onKeyPress: KeyboardEventHandler<HTMLInputElement> = async (
-    e: React.KeyboardEvent
-  ): Promise<void> => {
-    if (e.key === "Enter" && target) {
+  }
+  const onKeyPress: KeyboardEventHandler<HTMLInputElement> = async (e: React.KeyboardEvent): Promise<void> => {
+    if (e.key === 'Enter' && target) {
       if (onNextHandler) {
         onNextHandler({
           id: id,
           key: key,
           value: value,
-          type: "next",
+          type: 'next',
           setValue: setValue,
-        });
-        target?.current?.focus();
+        })
+        target?.current?.focus()
       }
     }
-  };
-  if (id !== "" && onFocusOut) {
+  }
+  if (id !== '' && onFocusOut) {
     const onBlur: FocusEventHandler<HTMLInputElement> = async (
-      e: React.ChangeEvent<HTMLInputElement>
+      e: React.ChangeEvent<HTMLInputElement>,
     ): Promise<void> => {
       const {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         target: { value },
-      } = e;
+      } = e
       onFocusOut({
         id: id,
         value: value,
-        type: "focusOut",
+        type: 'focusOut',
         setValue: setValue,
-      });
-    };
+      })
+    }
     return {
       id,
       value,
@@ -90,7 +78,7 @@ export default function useInputRef<
       onChange,
       onKeyPress,
       onBlur,
-    };
+    }
   } else {
     return {
       id,
@@ -100,6 +88,6 @@ export default function useInputRef<
       inputRef,
       onChange,
       onKeyPress,
-    };
+    }
   }
 }

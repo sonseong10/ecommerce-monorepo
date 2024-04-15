@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
 import {
   TitleSize,
   TextSize,
@@ -8,16 +8,10 @@ import {
   FlexWrap,
   FlexAlighItem,
   FlexJustifyContent,
-} from "../styles/styleds";
-import type { DirectionType } from "../commons/styles/ComponentsType";
-import type {
-  Color,
-  FontAlignType,
-  FontSizeNomalType,
-  FontSizeTitleType,
-  FontWeightType,
-} from "./stylesVo";
-import { TableContainer as Table } from "../commons/ui/grid/GridStyled";
+} from '../styles/styleds'
+import type { DirectionType } from '../commons/styles/ComponentsType'
+import type { Color, FontAlignType, FontSizeNomalType, FontSizeTitleType, FontWeightType } from './stylesVo'
+import { TableContainer as Table } from '../commons/ui/grid/GridStyled'
 
 /**
  * 컴포넌트 단위(width html tag) 스타일 정의 파일
@@ -28,52 +22,46 @@ import { TableContainer as Table } from "../commons/ui/grid/GridStyled";
  * 다른 컴포넌트도 태그가 바뀔경우 마찬가지 사용
  */
 export const Title = styled.h3<{
-  inline?: boolean;
-  mgBottom?: number;
-  mgTop?: number;
-  size?: FontSizeTitleType;
-  weight?: FontWeightType;
-  align?: FontAlignType;
+  inline?: boolean
+  mgBottom?: number
+  mgTop?: number
+  size?: FontSizeTitleType
+  weight?: FontWeightType
+  align?: FontAlignType
 }>`
   ${TitleSize};
   ${FontWeight};
   ${TextAlign}
-  width: ${props => props.inline && "200px"};
-  margin-bottom: ${props =>
-    props.mgBottom === undefined
-      ? 20
-      : props.mgBottom === 0
-      ? 0
-      : props.mgBottom}px;
-  margin-top: ${props =>
-    props.mgTop === undefined ? 0 : props.mgTop === 0 ? 0 : props.mgTop}px;
+  width: ${props => props.inline && '200px'};
+  margin-bottom: ${props => (props.mgBottom === undefined ? 20 : props.mgBottom === 0 ? 0 : props.mgBottom)}px;
+  margin-top: ${props => (props.mgTop === undefined ? 0 : props.mgTop === 0 ? 0 : props.mgTop)}px;
   letter-spacing: 0.2px;
-`;
+`
 
 export const Text = styled.p<{
-  size?: FontSizeNomalType;
-  align?: FontAlignType;
-  color?: Color;
+  size?: FontSizeNomalType
+  align?: FontAlignType
+  color?: Color
 }>`
   ${TextSize};
   ${TextAlign}
   color: ${props => {
     switch (props.color) {
-      case "positive":
-        return `var(--positive)`;
-      case "error":
-        return `var(--negative)`;
-      case "success":
-        return `var(--success)`;
-      case "disabled":
-        return `var(--font-disabled)`;
-      case "description":
-        return `var(--font-grey)`;
+      case 'positive':
+        return `var(--positive)`
+      case 'error':
+        return `var(--negative)`
+      case 'success':
+        return `var(--success)`
+      case 'disabled':
+        return `var(--font-disabled)`
+      case 'description':
+        return `var(--font-grey)`
       default:
-        return `var(--font-primary)`;
+        return `var(--font-primary)`
     }
   }};
-`;
+`
 
 /**
  * input, select 등의 요소가 연속으로 배치될때 사용
@@ -81,9 +69,9 @@ export const Text = styled.p<{
  * Row(가로 방향으로 자식 엘리먼트 배치), Col(세로방향으로 배치) <InputGroup.Row></InputGroup.Row>
  */
 interface IElementGroup {
-  flexAlign?: "start" | "center" | "end" | "strech";
-  flexWrap?: boolean;
-  flexContent?: "start" | "center" | "end" | "between" | "around";
+  flexAlign?: 'start' | 'center' | 'end' | 'strech'
+  flexWrap?: boolean
+  flexContent?: 'start' | 'center' | 'end' | 'between' | 'around'
 }
 
 export const ElementGroup = {
@@ -121,7 +109,7 @@ export const ElementGroup = {
       margin-top: 0;
     }
   `,
-};
+}
 
 /**
  * InputDate 여러개 쓸때 사용
@@ -137,16 +125,16 @@ export const DateGroup = styled.div`
   & div > p:first-of-type {
     margin-left: 8px;
   }
-`;
+`
 
 /**
  * table
  */
 
 export const TableContainer = styled(Table)<{
-  direction: DirectionType;
-  over?: boolean;
-  height?: number;
+  direction: DirectionType
+  over?: boolean
+  height?: number
 }>`
   text-align: center;
   div {
@@ -200,11 +188,11 @@ export const TableContainer = styled(Table)<{
       color: var(--font-primary);
     }
   }
-  ${props => (props.over ? "overflow: auto; border-bottom: 0;" : "")}
-  ${props => (props.height ? `max-height: ${props.height}px;` : "")}
+  ${props => (props.over ? 'overflow: auto; border-bottom: 0;' : '')}
+  ${props => (props.height ? `max-height: ${props.height}px;` : '')}
   ${props => {
     switch (props.direction) {
-      case "row":
+      case 'row':
         return css`
           & th,
           & td {
@@ -214,8 +202,8 @@ export const TableContainer = styled(Table)<{
           & tbody table thead th {
             background-color: #fff;
           }
-        `;
-      case "col":
+        `
+      case 'col':
         return css`
           & th,
           & td {
@@ -247,10 +235,10 @@ export const TableContainer = styled(Table)<{
             border-left: 0;
             text-align: center;
           }
-        `;
+        `
     }
   }}
-`;
+`
 
 export const ScrollTable = styled.div<{ height?: number }>`
   ${props => {
@@ -271,10 +259,10 @@ export const ScrollTable = styled.div<{ height?: number }>`
             display: none;
           }
         }
-      `;
+      `
     }
   }}
-`;
+`
 
 /**
  *
@@ -283,25 +271,25 @@ export const ScrollTable = styled.div<{ height?: number }>`
 export const VerticalMiddle = styled.span`
   line-height: 32px;
   vertical-align: middle !important;
-`;
+`
 
 export const Input = styled.input<{ inputSize?: string; hidden?: boolean }>`
   ${props => {
     switch (props.type) {
-      case "text":
-      case "number":
-      case "search":
-      case "password":
-      case "file":
-      case "email":
-      case "tel":
+      case 'text':
+      case 'number':
+      case 'search':
+      case 'password':
+      case 'file':
+      case 'email':
+      case 'tel':
         return css`
           ${props.hidden
             ? css`
                 display: none;
               `
             : ``}
-          width: ${props.inputSize ? props.inputSize : "240px"};
+          width: ${props.inputSize ? props.inputSize : '240px'};
           height: 36px;
           padding: 8px 10px;
           border: 1px solid var(--border-primary);
@@ -329,36 +317,36 @@ export const Input = styled.input<{ inputSize?: string; hidden?: boolean }>`
             color: var(--font-disabled);
             cursor: not-allowed;
           }
-        `;
+        `
       default:
-        return ``;
+        return ``
     }
   }}
-`;
+`
 
 export const ListWrapper = styled.section`
   position: relative;
   margin-top: 80px;
-`;
+`
 
 export const SelectWrapper = styled.div`
   min-width: 120px;
   text-align: left;
-`;
+`
 
 export const ListTitleBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
-`;
+`
 
 /**
  * button list group
  */
 interface IButtonList extends IElementGroup {
-  position?: "top" | "bottom";
-  minWidth?: number;
+  position?: 'top' | 'bottom'
+  minWidth?: number
 }
 
 const ButtonGroupCommon = styled.div<IButtonList>`
@@ -371,21 +359,21 @@ const ButtonGroupCommon = styled.div<IButtonList>`
 
   ${props => {
     switch (props.position) {
-      case "top":
+      case 'top':
         return css`
           margin-bottom: 27px;
-        `;
-      case "bottom":
+        `
+      case 'bottom':
         return css`
           margin-top: 27px;
-        `;
+        `
     }
   }}
 
   button {
     min-width: ${props => (props.minWidth && props.minWidth) || 100}px;
   }
-`;
+`
 
 export const RowButtonGroup = styled(ButtonGroupCommon)`
   flex-direction: row;
@@ -393,7 +381,7 @@ export const RowButtonGroup = styled(ButtonGroupCommon)`
   button {
     margin: 0 3px;
   }
-`;
+`
 export const ColButtonGroup = styled(ButtonGroupCommon)`
   flex-direction: column;
 
@@ -404,7 +392,7 @@ export const ColButtonGroup = styled(ButtonGroupCommon)`
       margin-top: 0;
     }
   }
-`;
+`
 
 export const ButtonGroup = {
   Row: styled.div<IButtonList>`
@@ -427,7 +415,7 @@ export const ButtonGroup = {
       }
     }
   `,
-};
+}
 
 export const CellLink = styled(Link)`
   display: inline-block;
@@ -441,7 +429,7 @@ export const CellLink = styled(Link)`
   &:hover {
     text-decoration: underline;
   }
-`;
+`
 
 export const SearchInput = styled.div`
   position: relative;
@@ -454,4 +442,4 @@ export const SearchInput = styled.div`
     top: 50%;
     transform: translateY(-50%);
   }
-`;
+`

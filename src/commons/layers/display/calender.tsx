@@ -94,18 +94,18 @@ const CalenderDay = styled.li<{
   align-items: center;
   justify-content: center;
   :hover {
-    ${(props) => (props.disabled ? `cursor: default` : `cursor: pointer`)}
+    ${props => (props.disabled ? `cursor: default` : `cursor: pointer`)}
   }
-  ${(props) => (props.prev ? 'opacity: 0.3;' : '')}
-  ${(props) => (props.active ? 'background-color: #ffe5d4;' : '')}
-  ${(props) =>
+  ${props => (props.prev ? 'opacity: 0.3;' : '')}
+  ${props => (props.active ? 'background-color: #ffe5d4;' : '')}
+  ${props =>
     props.disabled
       ? `
           pointer-events: none;
           opacity: 0.6;
         `
       : ''}
-  ${(props) => {
+  ${props => {
     switch (props.color) {
       case ColorType.RED:
         return css`
@@ -150,18 +150,11 @@ function Calender() {
     currentDate: Date
     disableCondition?: IDisableCondition
   }>()
-  const [current] = useState(
-    data ? new Date(data.data.currentDate) : new Date()
-  )
+  const [current] = useState(data ? new Date(data.data.currentDate) : new Date())
   const [select] = useState<Date>(data ? data.data.currentDate : new Date())
   const [display, setDisplay] = useState([] as Array<Array<IDay>>)
   const getActive = (year: number, month: number, date: number) => {
-    return (
-      select &&
-      select.getFullYear() === year &&
-      select.getMonth() + 1 === month &&
-      select.getDate() === date
-    )
+    return select && select.getFullYear() === year && select.getMonth() + 1 === month && select.getDate() === date
   }
   const getColor = (day: number) => {
     switch (day) {
@@ -214,9 +207,7 @@ function Calender() {
   }
 
   const getDisabled = (vd: Date) => {
-    const baseDate = data?.data.disableCondition
-      ? moment(data?.data.disableCondition.baseDate)
-      : moment()
+    const baseDate = data?.data.disableCondition ? moment(data?.data.disableCondition.baseDate) : moment()
     const valueDate = moment(vd)
 
     if (data?.data.disableCondition) {
@@ -224,26 +215,11 @@ function Calender() {
         if (data?.data.disableCondition.calc) {
           switch (data?.data.disableCondition.calc.calcType) {
             case 'day':
-              return valueDate.isBefore(
-                baseDate.subtract(
-                  data?.data.disableCondition.calc.calcNum,
-                  'days'
-                )
-              )
+              return valueDate.isBefore(baseDate.subtract(data?.data.disableCondition.calc.calcNum, 'days'))
             case 'month':
-              return valueDate.isBefore(
-                baseDate.subtract(
-                  data?.data.disableCondition.calc.calcNum,
-                  'months'
-                )
-              )
+              return valueDate.isBefore(baseDate.subtract(data?.data.disableCondition.calc.calcNum, 'months'))
             case 'year':
-              return valueDate.isBefore(
-                baseDate.subtract(
-                  data?.data.disableCondition.calc.calcNum,
-                  'years'
-                )
-              )
+              return valueDate.isBefore(baseDate.subtract(data?.data.disableCondition.calc.calcNum, 'years'))
           }
         } else {
           return valueDate.isBefore(baseDate)
@@ -253,31 +229,19 @@ function Calender() {
           switch (data?.data.disableCondition.calc.calcType) {
             case 'day':
               if (valueDate.isAfter(baseDate)) {
-                return valueDate.isAfter(
-                  baseDate.add(data?.data.disableCondition.calc.calcNum, 'days')
-                )
+                return valueDate.isAfter(baseDate.add(data?.data.disableCondition.calc.calcNum, 'days'))
               } else {
                 return valueDate.isBefore(baseDate)
               }
             case 'month':
               if (valueDate.isAfter(baseDate)) {
-                return valueDate.isAfter(
-                  baseDate.add(
-                    data?.data.disableCondition.calc.calcNum,
-                    'months'
-                  )
-                )
+                return valueDate.isAfter(baseDate.add(data?.data.disableCondition.calc.calcNum, 'months'))
               } else {
                 return valueDate.isBefore(baseDate)
               }
             case 'year':
               if (valueDate.isAfter(baseDate)) {
-                return valueDate.isAfter(
-                  baseDate.add(
-                    data?.data.disableCondition.calc.calcNum,
-                    'years'
-                  )
-                )
+                return valueDate.isAfter(baseDate.add(data?.data.disableCondition.calc.calcNum, 'years'))
               } else {
                 return valueDate.isBefore(baseDate)
               }
@@ -290,8 +254,7 @@ function Calender() {
   }
   const getPosition = () => {
     if (data?.rect) {
-      const h: DOMRect =
-        contentHeight !== undefined ? contentHeight() : new DOMRect()
+      const h: DOMRect = contentHeight !== undefined ? contentHeight() : new DOMRect()
       return {
         left: Math.min(data.rect.x, window.innerWidth - 225) + 'px',
         top:

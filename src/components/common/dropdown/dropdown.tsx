@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import styles from '../../../styles/modules/dropdown.module.css'
 
 interface IDropDownProps {
@@ -6,21 +6,18 @@ interface IDropDownProps {
   handleEvent: (v: string) => void
   dark: boolean
 }
-const DropDown = memo(({ listItems, handleEvent, dark }: IDropDownProps) => {
+
+const DropDown = ({ listItems, handleEvent, dark }: IDropDownProps) => {
   const onValueChange = (id: number) => {
-    handleEvent(listItems.find((i) => i.id === id)!.value)
+    handleEvent(listItems.find(i => i.id === id)!.value)
   }
 
   return (
     <ul className={`${styles.dropdownList} ${dark && styles.isDark}`}>
-      {listItems.map((item) => {
+      {listItems.map(item => {
         return (
           <li className={styles.listItem} key={item.id}>
-            <button
-              className={styles.listBtn}
-              onClick={onValueChange.bind(null, item.id)}
-              type="button"
-            >
+            <button className={styles.listBtn} onClick={onValueChange.bind(null, item.id)} type="button">
               {item.value}
             </button>
           </li>
@@ -28,6 +25,6 @@ const DropDown = memo(({ listItems, handleEvent, dark }: IDropDownProps) => {
       })}
     </ul>
   )
-})
+}
 
-export default DropDown
+export default React.memo(DropDown)
