@@ -2,6 +2,7 @@ import { type IValid, useValid } from "commons/ui/useValid";
 import type { IUseInputEventParam } from "commons/hook/hookVo";
 import type { IInputProps } from "../InputText";
 import InputText from "../InputText";
+import React from 'react'
 
 export interface IInputValidProps extends IInputProps {
   autocomplete?: string;

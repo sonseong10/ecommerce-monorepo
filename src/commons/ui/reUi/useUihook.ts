@@ -220,10 +220,10 @@ const useInitEffect = (initDo: IUiAction, removeDo?: IUiAction, isRemove?: boole
 };
 
 export interface IUseInputTextParam {
-  id: string;
-  valid?: IValid<string>;
-  init?: string;
-  callBack?: (value?: string) => void;
+  id: string
+  valid?: IValid<string | undefined>
+  init?: string
+  callBack?: (value?: string) => void
 }
 /**
  * UiInputText 에서 사용되어 지고 있으며
@@ -621,29 +621,29 @@ export const useSetRadio = (id: string) => {
 
 export const useButton = (
   id: string,
-  valid?: IValid<boolean>,
+  valid?: IValid<boolean | undefined>,
   init?: boolean,
-  callBack?: (value?: boolean) => void,
+  callBack?: (value?: boolean) => void
 ) => {
-  const { buttonValue } = useButtonValue(id);
-  const dispatch = useDispatch();
+  const { buttonValue } = useButtonValue(id)
+  const dispatch = useDispatch()
   useInitEffect({
     type: UiType.BUTTON,
     key: id,
     value: init,
-  });
+  })
   const { changeValue } = useValid({
     id,
     valid,
     setValue: (value?: boolean) => {
-      dispatch(rdxSetUi({ type: UiType.BUTTON, key: id, value: value }));
+      dispatch(rdxSetUi({ type: UiType.BUTTON, key: id, value: value }))
       if (callBack) {
-        callBack(value);
+        callBack(value)
       }
     },
-  });
-  return { buttonValue, changeValue };
-};
+  })
+  return { buttonValue, changeValue }
+}
 
 export const useButtonValue = (id: string) => {
   const { buttonValue } = useSelectorEq((state: ICommonsStore) => ({

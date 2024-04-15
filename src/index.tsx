@@ -9,6 +9,8 @@ import WorkRepository from './service/work-repository'
 import ImageUploader from './service/image-uploader'
 import DropDown from './utils/dropdown'
 import App from 'App'
+import { Provider } from 'react-redux'
+import store from './store/configureStore'
 
 const authService = new AuthService()
 const imageUploader = new ImageUploader()
@@ -31,14 +33,17 @@ const FileInputMemo = React.memo(FileInput)
 
 const container = document.getElementById('root')
 const root = createRoot(container!)
+
 root.render(
   <BrowserRouter>
-    <App
-      authService={authService}
-      dropDown={dropDown}
-      FileInput={FileInputMemo}
-      cardRepository={cardRepository}
-      workRepository={workRepository}
-    />
+    <Provider store={store}>
+      <App
+        authService={authService}
+        dropDown={dropDown}
+        FileInput={FileInputMemo}
+        cardRepository={cardRepository}
+        workRepository={workRepository}
+      />
+    </Provider>
   </BrowserRouter>
 )

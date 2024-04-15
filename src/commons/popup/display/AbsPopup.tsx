@@ -111,7 +111,7 @@ const bodyStyle = css<{ maxHeight?: number | string }>`
     margin-bottom: 13px;
   }
 `
-const MobileMessagBody = css<{ device: boolean; isButtonList?: boolean }>`
+/* const MobileMessagBody = css<{ device: boolean; isButtonList?: boolean }>`
   ${(props) => {
     if (props.device) {
       return css`
@@ -123,7 +123,7 @@ const MobileMessagBody = css<{ device: boolean; isButtonList?: boolean }>`
       `
     }
   }}
-`
+` */
 
 const MsgBody = styled.div<{
   type: AbsPopupType | string

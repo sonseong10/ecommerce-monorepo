@@ -1,4 +1,4 @@
-import styled, { type IStyledComponent } from 'styled-components'
+import styled, { type StyledComponent } from 'styled-components'
 import Spinner from './display/Spinner'
 import { useLoadingValue } from './store/loadingHook'
 import React from 'react'
@@ -30,7 +30,7 @@ interface ILoadingParams {
    * ```
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  area?: IStyledComponent<'web', any>
+  area?: StyledComponent<'div', any>
 }
 
 function LoadingView(props: ILoadingParams) {

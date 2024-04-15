@@ -1,40 +1,43 @@
 import React, { type ForwardedRef, type Key, useRef } from "react";
-import styled, { css, type StyledComponent } from "styled-components";
-import GridHeaderFixed from "./components/GridHeaderFixed";
-import GridRow from "./components/GridRow";
-import SortHeader from "./components/SortHeader";
-import SumRow from "./components/SumRow";
-import { TableContainer } from "./GridStyled";
-import type { IGrideSub, IGridPosition, IGridSetting, sortType } from "./GridVo";
-import { useIntersectionObserver } from "./store/GridHook";
-import AbsLoading from "commons/loading/AbsLoading";
+import styled, { css, type StyledComponent } from 'styled-components'
+import GridHeaderFixed from './components/GridHeaderFixed'
+import GridRow from './components/GridRow'
+import SortHeader from './components/SortHeader'
+import SumRow from './components/SumRow'
+import { TableContainer } from './GridStyled'
+import type { IGrideSub, IGridPosition, IGridSetting, sortType } from './GridVo'
+import { useIntersectionObserver } from './store/GridHook'
+import AbsLoading from 'commons/loading/AbsLoading'
 
 const EmptyList = styled.tr<{ iconType?: string }>`
   > td:first-of-type::before {
     display: block;
-    content: "";
-    ${props => {
+    content: '';
+    ${(props) => {
       switch (props.iconType) {
-        case "shipping":
+        case 'shipping':
           return css`
             padding: 85px 60px 5px 60px;
-            background: url("../../../images/icon/icon_all_count.svg") no-repeat center center;
+            background: url('../../../images/icon/icon_all_count.svg') no-repeat
+              center center;
             background-size: 60px;
-          `;
+          `
         default:
-          break;
+          break
       }
     }}
   }
-`;
+`
 
 const ScrollTable = styled.div<{ over?: boolean; height?: number | string }>`
-  ${props => (props.over ? "overflow: auto;" : "")}
-  ${props => {
+  ${(props) => (props.over ? 'overflow: auto;' : '')}
+  ${(props) => {
     if (props.height) {
       return css`
         display: block;
-        max-height: ${typeof props.height === "number" ? `${props.height}px` : props.height};
+        max-height: ${typeof props.height === 'number'
+          ? `${props.height}px`
+          : props.height};
         overscroll-behavior: contain;
 
         &::-webkit-scrollbar {
@@ -47,55 +50,55 @@ const ScrollTable = styled.div<{ over?: boolean; height?: number | string }>`
             display: none;
           }
         }
-      `;
+      `
     }
   }}
-`;
+`
 
 function getPropertyKey<T, K extends keyof T>(obj: T, key: K): Key {
-  return obj[key] as unknown as Key;
+  return obj[key] as unknown as Key
 }
 
 export interface IGridProps<Data, Setting, Not> {
-  id?: string;
+  id?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  container?: StyledComponent<any, any>;
-  layoutOverflow?: boolean;
-  setting?: Setting;
-  rowId?: keyof Data;
-  data?: Array<Data>;
+  container?: StyledComponent<any, any>
+  layoutOverflow?: boolean
+  setting?: Setting
+  rowId?: keyof Data
+  data?: Array<Data>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  change?: (position: IGridPosition, value?: any) => void;
-  sortChange?: (position: number, sortId: string, sortType: sortType) => void;
+  change?: (position: IGridPosition, value?: any) => void
+  sortChange?: (position: number, sortId: string, sortType: sortType) => void
   sumOption?: {
-    titleSpan?: number;
-    titleCol?: number;
-  };
+    titleSpan?: number
+    titleCol?: number
+  }
   headerInfo?: {
-    fixed?: number | string;
-    display?: boolean;
-    scrollRef?: ForwardedRef<HTMLDivElement>;
-  };
+    fixed?: number | string
+    display?: boolean
+    scrollRef?: ForwardedRef<HTMLDivElement>
+  }
   selectInfo?: {
-    select?: number;
-    click?: (position: IGridPosition, value?: Data) => void;
-  };
-  emptyInfo?: { element: React.FC<Not>; props: Not };
+    select?: number
+    click?: (position: IGridPosition, value?: Data) => void
+  }
+  emptyInfo?: { element: React.FC<Not>; props: Not }
   /** 무한 리스트 만들기 위한 값 */
   infiniteInfo?: {
     /** 현제 페이지 번호 */
-    current: number;
+    current: number
     /** 전체 페이지 번호 */
-    total: number;
+    total: number
     /** 페이지 로드시 호출되는 함수 */
-    infiniteCallback: () => void | Promise<void>;
+    infiniteCallback: () => void | Promise<void>
     /** 동시성 페이징 현상을 막기위한 prefix {@link AsyncThunk} */
-    typePrefix: string;
-  };
-  textWrap?: boolean;
+    typePrefix: string
+  }
+  textWrap?: boolean
   subinfo?: {
-    element?: React.FC<IGrideSub<Data>>;
-  };
+    element?: React.FC<IGrideSub<Data>>
+  }
 }
 
 function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: string; message?: string }>(
