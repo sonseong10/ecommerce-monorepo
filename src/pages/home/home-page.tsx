@@ -29,7 +29,7 @@ const HomePage = ({ isCard, cards, works, userCard, onMenuChange, dark }: IHomeP
   }, [onMenuChange])
 
   return (
-    <div className="col-sm-4 col-md-10 col-lg-9">
+    <div className="col-sm-4 col-md-9 col-lg-10">
       {isCard ? (
         <div className={`${styles.articleGroup} ${dark && styles.isDark}`}>
           <div className={styles.articleLeft}>

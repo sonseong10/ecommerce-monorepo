@@ -76,7 +76,7 @@ body.isDark {
 }
 
 .slick-dots li button:hover:before {
-  color: #009eb4;
+  color: #35C5F0;
 }
 
 .slick-dots li button:focus:before {
@@ -85,7 +85,7 @@ body.isDark {
 
 .slick-dots li.slick-active button:before {
   opacity: 1;
-  color: #009eb4;
+  color: #35C5F0;
   font-size: 14px;
 }
 

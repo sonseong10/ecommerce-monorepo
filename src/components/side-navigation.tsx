@@ -35,22 +35,14 @@ const SideNavigation = ({
   dark,
 }: ISideNavigationProps) => {
   return (
-    <div className="col-md-2 col-lg-3 sm-hidden">
+    <div className={`col-md-2 col-lg-3 sm-hidden ${styles.floating}`}>
       <article className={`${styles.article} ${dark && styles.isDark}`}>
-        <h2 className="visually-hidden">Tablet and Desktop side Bar</h2>
         <header className={styles.header}>
-          <strong className={`lg-only ${styles.logo}`}>
+          <h1 className={`${styles.logo}`}>
             <Link to={userId ? '/admin/main' : '#'}>
-              <img className="logo-img" src={!dark ? Logo : DarkLogo} alt="WhoMember" />
-              <span className="visually-hidden">Logo Image</span>
+              <img className="logo-img" src={!dark ? Logo : DarkLogo} alt="logo" />
             </Link>
-          </strong>
-          <strong className={`md-only ${styles.tabletLogo}`}>
-            <Link to={userId ? '/admin/main' : '#'}>
-              <img className="logo-img" src={Logo} alt="WhoMember" />
-              <span className="visually-hidden">Logo Image</span>
-            </Link>
-          </strong>
+          </h1>
         </header>
 
         <div className={styles.navGroup}>

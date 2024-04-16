@@ -27,23 +27,21 @@ const MainContent = ({
   return (
     <div className="main-content">
       <div className="container">
-        <div className="row">
-          <SideNavigation
-            userId={userId}
-            onLogout={onLogout}
-            userCard={userCard}
-            isCard={userCard ? Object.keys(userCard).length : 0}
-            ToggleOverlay={ToggleOverlay}
-            menuActive={menuActive}
-            loding={loding}
-            handleModeChange={handleModeChange}
-            dark={dark}
-          />
+        <SideNavigation
+          userId={userId}
+          onLogout={onLogout}
+          userCard={userCard}
+          isCard={userCard ? Object.keys(userCard).length : 0}
+          ToggleOverlay={ToggleOverlay}
+          menuActive={menuActive}
+          loding={loding}
+          handleModeChange={handleModeChange}
+          dark={dark}
+        />
 
-          <article className="articleGroup">
-            <Outlet />
-          </article>
-        </div>
+        <article className="articleGroup">
+          <Outlet />
+        </article>
       </div>
     </div>
   )
