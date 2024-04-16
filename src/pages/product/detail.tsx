@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './product-detail.module.css'
-import buttonStyle from '../../styles/modules/buttons.module.css'
 import { BiCamera } from 'react-icons/bi'
 import UiInputText from 'commons/components/ui/UiInputText'
+import Button from 'components/ui/Button'
+import { ElementGroup } from 'styles/components'
 
 function BaseProductInfo() {
   return (
@@ -142,15 +143,14 @@ function PolicyProductInfo() {
 function ProductDetail() {
   return (
     <>
-      <div className={styles.headerWrapper}>
+      <ElementGroup.Row className={styles.headerWrapper}>
         <h3>상품등록</h3>
 
         <div>
-          <button className={`${buttonStyle.baseBtn} `}>취소</button>
-
-          <button className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn}`}>등록</button>
+          <Button text="취소" btnType="ghost" />
+          <Button text="등록" color="primary" />
         </div>
-      </div>
+      </ElementGroup.Row>
 
       <div className={styles.form}>
         <BaseProductInfo />

@@ -18,10 +18,8 @@
 }
 
 .headerWrapper div button {
-  width: 8em;
   font-size: font-size-14;
-  line-height: line-height-14;
-  letter-spacing: letter-spacing-14;
+  font-weight: 700;
 }
 
 .headerWrapper h3 {

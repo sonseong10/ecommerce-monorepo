@@ -24,9 +24,9 @@
 .card {
   display: flex;
   flex-direction: column;
-  margin-right: 0.8rem;
   padding: 2.2rem;
-  background-color: white;
+  margin: 0 4px;
+  background-color: #fff;
   border-radius: 0.8rem;
   transition: box-shadow 300ms ease-in-out, transform 300ms ease-in-out;
 }
@@ -183,6 +183,6 @@
   }
 
   .meberItem {
-    width: calc(100% / 2);
+    width: calc(100% / 3);
   }
 }

@@ -3,6 +3,9 @@ import styles from '../../styles/modules/product-list.module.css'
 import buttonStyle from '../../styles/modules/buttons.module.css'
 import { BiCart } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import Grid from 'commons/ui/grid/Grid'
+import Pagelable from 'components/ui/Pagelable'
+import { ElementGroup } from 'styles/components'
 
 interface IProductListProps {
   onMenuChange: (v: 'member' | 'work' | 'home' | 'product') => void
@@ -15,7 +18,7 @@ function ProductList({ onMenuChange }: IProductListProps) {
   }, [onMenuChange])
 
   return (
-    <div className="col-sm-4 col-md-10 col-lg-9">
+    <>
       <div className={styles.product}>
         <div className={styles.header}>
           <h3>상품목록</h3>
@@ -27,9 +30,14 @@ function ProductList({ onMenuChange }: IProductListProps) {
         <div>
           <div></div>
         </div>
-        <div>pagenation</div>
+        <div>
+          <Grid id="productList" data={[]} setting={[]} />
+          <ElementGroup.Row flexContent="center">
+            <Pagelable current={0} total={11} />
+          </ElementGroup.Row>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

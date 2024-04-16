@@ -37,7 +37,7 @@ const Work = ({ onMenuChange, userId, works, createWork, updateWork, deleteWork,
   }
 
   return (
-    <div className="col-sm-4 col-md-10 col-lg-9">
+    <>
       <div className={`${styles.workGroup} ${dark && styles.isDark}`}>
         <header className={styles.header}>
           <h1>일지관리</h1>
@@ -59,7 +59,7 @@ const Work = ({ onMenuChange, userId, works, createWork, updateWork, deleteWork,
           dark={dark}
         />
       </div>
-    </div>
+    </>
   )
 }
 

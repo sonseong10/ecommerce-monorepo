@@ -23,8 +23,7 @@ const Detail = ({ cards, dark }: IDetailProps) => {
     setCard({ ...cards![location.state?.id] })
   }, [cards, location.state?.id])
 
-  const { login, name, phone, email, msg, team, rank, fileURL } = card as ICardVo
-  const replaceMsg = msg && formatMsg(msg)
+  const replaceMsg = card?.msg && formatMsg(card?.msg)
 
   return (
     <div className="col-sm-4 col-md-9">
@@ -35,33 +34,33 @@ const Detail = ({ cards, dark }: IDetailProps) => {
         <div>
           <div className={styles.infoGroup}>
             <figure className={styles.imgWrapper}>
-              <img src={fileURL || DEFAULT_USER_IMG} alt="" />
+              <img src={card?.fileURL || DEFAULT_USER_IMG} alt="" />
               <figcaption className="visually-hidden">profile</figcaption>
             </figure>
 
             <dl className={styles.userInfoList}>
               <div className={styles.userInfoItem}>
                 <dt>이름</dt>
-                <dd>{name}</dd>
+                <dd>{card?.name}</dd>
               </div>
               <div className={styles.userInfoItem}>
                 <dt>이메일</dt>
                 <dd>
-                  <a href={`mailto:${email}`}>{email}</a>
+                  <a href={`mailto:${card?.email}`}>{card?.email}</a>
                 </dd>
               </div>
               <div className={styles.userInfoItem}>
                 <dt>부서</dt>
-                <dd>{team}</dd>
+                <dd>{card?.team}</dd>
               </div>
               <div className={styles.userInfoItem}>
                 <dt>직급</dt>
-                <dd>{rank}</dd>
+                <dd>{card?.rank}</dd>
               </div>
               <div className={styles.userInfoItem}>
                 <dt>휴대전화</dt>
                 <dd>
-                  <a href={`tel:+${phone}`}>{phone}</a>
+                  <a href={`tel:+${card?.phone}`}>{card?.phone}</a>
                 </dd>
               </div>
             </dl>
@@ -71,8 +70,8 @@ const Detail = ({ cards, dark }: IDetailProps) => {
               <div className={styles.userInfoItem}>
                 <dt>상태</dt>
                 <dd>
-                  <strong className={`${styles.loginState} ${login ? styles.isLogin : styles.isOffline}`}>
-                    {login ? '근무중' : '오프라인'}
+                  <strong className={`${styles.loginState} ${card?.login ? styles.isLogin : styles.isOffline}`}>
+                    {card?.login ? '근무중' : '오프라인'}
                   </strong>
                 </dd>
               </div>
