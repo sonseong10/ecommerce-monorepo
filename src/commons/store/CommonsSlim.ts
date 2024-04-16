@@ -1,7 +1,7 @@
-import { type Reducer } from "@reduxjs/toolkit";
-import loading from "../loading/store/loadingR";
-import popups from "../popup/store/popupR";
-import ui from "../ui/uiR";
+import { type Reducer } from '@reduxjs/toolkit'
+import loading from '../loading/store/loadingR'
+import popups from '../popup/store/popupR'
+import ui from '../ui/uiR'
 
 /**
  * 필요한 리듀서만 컴파일 되게 처리
@@ -11,12 +11,12 @@ import ui from "../ui/uiR";
  */
 export default function CommonsSlim(addReduce?: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: Reducer<any>;
+  [key: string]: Reducer<any>
 }) {
   return {
     ...addReduce,
     loading,
     popups,
     ui,
-  };
+  }
 }

@@ -7,3 +7,7 @@ export enum SessionName {
   DEVICE = 'deviceType',
   MOBILE_TYPE = 'mobileType',
 }
+
+export enum Grade {
+  SYSTEM = 'system',
+}

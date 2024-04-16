@@ -1,8 +1,10 @@
 import type { User } from 'firebase/auth'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import AuthService from 'service/auth_service'
 import WorkRepository from 'service/work-repository'
+import { rdxIsLogin } from './authR'
 
 const authService = new AuthService()
 const workRepository = new WorkRepository()
@@ -10,6 +12,7 @@ const workRepository = new WorkRepository()
 export const useAuth = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const dispatch = useDispatch()
   const historyState = location?.state
   const [userId, setUserId] = useState(historyState && historyState.id)
   const [popupMsg, setpopupMsg] = useState({ title: '', desc: '' })
@@ -51,6 +54,9 @@ export const useAuth = () => {
       //   //   login: true,
       //   // }),
       // )
+      .then(() => {
+        dispatch(rdxIsLogin(true))
+      })
       .then(() => navigate('/admin/main'))
   }
 

@@ -2,6 +2,8 @@ import type { AnyAction, ReducersMapObject } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import { type ICommonsStore } from '../../commons'
 import CommonsSlim from '../../commons/store/CommonsSlim'
+import auth, { type IAuthState } from 'pages/auth/authR'
+import { Grade } from 'store/storageVo'
 
 export interface IInitStates {
   deviceType: boolean
@@ -11,12 +13,13 @@ export interface IInitStates {
  * state interface 설정
  */
 export interface IState extends ICommonsStore {
-  //
+  auth: IAuthState
   init: IInitStates
 }
 
 const defaultReducers = {
   ...CommonsSlim({}),
+  auth,
 }
 
 /**
@@ -29,7 +32,16 @@ const defaultReducers = {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const rootReducer = (state: IState | undefined, action: AnyAction) => {
   const switchGradeReducers = () => {
-    return { ...defaultReducers }
+    if (state === undefined || !state.auth.isLogin) {
+      return defaultReducers
+    }
+
+    switch (state.auth.grade) {
+      case Grade.SYSTEM:
+        return { ...defaultReducers }
+      default:
+        return null
+    }
   }
   switch (action.type) {
     default:

@@ -15,7 +15,7 @@ import type AuthService from 'service/auth_service'
 import type ImageUploader from 'service/image-uploader'
 import type { ICardVo, IWorkVo } from 'types/grobal-type'
 import LodingSpinner from 'components/common/loding-spinner'
-import { useAuth } from 'authHook'
+import { useAuth } from 'pages/auth/authHook'
 
 const HomePage = lazy(() => import('pages/home/home-page'))
 const Maker = lazy(() => import('components/form/maker/maker'))
