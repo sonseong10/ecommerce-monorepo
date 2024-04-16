@@ -16,6 +16,9 @@ import type ImageUploader from 'service/image-uploader'
 import type { ICardVo, IWorkVo } from 'types/grobal-type'
 import LodingSpinner from 'components/common/loding-spinner'
 import { useAuth } from 'pages/auth/authHook'
+import { ThemeProvider, type DefaultTheme } from 'styled-components'
+import { lightTheme } from 'styles/theme'
+import { GlobalStyle } from 'styles/globalStyle'
 
 const HomePage = lazy(() => import('pages/home/home-page'))
 const Maker = lazy(() => import('components/form/maker/maker'))
@@ -152,129 +155,141 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
     setMenuActive(value)
   }
 
+  const [theme] = useState<DefaultTheme>(lightTheme)
   return (
-    <div className="app">
-      <GlobalHeader
-        userId={userId}
-        userCard={userCard}
-        toggleOverlay={toggleOverlay}
-        toggleOpenSideBar={toggleOpenSideBar}
-        dark={dark}
-      ></GlobalHeader>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <div>
+        <GlobalHeader
+          userId={userId}
+          userCard={userCard}
+          toggleOverlay={toggleOverlay}
+          toggleOpenSideBar={toggleOpenSideBar}
+          dark={dark}
+        ></GlobalHeader>
 
-      <Routes>
-        <Route index element={<Login onLogin={onLogin} />} />
-        <Route
-          path="/admin"
-          element={
-            <Suspense fallback={<LodingSpinner />}>
-              <MainContent
-                ToggleOverlay={toggleOverlay}
-                dark={dark}
-                handleModeChange={handleModeChange}
-                loding={false}
-                menuActive={menuActive}
-                onLogout={onLogout}
-                userId={userId}
-                userCard={userCard}
-              />
-            </Suspense>
-          }
-        >
+        <Routes>
+          <Route index element={<Login onLogin={onLogin} />} />
           <Route
-            path="main"
+            path="/admin"
             element={
               <Suspense fallback={<LodingSpinner />}>
-                <HomePage
-                  isCard={userCard}
-                  cards={cards}
-                  works={works}
-                  userCard={userCard}
-                  onMenuChange={onMenuChange}
+                <MainContent
+                  ToggleOverlay={toggleOverlay}
                   dark={dark}
+                  handleModeChange={handleModeChange}
+                  loding={false}
+                  menuActive={menuActive}
+                  onLogout={onLogout}
+                  userId={userId}
+                  userCard={userCard}
                 />
               </Suspense>
             }
-          />
-          <Route
-            path="maker"
-            element={
-              <Suspense fallback={<LodingSpinner />}>
-                <Maker
-                  FileInput={FileInput}
-                  dropDown={dropDown}
-                  isCard={userCard}
-                  createCard={createOrUpdateCard}
-                  onMenuChange={onMenuChange}
-                  dark={dark}
-                ></Maker>
-              </Suspense>
-            }
-          />
-          <Route
-            path="member"
-            element={
-              <Suspense fallback={<LodingSpinner />}>
-                <Search dropDown={dropDown} cards={cards} onMenuChange={onMenuChange} dark={dark}></Search>
-              </Suspense>
-            }
-          />
-          <Route
-            path="work"
-            element={
-              <Suspense fallback={<LodingSpinner />}>
-                <Work
-                  onMenuChange={onMenuChange}
-                  userId={userId}
-                  works={works}
-                  createWork={createOrUpdateWork}
-                  updateWork={createOrUpdateWork}
-                  deleteWork={deleteWork}
-                  dark={dark}
-                ></Work>
-              </Suspense>
-            }
-          ></Route>
-          <Route
-            path="update"
-            element={
-              <Suspense fallback={<LodingSpinner />}>
-                <Update
-                  FileInput={FileInput}
-                  userCard={userCard}
-                  dropDown={dropDown}
-                  updateCard={createOrUpdateCard}
-                  deleteCard={deleteAccount}
-                  dark={dark}
-                ></Update>
-              </Suspense>
-            }
-          ></Route>
-          <Route
-            path="detail"
-            element={
-              <Suspense fallback={<LodingSpinner />}>
-                <Detail cards={cards} dark={dark}></Detail>
-              </Suspense>
-            }
-          ></Route>
-          <Route path="product/*">
+          >
             <Route
-              path="list"
+              path="main"
               element={
                 <Suspense fallback={<LodingSpinner />}>
-                  <ProductList onMenuChange={onMenuChange} dark={dark} />
+                  <HomePage
+                    isCard={userCard}
+                    cards={cards}
+                    works={works}
+                    userCard={userCard}
+                    onMenuChange={onMenuChange}
+                    dark={dark}
+                  />
+                </Suspense>
+              }
+            />
+            <Route
+              path="maker"
+              element={
+                <Suspense fallback={<LodingSpinner />}>
+                  <Maker
+                    FileInput={FileInput}
+                    dropDown={dropDown}
+                    isCard={userCard}
+                    createCard={createOrUpdateCard}
+                    onMenuChange={onMenuChange}
+                    dark={dark}
+                  ></Maker>
+                </Suspense>
+              }
+            />
+            <Route
+              path="member"
+              element={
+                <Suspense fallback={<LodingSpinner />}>
+                  <Search dropDown={dropDown} cards={cards} onMenuChange={onMenuChange} dark={dark}></Search>
+                </Suspense>
+              }
+            />
+            <Route
+              path="work"
+              element={
+                <Suspense fallback={<LodingSpinner />}>
+                  <Work
+                    onMenuChange={onMenuChange}
+                    userId={userId}
+                    works={works}
+                    createWork={createOrUpdateWork}
+                    updateWork={createOrUpdateWork}
+                    deleteWork={deleteWork}
+                    dark={dark}
+                  ></Work>
                 </Suspense>
               }
             ></Route>
             <Route
-              path="info"
+              path="update"
               element={
                 <Suspense fallback={<LodingSpinner />}>
-                  <ProductDetail />
+                  <Update
+                    FileInput={FileInput}
+                    userCard={userCard}
+                    dropDown={dropDown}
+                    updateCard={createOrUpdateCard}
+                    deleteCard={deleteAccount}
+                    dark={dark}
+                  ></Update>
                 </Suspense>
               }
             ></Route>
+            <Route
+              path="detail"
+              element={
+                <Suspense fallback={<LodingSpinner />}>
+                  <Detail cards={cards} dark={dark}></Detail>
+                </Suspense>
+              }
+            ></Route>
+            <Route path="product/*">
+              <Route
+                path="list"
+                element={
+                  <Suspense fallback={<LodingSpinner />}>
+                    <ProductList onMenuChange={onMenuChange} dark={dark} />
+                  </Suspense>
+                }
+              ></Route>
+              <Route
+                path="info"
+                element={
+                  <Suspense fallback={<LodingSpinner />}>
+                    <ProductDetail />
+                  </Suspense>
+                }
+              ></Route>
+              <Route
+                path="*"
+                element={
+                  <Suspense fallback={<LodingSpinner />}>
+                    <NotPage dark={dark}></NotPage>
+                  </Suspense>
+                }
+              ></Route>
+            </Route>
             <Route
               path="*"
               element={
@@ -284,35 +299,27 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               }
             ></Route>
           </Route>
-          <Route
-            path="*"
-            element={
-              <Suspense fallback={<LodingSpinner />}>
-                <NotPage dark={dark}></NotPage>
-              </Suspense>
-            }
-          ></Route>
-        </Route>
-      </Routes>
+        </Routes>
 
-      <MobileSideBar
-        onLogout={onLogout}
-        isCard={userCard !== undefined ? Object.keys(userCard).length : 0}
-        sidebarOpen={sidebarOpen}
-        toggleOpenSideBar={toggleOpenSideBar}
-        handleModeChange={handleModeChange}
-        dark={dark}
-      ></MobileSideBar>
+        <MobileSideBar
+          onLogout={onLogout}
+          isCard={userCard !== undefined ? Object.keys(userCard).length : 0}
+          sidebarOpen={sidebarOpen}
+          toggleOpenSideBar={toggleOpenSideBar}
+          handleModeChange={handleModeChange}
+          dark={dark}
+        ></MobileSideBar>
 
-      {magPopup && (
-        <>
-          <MsgPopup popupMsg={popupMsg} magPopup={magPopup} toggleMsgPopup={toggleMsgPopup}></MsgPopup>
-          <Overlay overlay={magPopup} ToggleOverlay={toggleMsgPopup}></Overlay>
-        </>
-      )}
+        {magPopup && (
+          <>
+            <MsgPopup popupMsg={popupMsg} magPopup={magPopup} toggleMsgPopup={toggleMsgPopup}></MsgPopup>
+            <Overlay overlay={magPopup} ToggleOverlay={toggleMsgPopup}></Overlay>
+          </>
+        )}
 
-      <GlobalFooter userId={userId} menuActive={menuActive} dark={dark}></GlobalFooter>
-    </div>
+        <GlobalFooter userId={userId} menuActive={menuActive} dark={dark}></GlobalFooter>
+      </div>
+    </ThemeProvider>
   )
 }
 

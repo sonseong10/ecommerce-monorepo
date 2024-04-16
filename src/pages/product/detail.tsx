@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styles from './product-detail.module.css'
 import buttonStyle from '../../styles/modules/buttons.module.css'
 import { BiCamera } from 'react-icons/bi'
@@ -13,13 +12,13 @@ function BaseProductInfo() {
         <div>
           <dt>공급사</dt>
           <dd>
-            <input />
+            <UiInputText id="supplier" />
           </dd>
         </div>
         <div>
           <dt>상품명(100글자이내)</dt>
           <dd>
-            <UiInputText id="fdsds" />
+            <UiInputText id="productName" />
           </dd>
         </div>
       </dl>
@@ -27,13 +26,13 @@ function BaseProductInfo() {
         <div>
           <dt>브랜드</dt>
           <dd>
-            <input />
+            <UiInputText id="brandName" />
           </dd>
         </div>
         <div>
           <dt>제조사</dt>
           <dd>
-            <input />
+            <UiInputText id="manufacturName" />
           </dd>
         </div>
       </dl>
@@ -81,25 +80,25 @@ function PriceProductInfo() {
         <div>
           <dt>공급가</dt>
           <dd>
-            <input />
+            <UiInputText id="supplyPrice" />
           </dd>
         </div>
         <div>
           <dt>소비자가</dt>
           <dd>
-            <input />
+            <UiInputText id="retailPrice" />
           </dd>
         </div>
         <div>
           <dt>관세</dt>
           <dd>
-            <input />
+            <UiInputText id="tariff" disabled value="10" />
           </dd>
         </div>
         <div>
           <dt>최대구매수량</dt>
           <dd>
-            <input />
+            <UiInputText id="maxOrder" />
           </dd>
         </div>
       </dl>
@@ -126,7 +125,7 @@ function TagProductInfo() {
     <>
       <strong>태그&연관검색어</strong>
       <div>
-        <input />
+        <UiInputText id="tag" />
       </div>
     </>
   )
@@ -142,13 +141,13 @@ function PolicyProductInfo() {
 
 function ProductDetail() {
   return (
-    <div className="col-sm-4 col-md-10 col-lg-9">
+    <>
       <div className={styles.headerWrapper}>
         <h3>상품등록</h3>
+
         <div>
-          <Link className={`${buttonStyle.baseBtn} `} to={'/admin/product/list'}>
-            취소
-          </Link>
+          <button className={`${buttonStyle.baseBtn} `}>취소</button>
+
           <button className={`${buttonStyle.baseBtn} ${buttonStyle.primaryBtn}`}>등록</button>
         </div>
       </div>
@@ -168,7 +167,7 @@ function ProductDetail() {
         <strong>판매 및 전시상태</strong> */}
         <TagProductInfo />
       </div>
-    </div>
+    </>
   )
 }
 

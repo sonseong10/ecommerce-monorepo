@@ -67,7 +67,7 @@ export const CommonGlobal = css<{ theme?: Theme }>`
   }
 
   html {
-    font-size: ${props => props.theme.fontSize.convert};
+    font-size: 10px;
   }
 
   body {
