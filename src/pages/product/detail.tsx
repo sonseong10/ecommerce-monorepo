@@ -4,6 +4,8 @@ import { BiCamera } from 'react-icons/bi'
 import UiInputText from 'commons/components/ui/UiInputText'
 import Button from 'components/ui/Button'
 import { ElementGroup } from 'styles/components'
+import { UiInputFile } from 'components/ui/InputFile'
+import { useProductSave } from './store/detailHook'
 
 function BaseProductInfo() {
   return (
@@ -37,23 +39,23 @@ function BaseProductInfo() {
           </dd>
         </div>
       </dl>
-      <dl className="image-setting">
+      <dl className={styles.imageSetting}>
         <div>
           <dt>대표이미지</dt>
           <dd>
-            <label htmlFor="image">
+            <label htmlFor="mainImag">
               <BiCamera />
             </label>
-            <input type="file" id="image" />
+            <UiInputFile id="mainImag" />
           </dd>
         </div>
         <div>
           <dt>추가이미지</dt>
           <dd>
-            <label htmlFor="addImage">
+            <label htmlFor="subImag">
               <BiCamera />
             </label>
-            <input type="file" id="addImage" />
+            <UiInputFile id="subImag" />
           </dd>
         </div>
       </dl>
@@ -81,25 +83,25 @@ function PriceProductInfo() {
         <div>
           <dt>공급가</dt>
           <dd>
-            <UiInputText id="supplyPrice" />
+            <UiInputText id="supplyPrice" inputSize="180" isPrice />
+          </dd>
+        </div>
+        <div>
+          <dt>관세(%)</dt>
+          <dd>
+            <UiInputText id="tariff" disabled init="10" inputSize="80px" />
           </dd>
         </div>
         <div>
           <dt>소비자가</dt>
           <dd>
-            <UiInputText id="retailPrice" />
-          </dd>
-        </div>
-        <div>
-          <dt>관세</dt>
-          <dd>
-            <UiInputText id="tariff" disabled value="10" />
+            <UiInputText id="retailPrice" inputSize="180" isPrice />
           </dd>
         </div>
         <div>
           <dt>최대구매수량</dt>
           <dd>
-            <UiInputText id="maxOrder" />
+            <UiInputText id="maxOrder" inputSize="80" />
           </dd>
         </div>
       </dl>
@@ -140,16 +142,24 @@ function PolicyProductInfo() {
   )
 }
 
+function PageButtonGroup() {
+  const { save } = useProductSave()
+
+  return (
+    <div>
+      <Button text="취소" btnType="ghost" />
+      <Button text="등록" color="primary" onClick={save} />
+    </div>
+  )
+}
+
 function ProductDetail() {
   return (
     <>
       <ElementGroup.Row className={styles.headerWrapper}>
         <h3>상품등록</h3>
 
-        <div>
-          <Button text="취소" btnType="ghost" />
-          <Button text="등록" color="primary" />
-        </div>
+        <PageButtonGroup />
       </ElementGroup.Row>
 
       <div className={styles.form}>

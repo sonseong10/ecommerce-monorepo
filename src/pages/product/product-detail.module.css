@@ -28,13 +28,15 @@
   letter-spacing: letter-spacing-18;
 }
 
+.imageSetting input,
+.imageSetting button {
+  display: none;
+}
 
 .form {
-  max-height: calc(100vh - 102px);
-
   strong {
     display: inline-block;
-    margin-top: 24px;
+    margin-bottom: 14px;
     font-size: font-size-16;
     line-height: line-height-16;
     letter-spacing: letter-spacing-16;
