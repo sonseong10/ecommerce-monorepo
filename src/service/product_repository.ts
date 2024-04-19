@@ -1,22 +1,25 @@
 import { firebaseDatabase } from './firebase'
-import { ref, onValue, off, set, remove } from 'firebase/database'
+import { ref, onValue, off, set, remove, getDatabase, push, query, limitToLast } from 'firebase/database'
 
 interface IProductVo {
   //
 }
 
 class ProductRepository {
-  syncProducts(productCode: string, onUpdate: (value: { [key: string]: IProductVo }) => void) {
-    const query = ref(firebaseDatabase, `product/${productCode}`)
-    onValue(query, snapshot => {
+  syncProducts(onUpdate: (value: unknown[]) => void) {
+    const q = query(ref(firebaseDatabase, `products`), limitToLast(10))
+    onValue(q, snapshot => {
       const value = snapshot.val()
-      value && onUpdate(value)
+      value && onUpdate(Object.values(value).reverse())
     })
-    return () => off(query)
+    return () => off(q)
   }
 
-  saveProduct(productCode: string, product: IProductVo) {
-    set(ref(firebaseDatabase, `product/${productCode}`), product)
+  saveProduct(product: IProductVo) {
+    const db = getDatabase()
+    const postListRef = ref(db, 'products')
+    const newProductRef = push(postListRef)
+    set(newProductRef, product)
   }
 
   removeWork(productCode: string) {

@@ -26,7 +26,7 @@ const Detail = ({ cards, dark }: IDetailProps) => {
   const replaceMsg = card?.msg && formatMsg(card?.msg)
 
   return (
-    <div className="col-sm-4 col-md-9">
+    <div className="col-sm-4 col-md-12">
       <div className={`${styles.detailGroup} ${dark && styles.isDark}`}>
         <header className={styles.header}>
           <h2 className={styles.pageTitle}>사용자 정보</h2>

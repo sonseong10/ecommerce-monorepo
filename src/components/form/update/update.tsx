@@ -21,7 +21,7 @@ interface IUpdateProps {
 
 const Update = ({ FileInput, userCard, dropDown, updateCard, deleteCard, dark }: IUpdateProps) => {
   return (
-    <div className="col-sm-4 col-md-9">
+    <div className="col-sm-4 col-md-12">
       <EditCardForm
         FileInput={FileInput}
         userCard={userCard}

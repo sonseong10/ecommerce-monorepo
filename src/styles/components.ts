@@ -172,6 +172,10 @@ export const TableContainer = styled(Table)<{
       &.space-normal {
         white-space: normal;
       }
+      img {
+        display: inline-block;
+        border-radius: 4px;
+      }
     }
     & th {
       background-color: #fff;
