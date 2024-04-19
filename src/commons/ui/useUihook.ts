@@ -648,10 +648,13 @@ export const useInputFile = (id: string, valid?: IValid<FileType | FileType[]>, 
 export const useInputFileValue = (id: string) => {
   const { inputFileValue } = useSelectorEq((state: ICommonsStore) => ({
     inputFileValue:
-      state.ui.inputFile !== undefined && state.ui.inputFile[id as string]
+      state.ui.inputFile !== undefined
         ? state.ui.inputFile[id as string]
-        : { filename: '' },
+          ? state.ui.inputFile[id as string]
+          : { filename: '' }
+        : undefined,
   }))
+
   return { inputFileValue }
 }
 

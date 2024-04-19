@@ -19,6 +19,8 @@ import { useAuth } from 'pages/auth/authHook'
 import { ThemeProvider, type DefaultTheme } from 'styled-components'
 import { lightTheme } from 'styles/theme'
 import { GlobalStyle } from 'styles/globalStyle'
+import Popup from 'commons/popup/PopupController'
+import LoadingView from 'commons/loading/LoadingView'
 
 const HomePage = lazy(() => import('pages/home/home-page'))
 const Maker = lazy(() => import('components/form/maker/maker'))
@@ -159,6 +161,8 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      <Popup />
+      <LoadingView />
       <div>
         <GlobalHeader
           userId={userId}

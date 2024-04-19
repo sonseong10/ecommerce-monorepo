@@ -14,16 +14,16 @@ export const commonFonts = {
     convert: '14px', //기준 픽셀값을 바꾸면 전체 폰트 사이즈가 변경됨
     default: '1rem',
     text: {
-      sm: '0.857rem', //14px 기준 12px
-      md: '1.071rem', // 15px
-      lg: '1.143rem', // 16px
+      sm: '1.4rem', //14px 기준 12px
+      md: '1.5rem', // 15px
+      lg: '1.6rem', // 16px
     },
     title: {
-      xsm: '1.143rem', //16
-      sm: '1.286rem', //18
-      md: '1.429rem', //20
-      lg: '1.571rem', //22
-      xl: '1.857rem', //26
+      xsm: '1.6rem', //16
+      sm: '1.8rem', //18
+      md: '2rem', //20
+      lg: '2.2rem', //22
+      xl: '2.6rem', //26
     },
   },
   weight: {

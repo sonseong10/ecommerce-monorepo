@@ -149,7 +149,7 @@ export function UiInputFile(props: IUiInputFileProps) {
   return (
     <InputFile
       id={props.id}
-      filename={inputFileValue.filename}
+      filename={inputFileValue ? inputFileValue.filename : ''}
       accept={props.accept}
       buttonText={props.buttonText}
       type={props.type}

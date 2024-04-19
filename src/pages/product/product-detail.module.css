@@ -32,7 +32,6 @@
 .imageSetting button {
   display: none;
 }
-
 .form {
   strong {
     display: inline-block;
@@ -53,6 +52,13 @@
     color: #ddd;
     font-size: 52px;
     cursor: pointer;
+    overflow: hidden;
+
+    img  {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
   textarea {

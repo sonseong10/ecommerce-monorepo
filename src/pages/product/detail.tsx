@@ -5,9 +5,13 @@ import UiInputText from 'commons/components/ui/UiInputText'
 import Button from 'components/ui/Button'
 import { ElementGroup } from 'styles/components'
 import { UiInputFile } from 'components/ui/InputFile'
-import { useProductSave } from './store/detailHook'
+import { useDetailPageBack, useImageData, useProductSave } from './store/detailHook'
+import { UiInputTextArea } from 'components/ui/InputTextArea'
+import { useIConPopup } from 'components/popup/popupHook'
+import { useNavigate } from 'react-router-dom'
 
 function BaseProductInfo() {
+  const { mainImage, subImage } = useImageData()
   return (
     <>
       <strong>기본정보</strong>
@@ -43,18 +47,30 @@ function BaseProductInfo() {
         <div>
           <dt>대표이미지</dt>
           <dd>
-            <label htmlFor="mainImag">
-              <BiCamera />
-            </label>
+            {mainImage?.imageData ? (
+              <label htmlFor="mainImag">
+                <img src={mainImage.imageData} />
+              </label>
+            ) : (
+              <label htmlFor="mainImag">
+                <BiCamera />
+              </label>
+            )}
             <UiInputFile id="mainImag" />
           </dd>
         </div>
         <div>
           <dt>추가이미지</dt>
           <dd>
-            <label htmlFor="subImag">
-              <BiCamera />
-            </label>
+            {subImage?.imageData ? (
+              <label htmlFor="subImag">
+                <img src={subImage.imageData} />
+              </label>
+            ) : (
+              <label htmlFor="subImag">
+                <BiCamera />
+              </label>
+            )}
             <UiInputFile id="subImag" />
           </dd>
         </div>
@@ -70,7 +86,7 @@ function DetailProductInfo() {
       <div>
         <span>HTML작성</span>
       </div>
-      <textarea name="" id=""></textarea>
+      <UiInputTextArea id="productDtail" />
     </>
   )
 }
@@ -144,11 +160,30 @@ function PolicyProductInfo() {
 
 function PageButtonGroup() {
   const { save } = useProductSave()
+  const { back } = useDetailPageBack()
+  const iconPopup = useIConPopup()
+  const navigate = useNavigate()
 
   return (
     <div>
-      <Button text="취소" btnType="ghost" />
-      <Button text="등록" color="primary" onClick={save} />
+      <Button text="취소" btnType="ghost" onClick={back} />
+      <Button
+        text="등록"
+        color="primary"
+        onClick={() => {
+          save()
+          iconPopup(
+            'alert',
+            { iconType: 'Check', iconColor: '35C5F0', desc: '작업이 완료되었습니다', title: '등록완료' },
+            undefined,
+            v => {
+              if (v) {
+                navigate('/admin/product/list')
+              }
+            },
+          )
+        }}
+      />
     </div>
   )
 }

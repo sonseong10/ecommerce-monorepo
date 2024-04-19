@@ -11,7 +11,7 @@ const TextArea = styled.textarea<{ size?: { width?: Size; height?: string } }>`
   width: ${props => (props.size && props.size.width ? props.size.width : '100%')};
   height: ${props => (props.size && props.size.height ? props.size.height : '300px')};
   font: inherit;
-  font-size: ${props => props.theme.fontSize.text.default};
+  font-size: ${props => props.theme.fontSize.text.md};
   border: 1px solid var(--border-primary);
   border-radius: 4px;
   resize: none;
