@@ -38,6 +38,7 @@ const LinkPagenation = styled(PagenationItem)<{ active?: boolean }>`
     props.active
       ? css`
           background-color: var(--primary);
+          border-radius: 2px;
           color: #fff;
           font-weight: ${props => props.theme.fontWeight.bold};
           pointer-events: none;

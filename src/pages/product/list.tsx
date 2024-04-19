@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'
 import Grid from 'commons/ui/grid/Grid'
 import Pagelable from 'components/ui/Pagelable'
 import { ElementGroup, TableContainer } from 'styles/components'
-import { useProductListData } from './store/detailHook'
 import { GridImageCell } from 'commons/ui/grid/AbsGridCell'
 import { GridButtonCell, GridLocalStringCell } from 'components/ui/grid/GridCell'
 import Button from 'components/ui/Button'
 import type { IGrideCell } from 'commons/ui/grid/GridVo'
+import { useProductListData } from './store/listHook'
 
 interface IProductListProps {
   onMenuChange: (v: 'member' | 'work' | 'home' | 'product') => void
@@ -88,7 +88,7 @@ function ProductList({ onMenuChange }: IProductListProps) {
                   btnType: 'ghost',
                   btnSize: 'xsm',
                   link: {
-                    url: `/admin/product/lnfo/`,
+                    url: `/admin/product/info`,
                     paramidx: 0,
                   },
                 },

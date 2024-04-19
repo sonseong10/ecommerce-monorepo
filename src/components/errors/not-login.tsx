@@ -10,7 +10,7 @@ interface INotLoginProps {
 
 const NotLogin = ({ loding, dark }: INotLoginProps) => {
   return (
-    <div className="col-sm-4 col-md-9">
+    <div className="col-sm-4 col-md-12">
       <div className={`${styles.error} ${dark && styles.isDark}`}>
         {loding ? (
           <LodingSpinner dark={dark}></LodingSpinner>
