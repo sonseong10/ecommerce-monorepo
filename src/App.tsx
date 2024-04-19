@@ -207,7 +207,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               }
             />
             <Route
-              path="maker"
+              path="maker/*"
               element={
                 <Suspense fallback={<LodingSpinner />}>
                   <Maker
@@ -222,7 +222,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               }
             />
             <Route
-              path="member"
+              path="member/*"
               element={
                 <Suspense fallback={<LodingSpinner />}>
                   <Search dropDown={dropDown} cards={cards} onMenuChange={onMenuChange} dark={dark}></Search>
@@ -230,7 +230,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               }
             />
             <Route
-              path="work"
+              path="work/*"
               element={
                 <Suspense fallback={<LodingSpinner />}>
                   <Work
@@ -261,7 +261,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               }
             ></Route>
             <Route
-              path="detail"
+              path="detail/*"
               element={
                 <Suspense fallback={<LodingSpinner />}>
                   <Detail cards={cards} dark={dark}></Detail>
@@ -270,7 +270,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             ></Route>
             <Route path="product/*">
               <Route
-                path="list"
+                path="list/*"
                 element={
                   <Suspense fallback={<LodingSpinner />}>
                     <ProductList onMenuChange={onMenuChange} dark={dark} />
@@ -278,7 +278,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
                 }
               ></Route>
               <Route
-                path="info"
+                path="info/*"
                 element={
                   <Suspense fallback={<LodingSpinner />}>
                     <ProductDetail />
