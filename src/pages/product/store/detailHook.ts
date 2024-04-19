@@ -1,4 +1,5 @@
 import { useSelectorEq } from 'commons/store/common'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProductRepository from 'service/product_repository'
 import type { IState } from 'store'
@@ -64,4 +65,25 @@ export const useDetailPageBack = () => {
   }
 
   return { back }
+}
+
+export const useProductListData = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [list, setList] = useState<any>(undefined)
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    productRepository.syncProducts('', (value: any) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const arr: any[] = []
+      const keys = Object.keys(value)
+      keys.map((i, index) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const temp: any[] = Object.values(value)
+        arr.push({ ...temp[index], code: i })
+      })
+      setList(arr)
+    })
+  }, [])
+
+  return { list }
 }
