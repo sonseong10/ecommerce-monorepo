@@ -5,6 +5,8 @@ import ProductRepository from 'service/product_repository'
 import { useUiAction } from 'commons/ui/reUi/useUihook'
 import { UiType } from 'commons/ui/uiVo'
 import type { IState } from 'store/modules'
+import { useDispatch } from 'react-redux'
+import { rdxSetProduct } from './detailR'
 
 const productRepository = new ProductRepository()
 
@@ -96,6 +98,7 @@ export const useDetailPageBack = () => {
 export const useInitProductDeail = () => {
   const code = location.href.split('/').pop()
   const { add, commit } = useUiAction()
+  const dispatch = useDispatch()
   const init = () => {
     productRepository.syncProduct(code!, product => {
       add(UiType.INPUT_TEXT, 'productName', product.productName)
@@ -109,6 +112,7 @@ export const useInitProductDeail = () => {
       add(UiType.INPUT_FILE, 'mainImage', { imageData: product.mainImage, filename: '상품이미지' })
       add(UiType.INPUT_FILE, 'subImage', { imageData: product.subImage, filename: '상품이미지' })
       commit()
+      dispatch(rdxSetProduct(product))
     })
   }
 
