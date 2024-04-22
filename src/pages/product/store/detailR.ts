@@ -5,7 +5,7 @@ export const name = 'productDetail'
 
 export interface IProductDetailState {
   //
-  product: IProductVo
+  product?: IProductVo
 }
 
 const productDetail = createSlice({
@@ -14,8 +14,12 @@ const productDetail = createSlice({
     //
   } as IProductDetailState,
   reducers: {
-    rdxSetProduct(state: IProductDetailState, action: PayloadAction<IProductVo>) {
-      state.product = action.payload
+    rdxSetProduct(state: IProductDetailState, action: PayloadAction<IProductVo | undefined>) {
+      if (action.payload) {
+        state.product = action.payload
+      } else {
+        delete state.product
+      }
     },
   },
 })

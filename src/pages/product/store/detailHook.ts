@@ -120,5 +120,9 @@ export const useInitProductDeail = () => {
     if (code) {
       init()
     }
+
+    return () => {
+      dispatch(rdxSetProduct())
+    }
   }, [])
 }
