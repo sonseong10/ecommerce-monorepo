@@ -4,6 +4,7 @@ import { type ICommonsStore } from '../../commons'
 import CommonsSlim from '../../commons/store/CommonsSlim'
 import auth, { type IAuthState } from 'pages/auth/authR'
 import { Grade } from 'store/storageVo'
+import productDetail, { type IProductDetailState } from 'pages/product/store/detailR'
 
 export interface IInitStates {
   deviceType: boolean
@@ -15,11 +16,13 @@ export interface IInitStates {
 export interface IState extends ICommonsStore {
   auth: IAuthState
   init: IInitStates
+  productDetail: IProductDetailState
 }
 
 const defaultReducers = {
   ...CommonsSlim({}),
   auth,
+  productDetail,
 }
 
 /**
