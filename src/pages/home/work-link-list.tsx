@@ -25,7 +25,7 @@ const WorkLinkList = ({ works, dark }: IWorkLinkListProps) => {
       ) : (
         <li className={styles.workItem}>
           <p className={styles.lsitNone}>리스트가 없습니다.</p>
-          <Link className={styles.lsitNone} to="/work">
+          <Link className={styles.lsitNone} to="/admin/work">
             업무 작성
           </Link>
         </li>
