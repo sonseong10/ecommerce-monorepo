@@ -22,6 +22,7 @@ export const useImageData = () => {
 export const useProductSave = () => {
   const {
     code,
+    createAt,
     productName,
     supplier,
     manufacturName,
@@ -34,6 +35,7 @@ export const useProductSave = () => {
     brandName,
   } = useSelectorEq((state: IState) => ({
     code: state.productDetail?.product?.code ? state.productDetail?.product?.code : '',
+    createAt: state.productDetail?.product?.createdAt ? state.productDetail?.product?.createdAt : '',
     productName: state?.ui?.inputText?.productName ? state.ui.inputText.productName : '',
     supplier: state?.ui?.inputText?.supplier ? state.ui.inputText.supplier : '',
     manufacturName: state?.ui?.inputText?.manufacturName ? state.ui.inputText.manufacturName : '',
@@ -45,7 +47,7 @@ export const useProductSave = () => {
     mainImage: state?.ui?.inputFile ? state.ui.inputFile.mainImage : undefined,
     subImage: state?.ui?.inputFile ? state.ui.inputFile.subImage : undefined,
   }))
-  const createdAt = Date.now().toString()
+  const createdAt = Date.now()
 
   const save = () => {
     productRepository.saveProduct({
@@ -57,6 +59,7 @@ export const useProductSave = () => {
       retailPrice,
       maxOrder,
       createdAt,
+      updateAt: undefined,
       code: '',
       productDtail,
       mainImage: mainImage?.imageData,
@@ -73,11 +76,11 @@ export const useProductSave = () => {
       brandName,
       retailPrice,
       maxOrder,
-      createdAt: '',
       code: '',
       productDtail,
       mainImage: mainImage?.imageData,
       subImage: subImage?.imageData,
+      createdAt: createAt,
       updateAt: createdAt,
     })
   }

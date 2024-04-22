@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Grid from 'commons/ui/grid/Grid'
 import Pagelable from 'components/ui/Pagelable'
 import { ElementGroup, TableContainer } from 'styles/components'
-import { GridImageCell } from 'commons/ui/grid/AbsGridCell'
+import { GridDateCell, GridImageCell } from 'commons/ui/grid/AbsGridCell'
 import { GridButtonCell, GridLocalStringCell } from 'components/ui/grid/GridCell'
 import Button from 'components/ui/Button'
 import type { IGrideCell } from 'commons/ui/grid/GridVo'
@@ -75,6 +75,16 @@ function ProductList({ onMenuChange }: IProductListProps) {
                 header: '공급가',
                 id: ['supplyPrice'],
                 element: GridLocalStringCell,
+              },
+              {
+                header: '생성일',
+                id: ['createdAt'],
+                element: GridDateCell,
+              },
+              {
+                header: '수정일',
+                id: ['updateAt'],
+                element: GridDateCell,
               },
               {
                 header: '수정/상세',

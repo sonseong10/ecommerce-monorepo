@@ -6,10 +6,10 @@ export interface IProductVo {
   supplyPrice: string
   retailPrice: string
   maxOrder: string
-  createdAt: string
+  createdAt: string | number
   code: string
   productDtail: string
   mainImage?: string
   subImage?: string
-  updateAt?: string
+  updateAt?: string | number
 }
