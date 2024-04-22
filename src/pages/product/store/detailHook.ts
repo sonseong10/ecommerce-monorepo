@@ -2,9 +2,9 @@ import { useSelectorEq } from 'commons/store/common'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProductRepository from 'service/product_repository'
-import type { IState } from 'store'
 import { useUiAction } from 'commons/ui/reUi/useUihook'
 import { UiType } from 'commons/ui/uiVo'
+import type { IState } from 'store/modules'
 
 const productRepository = new ProductRepository()
 
@@ -19,6 +19,7 @@ export const useImageData = () => {
 
 export const useProductSave = () => {
   const {
+    code,
     productName,
     supplier,
     manufacturName,
@@ -30,6 +31,7 @@ export const useProductSave = () => {
     subImage,
     brandName,
   } = useSelectorEq((state: IState) => ({
+    code: state.productDetail?.product?.code ? state.productDetail?.product?.code : '',
     productName: state?.ui?.inputText?.productName ? state.ui.inputText.productName : '',
     supplier: state?.ui?.inputText?.supplier ? state.ui.inputText.supplier : '',
     manufacturName: state?.ui?.inputText?.manufacturName ? state.ui.inputText.manufacturName : '',
@@ -78,7 +80,7 @@ export const useProductSave = () => {
     })
   }
 
-  return { save, update }
+  return { save, update, code }
 }
 
 export const useDetailPageBack = () => {

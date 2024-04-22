@@ -161,11 +161,11 @@ function PolicyProductInfo() {
 }
 
 function PageButtonGroup() {
-  const { save, update } = useProductSave()
+  const { save, update, code } = useProductSave()
   const { back } = useDetailPageBack()
   const iconPopup = useIConPopup()
   const navigate = useNavigate()
-  const code = location.href.split('/').pop()
+
   return (
     <div>
       <Button text="취소" btnType="ghost" onClick={back} />
