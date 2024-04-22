@@ -6,11 +6,20 @@ interface IProductVo {
 }
 
 class ProductRepository {
-  syncProducts(onUpdate: (value: unknown[]) => void) {
+  syncProducts(onUpdate: (result: IProductVo[]) => void) {
     const q = query(ref(firebaseDatabase, `products`), limitToLast(10))
     onValue(q, snapshot => {
-      const value = snapshot.val()
+      const value: { [key: string]: IProductVo } = snapshot.val()
       value && onUpdate(Object.values(value).reverse())
+    })
+    return () => off(q)
+  }
+
+  syncProduct(code: string, callBack: (result: IProductVo) => void) {
+    const q = ref(firebaseDatabase, `products/${code}`)
+    onValue(q, snapshot => {
+      const result: IProductVo = snapshot.val()
+      result && callBack(result)
     })
     return () => off(q)
   }
@@ -22,8 +31,8 @@ class ProductRepository {
     set(newProductRef, product)
   }
 
-  removeWork(productCode: string) {
-    remove(ref(firebaseDatabase, `works/${productCode}`))
+  removeProduct(productCode: string) {
+    remove(ref(firebaseDatabase, `products/${productCode}`))
   }
 }
 
