@@ -3,8 +3,6 @@ import { Route, Routes } from 'react-router-dom'
 
 import GlobalHeader from './components/common/global-header'
 import GlobalFooter from './components/common/global-footer'
-import Overlay from './components/common/overlay'
-import MsgPopup from './components/common/popup/msg-popup'
 import MobileSideBar from './components/common/mobile-sidebar'
 
 import './styles/main.css'
@@ -52,7 +50,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
   const [cards, setCards] = useState<{ [key: string]: ICardVo } | undefined>(undefined)
   const [works, setWorks] = useState<{ [key: string]: IWorkVo } | undefined>(undefined)
 
-  const { userId, deleteAccount, magPopup, onLogin, onLogout, popupMsg, setMagPopup } = useAuth()
+  const { userId, deleteAccount, onLogin, onLogout } = useAuth()
 
   const [userCard, setUserCard] = useState<ICardVo | undefined>(undefined)
 
@@ -148,10 +146,6 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
   const toggleOpenSideBar = useCallback(() => {
     setSidebarOpen(!sidebarOpen)
   }, [sidebarOpen])
-
-  const toggleMsgPopup = useCallback(() => {
-    setMagPopup(!magPopup)
-  }, [magPopup])
 
   const onMenuChange = (value: string) => {
     setMenuActive(value)
@@ -313,13 +307,6 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
           handleModeChange={handleModeChange}
           dark={dark}
         ></MobileSideBar>
-
-        {magPopup && (
-          <>
-            <MsgPopup popupMsg={popupMsg} magPopup={magPopup} toggleMsgPopup={toggleMsgPopup}></MsgPopup>
-            <Overlay overlay={magPopup} ToggleOverlay={toggleMsgPopup}></Overlay>
-          </>
-        )}
 
         <GlobalFooter userId={userId} menuActive={menuActive} dark={dark}></GlobalFooter>
       </div>
