@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Grid from 'commons/ui/grid/Grid'
 import Pagelable from 'components/ui/Pagelable'
 import { ElementGroup, TableContainer, Title } from 'styles/components'
@@ -11,10 +11,9 @@ import OptionGrid from 'components/ui/OptionGrid'
 import type { IProductVo } from './store/detailVo'
 import { useDeleteProduct } from './store/detailHook'
 
-interface IProductListProps {
-  onMenuChange: (v: 'member' | 'work' | 'home' | 'product') => void
-  dark: boolean
-}
+// interface IProductListProps {
+//   dark: boolean
+// }
 
 function GridroductDeleteCell(props: IGrideCell<[string]>) {
   const { onDelete } = useDeleteProduct()
@@ -90,11 +89,7 @@ function List() {
   return <Grid id="productList" container={TableContainer} data={list ? list : []} setting={settting} />
 }
 
-function ProductList({ onMenuChange }: IProductListProps) {
-  useEffect(() => {
-    onMenuChange('product')
-  }, [onMenuChange])
-
+function ProductList() {
   return (
     <>
       <ElementGroup.Row flexContent="between">

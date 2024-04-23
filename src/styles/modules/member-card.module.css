@@ -13,7 +13,8 @@
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  border-radius: 2.2rem;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
 }
 
 .meberItem {

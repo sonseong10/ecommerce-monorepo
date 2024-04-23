@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { formatMsg } from '../../../utils/filters'
 
 import DEFAULT_USER_IMG from '../../../assets/images/img-user-default.png'
@@ -17,11 +17,11 @@ interface IDetailProps {
 
 const Detail = ({ cards, dark }: IDetailProps) => {
   const [card, setCard] = useState<ICardVo | undefined>(undefined)
-  const location = useLocation()
+  const position = location.href.split('/').pop()
 
   useEffect(() => {
-    setCard({ ...cards![location.state?.id] })
-  }, [cards, location.state?.id])
+    setCard({ ...cards![position!] })
+  }, [cards])
 
   const replaceMsg = card?.msg && formatMsg(card?.msg)
 

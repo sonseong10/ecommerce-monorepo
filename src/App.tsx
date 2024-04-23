@@ -8,7 +8,7 @@ import type DropDown from 'utils/dropdown'
 import type AuthService from 'service/auth_service'
 import type ImageUploader from 'service/image-uploader'
 import type { ICardVo, IWorkVo } from 'types/grobal-type'
-import { useAuth } from 'pages/auth/authHook'
+import { useAuth, useUserId } from 'pages/auth/authHook'
 import { ThemeProvider, type DefaultTheme } from 'styled-components'
 import { lightTheme } from 'styles/theme'
 import { GlobalStyle } from 'styles/globalStyle'
@@ -46,11 +46,12 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
   const [cards, setCards] = useState<{ [key: string]: ICardVo } | undefined>(undefined)
   const [works, setWorks] = useState<{ [key: string]: IWorkVo } | undefined>(undefined)
 
-  const { userId, deleteAccount, onLogin, onLogout } = useAuth()
+  const { deleteAccount, onLogin, onLogout } = useAuth()
+  const { userId } = useUserId()
 
   const [userCard, setUserCard] = useState<ICardVo | undefined>(undefined)
 
-  const [menuActive, setMenuActive] = useState<string>('home')
+  const [menuActive, setMenuActive] = useState<string>('main')
   const [authPopup, setAuthPopup] = useState(false)
 
   const [dark, setDark] = useState(localStorage.getItem('darkMode') === 'true')
@@ -60,17 +61,15 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
       setCards(cards)
     })
     return () => {}
-  }, [cardRepository, userId])
+  }, [cardRepository])
 
   useEffect(() => {
-    if (!userId) {
-      return
-    }
-
-    if (cards && Object.keys(cards).find(item => item === userId)) {
-      setUserCard({ ...cards![userId] })
-    } else {
-      setUserCard(undefined)
+    if (userId) {
+      if (cards && Object.keys(cards).find(item => item === userId)) {
+        setUserCard({ ...cards![userId] })
+      } else {
+        setUserCard(undefined)
+      }
     }
   }, [cards, userId])
 
@@ -79,10 +78,10 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
       const updated: {
         [key: string]: ICardVo
       } = { ...cards }
-      updated[userId] = card
+      updated[userId!] = card
       return updated
     })
-    cardRepository.saveCard(userId, card)
+    cardRepository.saveCard(userId!, card)
   }
 
   // const deleteCard = () => {
@@ -158,6 +157,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
                 <MainContent
                   ToggleOverlay={toggleOverlay}
                   dark={dark}
+                  onMenuChange={onMenuChange}
                   handleModeChange={handleModeChange}
                   loding={false}
                   menuActive={menuActive}
@@ -169,17 +169,10 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             }
           >
             <Route
-              path="main"
+              path="main/*"
               element={
                 <Suspense fallback={<Spinner />}>
-                  <HomePage
-                    isCard={userCard}
-                    cards={cards}
-                    works={works}
-                    userCard={userCard}
-                    onMenuChange={onMenuChange}
-                    dark={dark}
-                  />
+                  <HomePage isCard={userCard} cards={cards} works={works} userCard={userCard} dark={dark} />
                 </Suspense>
               }
             />
@@ -192,7 +185,6 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
                     dropDown={dropDown}
                     isCard={userCard}
                     createCard={createOrUpdateCard}
-                    onMenuChange={onMenuChange}
                     dark={dark}
                   ></Maker>
                 </Suspense>
@@ -202,7 +194,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               path="member/*"
               element={
                 <Suspense fallback={<Spinner />}>
-                  <Search dropDown={dropDown} cards={cards} onMenuChange={onMenuChange} dark={dark}></Search>
+                  <Search dropDown={dropDown} cards={cards} dark={dark}></Search>
                 </Suspense>
               }
             />
@@ -211,7 +203,6 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               element={
                 <Suspense fallback={<Spinner />}>
                   <Work
-                    onMenuChange={onMenuChange}
                     userId={userId}
                     works={works}
                     createWork={createOrUpdateWork}
@@ -250,7 +241,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
                 path="list/*"
                 element={
                   <Suspense fallback={<Spinner />}>
-                    <ProductList onMenuChange={onMenuChange} dark={dark} />
+                    <ProductList />
                   </Suspense>
                 }
               ></Route>

@@ -16,15 +16,10 @@ interface IMakerProps {
   dropDown: DropDown
   isCard?: ICardVo
   createCard: (card: ICardVo) => void
-  onMenuChange: (v: 'member' | 'work' | 'home') => void
   dark: boolean
 }
-const Maker = ({ FileInput, dropDown, isCard, createCard, onMenuChange, dark }: IMakerProps) => {
+const Maker = ({ FileInput, dropDown, isCard, createCard, dark }: IMakerProps) => {
   const navigate = useNavigate()
-
-  useEffect(() => {
-    onMenuChange('home')
-  }, [onMenuChange])
 
   useEffect(() => {
     isCard && navigate('/main')

@@ -300,7 +300,7 @@ export const Input = styled.input<{ inputSize?: string; hidden?: boolean }>`
           border-radius: 4px;
           color: var(--font-primary);
           font-weight: 400;
-          font-size: ${props => props.theme.fontSize.default};
+          font-size: ${props => props.theme.fontSize.text.sm};
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
 

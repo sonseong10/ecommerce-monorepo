@@ -15,22 +15,23 @@ const MemberItem = ({ card, uid }: IMemberItemProps) => {
   return (
     <li className={styles.meberItem}>
       <Link to={'/admin/detail'} state={{ id: uid }} className={styles.card}>
-        <header className={styles.cardHeader}>
-          <div
-            className={`${styles.dot} 
-              ${card?.login ? styles.online : styles.offline}`}
-          ></div>
-          <span>{card?.login ? 'online' : 'offline'}</span>
-        </header>
         <div className={`${styles.cardContents} ${getStyles(card!.theme)}`}>
           <figure className={styles.profile}>
             <img src={url} alt="" />
             <figcaption className="visually-hidden">사용자 이미지</figcaption>
           </figure>
+          <div
+            className={`${styles.dot} 
+              ${card?.login ? styles.online : styles.offline}`}
+            title={card?.login ? 'online' : 'offline'}
+          ></div>
+          <span className="visually-hidden">{card?.login ? 'online' : 'offline'}</span>
+        </div>
+        <div>
           <strong className={styles.authName}>{card!.name}</strong>
           <p className={styles.authMsg}>{card!.msg ? card!.msg : '내용없음'}</p>
         </div>
-        <footer className={styles.cardFooter}>
+        <div className={styles.cardFooter}>
           <dl className={styles.authDetailList}>
             <div className={styles.authDetailItem}>
               <dt className={styles.title}>소속/직급</dt>
@@ -47,7 +48,7 @@ const MemberItem = ({ card, uid }: IMemberItemProps) => {
               <dd className={styles.description}>{card?.telephone}</dd>
             </div>
           </dl>
-        </footer>
+        </div>
       </Link>
     </li>
   )

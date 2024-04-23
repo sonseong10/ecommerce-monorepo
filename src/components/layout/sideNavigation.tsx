@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import MyMenu from '../common/MyMenu'
@@ -6,11 +6,7 @@ import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar, BiSitemap } from 'react-icon
 
 import buttonStyles from 'styles/modules/buttons.module.css'
 import styles from 'styles/modules/sidebar.module.css'
-
-import Logo from 'assets/images/logo.svg'
-import DarkLogo from 'assets/images/dark-logo.svg'
 import type { ICardVo } from 'types/grobal-type'
-// import TabletLogo from '../assets/images/tablet-logo.svg'
 
 interface ISideNavigationProps {
   ToggleOverlay: () => void
@@ -18,6 +14,7 @@ interface ISideNavigationProps {
   userCard?: ICardVo
   loding: boolean
   isCard: number
+  onMenuChange: (v: string) => void
   onLogout: () => void
   menuActive: string
   handleModeChange: () => void
@@ -30,30 +27,28 @@ const SideNavigation = ({
   loding,
   isCard,
   onLogout,
+  onMenuChange,
   menuActive,
   handleModeChange,
   dark,
 }: ISideNavigationProps) => {
+  useEffect(() => {
+    const position = location.href.split('/').pop()
+    onMenuChange(position!)
+  }, [location.href])
+
   return (
     <div className={`col-md-2 col-lg-3 sm-hidden ${styles.floating}`}>
       <article className={`${styles.article} ${dark && styles.isDark}`}>
-        <header className={styles.header}>
-          <h1 className={`${styles.logo}`}>
-            <Link to={userId ? '/admin/main' : '#'}>
-              <img className="logo-img" src={!dark ? Logo : DarkLogo} alt="logo" />
-            </Link>
-          </h1>
-        </header>
-
         <div className={styles.navGroup}>
           <nav className="snb">
             <h3 className="visually-hidden">Side Navigation Bar</h3>
             <ul className="snb-list">
               <li className="snb-item">
                 <Link
-                  to={userId ? '/admin/main' : '#'}
+                  to={'/admin/main'}
                   className={`${styles.snbItemButton} 
-                    ${menuActive === 'home' && styles.isActive}
+                    ${menuActive === 'main' && styles.isActive}
                     ${!userId && styles.isDisable}`}
                 >
                   <BiHomeAlt />
@@ -68,7 +63,7 @@ const SideNavigation = ({
                     ${!userId && styles.isDisable}`}
                 >
                   <BiGroup />
-                  사원찾기
+                  인사관리
                 </Link>
               </li>
               <li className="snb-item">

@@ -1,33 +1,37 @@
 import type { User } from 'firebase/auth'
-import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import AuthService from 'service/auth_service'
-import WorkRepository from 'service/work-repository'
 import CardRepository from 'service/card_repository'
 import { useIConPopup } from 'components/popup/popupHook'
+import { useDispatch } from 'react-redux'
+import { rdxInitUser } from './authR'
+import { useSelectorEq } from 'commons/store/common'
+import type { IState } from 'store/modules'
 
 const authService = new AuthService()
-const workRepository = new WorkRepository()
 const cardRepository = new CardRepository()
+
+export const useUserId = () => {
+  const { userId } = useSelectorEq((state: IState) => ({
+    userId: state.auth.user?.uid ? state.auth.user?.uid : '',
+  }))
+
+  return { userId }
+}
 
 export const useAuth = () => {
   const navigate = useNavigate()
-  const location = useLocation()
   const iconPopup = useIConPopup()
-  const historyState = location?.state
-  const [userId, setUserId] = useState(historyState && historyState.id)
-  const [magPopup, setMagPopup] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     authService.onAuthChange((user: User) => {
       if (user) {
-        setUserId(user.uid)
-      } else {
-        setUserId('')
-        navigate('/')
+        dispatch(rdxInitUser(user))
       }
     })
-  }, [authService, navigate])
+  }, [])
 
   const onLogin = (value: 'Google' | 'Github') => {
     authService
@@ -70,34 +74,23 @@ export const useAuth = () => {
   }
 
   const onLogout = () => {
-    // userCard &&
-    //   Object.keys(userCard!).length &&
-    //   cardRepository.saveCard(userId, {
-    //     ...(
-    //       cards as {
-    //         [key: string]: ICardVo
-    //       }
-    //     )[userId],
-    //     login: false,
-    //   })
-    // setUserCard(undefined)
     navigate('/')
     authService.logout()
   }
 
-  const deleteAccount = () => {
-    workRepository.removeWorkAll(userId)
-    authService.delete(userId, code => {
-      if (code >= 200) {
-        iconPopup(
-          'alert',
-          { iconType: 'Check', iconColor: '35C5F0', desc: '작업이 완료되었습니다.', title: '회원탈퇴 성공' },
-          undefined,
-          v => v && navigate('/'),
-        )
-      }
-    })
+  const removeAccount = () => {
+    // workRepository.removeWorkAll(userId)
+    // authService.delete(userId, code => {
+    //   if (code >= 200) {
+    //     iconPopup(
+    //       'alert',
+    //       { iconType: 'Check', iconColor: '35C5F0', desc: '작업이 완료되었습니다.', title: '회원탈퇴 성공' },
+    //       undefined,
+    //       v => v && navigate('/'),
+    //     )
+    //   }
+    // })
   }
 
-  return { userId, onLogin, onLogout, deleteAccount, magPopup, setMagPopup }
+  return { onLogin, onLogout, deleteAccount: removeAccount }
 }

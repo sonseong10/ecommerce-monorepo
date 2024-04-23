@@ -2,6 +2,7 @@ import React from 'react'
 import SideNavigation from './sideNavigation'
 import type { ICardVo } from 'types/grobal-type'
 import { Outlet } from 'react-router-dom'
+import Hader from './Hader'
 
 interface IMainContentProps {
   userId: string
@@ -9,6 +10,7 @@ interface IMainContentProps {
   userCard?: ICardVo
   loding: boolean
   menuActive: string
+  onMenuChange: (v: string) => void
   ToggleOverlay: () => void
   handleModeChange: () => void
   dark: boolean
@@ -22,16 +24,18 @@ const MainContent = ({
   menuActive,
   ToggleOverlay,
   handleModeChange,
+  onMenuChange,
   dark,
 }: IMainContentProps) => {
   return (
     <>
-      {/* <Header /> */}
+      <Hader />
       <div className="container">
         <SideNavigation
           userId={userId}
           onLogout={onLogout}
           userCard={userCard}
+          onMenuChange={onMenuChange}
           isCard={userCard ? Object.keys(userCard).length : 0}
           ToggleOverlay={ToggleOverlay}
           menuActive={menuActive}

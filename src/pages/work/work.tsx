@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import renderMarkdown from '../../utils/render-markdown'
 import { BiEdit } from 'react-icons/bi'
 
@@ -9,7 +9,6 @@ import buttonStyle from '../../styles/modules/buttons.module.css'
 import styles from '../../styles/modules/work.module.css'
 
 interface IWorkProps {
-  onMenuChange: (v: 'search' | 'work' | 'home') => void
   userId: string
   works:
     | {
@@ -25,12 +24,8 @@ interface IWorkProps {
   deleteWork: (work: { contents: string; time: number; title: string }) => void
   dark: boolean
 }
-const Work = ({ onMenuChange, userId, works, createWork, updateWork, deleteWork, dark }: IWorkProps) => {
+const Work = ({ userId, works, createWork, updateWork, deleteWork, dark }: IWorkProps) => {
   const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    onMenuChange('work')
-  })
 
   const onOpenAddForm = () => {
     setIsOpen(!isOpen)
