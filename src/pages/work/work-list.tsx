@@ -1,6 +1,6 @@
 import React from 'react'
 import WorkItem from './work-item'
-import NotFound from '../../components/errors/not-found'
+import NotFound from '../errors/not-found'
 import styles from '../../styles/modules/work-list.module.css'
 
 interface IWorkListProps {

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import MyMenu from './common/my-menu'
+import MyMenu from '../common/MyMenu'
 import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar, BiSitemap } from 'react-icons/bi'
 
-import buttonStyles from '../styles/modules/buttons.module.css'
-import styles from '../styles/modules/sidebar.module.css'
+import buttonStyles from 'styles/modules/buttons.module.css'
+import styles from 'styles/modules/sidebar.module.css'
 
-import Logo from '../assets/images/logo.svg'
-import DarkLogo from '../assets/images/dark-logo.svg'
+import Logo from 'assets/images/logo.svg'
+import DarkLogo from 'assets/images/dark-logo.svg'
 import type { ICardVo } from 'types/grobal-type'
 // import TabletLogo from '../assets/images/tablet-logo.svg'
 

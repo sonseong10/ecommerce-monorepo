@@ -1,5 +1,5 @@
 import React from 'react'
-import SideNavigation from './side-navigation'
+import SideNavigation from './sideNavigation'
 import type { ICardVo } from 'types/grobal-type'
 import { Outlet } from 'react-router-dom'
 
@@ -25,7 +25,8 @@ const MainContent = ({
   dark,
 }: IMainContentProps) => {
   return (
-    <div className="main-content">
+    <>
+      {/* <Header /> */}
       <div className="container">
         <SideNavigation
           userId={userId}
@@ -43,7 +44,7 @@ const MainContent = ({
           <Outlet />
         </article>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -1,10 +1,6 @@
 import React, { useCallback, useEffect, useState, type MemoExoticComponent, lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import GlobalHeader from './components/common/global-header'
-import GlobalFooter from './components/common/global-footer'
-import MobileSideBar from './components/common/mobile-sidebar'
-
 import './styles/main.css'
 import type WorkRepository from 'service/work-repository'
 import type CardRepository from 'service/card_repository'
@@ -12,13 +8,13 @@ import type DropDown from 'utils/dropdown'
 import type AuthService from 'service/auth_service'
 import type ImageUploader from 'service/image-uploader'
 import type { ICardVo, IWorkVo } from 'types/grobal-type'
-import LodingSpinner from 'components/common/loding-spinner'
 import { useAuth } from 'pages/auth/authHook'
 import { ThemeProvider, type DefaultTheme } from 'styled-components'
 import { lightTheme } from 'styles/theme'
 import { GlobalStyle } from 'styles/globalStyle'
 import Popup from 'commons/popup/PopupController'
 import LoadingView from 'commons/loading/LoadingView'
+import Spinner from 'components/ui/Spinner'
 
 const HomePage = lazy(() => import('pages/home/home-page'))
 const Maker = lazy(() => import('components/form/maker/maker'))
@@ -27,9 +23,9 @@ const Work = lazy(() => import('pages/work/work'))
 const Update = lazy(() => import('components/form/update/update'))
 const Detail = lazy(() => import('pages/search/detail/detail'))
 const ProductList = lazy(() => import('pages/product/list'))
-const NotPage = lazy(() => import('components/errors/not-page'))
+const NotPage = lazy(() => import('pages/errors/not-page'))
 const Login = lazy(() => import('pages/auth/login'))
-const MainContent = lazy(() => import('components/main-content'))
+const MainContent = lazy(() => import('components/layout/mainContent'))
 const ProductDetail = lazy(() => import('pages/product/detail'))
 
 interface IAppProps {
@@ -56,7 +52,6 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
 
   const [menuActive, setMenuActive] = useState<string>('home')
   const [authPopup, setAuthPopup] = useState(false)
-  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const [dark, setDark] = useState(localStorage.getItem('darkMode') === 'true')
 
@@ -143,10 +138,6 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
     setAuthPopup(!authPopup)
   }, [authPopup])
 
-  const toggleOpenSideBar = useCallback(() => {
-    setSidebarOpen(!sidebarOpen)
-  }, [sidebarOpen])
-
   const onMenuChange = (value: string) => {
     setMenuActive(value)
   }
@@ -158,20 +149,12 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
       <Popup />
       <LoadingView />
       <div>
-        <GlobalHeader
-          userId={userId}
-          userCard={userCard}
-          toggleOverlay={toggleOverlay}
-          toggleOpenSideBar={toggleOpenSideBar}
-          dark={dark}
-        ></GlobalHeader>
-
         <Routes>
           <Route index element={<Login onLogin={onLogin} />} />
           <Route
             path="/admin"
             element={
-              <Suspense fallback={<LodingSpinner />}>
+              <Suspense fallback={<Spinner />}>
                 <MainContent
                   ToggleOverlay={toggleOverlay}
                   dark={dark}
@@ -188,7 +171,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             <Route
               path="main"
               element={
-                <Suspense fallback={<LodingSpinner />}>
+                <Suspense fallback={<Spinner />}>
                   <HomePage
                     isCard={userCard}
                     cards={cards}
@@ -203,7 +186,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             <Route
               path="maker/*"
               element={
-                <Suspense fallback={<LodingSpinner />}>
+                <Suspense fallback={<Spinner />}>
                   <Maker
                     FileInput={FileInput}
                     dropDown={dropDown}
@@ -218,7 +201,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             <Route
               path="member/*"
               element={
-                <Suspense fallback={<LodingSpinner />}>
+                <Suspense fallback={<Spinner />}>
                   <Search dropDown={dropDown} cards={cards} onMenuChange={onMenuChange} dark={dark}></Search>
                 </Suspense>
               }
@@ -226,7 +209,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             <Route
               path="work/*"
               element={
-                <Suspense fallback={<LodingSpinner />}>
+                <Suspense fallback={<Spinner />}>
                   <Work
                     onMenuChange={onMenuChange}
                     userId={userId}
@@ -242,7 +225,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             <Route
               path="update"
               element={
-                <Suspense fallback={<LodingSpinner />}>
+                <Suspense fallback={<Spinner />}>
                   <Update
                     FileInput={FileInput}
                     userCard={userCard}
@@ -257,7 +240,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             <Route
               path="detail/*"
               element={
-                <Suspense fallback={<LodingSpinner />}>
+                <Suspense fallback={<Spinner />}>
                   <Detail cards={cards} dark={dark}></Detail>
                 </Suspense>
               }
@@ -266,7 +249,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               <Route
                 path="list/*"
                 element={
-                  <Suspense fallback={<LodingSpinner />}>
+                  <Suspense fallback={<Spinner />}>
                     <ProductList onMenuChange={onMenuChange} dark={dark} />
                   </Suspense>
                 }
@@ -274,7 +257,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               <Route
                 path="info/*"
                 element={
-                  <Suspense fallback={<LodingSpinner />}>
+                  <Suspense fallback={<Spinner />}>
                     <ProductDetail />
                   </Suspense>
                 }
@@ -282,7 +265,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               <Route
                 path="*"
                 element={
-                  <Suspense fallback={<LodingSpinner />}>
+                  <Suspense fallback={<Spinner />}>
                     <NotPage dark={dark}></NotPage>
                   </Suspense>
                 }
@@ -291,24 +274,13 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
             <Route
               path="*"
               element={
-                <Suspense fallback={<LodingSpinner />}>
+                <Suspense fallback={<Spinner />}>
                   <NotPage dark={dark}></NotPage>
                 </Suspense>
               }
             ></Route>
           </Route>
         </Routes>
-
-        <MobileSideBar
-          onLogout={onLogout}
-          isCard={userCard !== undefined ? Object.keys(userCard).length : 0}
-          sidebarOpen={sidebarOpen}
-          toggleOpenSideBar={toggleOpenSideBar}
-          handleModeChange={handleModeChange}
-          dark={dark}
-        ></MobileSideBar>
-
-        <GlobalFooter userId={userId} menuActive={menuActive} dark={dark}></GlobalFooter>
       </div>
     </ThemeProvider>
   )
