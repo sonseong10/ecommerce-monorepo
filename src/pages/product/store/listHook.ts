@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import ProductRepository from 'service/product_repository'
+import type { IProductVo } from './detailVo'
 
 const productRepository = new ProductRepository()
 export const useProductListData = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [list, setList] = useState<any>(undefined)
+  const [list, setList] = useState<IProductVo[] | undefined>(undefined)
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    productRepository.syncProducts((value: any) => {
+    productRepository.syncProducts((value?: IProductVo[]) => {
       setList(value)
     })
   }, [])

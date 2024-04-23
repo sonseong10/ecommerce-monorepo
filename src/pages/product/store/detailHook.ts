@@ -129,3 +129,11 @@ export const useInitProductDeail = () => {
     }
   }, [])
 }
+
+export const useDeleteProduct = () => {
+  const onDelete = (code: string) => {
+    productRepository.removeProduct(code)
+  }
+
+  return { onDelete }
+}

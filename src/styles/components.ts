@@ -148,7 +148,7 @@ export const TableContainer = styled(Table)<{
     & thead {
       border-bottom: 0;
       & th {
-        background-color: #fff !important;
+        background-color: #f4f6f8 !important;
         height: 40px !important;
       }
     }
@@ -178,7 +178,7 @@ export const TableContainer = styled(Table)<{
       }
     }
     & th {
-      background-color: #fff;
+      background-color: #f4f6f8;
       font-weight: 500;
       font-size: 12px;
       word-break: keep-all;
@@ -204,7 +204,7 @@ export const TableContainer = styled(Table)<{
           }
 
           & tbody table thead th {
-            background-color: #fff;
+            background-color: #f4f6f8;
           }
         `
       case 'col':
