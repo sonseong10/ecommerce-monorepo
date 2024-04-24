@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState, type MemoExoticComponent, lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-
 import './styles/main.css'
 import type WorkRepository from 'service/work-repository'
 import type CardRepository from 'service/card_repository'
@@ -15,6 +14,7 @@ import { GlobalStyle } from 'styles/globalStyle'
 import Popup from 'commons/popup/PopupController'
 import LoadingView from 'commons/loading/LoadingView'
 import Spinner from 'components/ui/Spinner'
+import LayerController from 'commons/layers/LayerController'
 
 const HomePage = lazy(() => import('pages/home/home-page'))
 const Maker = lazy(() => import('components/form/maker/maker'))
@@ -147,6 +147,7 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
       <GlobalStyle />
       <Popup />
       <LoadingView />
+      <LayerController />
       <div>
         <Routes>
           <Route index element={<Login onLogin={onLogin} />} />

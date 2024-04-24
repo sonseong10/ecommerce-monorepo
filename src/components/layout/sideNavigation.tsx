@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import MyMenu from '../common/MyMenu'
 import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar, BiSitemap } from 'react-icons/bi'
 
-import buttonStyles from 'styles/modules/buttons.module.css'
 import styles from 'styles/modules/sidebar.module.css'
 import type { ICardVo } from 'types/grobal-type'
 
@@ -20,21 +18,14 @@ interface ISideNavigationProps {
   handleModeChange: () => void
   dark: boolean
 }
-const SideNavigation = ({
-  ToggleOverlay,
-  userId,
-  userCard,
-  loding,
-  isCard,
-  onLogout,
-  onMenuChange,
-  menuActive,
-  handleModeChange,
-  dark,
-}: ISideNavigationProps) => {
+const SideNavigation = ({ userId, isCard, onMenuChange, menuActive, dark }: ISideNavigationProps) => {
+  const position = location.href.split('/')
   useEffect(() => {
-    const position = location.href.split('/').pop()
-    onMenuChange(position!)
+    if (position.length >= 6) {
+      onMenuChange(position[position.length - 2]!)
+    } else {
+      onMenuChange(position.pop()!)
+    }
   }, [location.href])
 
   return (
@@ -116,25 +107,6 @@ const SideNavigation = ({
         </div>
 
         <footer className={styles.footer}>
-          {userId ? (
-            <MyMenu
-              userCard={userCard}
-              isCard={isCard}
-              onLogout={onLogout}
-              handleModeChange={handleModeChange}
-              dark={dark}
-            ></MyMenu>
-          ) : (
-            <button
-              className={`${styles.loginBtn} ${buttonStyles.primaryBtn} ${buttonStyles.baseBtn} `}
-              onClick={ToggleOverlay}
-              type="button"
-              disabled={loding}
-            >
-              {loding ? `Loding` : `Login & Signup`}
-            </button>
-          )}
-
           <dl className={styles.detailList}>
             <div className={styles.detailItem}>
               <dt className="visually-hidden">made</dt>

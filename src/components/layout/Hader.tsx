@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Logo from 'assets/images/dark-logo.svg'
 import styled from 'styled-components'
 import { useSelectorEq } from 'commons/store/common'
-import type { IState } from 'store'
+import type { IState } from 'store/modules'
 
 const HeaderWrapper = styled.header`
   background-color: #2b2e32;
