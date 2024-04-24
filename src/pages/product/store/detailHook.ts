@@ -59,7 +59,7 @@ export const useProductSave = () => {
       retailPrice,
       maxOrder,
       createdAt,
-      updateAt: undefined,
+      updateAt: '',
       code: '',
       productDtail,
       mainImage: mainImage?.imageData,
