@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import type { ICommonsStore } from '../..'
-import { useAbsApi } from '../../store/common'
+import { useAbsApi, useSelectorEq } from '../../store/common'
 import { LayerType } from '../AbsLayerType'
 import { rdxLayerClose, rdxLayers, rdxLayerSelected, rdxContentHeignt } from './layerR'
 import type { ILayerDo } from './layerVo'
@@ -40,7 +40,7 @@ export function useContentHeight(): {
 }
 
 function useLayer<T>() {
-  const { contentHeight, isLayer, data } = useSelector((state: ICommonsStore) => ({
+  const { contentHeight, isLayer, data } = useSelectorEq((state: ICommonsStore) => ({
     contentHeight: state.layers?.contentHeight,
     isLayer: state.layers?.isLayer,
     data: state.layers?.data,

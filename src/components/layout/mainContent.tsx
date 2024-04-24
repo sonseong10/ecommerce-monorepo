@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import SideNavigation from './sideNavigation'
 import type { ICardVo } from 'types/grobal-type'
 import { Outlet } from 'react-router-dom'
 import Hader from './Hader'
+import { useContentHeight } from 'commons/layers/store/layerHook'
 
 interface IMainContentProps {
   userId: string
@@ -27,6 +28,14 @@ const MainContent = ({
   onMenuChange,
   dark,
 }: IMainContentProps) => {
+  const { set } = useContentHeight()
+  const contentRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    set(() => {
+      return contentRef.current?.getBoundingClientRect() as DOMRect
+    })
+  }, [contentRef])
+
   return (
     <>
       <Hader />
@@ -44,7 +53,7 @@ const MainContent = ({
           dark={dark}
         />
 
-        <article className="articleGroup">
+        <article className="articleGroup" ref={contentRef}>
           <Outlet />
         </article>
       </div>

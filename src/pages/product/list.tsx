@@ -10,6 +10,9 @@ import { useProductListData } from './store/listHook'
 import OptionGrid from 'components/ui/OptionGrid'
 import type { IProductVo } from './store/detailVo'
 import { useDeleteProduct } from './store/detailHook'
+import { useNavigate } from 'react-router-dom'
+import { UiInputText } from 'components/ui/InputText'
+import { UiDateOptionGroup } from 'components/ui/DateOptionGroup'
 
 // interface IProductListProps {
 //   dark: boolean
@@ -86,28 +89,68 @@ function List() {
     },
   ]
 
-  return <Grid id="productList" container={TableContainer} data={list ? list : []} setting={settting} />
+  return (
+    <Grid
+      id="productList"
+      container={TableContainer}
+      data={list ? list : []}
+      setting={settting}
+      headerInfo={{ fixed: 'clac(100vh - 400px)' }}
+    />
+  )
 }
 
 function ProductList() {
+  const navigate = useNavigate()
   return (
     <>
       <ElementGroup.Row flexContent="between">
         <Title weight="medium" size="lg">
           상품목록
         </Title>
+
+        <Button
+          color="primary"
+          btnSize="xsm"
+          text="상품 등록"
+          iconName="NextArrow"
+          iconPosition="after"
+          onClick={() => navigate('/admin/product/info')}
+        />
       </ElementGroup.Row>
 
       <OptionGrid
         data={[
-          { title: '상품명', element: <div /> },
-          { title: '공급가', element: <div /> },
-          { title: '생성일', element: <div /> },
+          {
+            title: '상품명',
+            element: (
+              <ElementGroup.Row>
+                <UiInputText id="keyword" placeholder="상품명 입력" />
+              </ElementGroup.Row>
+            ),
+          },
+          {
+            title: '공급가',
+            element: (
+              <ElementGroup.Row>
+                <UiInputText id="supplyPrice" placeholder="상품가격 입력" />
+              </ElementGroup.Row>
+            ),
+          },
+          {
+            title: '생성일',
+            element: (
+              <ElementGroup.Row>
+                <UiDateOptionGroup id="date" onlyDate />
+              </ElementGroup.Row>
+            ),
+          },
         ]}
       />
 
-      <ElementGroup.Row flexContent="end">
-        <Button color="primary" btnSize="sm" text="신규상품 등록" iconName="NextArrow" iconPosition="after" />
+      <ElementGroup.Row flexContent="center">
+        <Button btnType="border" thin text="초가화" />
+        <Button text="검색" thin />
       </ElementGroup.Row>
 
       <List />

@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { AbsIRes } from '../../Http'
+import type { AbsIRes } from 'commons/Http'
 import { absCreateThunk } from '../../store/common'
 import type { ILayerDo } from './layerVo'
 
