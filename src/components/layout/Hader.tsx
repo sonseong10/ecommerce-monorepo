@@ -4,6 +4,8 @@ import Logo from 'assets/images/dark-logo.svg'
 import styled from 'styled-components'
 import { useSelectorEq } from 'commons/store/common'
 import type { IState } from 'store/modules'
+import Button from 'components/ui/Button'
+import { useAuth } from 'pages/auth/authHook'
 
 const HeaderWrapper = styled.header`
   background-color: #2b2e32;
@@ -24,15 +26,32 @@ const HeaderWrapper = styled.header`
       }
     }
 
-    .user-name,
-    span {
-      font-size: 1.4rem;
-      color: #fff;
-    }
+    .userInfo {
+      display: flex;
+      align-items: center;
+      .user-name,
+      span {
+        font-size: 1.4rem;
+        color: #fff;
+      }
 
-    .user-name {
-      font-weight: 700;
-      margin-right: 2px;
+      .user-name {
+        font-weight: 700;
+        margin-right: 2px;
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        ::after {
+          display: block;
+          width: 1px;
+          height: 14px;
+          background-color: #d6d6d6;
+          margin-left: 10px;
+          content: '';
+        }
+      }
     }
   }
 `
@@ -41,6 +60,8 @@ const Header = () => {
   const { userName } = useSelectorEq((state: IState) => ({
     userName: state.auth.user?.displayName,
   }))
+
+  const { onLogout } = useAuth()
 
   return (
     <HeaderWrapper>
@@ -51,9 +72,10 @@ const Header = () => {
           </Link>
         </strong>
 
-        <div>
+        <div className="userInfo">
           <strong className="user-name">{userName ? userName : '사용자'}님</strong>
           <span>환영합니다.</span>
+          <Button text="로그아웃" btnSize="xsm" btnType="ghost" color="lightGray" onClick={onLogout} />
         </div>
       </div>
     </HeaderWrapper>
