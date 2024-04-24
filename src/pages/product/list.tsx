@@ -3,7 +3,7 @@ import Grid from 'commons/ui/grid/Grid'
 import Pagelable from 'components/ui/Pagelable'
 import { ElementGroup, TableContainer, Title } from 'styles/components'
 import { GridDateCell, GridImageCell } from 'commons/ui/grid/AbsGridCell'
-import { GridButtonCell, GridLocalStringCell } from 'components/ui/grid/GridCell'
+import { GridButtonCell, GridLocalStringCell, GridWrapCell } from 'components/ui/grid/GridCell'
 import Button from 'components/ui/Button'
 import type { IGridSetting, IGrideCell } from 'commons/ui/grid/GridVo'
 import { useProductListData } from './store/listHook'
@@ -40,30 +40,37 @@ function List() {
     {
       header: '상품코드',
       id: ['code'],
+      width: '220px',
     },
     {
       header: '상품명',
       id: ['productName'],
+      element: GridWrapCell,
+      width: 'auto',
     },
     {
       header: '메인이미지',
       id: ['mainImage'],
       element: GridImageCell,
+      width: '110px',
     },
     {
       header: '공급가',
       id: ['supplyPrice'],
       element: GridLocalStringCell,
+      width: '100px',
     },
     {
       header: '생성일',
       id: ['createdAt'],
       element: GridDateCell,
+      width: '100px',
     },
     {
       header: '수정일',
       id: ['updateAt'],
       element: GridDateCell,
+      width: '100px',
     },
     {
       header: '수정/상세',
@@ -81,11 +88,13 @@ function List() {
           paramidx: 0,
         },
       },
+      width: '80px',
     },
     {
       header: '삭제',
       id: ['code'],
       element: GridroductDeleteCell,
+      width: '80px',
     },
   ]
 
@@ -95,7 +104,8 @@ function List() {
       container={TableContainer}
       data={list ? list : []}
       setting={settting}
-      headerInfo={{ fixed: 'clac(100vh - 400px)' }}
+      headerInfo={{ fixed: 'calc(100vh - 580px)' }}
+      layoutOverflow
     />
   )
 }

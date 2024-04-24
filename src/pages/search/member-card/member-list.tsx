@@ -33,7 +33,7 @@ const MemberList = ({ cards }: IMemberListProps) => {
     <Grid
       data={data}
       headerInfo={{
-        fixed: 'calc(100vh - 200px)',
+        fixed: 'calc(100vh - 240px)',
       }}
       setting={[
         { header: '성명', id: ['name'], width: '120px' },
