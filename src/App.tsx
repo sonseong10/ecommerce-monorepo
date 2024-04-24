@@ -19,7 +19,7 @@ import LayerController from 'commons/layers/LayerController'
 const HomePage = lazy(() => import('pages/home/home-page'))
 const Maker = lazy(() => import('components/form/maker/maker'))
 const Search = lazy(() => import('pages/search/search'))
-const Work = lazy(() => import('pages/work/work'))
+const WorkRoutes = lazy(() => import('pages/work'))
 const Update = lazy(() => import('components/form/update/update'))
 const Detail = lazy(() => import('pages/search/detail/detail'))
 const ProductList = lazy(() => import('pages/product/list'))
@@ -203,17 +203,17 @@ function App({ FileInput, dropDown, cardRepository, workRepository }: IAppProps)
               path="work/*"
               element={
                 <Suspense fallback={<Spinner />}>
-                  <Work
-                    userId={userId}
-                    works={works}
+                  <WorkRoutes
                     createWork={createOrUpdateWork}
-                    updateWork={createOrUpdateWork}
-                    deleteWork={deleteWork}
                     dark={dark}
-                  ></Work>
+                    deleteWork={deleteWork}
+                    userId={userId}
+                    updateWork={createOrUpdateWork}
+                    works={works}
+                  />
                 </Suspense>
               }
-            ></Route>
+            />
             <Route
               path="update"
               element={

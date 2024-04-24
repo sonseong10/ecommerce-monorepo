@@ -381,6 +381,7 @@ const ButtonGroupCommon = styled.div<IButtonList>`
 
 export const RowButtonGroup = styled(ButtonGroupCommon)`
   flex-direction: row;
+  margin-top: 18px;
 
   button {
     margin: 0 3px;

@@ -10,7 +10,6 @@ import {
   DeletePopupButtonGroup,
   type IconPopupProps,
 } from './components/IconPopup'
-import { ScriptPopupButton } from './components/ScriptPopup'
 
 /**
  * Popup 컴포넌트 callBack type
@@ -123,32 +122,4 @@ export function useIConPopup() {
   }
 
   return IconPopup
-}
-
-/**
- * 스크립트 레이어팝업
- */
-export const useScriptPopup = () => {
-  const dispatch = useDispatch()
-
-  return async (
-    data?: {
-      type: 'getshop' | 'viewus' | 'car' | 'ad'
-      code: string | number
-    },
-    title?: string,
-    callBack?: (v?: ButtonState) => void,
-  ) => {
-    dispatch(
-      rdxPopupOpen({
-        width: 560,
-        type: PopupType.SCRIPT,
-        title: title,
-        data,
-        isClose: true,
-        callBack,
-        buttonWrapper: ScriptPopupButton,
-      }),
-    )
-  }
 }

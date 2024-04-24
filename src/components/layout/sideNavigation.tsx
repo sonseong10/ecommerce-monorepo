@@ -59,7 +59,7 @@ const SideNavigation = ({ userId, isCard, onMenuChange, menuActive, dark }: ISid
               </li>
               <li className="snb-item">
                 <Link
-                  to={isCard ? '/admin/work' : '#'}
+                  to={isCard ? '/admin/work/manage' : '#'}
                   className={`${styles.snbItemButton} 
                     ${menuActive === 'work' && styles.isActive} 
                     ${!userId && styles.isDisable}`}
