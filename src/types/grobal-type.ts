@@ -10,6 +10,7 @@ export interface ICardVo {
   team: string
   telephone: string
   theme: string
+  code?: string
 }
 
 export interface IWorkVo {
