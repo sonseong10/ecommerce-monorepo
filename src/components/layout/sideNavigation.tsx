@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar, BiSitemap } from 'react-icons/bi'
 
 import styles from 'styles/modules/sidebar.module.css'
 
 const SideNavigation = () => {
-  const position = location.href.split('/')
+  const location = useLocation()
+  const position = location.pathname.split('/')
   const [menuActive, setMenuActive] = useState('main')
   useEffect(() => {
-    if (position.length >= 6) {
+    if (position.length >= 4) {
       setMenuActive(position[position.length - 2]!)
     } else {
       setMenuActive(position.pop()!)
     }
-  }, [location.href])
+  }, [position])
 
   return (
     <div className={`col-md-2 col-lg-3 sm-hidden ${styles.floating}`}>
@@ -35,7 +36,7 @@ const SideNavigation = () => {
               </li>
               <li className="snb-item">
                 <Link
-                  to="/admin/member"
+                  to="/admin/member/manage"
                   className={`${styles.snbItemButton} 
                     ${menuActive === 'member' && styles.isActive} 
                     `}

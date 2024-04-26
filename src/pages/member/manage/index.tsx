@@ -1,10 +1,13 @@
 import React from 'react'
 
-import type { ICardVo } from 'types/grobal-type'
-import Grid from 'commons/ui/grid/Grid'
-import type { IGrideCell } from 'commons/ui/grid/GridVo'
-import { GridButtonCell } from 'components/ui/grid/GridCell'
+import { UiInputText } from 'components/ui/InputText'
+import Button from 'components/ui/Button'
+import { ElementGroup, Title } from 'styles/components'
 import styled from 'styled-components'
+import type { IGrideCell } from 'commons/ui/grid/GridVo'
+import Grid from 'commons/ui/grid/Grid'
+import { GridButtonCell } from 'components/ui/grid/GridCell'
+import { useInitMember } from './store/manageHook'
 
 const Badge = styled.span<{ state: boolean }>`
   background-color: ${props => (props.state ? '#35ef2830' : '#dfdfdf30')};
@@ -19,10 +22,11 @@ function GridStateCell({ data }: IGrideCell<[boolean]>) {
   return <Badge state={data[0]}>{data[0] ? '근무중' : '오프라인'}</Badge>
 }
 
-const MemberList = () => {
-  const data: ICardVo[] =
-    // cards ? Object.values(cards).map((card, index) => ({ ...card, code: Object.keys(cards)[index] })) :
-    []
+function MemberList() {
+  const data = useInitMember()
+
+  console.log(data)
+
   return (
     <Grid
       data={data}
@@ -49,7 +53,7 @@ const MemberList = () => {
             eventType: 'link',
             btnSize: 'xsm',
             link: {
-              url: `/admin/detail`,
+              url: `/admin/member/detail`,
               paramidx: 0,
             },
           },
@@ -61,4 +65,22 @@ const MemberList = () => {
   )
 }
 
-export default MemberList
+function MemberManage() {
+  return (
+    <>
+      <ElementGroup.Row flexContent="between">
+        <Title size="md" weight="medium">
+          직원검색
+        </Title>
+        <ElementGroup.Row flexContent="end">
+          <UiInputText id="keyword" placeholder="직원이름 검색" />
+          <Button text="검색" btnSize="xsm" />
+        </ElementGroup.Row>
+      </ElementGroup.Row>
+
+      <MemberList />
+    </>
+  )
+}
+
+export default MemberManage

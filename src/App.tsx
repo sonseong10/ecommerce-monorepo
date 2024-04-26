@@ -11,7 +11,7 @@ import Spinner from 'components/ui/Spinner'
 import LayerController from 'commons/layers/LayerController'
 
 const HomePage = lazy(() => import('pages/home/home-page'))
-const Search = lazy(() => import('pages/search/search'))
+const MemberRoute = lazy(() => import('pages/member'))
 const WorkRoutes = lazy(() => import('pages/work'))
 const ProductList = lazy(() => import('pages/product/list'))
 const NotPage = lazy(() => import('pages/errors/not-page'))
@@ -52,7 +52,7 @@ function App() {
               path="member/*"
               element={
                 <Suspense fallback={<Spinner />}>
-                  <Search />
+                  <MemberRoute />
                 </Suspense>
               }
             />

@@ -60,7 +60,6 @@ const Header = () => {
   const { userName } = useSelectorEq((state: IState) => ({
     userName: state.auth.user?.displayName,
   }))
-
   const { onLogout } = useAuth()
 
   return (
