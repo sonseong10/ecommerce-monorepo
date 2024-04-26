@@ -1,5 +1,6 @@
+import type { IRegisterWork } from 'pages/work/register/store/registerVo'
 import { firebaseDatabase } from './firebase'
-import { ref, onValue, off, set, remove } from 'firebase/database'
+import { ref, onValue, off, set, remove, getDatabase, push } from 'firebase/database'
 
 class WorkRepository {
   syncWorks(
@@ -20,26 +21,15 @@ class WorkRepository {
     return () => off(query)
   }
 
-  saveWork(
-    userId: string,
-    work: {
-      contents: string
-      time: number
-      title: string
-    },
-  ) {
-    set(ref(firebaseDatabase, `works/${userId}/${work.time}`), work)
+  saveWork(work: IRegisterWork) {
+    const db = getDatabase()
+    const workRef = ref(db, 'works')
+    const newWorkRef = push(workRef)
+    set(newWorkRef, work)
   }
 
-  removeWork(
-    userId: string,
-    work: {
-      contents: string
-      time: number
-      title: string
-    },
-  ) {
-    remove(ref(firebaseDatabase, `works/${userId}/${work.time}`))
+  removeWork(userId: string) {
+    remove(ref(firebaseDatabase, `works/${userId}`))
   }
 
   removeWorkAll(userId: string) {

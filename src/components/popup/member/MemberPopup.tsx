@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AbsPopup from 'commons/popup/display/AbsPopup'
 import { PopupType } from 'components/popup/PopupType'
 import Grid from 'commons/ui/grid/Grid'
@@ -11,10 +11,10 @@ import { useDispatch } from 'react-redux'
 import { rdxSetPopupData } from 'commons/popup/store/popupR'
 import styled from 'styled-components'
 import { GridNumberCell } from 'commons/ui/grid/AbsGridCell'
-import { useClosePopup } from 'commons/popup/store/absPopupHook'
+import { useClosePopup, usePopupData } from 'commons/popup/store/absPopupHook'
 import { ButtonState } from 'commons/popup/store/absPopupVo'
 import type { IMemberPopupReturnData } from './store/memberPopupVo'
-import { useMemberList } from './store/memberPopupHook'
+import { useMemberList, useRemoveItem } from './store/memberPopupHook'
 
 function GridAddCell({ data }: IGrideCell<string[]>) {
   const dispatch = useDispatch()
@@ -69,9 +69,8 @@ const ResultListStyle = styled.ul`
 `
 
 function ResultList() {
-  const { result } = useSelectorEq((state: ICommonsStore) => ({
-    result: state.popups?.returnData?.[PopupType.MEMBER] ? state.popups?.returnData[PopupType.MEMBER] : { list: [] },
-  }))
+  const { remove, result } = useRemoveItem()
+
   return (
     <ResultListStyle>
       {result ? (
@@ -80,7 +79,15 @@ function ResultList() {
             <span>
               {item.team}팀 | {item.name}
             </span>
-            <Button iconName="Closed" iconPosition="center" btnType="ghost" btnSize="sm" />
+            <Button
+              iconName="Closed"
+              iconPosition="center"
+              btnType="ghost"
+              btnSize="sm"
+              onClick={() => {
+                remove(item.code)
+              }}
+            />
           </li>
         ))
       ) : (
@@ -120,6 +127,19 @@ export function WorkPopupButtonGroup() {
 
 export default function MemberPopup() {
   const memberList = useMemberList()
+  const dispatch = useDispatch()
+  const { popupDo } = usePopupData<{ list?: IMemberPopupReturnData[] }>(PopupType.MEMBER)
+
+  useEffect(() => {
+    if (popupDo?.data?.list) {
+      dispatch(
+        rdxSetPopupData({
+          type: PopupType.MEMBER,
+          value: { list: popupDo?.data.list },
+        }),
+      )
+    }
+  }, [])
 
   return (
     <AbsPopup type={PopupType.MEMBER} borderShape={4} header={<PopupHeader />}>

@@ -6,9 +6,10 @@ import CardRepository from 'service/card_repository'
 import type { IState } from 'store/modules'
 import type { ICardVo } from 'types/grobal-type'
 import type { IMemberPopupReturnData } from './memberPopupVo'
-import { rdxPopupOpen } from 'commons/popup/store/popupR'
+import { rdxPopupOpen, rdxSetPopupData } from 'commons/popup/store/popupR'
 import { PopupType } from 'components/popup/PopupType'
 import { WorkPopupButtonGroup } from '../MemberPopup'
+import type { ICommonsStore } from 'commons'
 
 export const useMemberList = () => {
   const [memberList, setMembereList] = useState<ICardVo[] | undefined>(undefined)
@@ -34,7 +35,7 @@ export const useMemberList = () => {
 export const useMemberPopup = () => {
   const dispatch = useDispatch()
   const memberPopup = async (
-    data?: undefined,
+    data?: { list?: IMemberPopupReturnData[] },
     title?: string,
     callBack?: (v?: { state: ButtonState; list?: IMemberPopupReturnData[] }) => void,
   ) => {
@@ -43,6 +44,7 @@ export const useMemberPopup = () => {
         callBack(result as { state: ButtonState; list?: IMemberPopupReturnData[] })
       }
     }
+
     dispatch(
       rdxPopupOpen({
         width: 620,
@@ -55,4 +57,24 @@ export const useMemberPopup = () => {
     )
   }
   return memberPopup
+}
+
+export const useRemoveItem = () => {
+  const dispatch = useDispatch()
+  const { result } = useSelectorEq((state: ICommonsStore) => ({
+    result: state.popups?.returnData?.[PopupType.MEMBER] ? state.popups?.returnData[PopupType.MEMBER] : { list: [] },
+  }))
+
+  const remove = (code: string) => {
+    dispatch(
+      rdxSetPopupData({
+        type: PopupType.MEMBER,
+        value: {
+          list: (result as { list: IMemberPopupReturnData[] }).list.filter(i => i.code !== code),
+        },
+      }),
+    )
+  }
+
+  return { result, remove }
 }

@@ -6,6 +6,7 @@ import auth, { type IAuthState } from 'pages/auth/authR'
 import { Grade } from 'store/storageVo'
 import productDetail, { type IProductDetailState } from 'pages/product/store/detailR'
 import layers from 'commons/layers/store/layerR'
+import memberRegister, { type IMemberRegisterState } from 'pages/work/register/store/registerR'
 
 export interface IInitStates {
   deviceType: boolean
@@ -18,12 +19,14 @@ export interface IState extends ICommonsStore {
   auth: IAuthState
   init: IInitStates
   productDetail: IProductDetailState
+  memberRegister: IMemberRegisterState
 }
 
 const defaultReducers = {
   ...CommonsSlim({ layers }),
   auth,
   productDetail,
+  memberRegister,
 }
 
 /**
