@@ -12,11 +12,11 @@ import { WorkPopupButtonGroup } from '../MemberPopup'
 import type { ICommonsStore } from 'commons'
 
 export const useMemberList = () => {
-  const [memberList, setMembereList] = useState<ICardVo[] | undefined>(undefined)
+  const [memberList, setMembereList] = useState<ICardVo[]>([])
 
   const cardService = new CardRepository()
   const { userCode } = useSelectorEq((state: IState) => ({
-    userCode: state.auth.user?.uid ? state.auth.user?.uid : '',
+    userCode: state.auth.user?.uid ? state.auth.user?.uid : undefined,
   }))
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export const useMemberPopup = () => {
 export const useRemoveItem = () => {
   const dispatch = useDispatch()
   const { result } = useSelectorEq((state: ICommonsStore) => ({
-    result: state.popups?.returnData?.[PopupType.MEMBER] ? state.popups?.returnData[PopupType.MEMBER] : { list: [] },
+    result: state.popups?.returnData?.[PopupType.MEMBER]?.list,
   }))
 
   const remove = (code: string) => {
@@ -70,7 +70,7 @@ export const useRemoveItem = () => {
       rdxSetPopupData({
         type: PopupType.MEMBER,
         value: {
-          list: (result as { list: IMemberPopupReturnData[] }).list.filter(i => i.code !== code),
+          list: (result as IMemberPopupReturnData[]).filter(i => i.code !== code),
         },
       }),
     )

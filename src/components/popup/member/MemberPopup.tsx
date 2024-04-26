@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import AbsPopup from 'commons/popup/display/AbsPopup'
 import { PopupType } from 'components/popup/PopupType'
 import Grid from 'commons/ui/grid/Grid'
-import type { IGrideCell } from 'commons/ui/grid/GridVo'
+// import type { IGrideCell } from 'commons/ui/grid/GridVo'
 import Button from 'components/ui/Button'
 import { RowButtonGroup, TableContainer, Text } from 'styles/components'
-import type { ICommonsStore } from 'commons'
 import { useSelectorEq } from 'commons/store/common'
 import { useDispatch } from 'react-redux'
 import { rdxSetPopupData } from 'commons/popup/store/popupR'
@@ -15,14 +14,14 @@ import { useClosePopup, usePopupData } from 'commons/popup/store/absPopupHook'
 import { ButtonState } from 'commons/popup/store/absPopupVo'
 import type { IMemberPopupReturnData } from './store/memberPopupVo'
 import { useMemberList, useRemoveItem } from './store/memberPopupHook'
+import type { IGrideCell } from 'commons/ui/grid/GridVo'
+import type { IState } from 'store/modules'
 
 function GridAddCell({ data }: IGrideCell<string[]>) {
   const dispatch = useDispatch()
 
-  const { returnData } = useSelectorEq((state: ICommonsStore) => ({
-    returnData: state.popups?.returnData?.[PopupType.MEMBER]
-      ? (state.popups?.returnData?.[PopupType.MEMBER].list as IMemberPopupReturnData[])
-      : ([] as IMemberPopupReturnData[]),
+  const { returnData } = useSelectorEq((state: IState) => ({
+    returnData: state.popups?.returnData?.[PopupType.MEMBER],
   }))
 
   const addMember = () => {
@@ -30,7 +29,9 @@ function GridAddCell({ data }: IGrideCell<string[]>) {
       rdxSetPopupData({
         type: PopupType.MEMBER,
         value: {
-          list: [...returnData, { code: data[0], name: data[1], team: data[2], theme: data[3] }],
+          list: returnData
+            ? [...returnData.list, { code: data[0], name: data[1], team: data[2], theme: data[3] }]
+            : [{ code: data[0], name: data[1], team: data[2], theme: data[3] }],
         },
       }),
     )
@@ -41,7 +42,9 @@ function GridAddCell({ data }: IGrideCell<string[]>) {
       text="추가"
       onClick={addMember}
       btnSize="xsm"
-      disabled={returnData.findIndex(item => item.code === data[0]) > -1}
+      disabled={
+        returnData ? returnData.list.findIndex((item: IMemberPopupReturnData) => item.code === data[0]) > -1 : false
+      }
       thin
     />
   )
@@ -49,6 +52,8 @@ function GridAddCell({ data }: IGrideCell<string[]>) {
 
 const ResultListStyle = styled.ul`
   margin-top: 10px;
+  max-height: 300px;
+  overflow-y: auto;
 
   li {
     display: flex;
@@ -74,7 +79,7 @@ function ResultList() {
   return (
     <ResultListStyle>
       {result ? (
-        result?.list.map((item: IMemberPopupReturnData) => (
+        result?.map((item: IMemberPopupReturnData) => (
           <li key={item.code}>
             <span>
               {item.team}팀 | {item.name}
@@ -135,7 +140,7 @@ export default function MemberPopup() {
       dispatch(
         rdxSetPopupData({
           type: PopupType.MEMBER,
-          value: { list: popupDo?.data.list },
+          value: { list: popupDo?.data.list ? popupDo?.data.list : [] },
         }),
       )
     }
