@@ -1,7 +1,6 @@
 import React from 'react'
 import AbsPopup from 'commons/popup/display/AbsPopup'
 import { PopupType } from 'components/popup/PopupType'
-import { useMemberList } from './store/memberPopupHook'
 import Grid from 'commons/ui/grid/Grid'
 import type { IGrideCell } from 'commons/ui/grid/GridVo'
 import Button from 'components/ui/Button'
@@ -15,6 +14,7 @@ import { GridNumberCell } from 'commons/ui/grid/AbsGridCell'
 import { useClosePopup } from 'commons/popup/store/absPopupHook'
 import { ButtonState } from 'commons/popup/store/absPopupVo'
 import type { IMemberPopupReturnData } from './store/memberPopupVo'
+import { useMemberList } from './store/memberPopupHook'
 
 function GridAddCell({ data }: IGrideCell<string[]>) {
   const dispatch = useDispatch()
