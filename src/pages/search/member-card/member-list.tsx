@@ -6,14 +6,6 @@ import type { IGrideCell } from 'commons/ui/grid/GridVo'
 import { GridButtonCell } from 'components/ui/grid/GridCell'
 import styled from 'styled-components'
 
-interface IMemberListProps {
-  cards?: {
-    [key: string]: ICardVo
-  }
-  searchValue?: string
-  dark: boolean
-}
-
 const Badge = styled.span<{ state: boolean }>`
   background-color: ${props => (props.state ? '#35ef2830' : '#dfdfdf30')};
   color: ${props => (props.state ? '#1eaf14' : '#525252')};
@@ -27,8 +19,10 @@ function GridStateCell({ data }: IGrideCell<[boolean]>) {
   return <Badge state={data[0]}>{data[0] ? '근무중' : '오프라인'}</Badge>
 }
 
-const MemberList = ({ cards }: IMemberListProps) => {
-  const data = cards ? Object.values(cards).map((card, index) => ({ ...card, code: Object.keys(cards)[index] })) : []
+const MemberList = () => {
+  const data: ICardVo[] =
+    // cards ? Object.values(cards).map((card, index) => ({ ...card, code: Object.keys(cards)[index] })) :
+    []
   return (
     <Grid
       data={data}

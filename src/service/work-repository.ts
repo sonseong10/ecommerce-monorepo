@@ -3,22 +3,22 @@ import { firebaseDatabase } from './firebase'
 import { ref, onValue, off, set, remove, getDatabase, push } from 'firebase/database'
 
 class WorkRepository {
-  syncWorks(
-    userId: string,
-    onUpdate: (value: {
-      [key: string]: {
-        contents: string
-        time: number
-        title: string
-      }
-    }) => void,
-  ) {
-    const query = ref(firebaseDatabase, `works/${userId}`)
+  syncWorks(onUpdate: (value: { [key: string]: IRegisterWork }) => void) {
+    const query = ref(firebaseDatabase, `works`)
     onValue(query, snapshot => {
       const value = snapshot.val()
       value && onUpdate(value)
     })
     return () => off(query)
+  }
+
+  syncWork(workCode: string, onUpdate: (result: IRegisterWork) => void) {
+    const q = ref(firebaseDatabase, `works/${workCode}`)
+    onValue(q, snapshot => {
+      const value = snapshot.val()
+      value && onUpdate(value)
+    })
+    return () => off(q)
   }
 
   saveWork(work: IRegisterWork) {

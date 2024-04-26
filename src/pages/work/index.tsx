@@ -4,22 +4,7 @@ import Spinner from 'components/ui/Spinner'
 const WorkManage = lazy(() => import('./manage/manage'))
 const WorkRegister = lazy(() => import('./register/register'))
 
-interface IWorkProps {
-  userId: string
-  works?: {
-    [key: string]: {
-      contents: string
-      time: number
-      title: string
-    }
-  }
-  createWork: (work: { contents: string; time: number; title: string }) => void
-  updateWork: (work: { contents: string; time: number; title: string }) => void
-  deleteWork: (work: { contents: string; time: number; title: string }) => void
-  dark: boolean
-}
-
-export default function WorkRoutes(props: IWorkProps) {
+export default function WorkRoutes() {
   return (
     <Routes>
       <Route
@@ -34,7 +19,7 @@ export default function WorkRoutes(props: IWorkProps) {
         path="manage/*"
         element={
           <Suspense fallback={<Spinner />}>
-            <WorkManage {...props} />
+            <WorkManage />
           </Suspense>
         }
       />
