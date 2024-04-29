@@ -25,8 +25,6 @@ function GridStateCell({ data }: IGrideCell<[boolean]>) {
 function MemberList() {
   const data = useInitMember()
 
-  console.log(data)
-
   return (
     <Grid
       data={data}
