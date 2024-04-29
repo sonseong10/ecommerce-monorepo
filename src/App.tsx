@@ -17,6 +17,7 @@ const NotPage = lazy(() => import('pages/errors/not-page'))
 const Login = lazy(() => import('pages/auth/login'))
 const MainContent = lazy(() => import('components/layout/mainContent'))
 const ProductDetail = lazy(() => import('pages/product/detail'))
+const DisplayPage = lazy(() => import('pages/display'))
 
 function App() {
   const [theme] = useState<DefaultTheme>(lightTheme)
@@ -62,6 +63,14 @@ function App() {
               </Suspense>
             }
           />
+          <Route
+            path="display/*"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <DisplayPage />
+              </Suspense>
+            }
+          ></Route>
           <Route path="product/*">
             <Route
               path="list/*"
@@ -79,6 +88,7 @@ function App() {
                 </Suspense>
               }
             ></Route>
+
             <Route
               path="*"
               element={
