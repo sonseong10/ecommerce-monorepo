@@ -10,16 +10,14 @@
   overflow-y: auto;
 }
 
-.infoGroup,
-.contentsGroup {
-  margin-bottom: 3.2rem;
-}
+
 
 .infoGroup {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  margin: 2rem 0;
 }
 
 .header .pageTitle {
@@ -31,23 +29,21 @@
 }
 
 .imgWrapper {
-  flex-shrink: 0;
-  margin-bottom: 3.8rem;
-  width: 12rem;
-  height: 12rem;
+  margin-right: 2em;
+  width: 16rem;
   border-radius: 22px;
   overflow: hidden;
 }
 
 .imgWrapper img {
-  width: 12rem;
-  height: 12rem;
+  width: 100%;
   object-fit: cover;
 }
 
 .userInfoList {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
@@ -57,7 +53,6 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  margin-right: 2.4rem;
   margin-bottom: 0.8rem;
 }
 
@@ -88,7 +83,7 @@
 
 .msgBox {
   width: 100%;
-  flex-shrink: 0;
+  min-height: 18em;
   padding: 0.8rem;
   background-color: light-background;
   border-radius: 0.4rem;
@@ -146,9 +141,5 @@
 @media screen and (min-width: 768px) {
   .infoGroup {
     flex-direction: row;
-  }
-
-  .imgWrapper {
-    margin-right: 3.8rem;
   }
 }

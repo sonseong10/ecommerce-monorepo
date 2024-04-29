@@ -27,67 +27,58 @@ function App() {
       <Popup />
       <LoadingView />
       <LayerController />
-      <div>
-        <Routes>
-          <Route index element={<Login />} />
+
+      <Routes>
+        <Route index element={<Login />} />
+        <Route
+          path="/admin"
+          element={
+            <Suspense fallback={<Spinner />}>
+              <MainContent />
+            </Suspense>
+          }
+        >
           <Route
-            path="/admin"
+            path="main/*"
             element={
               <Suspense fallback={<Spinner />}>
-                <MainContent />
+                <HomePage />
               </Suspense>
             }
-          >
+          />
+          <Route
+            path="member/*"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <MemberRoute />
+              </Suspense>
+            }
+          />
+          <Route
+            path="work/*"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <WorkRoutes />
+              </Suspense>
+            }
+          />
+          <Route path="product/*">
             <Route
-              path="main/*"
+              path="list/*"
               element={
                 <Suspense fallback={<Spinner />}>
-                  <HomePage />
+                  <ProductList />
                 </Suspense>
               }
-            />
+            ></Route>
             <Route
-              path="member/*"
+              path="info/*"
               element={
                 <Suspense fallback={<Spinner />}>
-                  <MemberRoute />
+                  <ProductDetail />
                 </Suspense>
               }
-            />
-            <Route
-              path="work/*"
-              element={
-                <Suspense fallback={<Spinner />}>
-                  <WorkRoutes />
-                </Suspense>
-              }
-            />
-            <Route path="product/*">
-              <Route
-                path="list/*"
-                element={
-                  <Suspense fallback={<Spinner />}>
-                    <ProductList />
-                  </Suspense>
-                }
-              ></Route>
-              <Route
-                path="info/*"
-                element={
-                  <Suspense fallback={<Spinner />}>
-                    <ProductDetail />
-                  </Suspense>
-                }
-              ></Route>
-              <Route
-                path="*"
-                element={
-                  <Suspense fallback={<Spinner />}>
-                    <NotPage></NotPage>
-                  </Suspense>
-                }
-              ></Route>
-            </Route>
+            ></Route>
             <Route
               path="*"
               element={
@@ -97,8 +88,16 @@ function App() {
               }
             ></Route>
           </Route>
-        </Routes>
-      </div>
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <NotPage></NotPage>
+              </Suspense>
+            }
+          ></Route>
+        </Route>
+      </Routes>
     </ThemeProvider>
   )
 }

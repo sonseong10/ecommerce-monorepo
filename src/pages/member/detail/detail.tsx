@@ -3,14 +3,34 @@ import styles from 'styles/modules/detail.module.css'
 import { useInitMemberDetail } from './store/detailHook'
 import Button from 'components/ui/Button'
 import DEFAULT_USER from 'assets/images/img-user-default.png'
+import { useNavigate } from 'react-router-dom'
+import { ElementGroup, Title } from 'styles/components'
+import { useSelectorEq } from 'commons/store/common'
+import type { IState } from 'store/modules'
 
 const Detail = () => {
   const card = useInitMemberDetail()
+  const nav = useNavigate()
+  const { userCode } = useSelectorEq((state: IState) => ({
+    userCode: state.auth.user?.uid,
+  }))
+
   return (
-    <div className={`${styles.detailGroup} `}>
-      <header className={styles.header}>
-        <h2 className={styles.pageTitle}>사용자 정보</h2>
-      </header>
+    <>
+      <ElementGroup.Row flexContent="between">
+        <Title size="md" weight="medium">
+          {card?.name ? card?.name : '이름없음'}님 정보
+        </Title>
+
+        <ElementGroup.Row>
+          <Button text="목록" onClick={() => nav('/admin/member/manage')} thin btnSize="xsm" btnType="border" />
+          {userCode === location.href.split('/').pop() ? (
+            <Button text="정보수정" onClick={() => nav(`/admin/member/register/${userCode}`)} thin btnSize="xsm" />
+          ) : (
+            <></>
+          )}
+        </ElementGroup.Row>
+      </ElementGroup.Row>
       <div>
         <div className={styles.infoGroup}>
           <figure className={styles.imgWrapper}>
@@ -31,7 +51,7 @@ const Detail = () => {
             </div>
             <div className={styles.userInfoItem}>
               <dt>부서</dt>
-              <dd>{card?.team}</dd>
+              <dd>{card?.team}팀</dd>
             </div>
             <div className={styles.userInfoItem}>
               <dt>직급</dt>
@@ -47,25 +67,14 @@ const Detail = () => {
         </div>
         <div className={styles.contentsGroup}>
           <dl className={styles.infoContents}>
-            <div className={styles.userInfoItem}>
-              <dt>상태</dt>
-              <dd>
-                <strong className={`${styles.loginState} ${card?.login ? styles.isLogin : styles.isOffline}`}>
-                  {card?.login ? '근무중' : '오프라인'}
-                </strong>
-              </dd>
-            </div>
             <div className={`${styles.userInfoItem} ${styles.msg}`}>
               <dt>남긴말</dt>
-              <dd className={styles.msgBox}>{card?.msg ? card.msg : '없음'}</dd>
+              <dd className={styles.msgBox}>{card?.msg ? card.msg : '내용없음'}</dd>
             </div>
           </dl>
         </div>
       </div>
-      <footer className={styles.footer}>
-        <Button text="목록"></Button>
-      </footer>
-    </div>
+    </>
   )
 }
 
