@@ -9,7 +9,7 @@ import LoadingView from 'commons/loading/LoadingView'
 import Spinner from 'components/ui/Spinner'
 import LayerController from 'commons/layers/LayerController'
 
-const HomePage = lazy(() => import('pages/home/home-page'))
+const HomePage = lazy(() => import('pages/main'))
 const MemberRoute = lazy(() => import('pages/member'))
 const WorkRoutes = lazy(() => import('pages/work'))
 const ProductList = lazy(() => import('pages/product/list'))
