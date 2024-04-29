@@ -8,7 +8,7 @@ export enum WorkRegisterUiId {
   CONTENTS = 'workContents',
 }
 
-export interface IRegisterWork {
+export interface IRegisterWorkVo {
   title: string
   startAt: string
   endAt: string
@@ -19,4 +19,5 @@ export interface IRegisterWork {
   referrer: IMemberPopupReturnData[]
   createdAt?: string | number
   updatedAt?: string | number
+  code?: string
 }

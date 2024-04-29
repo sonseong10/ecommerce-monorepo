@@ -1,6 +1,6 @@
 import { useSelectorEq } from 'commons/store/common'
 import type { IState } from 'store/modules'
-import { WorkRegisterUiId, type IRegisterWork } from './registerVo'
+import { WorkRegisterUiId, type IRegisterWorkVo } from './registerVo'
 import { useDispatch } from 'react-redux'
 import { rdxSetReferrerList } from './registerR'
 import type { IMemberPopupReturnData } from 'components/popup/member/store/memberPopupVo'
@@ -36,7 +36,7 @@ export const useWorkRegister = () => {
       writer: writer,
       updatedAt: '',
       referrer: [...referrer!, { code: user!.uid, name: user?.displayName, team: '개발', theme: 'Gray' }],
-    } as IRegisterWork)
+    } as IRegisterWorkVo)
   }
 
   return { register }
