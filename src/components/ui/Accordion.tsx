@@ -1,7 +1,7 @@
 import SVG from 'commons/styles/svgIcon'
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { ElementGroup, Text, Title } from 'styles/components'
+import { Text, Title } from 'styles/components'
 import type { Color } from 'styles/stylesVo'
 
 const AccordionWrapper = styled.section`
@@ -10,14 +10,18 @@ const AccordionWrapper = styled.section`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 12px;
   width: 100%;
-  border: 1px solid var(--border-dark);
-  border-radius: 10px;
+  border: 1px solid var(--border-primary);
+  border-radius: 4px;
   background-color: var(--body-background);
 
+  > button > div > strong {
+    margin-right: 4px;
+  }
+
   &:not(:last-of-type) {
-    margin-bottom: 24px;
+    margin-bottom: 8px;
   }
 `
 const ToggleIcon = styled.div<{ active: boolean }>`
@@ -26,8 +30,8 @@ const ToggleIcon = styled.div<{ active: boolean }>`
     display: block;
     width: 24px;
     height: 24px;
-    background: url(${SVG.DownArrow('#25282b')}) no-repeat center center;
-    background-size: 28px;
+    background: url(${SVG.DownArrow('#484848')}) no-repeat center center;
+    background-size: 24px;
     border: none;
     transform: ${props => (props.active ? 'rotate(180deg)' : 'rotate(0 deg)')};
     transition: transform 0.2s;
@@ -95,14 +99,14 @@ const AccordionContents: React.FC<{
   return (
     <>
       <ToggleBtn onClick={openHandler}>
-        <ElementGroup.Row>
-          <Title size="xsm" as="h4">
+        <div>
+          <Title size="xsm" as={'strong'} mgBottom={0}>
             {contents.title}
           </Title>
-          <Text size="sm" color={contents.info?.color ? contents.info.color : 'description'}>
+          <Text size="sm" color={contents.info?.color ? contents.info.color : 'description'} as="span">
             {contents.info?.desc}
           </Text>
-        </ElementGroup.Row>
+        </div>
 
         <ToggleIcon active={isOpen} />
       </ToggleBtn>

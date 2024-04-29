@@ -82,7 +82,7 @@ export const ElementGroup = {
 
     display: flex;
     flex-direction: row;
-    margin: 10px 0;
+    margin: 8px 0;
 
     & > * {
       margin: 3px 6px 3px 0;
