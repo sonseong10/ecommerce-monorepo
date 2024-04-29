@@ -1,7 +1,6 @@
 import React, { useState, lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './styles/main.css'
-import { useAuth } from 'pages/auth/authHook'
 import { ThemeProvider, type DefaultTheme } from 'styled-components'
 import { lightTheme } from 'styles/theme'
 import { GlobalStyle } from 'styles/globalStyle'
@@ -20,9 +19,8 @@ const MainContent = lazy(() => import('components/layout/mainContent'))
 const ProductDetail = lazy(() => import('pages/product/detail'))
 
 function App() {
-  const { onLogin } = useAuth()
-
   const [theme] = useState<DefaultTheme>(lightTheme)
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -31,7 +29,7 @@ function App() {
       <LayerController />
       <div>
         <Routes>
-          <Route index element={<Login onLogin={onLogin} />} />
+          <Route index element={<Login />} />
           <Route
             path="/admin"
             element={

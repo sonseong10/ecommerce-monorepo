@@ -11,14 +11,13 @@ const MainContent = () => {
     set(() => {
       return contentRef.current?.getBoundingClientRect() as DOMRect
     })
-  }, [contentRef])
+  }, [contentRef.current])
 
   return (
     <>
       <Hader />
       <div className="container">
         <SideNavigation />
-
         <article className="articleGroup" ref={contentRef}>
           <Outlet />
         </article>

@@ -17,13 +17,16 @@ import {
 } from './store/registerHook'
 import styled from 'styled-components'
 
+function SubmitButton() {
+  const { register } = useWorkRegister()
+  return <Button thin color="primary" text="저장" ellipsis onClick={register} />
+}
 function ButtonGroup() {
   const goToList = useToList()
-  const { register } = useWorkRegister()
   return (
     <RowButtonGroup flexContent="center">
       <Button thin text="취소" btnType="border" ellipsis onClick={goToList} />
-      <Button thin color="primary" text="저장" ellipsis onClick={register} />
+      <SubmitButton />
     </RowButtonGroup>
   )
 }

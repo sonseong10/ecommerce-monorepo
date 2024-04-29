@@ -56,26 +56,37 @@ const HeaderWrapper = styled.header`
   }
 `
 
-const Header = () => {
+function BrandLogo() {
+  return (
+    <strong className="logo-img">
+      <Link to={'/admin/main'}>
+        <img src={Logo} alt="내일의집" />
+      </Link>
+    </strong>
+  )
+}
+
+function UserInfo() {
   const { userName } = useSelectorEq((state: IState) => ({
     userName: state.auth.user?.displayName,
   }))
   const { onLogout } = useAuth()
+  return (
+    <div className="userInfo">
+      <strong className="user-name">{userName ? userName : '사용자'}님</strong>
+      <span>환영합니다.</span>
+      <Button text="로그아웃" btnSize="xsm" btnType="ghost" color="lightGray" onClick={onLogout} />
+    </div>
+  )
+}
 
+const Header = () => {
   return (
     <HeaderWrapper>
       <div>
-        <strong className="logo-img">
-          <Link to={'/admin/main'}>
-            <img src={Logo} alt="내일의집" />
-          </Link>
-        </strong>
+        <BrandLogo />
 
-        <div className="userInfo">
-          <strong className="user-name">{userName ? userName : '사용자'}님</strong>
-          <span>환영합니다.</span>
-          <Button text="로그아웃" btnSize="xsm" btnType="ghost" color="lightGray" onClick={onLogout} />
-        </div>
+        <UserInfo />
       </div>
     </HeaderWrapper>
   )

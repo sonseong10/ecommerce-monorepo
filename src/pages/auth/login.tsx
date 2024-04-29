@@ -4,13 +4,8 @@ import btnStyles from 'styles/modules/buttons.module.css'
 import Logo from 'assets/images/logo.svg'
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
-import type AuthService from 'service/auth_service'
 import Button from 'components/ui/Button'
-
-interface ILoginProps {
-  onLogin: (value: 'Google' | 'Github') => void
-  authService?: AuthService
-}
+import { useAuth } from './authHook'
 
 function BaiscUserLoginForm() {
   return (
@@ -25,7 +20,8 @@ function BaiscUserLoginForm() {
   )
 }
 
-function EasyLoginForm({ onLogin }: ILoginProps) {
+function EasyLoginForm() {
+  const { onLogin } = useAuth()
   return (
     <div className={styles.easyLogin}>
       <span>테스터&방문자용 간편로그인</span>
@@ -57,7 +53,7 @@ function EasyLoginForm({ onLogin }: ILoginProps) {
   )
 }
 
-function Login({ onLogin }: ILoginProps): JSX.Element {
+function Login(): JSX.Element {
   return (
     <div className={styles.wrapper}>
       <div className={styles.box}>
@@ -67,7 +63,7 @@ function Login({ onLogin }: ILoginProps): JSX.Element {
         <div className={styles.form}>
           <BaiscUserLoginForm />
 
-          <EasyLoginForm onLogin={onLogin} />
+          <EasyLoginForm />
         </div>
       </div>
     </div>
