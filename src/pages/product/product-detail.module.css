@@ -45,14 +45,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 132px;
-    height: 132px;
+    width: 120px;
+    height: 120px;
     background-color: #f4f6f8;
     border-radius: 4px;
     color: #ddd;
-    font-size: 52px;
+    font-size: 42px;
     cursor: pointer;
     overflow: hidden;
+    border: 1px solid;
 
     img  {
       width: 100%;
@@ -82,5 +83,5 @@
     line-height: line-height-14;
     letter-spacing: letter-spacing-14;
     margin-right: 6px;
-}
+  }
 }

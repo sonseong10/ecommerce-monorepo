@@ -8,12 +8,12 @@ const WrapperStyle = (props: { kinds?: TabType }) => {
     case 'Text':
       return css`
         min-height: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
       `
     case 'Button':
       return css`
         min-height: 29px;
-        border-bottom: 1px solid var(--border-focus);
+        // border-bottom: 1px solid var(--border-focus);
         z-index: 17;
       `
   }
@@ -46,7 +46,7 @@ const ItemStyle = (props: { kinds?: TabType }) => {
         transition: font 0.3s;
 
         &.is-active {
-          font-weight: 800;
+          font-weight: 500;
           color: var(--font-primary);
 
           span {
@@ -82,7 +82,7 @@ const ItemStyle = (props: { kinds?: TabType }) => {
           border-color: var(--border-focus);
           background-color: var(--bg-table-head);
           color: var(--font-primary);
-          font-weight: 700;
+          font-weight: 500;
 
           &::before {
             display: block;
