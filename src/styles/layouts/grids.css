@@ -91,11 +91,11 @@
 
 @media screen and (min-width: 1200px) {
   .articleGroup {
-    padding: 10px 0 10px 280px;
+    padding: 10px 0 10px 250px;
   }
 
   .container {
-    max-width: 1240px;
+    max-width: 1450px;
     padding: 0;
   }
   .container .col-lg-1 {
@@ -105,7 +105,7 @@
     width: 190px;
   }
   .container .col-lg-3 {
-    width: 285px;
+    width: 250px;
   }
   .container .col-lg-4 {
     width: 380px;

@@ -34,11 +34,11 @@ function MemberList() {
       setting={[
         { header: '성명', id: ['name'], width: '120px' },
         { header: '직위', id: ['rank'], width: '80px' },
-        { header: '직무', id: ['team'], width: '80px' },
-        { header: '근무 상태', id: ['login'], element: GridStateCell, width: '80px' },
-        { header: '이메일', id: ['email'], width: '240px' },
-        { header: '전화번호', id: ['phone'], width: '130px' },
-        { header: '유선전화', id: ['telephone'], width: '130px' },
+        { header: '직무', id: ['team'], width: '100px' },
+        { header: '근무 상태', id: ['login'], element: GridStateCell, width: '100px' },
+        { header: '이메일', id: ['email'], width: 'auto' },
+        { header: '전화번호', id: ['phone'], width: '160px' },
+        { header: '유선전화', id: ['telephone'], width: '160px' },
         {
           header: '상세',
           id: ['code'],
@@ -55,7 +55,7 @@ function MemberList() {
               paramidx: 0,
             },
           },
-          width: 'auto',
+          width: '100px',
         },
       ]}
       layoutOverflow

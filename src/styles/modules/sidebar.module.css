@@ -63,16 +63,6 @@
   pointer-events: none;
 }
 
-.logo {
-  display: block;
-  margin-bottom: 3.3rem;
-}
-
-.logo img {
-    width: 100px;
-    height: auto;
-  }
-
 .footer {
   position: absolute;
   bottom: 2.4rem;
