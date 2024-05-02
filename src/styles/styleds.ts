@@ -26,7 +26,7 @@ export const TextSize = css<{
       case 'lg':
         return props.theme.fontSize.text.lg
       default:
-        return props.theme.fontSize.default
+        return props.theme.fontSize.text.sm
     }
   }};
 `

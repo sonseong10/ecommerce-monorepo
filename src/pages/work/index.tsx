@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Spinner from 'components/ui/Spinner'
 const WorkManage = lazy(() => import('./manage/manage'))
 const WorkRegister = lazy(() => import('./register/register'))
+const WorkDetail = lazy(() => import('./detail'))
 
 export default function WorkRoutes() {
   return (
@@ -20,6 +21,14 @@ export default function WorkRoutes() {
         element={
           <Suspense fallback={<Spinner />}>
             <WorkManage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="detail/*"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <WorkDetail />
           </Suspense>
         }
       />
