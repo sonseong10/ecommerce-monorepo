@@ -91,16 +91,16 @@ const RadioItem = styled.p<{
           & label {
             display: block;
             width: 60px;
-            height: 36px;
+            height: 30px;
             border: 1px solid var(--btn-dark);
             border-left: 0;
             color: var(--btn-dark);
-            line-height: 33px;
-            font-size: ${props => props.theme.fontSize.text.lg};
+            line-height: 28px;
+            font-size: ${props => props.theme.fontSize.text.sm};
             text-align: center;
 
             &:hover {
-              background-color: var(--btn-dark-hover);
+              background-color: var(--btn-light-gray-hover);
               cursor: pointer;
             }
           }
