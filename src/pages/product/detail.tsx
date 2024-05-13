@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './product-detail.module.css'
+// import styles from './product-detail.module.css'
 import { BiCamera } from 'react-icons/bi'
 import UiInputText from 'commons/components/ui/UiInputText'
 import Button from 'components/ui/Button'
-import { ElementGroup, RowButtonGroup, Text } from 'styles/components'
+import { ElementGroup, Text, Title } from 'styles/components'
 import { UiInputFile } from 'components/ui/InputFile'
 import { useDetailPageBack, useImageData, useInitProductDeail, useProductSave } from './store/detailHook'
 import { UiInputTextArea } from 'components/ui/InputTextArea'
@@ -11,6 +11,76 @@ import { useIConPopup } from 'components/popup/popupHook'
 import { useNavigate } from 'react-router-dom'
 import OptionGrid from 'components/ui/OptionGrid'
 import TabMenu from 'components/ui/TabMenu'
+import { UiCheckBox } from 'components/ui/CheckBox'
+import styled from 'styled-components'
+import Grid from 'commons/ui/grid/Grid'
+import type { IGrideCell } from 'commons/ui/grid/GridVo'
+
+interface IProductImageComponent {
+  id: string
+  imageData?: string
+}
+
+const ProductImageStyle = styled.div`
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background-color: #f4f6f8;
+    border-radius: 4px;
+    color: #ddd;
+    font-size: 42px;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  input,
+  button {
+    display: none;
+  }
+`
+
+function ProductImage({ id, imageData }: IProductImageComponent) {
+  return (
+    <ProductImageStyle>
+      {imageData ? (
+        <>
+          <label htmlFor={id}>
+            <img src={imageData} />
+          </label>
+        </>
+      ) : (
+        <label htmlFor={id}>
+          <BiCamera />
+        </label>
+      )}
+      <UiInputFile id={id} />
+    </ProductImageStyle>
+  )
+}
+
+const ProductOptionValue = ({ data }: IGrideCell<[number]>) => {
+  return <>{<UiInputText id={`option${data[0]}`} />}</>
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ProductOptionSetting = (_props: IGrideCell<[number]>) => {
+  return (
+    <ElementGroup.Row flexContent="center">
+      <Button iconName="Plus" iconPosition="center" />
+      <Button iconName="Delete" iconPosition="center" />
+    </ElementGroup.Row>
+  )
+}
 
 function ProductInfo() {
   const { mainImage, subImage } = useImageData()
@@ -33,34 +103,14 @@ function ProductInfo() {
                   </ElementGroup.Col>
                 </ElementGroup.Row>
 
-                <ElementGroup.Row className={styles.imageSetting}>
+                <ElementGroup.Row>
                   <ElementGroup.Col flexAlign="start">
                     <Text>대표이미지</Text>
-                    {mainImage?.imageData ? (
-                      <>
-                        <label htmlFor="mainImage">
-                          <img src={mainImage.imageData} />
-                        </label>
-                      </>
-                    ) : (
-                      <label htmlFor="mainImage">
-                        <BiCamera />
-                      </label>
-                    )}
-                    <UiInputFile id="mainImage" />
+                    <ProductImage id="mainImage" imageData={mainImage?.imageData} />
                   </ElementGroup.Col>
                   <ElementGroup.Col flexAlign="start">
                     <Text>추가이미지</Text>
-                    {subImage?.imageData ? (
-                      <label htmlFor="subImage">
-                        <img src={subImage.imageData} />
-                      </label>
-                    ) : (
-                      <label htmlFor="subImage">
-                        <BiCamera />
-                      </label>
-                    )}
-                    <UiInputFile id="subImage" />
+                    <ProductImage id="subImage" imageData={subImage?.imageData} />
                   </ElementGroup.Col>
                 </ElementGroup.Row>
               </>
@@ -114,18 +164,87 @@ function ProductInfo() {
           {
             title: '추가정보',
             element: (
-              <ElementGroup.Row>
-                <ElementGroup.Col flexAlign="start">
-                  <Text>브랜드</Text>
-                  <UiInputText id="brandName" placeholder="브랜드 명" />
-                </ElementGroup.Col>
-                <ElementGroup.Col flexAlign="start">
-                  <Text>제조사</Text>
-                  <UiInputText id="manufacturName" placeholder="제조사 명" />
-                </ElementGroup.Col>
-              </ElementGroup.Row>
+              <>
+                <ElementGroup.Row>
+                  <ElementGroup.Col flexAlign="start">
+                    <Text>브랜드</Text>
+                    <UiInputText id="brandName" placeholder="브랜드 명" />
+                  </ElementGroup.Col>
+                  <ElementGroup.Col flexAlign="start">
+                    <Text>제조사</Text>
+                    <UiInputText id="manufacturName" placeholder="제조사 명" />
+                  </ElementGroup.Col>
+                </ElementGroup.Row>
+
+                <OptionGrid
+                  data={[
+                    {
+                      title: '품질보증기준',
+                      element: (
+                        <ElementGroup.Row>
+                          <UiInputText id="temp1" placeholder="내용 입력" />
+                          <UiCheckBox id="temp2" name="temp2" text="상세페이지 참조" />
+                        </ElementGroup.Row>
+                      ),
+                    },
+                    {
+                      title: '취급시 주의사항',
+                      element: (
+                        <ElementGroup.Row>
+                          <UiInputText id="temp3" placeholder="내용 입력" />
+                          <UiCheckBox id="temp4" name="temp4" text="상세페이지 참조" />
+                        </ElementGroup.Row>
+                      ),
+                    },
+                    {
+                      title: 'A/S 전화번호',
+                      element: (
+                        <ElementGroup.Row>
+                          <UiInputText id="temp5" placeholder="내용 입력" />
+                          <UiCheckBox id="temp6" name="temp6" text="상세페이지 참조" />
+                        </ElementGroup.Row>
+                      ),
+                    },
+                  ]}
+                />
+              </>
             ),
           },
+          {
+            title: '옵션정보',
+            element: (
+              <div>
+                <Grid
+                  data={[{ uid: 0 }, { uid: 1 }]}
+                  setting={[
+                    { header: '옵션명', id: ['uid'], element: ProductOptionValue },
+                    { header: '옵션값', id: ['uid'], element: ProductOptionValue },
+                    { header: '추가/삭제', id: ['uid'], element: ProductOptionSetting },
+                  ]}
+                />
+
+                <Button text="옵션생성" />
+              </div>
+            ),
+          },
+          {
+            title: '추가옵션정보',
+            element: (
+              <div>
+                <Grid
+                  data={[{ uid: 0 }, { uid: 1 }]}
+                  setting={[
+                    { header: '옵션명', id: ['uid'], element: ProductOptionValue },
+                    { header: '옵션값', id: ['uid'], element: ProductOptionValue },
+                    { header: '추가/삭제', id: ['uid'], element: ProductOptionSetting },
+                  ]}
+                />
+
+                <Button text="옵션생성" />
+              </div>
+            ),
+          },
+          { title: '배송정책' },
         ]}
       />
     </>
@@ -139,7 +258,7 @@ function PageButtonGroup() {
   const navigate = useNavigate()
 
   return (
-    <RowButtonGroup>
+    <ElementGroup.Row>
       <Button text="취소" btnType="ghost" onClick={back} />
       <Button
         text={code ? '제품수정' : '제품등록'}
@@ -172,7 +291,7 @@ function PageButtonGroup() {
           }
         }}
       />
-    </RowButtonGroup>
+    </ElementGroup.Row>
   )
 }
 
@@ -181,13 +300,15 @@ function ProductDetail() {
 
   return (
     <>
-      <ElementGroup.Row className={styles.headerWrapper}>
-        <h3>상품관리</h3>
+      <ElementGroup.Row flexContent="between">
+        <Title size="md" weight="medium">
+          상품관리
+        </Title>
 
         <PageButtonGroup />
       </ElementGroup.Row>
 
-      <div className={styles.form}>
+      <div style={{ maxHeight: 'calc(100vh - 160px)', overflowY: 'auto' }}>
         <ProductInfo />
       </div>
     </>

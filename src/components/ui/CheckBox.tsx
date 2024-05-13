@@ -22,6 +22,7 @@ const InputCheckBoxItem = styled.label<{
   margin-right: 10px;
   padding: 3px 0;
   line-height: 1;
+  font-size: 12px;
 
   i {
     display: inline-block;
@@ -98,6 +99,7 @@ function CheckBox(props: ICheckBoxProps): JSX.Element {
   useEffect(() => {
     setValue(props.value ? true : false)
   }, [props.value])
+
   return (
     <InputCheckBoxItem onlyBox={props.onlyBox}>
       <input
@@ -124,5 +126,5 @@ type IUiCheckBoxProps = Omit<ICheckBoxProps, 'id'> & {
 
 export function UiCheckBox(props: IUiCheckBoxProps) {
   const { checkValue, changeValue } = useCheckBox(props.name, props.id, props.valid)
-  return <CheckBox name={props.name} change={changeValue} value={checkValue} onlyBox={props.onlyBox} />
+  return <CheckBox change={changeValue} value={checkValue} onlyBox={props.onlyBox} {...props} />
 }
