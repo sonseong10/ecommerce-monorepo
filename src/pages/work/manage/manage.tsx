@@ -9,6 +9,7 @@ import { GridNumberCell } from 'commons/ui/grid/AbsGridCell'
 import type { IGrideCell } from 'commons/ui/grid/GridVo'
 import type { IMemberPopupReturnData } from 'components/popup/member/store/memberPopupVo'
 import styled from 'styled-components'
+import { useIConPopup } from 'components/popup/popupHook'
 
 function MoveRegisterPageBtn() {
   const navigate = useNavigate()
@@ -53,6 +54,7 @@ function GridDetailCell({ data }: IGrideCell<[string]>) {
 }
 function GridRemoveCell({ data }: IGrideCell<[string]>) {
   const remove = useRemoveWork()
+  const iconPopup = useIConPopup()
   return (
     <Button
       iconName="Delete"
@@ -60,7 +62,21 @@ function GridRemoveCell({ data }: IGrideCell<[string]>) {
       btnSize="xsm"
       color="negative"
       thin
-      onClick={() => remove(data[0])}
+      onClick={() =>
+        iconPopup(
+          'confirm',
+          {
+            iconColor: 'FF4343',
+            iconType: 'Delete',
+            title: '삭제하시겠습니까?',
+            desc: '삭제된 정보는 복구할 수 없습니다.',
+          },
+          undefined,
+          v => {
+            v && remove(data[0])
+          },
+        )
+      }
     />
   )
 }
@@ -68,8 +84,8 @@ function GridRemoveCell({ data }: IGrideCell<[string]>) {
 const Badge = styled.span<{ state: number }>`
   padding: 2px 8px;
   border-radius: 2px;
-  border: 1px solid ${props => (props.state === 2 ? '#ff3939' : props.state === 1 ? '#08df2c' : '#888888')};
-  color: ${props => (props.state === 2 ? '#ff3939' : props.state === 1 ? '#08df2c' : '#888')};
+  border: 1px solid ${props => (props.state === 0 ? '#ff3939' : props.state === 1 ? '#08df2c' : '#888888')};
+  color: ${props => (props.state === 0 ? '#ff3939' : props.state === 1 ? '#08df2c' : '#888')};
   font-weight: 500;
   font-size: 12px;
 `
@@ -77,11 +93,11 @@ const Badge = styled.span<{ state: number }>`
 function GridPriorityCell({ data }: IGrideCell<[number]>) {
   const setText = () => {
     switch (data[0]) {
-      case 2:
+      case 0:
         return '높음'
       case 1:
         return '보통'
-      case 0:
+      case 2:
         return '낮음'
       default:
         break

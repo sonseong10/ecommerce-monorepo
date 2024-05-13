@@ -7,8 +7,12 @@ import type { IMemberPopupReturnData } from 'components/popup/member/store/membe
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import WorkRepository from 'service/work-repository'
+import { useIConPopup } from 'components/popup/popupHook'
 
 export const useWorkRegister = () => {
+  const iconPopup = useIConPopup()
+  const workService = new WorkRepository()
+  const navigate = useNavigate()
   const { user, title, startAt, endAt, priority, workState, writer, contents, referrer } = useSelectorEq(
     (state: IState) => ({
       user: state.auth.user,
@@ -23,20 +27,38 @@ export const useWorkRegister = () => {
     }),
   )
 
-  const workService = new WorkRepository()
   const register = () => {
-    workService.saveWork({
-      contents,
+    const data: IRegisterWorkVo = {
+      contents: contents ? contents : '',
       createdAt: Date.now(),
-      endAt,
-      startAt,
-      title,
-      priority,
-      workState,
-      writer: writer,
+      endAt: endAt ? endAt : '',
+      startAt: startAt ? startAt : '',
+      title: title ? title : '',
+      priority: priority ? Number(priority) : 0,
+      workState: workState ? Number(workState) : 0,
+      writer: writer ? writer : '',
       updatedAt: '',
-      referrer: [...referrer!, { code: user!.uid, name: user?.displayName, team: '개발', theme: 'Gray' }],
-    } as IRegisterWorkVo)
+      referrer: [
+        ...referrer!,
+        { code: user!.uid, name: user?.displayName ? user?.displayName : '', team: '개발', theme: 'Gray' },
+      ],
+    }
+
+    workService.saveWork(data)
+
+    iconPopup(
+      'alert',
+      {
+        iconColor: '3CADFF',
+        iconType: 'Check',
+        title: '등록완료',
+        desc: '업무가 등록되었습니다.',
+      },
+      undefined,
+      v => {
+        v && navigate('/admin/work/manage')
+      },
+    )
   }
 
   return { register }
