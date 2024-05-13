@@ -53,6 +53,7 @@ function DisplayPage() {
       <DisplayWrapper>
         <LeftGroup>
           <Accordion
+            closeAll={true}
             data={[
               {
                 title: '메인배너',
