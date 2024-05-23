@@ -1,17 +1,5 @@
 {
-  "sourceType": "unambiguous",
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        "targets": {
-          "chrome": 100
-        }
-      }
-    ],
-    "@babel/preset-typescript",
-    "@babel/preset-react"
-  ],
+  "presets": ["react", "es2015"],
   "plugins": [
     [
       "babel-plugin-styled-components",

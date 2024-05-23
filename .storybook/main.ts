@@ -2,17 +2,14 @@ import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
-  stories: [
-    "../stories/Introduction.stories.mdx",
-    "../stories/components/**/*.stories.@(mdx)",
-    "../stories/design/*.stories.@(mdx)",
-    "../stories/**/*.stories.@(ts|tsx)",
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-mdx-gfm",
+    '@storybook/preset-create-react-app',
+    "@storybook/addon-themes"
   ],
   typescript: {
     check: false,
@@ -56,7 +53,16 @@ const config: StorybookConfig = {
         prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
   },
-  framework: "@storybook/react-webpack5",
+  framework:  "@storybook/react-webpack5" ,
+  core: {
+    builder: {
+      name: '@storybook/builder-webpack5',
+      options: {
+        fsCache: true,
+        lazyCompilation: true,
+      },
+    },
+  },
   async webpackFinal(config, _) {
     if (config?.resolve) {
       config.resolve.plugins = config.resolve.plugins || [];

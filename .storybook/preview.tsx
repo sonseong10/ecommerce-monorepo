@@ -17,7 +17,6 @@ export const parameters = {
   },
   viewMode: "docs",
 };
-
 const preview: Preview = {
   decorators: [
     Story => (
@@ -26,6 +25,39 @@ const preview: Preview = {
         <Story />
       </ThemeProvider>
     ),
+    // (Story, { parameters }) => {
+    //   // 👇 Make it configurable by reading from parameters
+    //   const { pageLayout } = parameters;
+    //   switch (pageLayout) {
+    //     case 'page':
+    //       return (
+    //         <div className="page-layout">
+    //           {/* <ThemeProvider theme={lightTheme as DefaultTheme}> */}
+    //             <GlobalStyle />
+    //             <Story />
+    //           {/* </ThemeProvider> */}
+    //         </div>
+            
+    //       );
+    //     case 'page-mobile':
+    //       return (
+    //         <div className="page-mobile-layout">
+    //           {/* <ThemeProvider theme={lightTheme as DefaultTheme}> */}
+    //             <GlobalStyle />
+    //             <Story />
+    //           {/* </ThemeProvider> */}
+    //         </div>
+    //       );
+    //     default:
+    //       // In the default case, don't apply a layout
+    //       return <>
+    //         <GlobalStyle />
+    //         <Story />
+    //         </>
+    //       // <ThemeProvider theme={lightTheme as DefaultTheme}>
+    //       {/* </ThemeProvider>; */}
+    //   }
+    // },
   ],
 };
 

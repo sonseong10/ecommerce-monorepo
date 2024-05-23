@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import type { Theme } from "./theme";
 import { ResetStyle } from "./resetStyle";
 
-export const CommonGlobal = css<{ theme: Theme }>`
+export const CommonGlobal = css<{ theme?: Theme }>`
   ${ResetStyle};
   :root {
     --background-body: ${props => props.theme.colors.bodyBackground};
@@ -80,7 +80,7 @@ export const CommonGlobal = css<{ theme: Theme }>`
   }
 `;
 
-export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
+export const GlobalStyle = createGlobalStyle<{ theme?: Theme }>`
 ${CommonGlobal};
 :root {
   --primary: ${props => props.theme.colors.primary};

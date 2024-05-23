@@ -1,4 +1,4 @@
-import baseStyled, { type ThemedStyledInterface } from "styled-components";
+import baseStyled from "styled-components";
 
 /**
  * @see commonFonts 폰트 관련 설정(글꼴, 사이즈, 두께)
@@ -175,4 +175,4 @@ export const darkTheme: Theme = {
  * 테마 타입 설정
  */
 export type Theme = typeof lightTheme;
-export const styled = baseStyled as ThemedStyledInterface<Theme>;
+export const styled = baseStyled as unknown;

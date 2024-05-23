@@ -1,4 +1,3 @@
-import { addons } from "@storybook/addons";
 import storybookTheme from "./storybookTheme";
 import favicon from "./favicon-32x32.png";
 
