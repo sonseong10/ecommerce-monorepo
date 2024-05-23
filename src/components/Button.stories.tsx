@@ -4,10 +4,6 @@ import Button from './Button';
 
 const meta = {
   component: Button,
-  loaders: (i) => {
-    console.log(i);
-    
-  }
 } satisfies Meta<typeof Button>;
 
 export default meta;
