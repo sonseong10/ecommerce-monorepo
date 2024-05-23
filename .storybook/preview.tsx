@@ -12,10 +12,11 @@ export const parameters = {
       date: /Date$/,
     },
   },
-  previewTabs: {
-    canvas: { hidden: true },
-  },
-  viewMode: "docs",
+  // previewTabs: {
+  //   canvas: { hidden: true },
+  // },
+  // viewMode: "docs",
+  
 };
 const preview: Preview = {
   decorators: [
