@@ -43,9 +43,9 @@ export const ResetStyle = css`
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-    src: url("../fonts/DMSans-Medium.woff2") format("woff2"),
-      url("../fonts/DMSans-Medium.woff") format("woff"),
-      url("../fonts/DMSans-Medium.ttf") format("truetype");
+    src: url("/fonts/DMSans-Medium.woff2") format("woff2"),
+      url("/fonts/DMSans-Medium.woff") format("woff"),
+      url("/fonts/DMSans-Medium.ttf") format("truetype");
   }
 
   @font-face {
@@ -371,16 +371,6 @@ export const ResetStyle = css`
 
   caption {
     display: none;
-  }
-
-  ::-moz-selection {
-    background: #fcccca;
-    text-shadow: none;
-  }
-
-  ::selection {
-    background: #fcccca;
-    text-shadow: none;
   }
 
   pre {
