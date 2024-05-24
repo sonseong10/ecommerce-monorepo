@@ -32,5 +32,6 @@
       "crypto": ["node_modules/crypto-js"]
     }
   },
+  "exclude": ["src/**/*.stories.ts"],
   "include": ["src", "**/*.ts", "**/*.tsx"]
 }
