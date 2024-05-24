@@ -8,8 +8,10 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-mdx-gfm",
-    '@storybook/preset-create-react-app',
-    "@storybook/addon-themes"
+    "@storybook/preset-create-react-app",
+    "@storybook/addon-themes",
+    "@storybook/theming",
+    "@storybook/manager-api"
   ],
   typescript: {
     check: false,

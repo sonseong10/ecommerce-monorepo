@@ -1,5 +1,5 @@
-import storybookTheme from "./storybookTheme";
-import favicon from "./favicon-32x32.png";
+import { addons } from '@storybook/manager-api';
+import storybookTheme from "./storybookTheme.js";
 
 addons.setConfig({
   theme: storybookTheme,
@@ -7,5 +7,5 @@ addons.setConfig({
 
 const link = document.createElement("link");
 link.setAttribute("rel", "shortcut icon");
-link.setAttribute("href", favicon);
+link.setAttribute("href", "./favicon.ico");
 document.head.appendChild(link);
