@@ -1,0 +1,69 @@
+# Code Convention
+
+## Base
+
+1. 함수, 변수명은 20자 이내 유추가능한 의미를 내포하고 있어야하며 `camelcase`로 정의한다
+  - temp1(x) displayOptionValue(o)
+
+## 파일구조
+  ```sh
+  src
+    ⎿___ components
+          ⎿__ ui
+                ⎿_store
+                    ⎿_ButtonHook.ts // customHook 
+                    ⎿_ButtonR.ts // customRedux
+                Button.tsx // component 
+  ```
+
+## 컴포넌틑 설계
+
+`function`을 활용하여 컴포넌트를 재작하며 `props`가 필요한 경우 `interface`를 통해 props를 정의 한다.
+
+```tsx
+// ComponentName.tsx  
+import React from 'react'; // React 17 이전이라면 사용
+
+interface IComponentProps {
+  // .. props options
+}
+
+function ComponentName(params: IComponentProps) {
+  return <div></div>
+}
+```
+
+## customHook 제작
+
+`화살표함수`를 활용하여 재작하며 `props`가 필요한 경우 `interface`를 통해 props를 정의 한다.
+
+```ts
+// customHook.ts  
+import useState from "react"
+
+interface ICustomHookProps {
+  // .. props options
+}
+
+const useCustomHook = (params: ICustomHookProps) => {
+  const [isActive, setIsActive] = useState<boolean>(false)
+
+  return isActive
+}
+```
+
+## Vo & Do
+
+`API통신`에서 `Typescript`를 사용하는 경우 데이터타입 정의를 위한 `Vo(value object)` type 과 화면구성에 필요한 `Do(displat object)` type 으로 구분하여 관리한다.
+
+```ts
+interface ISometingVo {
+  name: string,
+  value: sting
+}
+
+interface ISometingDo {
+  name: string,
+  isOpen: boolean
+}
+```
