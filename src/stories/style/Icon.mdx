@@ -1,0 +1,41 @@
+import {
+  Meta,
+  IconGallery,
+  IconItem,
+  ArgsTable,
+  Canvas,
+  Story,
+} from "@storybook/blocks";
+import styled from "styled-components";
+import SVG from "/commons/styles/svgIcon.ts";
+import * as IconStories from './Icon.stories';
+
+export const ICon = styled.div`
+  width: 40px;
+  height: 40px;
+  background: ${props =>
+    props.name && props.color
+      ? `url(${SVG[props.name](props.color)}) no-repeat center`
+      : ""};
+  background-size: 20px;
+`;
+
+<Meta title="Style/Icons" of={IconStories}/>
+
+# ICons
+
+현재 SVG파일을 변환한 아이콘 모음입니다.
+
+### Icons 추가방법
+
+[SVG converter](https://yoksel.github.io/url-encoder/) 사이트를 이용하여 `encoded` 형식으로 변경 후 `~/styles/svgIcon.ts` 파일에 추가하면 됩니다.
+
+<IconGallery>
+  {Object.keys(SVG).map((i, idx) => {
+    return (
+      <IconItem key={idx} name={i}>
+        <ICon name={i} color="#25282b" />
+      </IconItem>
+    );
+  })}
+</IconGallery>
