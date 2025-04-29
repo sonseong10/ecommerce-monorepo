@@ -4,3 +4,6 @@
 
 node_modules/
 apps/admin/node_modules/
+
+.emv
+apps/admin/.env
