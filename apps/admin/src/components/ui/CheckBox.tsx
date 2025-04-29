@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 import type { Theme } from 'styles/theme'
 import { useCheckBox } from '../../commons/ui/useUihook'
@@ -116,7 +116,7 @@ function CheckBox(props: ICheckBoxProps): JSX.Element {
   )
 }
 
-export default React.memo(CheckBox)
+export default memo(CheckBox)
 
 type IUiCheckBoxProps = Omit<ICheckBoxProps, 'id'> & {
   id: string

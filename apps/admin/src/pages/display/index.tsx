@@ -4,7 +4,6 @@ import { UiInputFile } from 'components/ui/InputFile'
 import { UiInputText } from 'components/ui/InputText'
 import OptionGrid from 'components/ui/OptionGrid'
 import { UiRadioGroup } from 'components/ui/RadioGroup'
-import React from 'react'
 import styled from 'styled-components'
 import { ElementGroup, Title } from 'styles/components'
 
@@ -69,11 +68,11 @@ function DisplayPage() {
                             <ElementGroup.Row>
                               <UiInputFile id="dsd" />
                               <UiInputText id="dsdd" placeholder="이동할 페이지주소 입력" />
-                              <Button iconName="Plus" iconPosition="center" btnType="border" thin btnSize="sm" />
+                              <Button iconName="Plus" iconPosition="center" btntype="border" thin btnSize="sm" />
                               <Button
                                 iconName="Delete"
                                 iconPosition="center"
-                                btnType="border"
+                                btntype="border"
                                 thin
                                 btnSize="sm"
                                 disabled
@@ -81,7 +80,7 @@ function DisplayPage() {
                               <Button
                                 iconName="UpArrow"
                                 iconPosition="center"
-                                btnType="border"
+                                btntype="border"
                                 thin
                                 btnSize="sm"
                                 disabled
@@ -89,7 +88,7 @@ function DisplayPage() {
                               <Button
                                 iconName="DownArrow"
                                 iconPosition="center"
-                                btnType="border"
+                                btntype="border"
                                 thin
                                 btnSize="sm"
                                 disabled
@@ -264,33 +263,33 @@ function DisplayPage() {
             <li>
               카테고리진열
               <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btnType="border" thin btnSize="sm" disabled />
-                <Button iconName="DownArrow" iconPosition="center" btnType="border" thin btnSize="sm" />
-                <Button iconName="Delete" iconPosition="center" btnType="border" thin btnSize="xsm" disabled />
+                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="sm" disabled />
+                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="sm" />
+                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
               </ElementGroup.Row>
             </li>
             <li>
               상품진열
               <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btnType="border" thin btnSize="sm" />
-                <Button iconName="DownArrow" iconPosition="center" btnType="border" thin btnSize="sm" />
-                <Button iconName="Delete" iconPosition="center" btnType="border" thin btnSize="xsm" disabled />
+                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="sm" />
+                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="sm" />
+                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
               </ElementGroup.Row>
             </li>
             <li>
               카테고리진열
               <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btnType="border" thin btnSize="xsm" />
-                <Button iconName="DownArrow" iconPosition="center" btnType="border" thin btnSize="xsm" />
-                <Button iconName="Delete" iconPosition="center" btnType="border" thin btnSize="xsm" disabled />
+                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="xsm" />
+                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="xsm" />
+                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
               </ElementGroup.Row>
             </li>
             <li>
               상품진열
               <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btnType="border" thin btnSize="xsm" />
-                <Button iconName="DownArrow" iconPosition="center" btnType="border" thin btnSize="xsm" disabled />
-                <Button iconName="Delete" iconPosition="center" btnType="border" thin btnSize="xsm" disabled />
+                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="xsm" />
+                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
+                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
               </ElementGroup.Row>
             </li>
           </OrderList>

@@ -2,16 +2,17 @@ import type { IUseInputEventParam, IUseTextArea } from 'commons/hook/hookVo'
 import useTextArea from 'commons/hook/useTextArea'
 import { useInputText } from 'commons/ui/useUihook'
 import type { IValid } from 'commons/ui/useValid'
-import React, { type RefObject, useCallback, useEffect, useState } from 'react'
+import { memo, type RefObject, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import type { Size } from 'styles/stylesVo'
+import type { Theme } from 'styles/theme'
 
 const TextArea = styled.textarea<{ size?: { width?: Size; height?: string } }>`
   padding: 10px;
   width: ${props => (props.size && props.size.width ? props.size.width : '100%')};
   height: ${props => (props.size && props.size.height ? props.size.height : '300px')};
   font: inherit;
-  font-size: ${props => props.theme.fontSize.text.md};
+  font-size: ${props => (props.theme as Theme).fontSize.text.md};
   border: 1px solid var(--border-primary);
   border-radius: 4px;
   resize: none;
@@ -81,7 +82,7 @@ const InputTextArea = (props: ITextAreaProps): JSX.Element => {
         setPrev(st)
       }
     },
-    [prev],
+    [prev, props],
   )
   const inputobj: IUseTextArea = useTextArea<HTMLTextAreaElement>({
     id: props.id,
@@ -98,7 +99,7 @@ const InputTextArea = (props: ITextAreaProps): JSX.Element => {
         inputobj.setValue(props.value as string)
       }
     }
-  }, [props.value])
+  }, [inputobj, props.value])
   return (
     <TextArea
       ref={props.refTarget}
@@ -115,7 +116,7 @@ const InputTextArea = (props: ITextAreaProps): JSX.Element => {
   )
 }
 
-export default React.memo(InputTextArea)
+export default memo(InputTextArea)
 
 interface IUiProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string

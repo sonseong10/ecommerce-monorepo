@@ -1,4 +1,4 @@
-import React, { type MemoExoticComponent } from 'react'
+import { type MemoExoticComponent } from 'react'
 import EditCardForm from './edit-card-form'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'

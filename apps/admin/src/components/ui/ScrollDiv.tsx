@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import type { PositionType } from 'commons/styles/ComponentsType'
 

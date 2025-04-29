@@ -1,91 +1,60 @@
-import React, { useEffect, useState } from 'react'
+import { memo, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar, BiSitemap } from 'react-icons/bi'
 
-import styles from 'styles/modules/sidebar.module.css'
-
 const SideNavigation = () => {
   const location = useLocation()
   const position = location.pathname.split('/')
-  const [menuActive, setMenuActive] = useState('main')
+  // const [setMenuActive] = useState('main')
   useEffect(() => {
     if (position.length >= 4) {
-      setMenuActive(position[position.length - 2]!)
+      // setMenuActive(position[position.length - 2]!)
     } else {
-      setMenuActive(position.pop()!)
+      // setMenuActive(position.pop()!)
     }
   }, [position])
 
   return (
-    <div className={`col-md-2 col-lg-3 sm-hidden ${styles.floating}`}>
-      <article className={`${styles.article} `}>
-        <div className={styles.navGroup}>
+    <div>
+      <article>
+        <div>
           <nav className="snb">
             <h3 className="visually-hidden">Side Navigation Bar</h3>
             <ul className="snb-list">
               <li className="snb-item">
-                <Link
-                  to={'/admin/main'}
-                  className={`${styles.snbItemButton} 
-                    ${menuActive === 'main' && styles.isActive}`}
-                >
+                <Link to={'/admin/main'}>
                   <BiHomeAlt />
                   메인
                 </Link>
               </li>
               <li className="snb-item">
-                <Link
-                  to="/admin/member/manage"
-                  className={`${styles.snbItemButton} 
-                    ${menuActive === 'member' && styles.isActive} 
-                    `}
-                >
+                <Link to="/admin/member/manage">
                   <BiGroup />
                   인사관리
                 </Link>
               </li>
               <li className="snb-item">
-                <Link
-                  to="/admin/work/manage"
-                  className={`${styles.snbItemButton} 
-                    ${menuActive === 'work' && styles.isActive} 
-                    `}
-                >
+                <Link to="/admin/work/manage">
                   <BiFile />
                   업무일지
                 </Link>
               </li>
               <li className="snb-item">
-                <Link
-                  to="/admin/product/list"
-                  className={`${styles.snbItemButton} 
-                    ${menuActive === 'product' && styles.isActive} 
-                    `}
-                >
+                <Link to="/admin/product/list">
                   <BiCart />
                   상품관리
                 </Link>
               </li>
               <li className="snb-item">
-                <Link
-                  to="/admin/delivery"
-                  className={`${styles.snbItemButton} 
-                    ${menuActive === 'delivery' && styles.isActive} 
-                    `}
-                >
+                <Link to="/admin/delivery">
                   <BiCar />
                   배송관리
                 </Link>
               </li>
 
               <li className="snb-item">
-                <Link
-                  to="/admin/display"
-                  className={`${styles.snbItemButton} 
-                    ${menuActive === 'display' && styles.isActive} 
-                    `}
-                >
+                <Link to="/admin/display">
                   <BiSitemap />
                   진열관리
                 </Link>
@@ -94,13 +63,13 @@ const SideNavigation = () => {
           </nav>
         </div>
 
-        <footer className={styles.footer}>
-          <dl className={styles.detailList}>
-            <div className={styles.detailItem}>
+        <footer>
+          <dl>
+            <div>
               <dt className="visually-hidden">made</dt>
               <dd>ⓒJuly 2021</dd>
             </div>
-            <div className={styles.detailItem}>
+            <div>
               <dt className="visually-hidden">github link</dt>
               <dd>
                 <address>
@@ -121,4 +90,4 @@ const SideNavigation = () => {
   )
 }
 
-export default React.memo(SideNavigation)
+export default memo(SideNavigation)

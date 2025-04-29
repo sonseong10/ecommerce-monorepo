@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components'
 import { mouseUp } from '../../utils'
 import useLayer from '../store/layerHook'
 import moment from 'moment'
-import React from 'react'
 
 const CalenderWrap = styled.div`
   overflow: hidden;

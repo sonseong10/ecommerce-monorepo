@@ -1,4 +1,3 @@
-import React from 'react'
 // import styles from './product-detail.module.css'
 import { BiCamera } from 'react-icons/bi'
 import UiInputText from 'commons/components/ui/UiInputText'
@@ -55,7 +54,7 @@ function ProductImage({ id, imageData }: IProductImageComponent) {
       {imageData ? (
         <>
           <label htmlFor={id}>
-            <img src={imageData} />
+            <img src={imageData} alt="" />
           </label>
         </>
       ) : (
@@ -259,7 +258,7 @@ function PageButtonGroup() {
 
   return (
     <ElementGroup.Row>
-      <Button text="취소" btnType="ghost" onClick={back} />
+      <Button text="취소" btntype="ghost" onClick={back} />
       <Button
         text={code ? '제품수정' : '제품등록'}
         color="primary"

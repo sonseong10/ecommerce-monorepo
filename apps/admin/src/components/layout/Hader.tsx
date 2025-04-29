@@ -1,11 +1,10 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from 'assets/images/dark-logo.svg'
 import styled from 'styled-components'
 import { useSelectorEq } from 'commons/store/common'
 import type { IState } from 'store/modules'
 import Button from 'components/ui/Button'
 import { useAuth } from 'pages/auth/authHook'
+import { memo } from 'react'
 
 const HeaderWrapper = styled.header`
   background-color: #2b2e32;
@@ -59,9 +58,7 @@ const HeaderWrapper = styled.header`
 function BrandLogo() {
   return (
     <strong className="logo-img">
-      <Link to={'/admin/main'}>
-        <img src={Logo} alt="내일의집" />
-      </Link>
+      <Link to={'/admin/main'}>{/* <img src={Logo} alt="내일의집" /> */}</Link>
     </strong>
   )
 }
@@ -75,7 +72,7 @@ function UserInfo() {
     <div className="userInfo">
       <strong className="user-name">{userName ? userName : '사용자'}님</strong>
       <span>환영합니다.</span>
-      <Button text="로그아웃" btnSize="xsm" btnType="ghost" color="lightGray" onClick={onLogout} />
+      <Button text="로그아웃" btnSize="xsm" btntype="ghost" color="lightGray" onClick={onLogout} />
     </div>
   )
 }
@@ -92,4 +89,4 @@ const Header = () => {
   )
 }
 
-export default React.memo(Header)
+export default memo(Header)

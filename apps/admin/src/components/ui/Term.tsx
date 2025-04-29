@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import SelectBox, { UiSelectBox } from './SelectBox'
 import { ElementGroup } from 'styles/components'
 import DateOptionGroup, { UiDateOptionGroup } from './DateOptionGroup'
@@ -38,7 +38,7 @@ function Term(props: ITermProp): JSX.Element {
   )
 }
 
-export default React.memo(Term)
+export default memo(Term)
 
 interface IUiTermProp {
   id: string

@@ -1,4 +1,3 @@
-import React from 'react'
 import { TableContainer } from 'styles/components'
 
 export interface OptionCellData {

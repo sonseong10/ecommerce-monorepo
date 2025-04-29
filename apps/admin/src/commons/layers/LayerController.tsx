@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { memo, Suspense } from 'react'
 import styled from 'styled-components'
 import useLayer from './store/layerHook'
 import layers from './AbsLayerType'
@@ -31,4 +31,4 @@ function Layer() {
   }
 }
 
-export default React.memo(Layer)
+export default memo(Layer)

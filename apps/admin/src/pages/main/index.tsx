@@ -1,4 +1,3 @@
-import React from 'react'
 import { ElementGroup, Title } from 'styles/components'
 import { useWorkCount } from './store/mainHook'
 import styled from 'styled-components'
@@ -50,7 +49,7 @@ const HomePage = () => {
           내업무 현황
         </Title>
 
-        <Button text="더보기" btnType="ghost" iconName="NextArrow" iconPosition="after" btnSize="xsm" />
+        <Button text="더보기" btntype="ghost" iconName="NextArrow" iconPosition="after" btnSize="xsm" />
       </ElementGroup.Row>
 
       <ElementGroup.Row>

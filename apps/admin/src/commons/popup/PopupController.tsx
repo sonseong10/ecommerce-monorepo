@@ -1,11 +1,8 @@
-'use client'
-
 import { Suspense } from 'react'
-import styled, { type StyledComponent } from 'styled-components'
+import styled, { type IStyledComponent } from 'styled-components'
 import usePopup from './store/absPopupHook'
 import { getPopup } from './AbsPopupType'
 import Spinner from '../loading/display/Spinner'
-import React from 'react'
 
 export const PopupArea = styled.section`
   display: flex;
@@ -57,7 +54,7 @@ interface IPopupProps {
    * `
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  area?: StyledComponent<'div', any>
+  area?: IStyledComponent<'web', any>
 }
 
 function Popup(props: IPopupProps) {

@@ -1,5 +1,5 @@
 import SVG from 'commons/styles/svgIcon'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 const StarRatingWrapper = styled.div`
@@ -24,7 +24,7 @@ const IconStyle = css<{ size?: number }>`
   border: 0;
 `
 
-export const Star = styled.button`
+export const Star = styled.button<{ size?: number }>`
   ${IconStyle}
   background-image: url(${SVG.Star('ebb33d')});
 

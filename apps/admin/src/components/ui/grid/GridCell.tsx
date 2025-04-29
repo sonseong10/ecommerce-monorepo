@@ -1,6 +1,5 @@
 import type { IGrideCell } from 'commons/ui/grid/GridVo'
 import { useGridCheckBox } from 'commons/ui/useGrid'
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CellLink, ElementGroup, Text } from 'styles/components'
 import Button from '../Button'
@@ -193,7 +192,7 @@ export function GridADLinkCell(props: IGrideCell<[string]>) {
     <Button
       iconName={'PC'}
       iconPosition="center"
-      btnType="ghost"
+      btntype="ghost"
       btnSize="md"
       onClick={() => window.open(props.data[0])}
     />

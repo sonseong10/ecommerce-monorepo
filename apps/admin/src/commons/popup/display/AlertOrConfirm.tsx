@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { usePopupData } from '../store/absPopupHook'
 import AbsPopup, { type IAbsPopupProps } from './AbsPopup'
-import React from 'react'
 
 const BodyContiner = styled.div`
   display: flex;

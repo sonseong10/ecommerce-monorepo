@@ -1,0 +1,6 @@
+
+# nx
+.nx/*
+
+node_modules/
+apps/admin/node_modules/

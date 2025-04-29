@@ -1,14 +1,17 @@
-import styled, { type StyledComponent } from 'styled-components'
+import styled, { type IStyledComponent } from 'styled-components'
 import Spinner from './display/Spinner'
 import { useLoadingValue } from './store/loadingHook'
-import React from 'react'
+import type { Theme } from 'styles/theme'
 
 export const LoadingArea = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background-color: ${props => props.theme.colors.bgDark};
+  background-color: ${props => {
+    console.log(props)
+    return (props.theme as Theme).colors.bgDark
+  }};
   opacity: 0.8;
 `
 
@@ -30,7 +33,7 @@ interface ILoadingParams {
    * ```
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  area?: StyledComponent<'div', any>
+  area?: IStyledComponent<'web', any>
 }
 
 function LoadingView(props: ILoadingParams) {

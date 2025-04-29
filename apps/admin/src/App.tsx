@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './styles/main.css'
 import { ThemeProvider, type DefaultTheme } from 'styled-components'

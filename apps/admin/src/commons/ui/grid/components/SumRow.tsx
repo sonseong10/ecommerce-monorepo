@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import type { IGridSetting } from '../GridVo'
-import React from 'react'
 
 const SumTr = styled.tr`
   background-color: var(--bg-table-head);

@@ -12,6 +12,7 @@ import {
 import type { DirectionType } from '../commons/styles/ComponentsType'
 import type { Color, FontAlignType, FontSizeNomalType, FontSizeTitleType, FontWeightType } from './stylesVo'
 import { TableContainer as Table } from '../commons/ui/grid/GridStyled'
+import type { Theme } from './theme'
 
 /**
  * 컴포넌트 단위(width html tag) 스타일 정의 파일
@@ -301,7 +302,7 @@ export const Input = styled.input<{ inputSize?: string; hidden?: boolean }>`
           border-radius: 4px;
           color: var(--font-primary);
           font-weight: 400;
-          font-size: ${props => props.theme.fontSize.text.sm};
+          font-size: ${props => (props.theme as Theme).fontSize.text.sm};
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
 

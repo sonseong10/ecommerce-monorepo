@@ -1,5 +1,5 @@
 import { useInputFile } from 'commons/ui/useUihook'
-import React, { useCallback, useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import Button from './Button'
 import InputText from './InputText'
 import type { FileType } from 'commons/ui/uiVo'
@@ -61,6 +61,7 @@ function InputFile(props: IInputFileProps): JSX.Element {
           }
           break
         default:
+          // eslint-disable-next-line no-lone-blocks
           {
             res({ filename: file.name, filetype: fileType, file: file })
           }
@@ -111,7 +112,7 @@ function InputFile(props: IInputFileProps): JSX.Element {
           iconName="Edit"
           iconPosition="center"
           color="white"
-          btnType="border"
+          btntype="border"
           thin
         />
       ) : (

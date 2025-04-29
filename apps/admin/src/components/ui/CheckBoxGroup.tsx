@@ -1,6 +1,6 @@
 import { useCheckBoxGroup } from 'commons/ui/useUihook'
 import type { IValid } from 'commons/ui/useValid'
-import React, { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import type { DirectionType } from '../../commons/styles/ComponentsType'
 import CheckBox from './CheckBox'
@@ -125,7 +125,7 @@ function CheckBoxGroup(props: IInputCheckBoxProps): JSX.Element {
   )
 }
 
-export default React.memo(CheckBoxGroup)
+export default memo(CheckBoxGroup)
 
 export interface IUiCheckBoxProps {
   name: string

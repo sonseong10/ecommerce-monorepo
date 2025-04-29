@@ -1,7 +1,6 @@
 import moment from 'moment'
 import styled from 'styled-components'
 import type { IGrideCell } from './GridVo'
-import React from 'react'
 
 /**
  * 텍스트 셀

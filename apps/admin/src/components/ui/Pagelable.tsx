@@ -1,8 +1,9 @@
 import { useInputValue, useSetInput } from 'commons/ui/useUihook'
-import React, { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import { UiInputText } from './InputText'
 import SVG from 'commons/styles/svgIcon'
+import type { Theme } from 'styles/theme'
 
 const Pagenation = styled.div`
   display: inline-flex;
@@ -21,7 +22,7 @@ const PagenationItem = styled.a`
   height: 26px;
   vertical-align: middle;
   line-height: 26px;
-  font-size: ${props => props.theme.fontSize.text.lg};
+  font-size: ${props => (props.theme as Theme).fontSize.text.lg};
   white-space: nowrap;
   color: var(--font-primary);
   text-align: center;
@@ -40,7 +41,7 @@ const LinkPagenation = styled(PagenationItem)<{ active?: boolean }>`
           background-color: var(--primary);
           border-radius: 2px;
           color: #fff;
-          font-weight: ${props => props.theme.fontWeight.bold};
+          font-weight: ${props => (props.theme as Theme).fontWeight.bold};
           pointer-events: none;
         `
       : ''}
@@ -105,10 +106,10 @@ function Pagelable(props: IProps): JSX.Element {
         (props.total <= 10
           ? 0
           : props.current - 4 > 0
-            ? props.current - 4 > props.total - 10
-              ? props.total - 10
-              : props.current - 4
-            : 0) +
+          ? props.current - 4 > props.total - 10
+            ? props.total - 10
+            : props.current - 4
+          : 0) +
         1,
     )
   }
@@ -143,7 +144,7 @@ Pagelable.defaultProps = {
   current: 0,
   total: 0,
 }
-export default React.memo(Pagelable)
+export default memo(Pagelable)
 
 export interface IUiProps extends IProps {
   id: string

@@ -1,6 +1,5 @@
 import AbsPopup from 'commons/popup/display/AbsPopup'
 import { usePopupData } from 'commons/popup/store/absPopupHook'
-import React from 'react'
 import styled from 'styled-components'
 import { PopupType } from '../PopupType'
 

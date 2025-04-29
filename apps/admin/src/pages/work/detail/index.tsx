@@ -1,4 +1,3 @@
-import React from 'react'
 import { useInitDetail } from './store/detailHook'
 import OptionGrid from 'components/ui/OptionGrid'
 import { ElementGroup, Text, Title } from 'styles/components'

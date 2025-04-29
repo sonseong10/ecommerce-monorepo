@@ -1,5 +1,5 @@
-import { Theme } from './theme'
 import 'styled-components'
+import { Theme } from './theme'
 
 /**
  * styled-components 를 사용하기위한 설정

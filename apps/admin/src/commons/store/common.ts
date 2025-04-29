@@ -87,7 +87,7 @@ export const useAbsApi = <State extends ICommonsStore>(
     param?: ThunkArg,
     errorCallback?: () => void,
   ): Promise<Res | undefined> => {
-    const res = await dispatch(thunk(param as ThunkArg))
+    const res = await dispatch(thunk(param as ThunkArg & undefined))
     if (thunk.fulfilled.match(res)) {
       const pcode = inStatePayloadCode ? inStatePayloadCode : statePayloadCode
       switch (pcode(res.payload.code)) {

@@ -1,7 +1,6 @@
 import AbsPopup from 'commons/popup/display/AbsPopup'
 import { usePopupData } from 'commons/popup/store/absPopupHook'
 import Grid from 'commons/ui/grid/Grid'
-import React from 'react'
 import { Text } from 'styles/components'
 import type { Color } from 'styles/stylesVo'
 import { PopupType } from '../PopupType'

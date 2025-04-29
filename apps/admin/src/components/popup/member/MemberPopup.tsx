@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import AbsPopup from 'commons/popup/display/AbsPopup'
 import { PopupType } from 'components/popup/PopupType'
 import Grid from 'commons/ui/grid/Grid'
@@ -87,7 +87,7 @@ function ResultList() {
             <Button
               iconName="Closed"
               iconPosition="center"
-              btnType="ghost"
+              btntype="ghost"
               btnSize="sm"
               onClick={() => {
                 remove(item.code)
@@ -124,7 +124,7 @@ export function WorkPopupButtonGroup() {
   const { close } = useClosePopup(PopupType.MEMBER)
   return (
     <ButtonGroupStyle flexContent="center">
-      <Button text="취소" thin ellipsis btnType="border" onClick={() => close(ButtonState.NO)} />
+      <Button text="취소" thin ellipsis btntype="border" onClick={() => close(ButtonState.NO)} />
       <Button text="등록" thin ellipsis color="primary" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupStyle>
   )
@@ -144,7 +144,7 @@ export default function MemberPopup() {
         }),
       )
     }
-  }, [])
+  }, [dispatch, popupDo])
 
   return (
     <AbsPopup type={PopupType.MEMBER} borderShape={4} header={<PopupHeader />}>

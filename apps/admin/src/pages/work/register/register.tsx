@@ -4,7 +4,6 @@ import { UiInputText } from 'components/ui/InputText'
 import { UiInputTextArea } from 'components/ui/InputTextArea'
 import OptionGrid from 'components/ui/OptionGrid'
 import { UiSelectBox } from 'components/ui/SelectBox'
-import React from 'react'
 import { ElementGroup, RowButtonGroup, Title } from 'styles/components'
 import { WorkRegisterUiId } from './store/registerVo'
 import { useMemberPopup } from 'components/popup/member/store/memberPopupHook'
@@ -25,7 +24,7 @@ function ButtonGroup() {
   const goToList = useToList()
   return (
     <RowButtonGroup flexContent="center">
-      <Button thin text="취소" btnType="border" ellipsis onClick={goToList} />
+      <Button thin text="취소" btntype="border" ellipsis onClick={goToList} />
       <SubmitButton />
     </RowButtonGroup>
   )
@@ -90,7 +89,7 @@ function ReferrerList() {
               <Button
                 iconName="Closed"
                 iconPosition="center"
-                btnType="ghost"
+                btntype="ghost"
                 btnSize="xsm"
                 onClick={() => chage(list.filter(item => item.code !== i.code))}
               />

@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
 
 // NOTE: 공통 레이어팝업
 const InputPopup = lazy(() => import('./display/InputPopup'))

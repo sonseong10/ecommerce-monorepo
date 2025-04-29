@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { validateEmail, validateName, validatePhone } from '../../../utils/validation'
 
-import buttonStyles from '../../../styles/modules/buttons.module.css'
-import styles from '../../../styles/modules/maker.module.css'
 import type ImageUploader from 'service/image-uploader'
 import type DropDown from 'utils/dropdown'
 import ThemesDropdown from '../update/components/themes-dropdown'
@@ -127,67 +125,28 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }: IAddCardForm) =>
   }
 
   return (
-    <form className={`${styles.authForm} ${dark && styles.isDark}`} ref={formRef} onSubmit={submitForm}>
+    <form ref={formRef} onSubmit={submitForm}>
       <FileInput name={file.fileName ? file.fileName : ''} onFileChange={onFileChange}></FileInput>
 
-      <label htmlFor="name" className={styles.formLabel}>
-        이름*
-      </label>
-      <input
-        className={`${styles.authFormInput} ${nameError && styles.isError}`}
-        type="text"
-        id="name"
-        ref={nameRef}
-        placeholder="Name"
-        onChange={nameValidate}
-      />
-      {nameError && <strong className={styles.errorText}>공백없는 영어 혹은 한글만 입력 가능합니다.</strong>}
+      <label htmlFor="name">이름*</label>
+      <input type="text" id="name" ref={nameRef} placeholder="Name" onChange={nameValidate} />
+      {nameError && <strong>공백없는 영어 혹은 한글만 입력 가능합니다.</strong>}
 
-      <label htmlFor="email" className={styles.formLabel}>
-        이메일*
-      </label>
-      <input
-        className={`${styles.authFormInput} ${emailError && styles.isError}`}
-        type="email"
-        id="email"
-        ref={emailRef}
-        placeholder="Email"
-        onChange={emailValidate}
-      />
-      {emailError && <strong className={styles.errorText}>이메일 형식에 어긋납니다.</strong>}
+      <label htmlFor="email">이메일*</label>
+      <input type="email" id="email" ref={emailRef} placeholder="Email" onChange={emailValidate} />
+      {emailError && <strong>이메일 형식에 어긋납니다.</strong>}
 
-      <label htmlFor="phone" className={styles.formLabel}>
-        휴대전화*
-      </label>
-      <input
-        className={`${styles.authFormInput} ${phoneError && styles.isError}`}
-        type="text"
-        id="phone"
-        ref={phoneRef}
-        placeholder={`Phone (Include "-")`}
-        onChange={phoneValidate}
-      />
-      {phoneError && <strong className={styles.errorText}>휴대폰 양식에 어긋납니다.</strong>}
+      <label htmlFor="phone">휴대전화*</label>
+      <input type="text" id="phone" ref={phoneRef} placeholder={`Phone (Include "-")`} onChange={phoneValidate} />
+      {phoneError && <strong>휴대폰 양식에 어긋납니다.</strong>}
 
-      <label htmlFor="telephone" className={styles.formLabel}>
-        유선전화
-      </label>
-      <input className={styles.authFormInput} type="text" id="telephone" ref={telephoneRef} placeholder="TelePhone" />
+      <label htmlFor="telephone">유선전화</label>
+      <input type="text" id="telephone" ref={telephoneRef} placeholder="TelePhone" />
 
-      <label htmlFor="msg" className={styles.formLabel}>
-        남긴말
-      </label>
-      <textarea
-        className={styles.authFormInput}
-        id="msg"
-        ref={msgRef}
-        cols={30}
-        rows={3}
-        maxLength={100}
-        placeholder="Msg"
-      ></textarea>
+      <label htmlFor="msg">남긴말</label>
+      <textarea id="msg" ref={msgRef} cols={30} rows={3} maxLength={100} placeholder="Msg"></textarea>
 
-      <div className={styles.typeBtnList}>
+      <div>
         <ThemesDropdown dropDown={dropDown} themeRef={themeRef} dark={dark}></ThemesDropdown>
 
         <TeamsDropdown dropDown={dropDown} teamRef={teamRef} dark={dark}></TeamsDropdown>
@@ -195,15 +154,11 @@ const AddCardForm = ({ FileInput, createCard, dropDown, dark }: IAddCardForm) =>
         <RanksDropdown dropDown={dropDown} rankRef={rankRef} dark={dark}></RanksDropdown>
       </div>
 
-      <button
-        className={`${buttonStyles.baseBtn} ${buttonStyles.primaryBtn} ${styles.submitBtn}`}
-        type="submit"
-        disabled={submit}
-      >
+      <button className={``} type="submit" disabled={submit}>
         {submit ? 'Disable' : 'Create'}
       </button>
     </form>
   )
 }
 
-export default React.memo(AddCardForm)
+export default memo(AddCardForm)

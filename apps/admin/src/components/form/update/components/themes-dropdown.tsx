@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
 
-import buttonStyles from 'styles/modules/buttons.module.css'
-import styles from 'styles/modules/dropdown.module.css'
 import DropDownProps from 'utils/dropdown'
 import type { ICardVo } from 'types/grobal-type'
 import DropDown from 'components/common/dropdown/dropdown'
@@ -49,26 +47,17 @@ const ThemesDropdown = ({ dropDown, themeRef, updateCard, userCard, dark }: IThe
   }, [items, userCard])
 
   return (
-    <div
-      className={`${styles.themes} 
-      ${themesIsOpen && styles.isActive}
-      ${dark && styles.isDark}`}
-    >
-      <p className={styles.formLabel}>색상 테마</p>
-      <button
-        className={`${styles.formInput} ${buttonStyles.baseBtn}`}
-        onClick={onThemesOpen}
-        type="button"
-        ref={themeRef}
-      >
+    <div>
+      <p>색상 테마</p>
+      <button onClick={onThemesOpen} type="button" ref={themeRef}>
         {themesType}
-        <BiChevronUp className={styles.dropdownIcon} aria-hidden />
+        <BiChevronUp aria-hidden />
       </button>
-      <div className={styles.themesList}>
+      <div>
         <DropDown listItems={items} handleEvent={handleThemesValue} dark={dark} />
       </div>
     </div>
   )
 }
 
-export default React.memo(ThemesDropdown)
+export default memo(ThemesDropdown)

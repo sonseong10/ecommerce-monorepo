@@ -2,7 +2,7 @@ import type { IUseInput, IUseInputEventParam, InputType } from 'commons/hook/hoo
 import useInput from 'commons/hook/useInput'
 import { useInputText } from 'commons/ui/useUihook'
 import { type IValid, useValid } from 'commons/ui/useValid'
-import React, { type RefObject, useEffect, useState } from 'react'
+import { memo, type RefObject, useEffect, useState } from 'react'
 import { Input } from 'styles/components'
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -95,7 +95,7 @@ function InputText(props: IProps): JSX.Element {
     />
   )
 }
-export default React.memo(InputText)
+export default memo(InputText)
 
 interface IValidProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string

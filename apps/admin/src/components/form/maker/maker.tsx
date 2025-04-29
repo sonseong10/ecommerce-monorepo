@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AddCardForm from './add-card-form'
 import type ImageUploader from 'service/image-uploader'
@@ -32,4 +32,4 @@ const Maker = ({ FileInput, dropDown, isCard, createCard, dark }: IMakerProps) =
   )
 }
 
-export default React.memo(Maker)
+export default memo(Maker)

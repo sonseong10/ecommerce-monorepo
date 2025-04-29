@@ -1,5 +1,5 @@
 import SVG from 'commons/styles/svgIcon'
-import React, { useCallback, useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import { Text } from 'styles/components'
 import Button from './Button'
@@ -77,7 +77,7 @@ export interface IInputFileProps {
   fileChange?: (fileURL: string, fileName: string) => void
   delete?: () => void
   buttonText?: string
-  btnType?: string
+  btntype?: string
   type?: string
 }
 
@@ -139,7 +139,7 @@ function InputExcel(props: IInputFileProps): JSX.Element {
                 thin
                 iconName="Closed"
                 iconPosition="center"
-                btnType="border"
+                btntype="border"
                 color="negative"
                 onClick={deleteItem}
               />

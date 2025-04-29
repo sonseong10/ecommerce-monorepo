@@ -1,5 +1,5 @@
-import React, { type ForwardedRef, type Key, useRef } from 'react'
-import styled, { css, type StyledComponent } from 'styled-components'
+import { type ForwardedRef, type Key, useRef } from 'react'
+import styled, { css, type IStyledComponent } from 'styled-components'
 import GridHeaderFixed from './components/GridHeaderFixed'
 import GridRow from './components/GridRow'
 import SortHeader from './components/SortHeader'
@@ -59,7 +59,7 @@ function getPropertyKey<T, K extends keyof T>(obj: T, key: K): Key {
 export interface IGridProps<Data, Setting, Not> {
   id?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  container?: StyledComponent<any, any>
+  container?: IStyledComponent<any, any>
   layoutOverflow?: boolean
   setting?: Setting
   rowId?: keyof Data

@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "admin": "apps/admin"
+  },
+  "installation": {
+    "version": "20.8.1"
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "nxCloudId": "681075a2b6d0796da0ecea93"
+}

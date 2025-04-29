@@ -1,4 +1,3 @@
-import React from 'react'
 import Spinner from './display/Spinner'
 import useLoading from './store/loadingHook'
 import styled from 'styled-components'

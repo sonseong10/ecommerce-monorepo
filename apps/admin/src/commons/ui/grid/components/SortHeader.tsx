@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { useGridOptionInit, useGridSort, useGridSortValue } from '../store/GridHook'
 import type { IGridSetting, sortType } from '../GridVo'

@@ -1,9 +1,10 @@
 import SVG from '../../../commons/styles/svgIcon'
-import React, { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { AbsPopupType } from '../AbsPopupType'
 import { useAbsPopupButton, useAbsPopupData, useAbsPopupTitle, useClosePopup } from '../store/absPopupHook'
 import { ButtonState, type IButton } from '../store/absPopupVo'
+import type { Theme } from 'styles/theme'
 
 const MsgWrapper = styled.div<{
   width: number | string
@@ -77,7 +78,8 @@ const headerStyle = () => {
     position: relative;
     min-height: 55px;
     padding: 15px 25px;
-    border-bottom: 1px solid ${props => (props.theme.colors ? props.theme.colors.borderPrimary : '#ebebeb')};
+    border-bottom: 1px solid
+      ${props => ((props.theme as Theme).colors ? (props.theme as Theme).colors.borderPrimary : '#ebebeb')};
     justify-content: center;
   `
 }
@@ -226,7 +228,7 @@ function AbsPopupButtonList(props: { type: AbsPopupType | string; device: boolea
             <Button
               key={idx}
               {...item}
-              btnType={item.state ? 'normal' : 'border'}
+              btntype={item.state ? 'normal' : 'border'}
               isRadius
               onClick={close.bind(null, item?.state, undefined)}
             />
@@ -291,4 +293,4 @@ function AbsPopup(props: IAbsPopupProps) {
     </>
   )
 }
-export default React.memo(AbsPopup)
+export default memo(AbsPopup)

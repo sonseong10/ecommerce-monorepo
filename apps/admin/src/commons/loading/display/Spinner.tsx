@@ -1,4 +1,3 @@
-import React from 'react'
 import { SpinnerContent, SpinnerText, SpinnerWrap } from './style'
 
 /**

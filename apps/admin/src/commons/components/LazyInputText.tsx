@@ -1,10 +1,10 @@
-import React, { Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import type { IInputProps } from './InputText'
 import type { IUiInputTextProps } from './ui/UiInputText'
 
-const InputText = React.lazy(() => import('./InputText'))
-const UiInputText = React.lazy(() => import('./ui/UiInputText'))
-const ValidInputText = React.lazy(() => import('./valid/ValidInputText'))
+const InputText = lazy(() => import('./InputText'))
+const UiInputText = lazy(() => import('./ui/UiInputText'))
+const ValidInputText = lazy(() => import('./valid/ValidInputText'))
 
 export function LazyInputText(props: IInputProps) {
   return (

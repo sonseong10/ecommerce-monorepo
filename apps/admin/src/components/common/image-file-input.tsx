@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 import { FiCamera } from 'react-icons/fi'
 
-import buttonStyles from '../../styles/modules/buttons.module.css'
-import commonStyles from '../../styles/modules/common.module.css'
-import styles from '../../styles/modules/maker.module.css'
 import type ImageUploader from 'service/image-uploader'
 
 const ImageFileInput = (props: {
@@ -28,18 +25,11 @@ const ImageFileInput = (props: {
   return (
     <>
       {!loding ? (
-        <label
-          className={`
-          ${buttonStyles.baseBtn}
-          ${buttonStyles.ghostBtn}
-          ${styles.profileBtn}
-          ${props.name ? styles.isSucceed : styles.isEmpty} `}
-          htmlFor="profile"
-        >
+        <label htmlFor="profile">
           <FiCamera aria-hidden /> <span>{props.name || 'Add to profile'}</span>
         </label>
       ) : (
-        <div className={commonStyles.lodingSmall}>
+        <div>
           <span className="visually-hidden">로딩중</span>
         </div>
       )}
@@ -48,4 +38,4 @@ const ImageFileInput = (props: {
   )
 }
 
-export default React.memo(ImageFileInput)
+export default memo(ImageFileInput)

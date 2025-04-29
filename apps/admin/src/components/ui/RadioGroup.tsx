@@ -1,9 +1,10 @@
 import { useRadio } from 'commons/ui/useUihook'
 import type { IValid } from 'commons/ui/useValid'
-import React from 'react'
+
 import styled, { css } from 'styled-components'
 import type { Theme } from 'styles/theme'
 import type { DirectionType, RadioType } from '../../commons/styles/ComponentsType'
+import { memo } from 'react'
 
 const radioSvg = (color: string): string => {
   color = color.indexOf('#') === -1 ? color : color.substring(1, color.length)
@@ -96,7 +97,7 @@ const RadioItem = styled.p<{
             border-left: 0;
             color: var(--btn-dark);
             line-height: 28px;
-            font-size: ${props => props.theme.fontSize.text.sm};
+            font-size: ${props => (props.theme as Theme).fontSize.text.sm};
             text-align: center;
 
             &:hover {
@@ -117,30 +118,30 @@ const RadioItem = styled.p<{
             background-size: 16px;
             background-position: left top 4px;
             background-repeat: no-repeat;
-            background-image: url(${props => radioSvg(props.theme.colors.borderPrimary)});
+            background-image: url(${props => radioSvg((props.theme as Theme).colors.borderPrimary)});
             vertical-align: middle;
             line-height: 1;
           }
 
           &:hover {
             input + label {
-              background-image: url(${props => radioSvg(props.theme.colors.borderHover)});
+              background-image: url(${props => radioSvg((props.theme as Theme).colors.borderHover)});
             }
             input:checked + label {
-              background-image: url(${props => radioCheckdSvg(props.theme.colors.borderFocus)});
+              background-image: url(${props => radioCheckdSvg((props.theme as Theme).colors.borderFocus)});
             }
           }
 
           input {
             &:checked + label {
-              background-image: url(${props => radioCheckdSvg(props.theme.colors.borderFocus)});
+              background-image: url(${props => radioCheckdSvg((props.theme as Theme).colors.borderFocus)});
             }
             &:disabled + label {
-              background-image: url(${props => radioSvg(props.theme.colors.borderPrimary)});
+              background-image: url(${props => radioSvg((props.theme as Theme).colors.borderPrimary)});
               color: var(--font-disabled);
             }
             &:checked:disabled + label {
-              background-image: url(${props => radioCheckdSvg(props.theme.colors.borderPrimary)});
+              background-image: url(${props => radioCheckdSvg((props.theme as Theme).colors.borderPrimary)});
               color: var(--font-disabled);
             }
           }
@@ -256,7 +257,7 @@ function RadioGroup(props: IProps): JSX.Element {
   )
 }
 
-export default React.memo(RadioGroup)
+export default memo(RadioGroup)
 
 export interface IUiRadioProps {
   name: string

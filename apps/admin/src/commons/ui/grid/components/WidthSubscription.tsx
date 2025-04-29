@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import { type IGridPosition, type IGridSetting, subkeySplit } from '../GridVo'
-import React from 'react'
 
 interface IWidthSubscriptionProps<T> {
   position: IGridPosition

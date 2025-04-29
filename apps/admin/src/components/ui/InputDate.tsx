@@ -1,5 +1,5 @@
 import moment, { type MomentInput } from 'moment'
-import React, { useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useCalender } from 'commons/layers/store/layerHook'
 import { Input } from 'styles/components'
@@ -119,7 +119,7 @@ function InputDate(props: IInputDateProps): JSX.Element {
     </DatePicker>
   )
 }
-export default React.memo(InputDate)
+export default memo(InputDate)
 
 interface IUiInputDateProps {
   id: string

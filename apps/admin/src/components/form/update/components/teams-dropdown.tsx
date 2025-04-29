@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
 
-import buttonStyles from 'styles/modules/buttons.module.css'
-import styles from 'styles/modules/dropdown.module.css'
 import DropDownProps from 'utils/dropdown'
 import type { ICardVo } from 'types/grobal-type'
 import DropDown from 'components/common/dropdown/dropdown'
@@ -48,25 +46,16 @@ const TeamsDropdown = ({ dropDown, teamRef, userCard, updateCard, dark }: ITeams
     userCard ? setTeamsType(userCard.team) : setTeamsType(items[0].value)
   }, [items, userCard])
   return (
-    <div
-      className={`${styles.teams} 
-      ${teamsIsOpen && styles.isActive} 
-      ${dark && styles.isDark}`}
-    >
-      <p className={styles.formLabel}>부서명</p>
-      <button
-        className={`${styles.formInput} ${buttonStyles.baseBtn}`}
-        onClick={onTeamsOpen}
-        type="button"
-        ref={teamRef}
-      >
-        {teamsType} <BiChevronUp className={styles.dropdownIcon} aria-hidden />
+    <div>
+      <p>부서명</p>
+      <button onClick={onTeamsOpen} type="button" ref={teamRef}>
+        {teamsType} <BiChevronUp aria-hidden />
       </button>
-      <div className={styles.teamsList}>
+      <div>
         <DropDown listItems={items} handleEvent={handleTeamsValue} dark={dark} />
       </div>
     </div>
   )
 }
 
-export default React.memo(TeamsDropdown)
+export default memo(TeamsDropdown)

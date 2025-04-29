@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { UiInputText } from 'components/ui/InputText'
 import Button from 'components/ui/Button'
 import { ElementGroup, Title } from 'styles/components'
@@ -35,7 +33,12 @@ function MemberList() {
         { header: '성명', id: ['name'], width: '120px' },
         { header: '직위', id: ['rank'], width: '80px' },
         { header: '직무', id: ['team'], width: '100px' },
-        { header: '근무 상태', id: ['login'], element: GridStateCell, width: '100px' },
+        {
+          header: '근무 상태',
+          id: ['login'],
+          element: GridStateCell,
+          width: '100px',
+        },
         { header: '이메일', id: ['email'], width: 'auto' },
         { header: '전화번호', id: ['phone'], width: '160px' },
         { header: '유선전화', id: ['telephone'], width: '160px' },

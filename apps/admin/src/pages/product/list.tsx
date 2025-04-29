@@ -1,4 +1,3 @@
-import React from 'react'
 import Grid from 'commons/ui/grid/Grid'
 import Pagelable from 'components/ui/Pagelable'
 import { ElementGroup, TableContainer, Title } from 'styles/components'
@@ -24,7 +23,7 @@ function GridroductDeleteCell(props: IGrideCell<[string]>) {
     <Button
       text="삭제"
       color="negative"
-      btnType="ghost"
+      btntype="ghost"
       btnSize="xsm"
       onClick={() => {
         onDelete(props.data[0])
@@ -81,7 +80,7 @@ function List() {
         thin: true,
         color: 'primary',
         eventType: 'link',
-        btnType: 'ghost',
+        btntype: 'ghost',
         btnSize: 'xsm',
         link: {
           url: `/admin/product/info`,
@@ -159,7 +158,7 @@ function ProductList() {
       />
 
       <ElementGroup.Row flexContent="center">
-        <Button btnType="border" thin text="초가화" />
+        <Button btntype="border" thin text="초가화" />
         <Button text="검색" thin />
       </ElementGroup.Row>
 

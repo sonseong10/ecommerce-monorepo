@@ -1,12 +1,12 @@
 import { UiType } from 'commons/ui/uiVo'
 import { useInputValue, useSetRadio, useUiAction } from 'commons/ui/useUihook'
 import type { IValid } from 'commons/ui/useValid'
-import moment from 'moment'
-import React, { useCallback, useEffect, useState } from 'react'
-import { DateGroup } from 'styles/components'
-import InputDate, { UiInputDate } from './InputDate'
-import RadioGroup, { type IRadioItem, UiRadioGroup } from './RadioGroup'
-import { UiDateOptionGroupType } from './uiVo'
+import { memo, useCallback, useEffect, useState } from "react";
+import { DateGroup } from "styles/components";
+import InputDate, { UiInputDate } from "./InputDate";
+import RadioGroup, { type IRadioItem, UiRadioGroup } from "./RadioGroup";
+import { UiDateOptionGroupType } from "./uiVo";
+import moment from "moment";
 
 interface IDateOptionGroupProps {
   start?: string
@@ -134,7 +134,7 @@ function DateOptionGroup(props: IDateOptionGroupProps): JSX.Element {
   )
 }
 
-export default React.memo(DateOptionGroup)
+export default memo(DateOptionGroup);
 
 interface IUiDateOptionGroupProps {
   id: string

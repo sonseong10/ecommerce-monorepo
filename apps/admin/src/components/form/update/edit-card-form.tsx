@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { validateEmail, validateName, validatePhone } from '../../../utils/validation'
 
 import RanksDropdown from './components/ranks-dropdown'
 
-import buttonStyles from '../../../styles/modules/buttons.module.css'
-import styles from '../../../styles/modules/maker.module.css'
 import type DropDown from 'utils/dropdown'
 import type ImageUploader from 'service/image-uploader'
 import type { ICardVo } from 'types/grobal-type'
@@ -85,53 +83,23 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard, deleteCard, d
   }
 
   return (
-    <form className={`${styles.authForm} ${dark && styles.isDark}`}>
+    <form>
       <FileInput name={userCard?.fileName ? userCard?.fileName : ''} onFileChange={onFileChange} />
 
-      <label htmlFor="name" className={styles.formLabel}>
-        이름
-      </label>
-      <input
-        className={`${styles.authFormInput} ${nameError && styles.isError}`}
-        type="text"
-        id="name"
-        defaultValue={userCard?.name}
-        placeholder="Name"
-        onChange={nameValidate}
-      />
-      {nameError && <strong className={styles.errorText}>공백없는 영어 혹은 한글만 입력 가능합니다.</strong>}
+      <label htmlFor="name">이름</label>
+      <input type="text" id="name" defaultValue={userCard?.name} placeholder="Name" onChange={nameValidate} />
+      {nameError && <strong>공백없는 영어 혹은 한글만 입력 가능합니다.</strong>}
 
-      <label htmlFor="email" className={styles.formLabel}>
-        이메일
-      </label>
-      <input
-        className={`${styles.authFormInput} ${emailError && styles.isError}`}
-        type="email"
-        id="email"
-        defaultValue={userCard?.email}
-        placeholder="Email"
-        onChange={emailValidate}
-      />
-      {emailError && <strong className={styles.errorText}>이메일 형식에 어긋납니다.</strong>}
+      <label htmlFor="email">이메일</label>
+      <input type="email" id="email" defaultValue={userCard?.email} placeholder="Email" onChange={emailValidate} />
+      {emailError && <strong>이메일 형식에 어긋납니다.</strong>}
 
-      <label htmlFor="phone" className={styles.formLabel}>
-        휴대전화
-      </label>
-      <input
-        className={`${styles.authFormInput} ${phoneError && styles.isError}`}
-        type="text"
-        id="phone"
-        defaultValue={userCard?.phone}
-        placeholder="Phone"
-        onChange={phoneValidate}
-      />
-      {phoneError && <strong className={styles.errorText}>휴대폰 양식에 어긋납니다</strong>}
+      <label htmlFor="phone">휴대전화</label>
+      <input type="text" id="phone" defaultValue={userCard?.phone} placeholder="Phone" onChange={phoneValidate} />
+      {phoneError && <strong>휴대폰 양식에 어긋납니다</strong>}
 
-      <label htmlFor="telephone" className={styles.formLabel}>
-        유선전화
-      </label>
+      <label htmlFor="telephone">유선전화</label>
       <input
-        className={styles.authFormInput}
         type="text"
         id="telephone"
         defaultValue={userCard?.telephone}
@@ -139,11 +107,8 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard, deleteCard, d
         onChange={onChange}
       />
 
-      <label htmlFor="msg" className={styles.formLabel}>
-        남긴말
-      </label>
+      <label htmlFor="msg">남긴말</label>
       <textarea
-        className={styles.authFormInput}
         id="msg"
         cols={30}
         rows={3}
@@ -153,7 +118,7 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard, deleteCard, d
         onChange={onChange}
       ></textarea>
 
-      <div className={styles.typeBtnList}>
+      <div>
         <ThemesDropdown dropDown={dropDown} updateCard={updateCard} userCard={userCard} dark={dark}></ThemesDropdown>
 
         <TeamsDropdown dropDown={dropDown} updateCard={updateCard} userCard={userCard} dark={dark}></TeamsDropdown>
@@ -161,11 +126,7 @@ const EditCardForm = ({ FileInput, userCard, dropDown, updateCard, deleteCard, d
         <RanksDropdown dropDown={dropDown} updateCard={updateCard} userCard={userCard} dark={dark}></RanksDropdown>
       </div>
 
-      <button
-        type="button"
-        className={`${buttonStyles.baseBtn} ${buttonStyles.ghostBtn} ${styles.removeBtn}`}
-        onClick={onRemove}
-      >
+      <button type="button" onClick={onRemove}>
         회원 탈퇴
       </button>
     </form>

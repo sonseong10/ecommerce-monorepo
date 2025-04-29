@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { useTheme, css } from 'styled-components'
 import type { TabType } from 'commons/styles/ComponentsType'
 import type { Theme } from 'styles/theme'

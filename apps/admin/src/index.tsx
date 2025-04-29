@@ -1,12 +1,11 @@
-import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
 // import ImageFileInput from './components/common/image-file-input'
 // import ImageUploader from './service/image-uploader'
-import App from 'App'
 import { Provider } from 'react-redux'
 import store from './store/configureStore'
+import App from 'App'
 
 // const imageUploader = new ImageUploader()
 

@@ -7,16 +7,17 @@ const memberService = new CardRepository()
 
 export const useInitMemberDetail = () => {
   const location = useLocation()
-  const [card, setCard] = useState<IMemberVo | undefined>(undefined)
-  const init = () => {
-    memberService.syncCard(location.pathname.split('/').pop()!, value => {
-      setCard(value)
-    })
-  }
+  const [card, setCard] = useState<IMemberVo | undefined>(undefined);
 
   useEffect(() => {
-    init()
-  }, [])
+    const init = () => {
+      memberService.syncCard(location.pathname.split("/").pop()!, (value) => {
+        setCard(value);
+      });
+    };
+
+    init();
+  }, [location.pathname]);
 
   return card
 }

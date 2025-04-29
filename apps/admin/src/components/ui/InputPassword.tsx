@@ -1,5 +1,5 @@
 import { ValidType } from 'commons/ui/useValid'
-import React, { useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Button from './Button'
 import { UiInputText } from './InputText'
@@ -82,7 +82,7 @@ const InputPassword = (props: IInputPasswordProps): JSX.Element => {
       <PasswordIcon isShow={isShow}>
         <Button
           thin
-          btnType="ghost"
+          btntype="ghost"
           title={!isShow ? '비밀번호 감추기' : '비밀번호 보이기'}
           onMouseDown={change}
           onMouseUp={outChange}
@@ -94,4 +94,4 @@ const InputPassword = (props: IInputPasswordProps): JSX.Element => {
   )
 }
 
-export default React.memo(InputPassword)
+export default memo(InputPassword)

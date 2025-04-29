@@ -1,5 +1,5 @@
 import SVG from 'commons/styles/svgIcon'
-import React, { useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Text, Title } from 'styles/components'
 import type { Color } from 'styles/stylesVo'
@@ -129,4 +129,4 @@ const Accordion: React.FC<IAccordionProps> = ({ data, closeAll }) => {
   )
 }
 
-export default React.memo(Accordion)
+export default memo(Accordion)

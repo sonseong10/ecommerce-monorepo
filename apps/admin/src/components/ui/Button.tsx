@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useState } from 'react'
+import { forwardRef, useCallback, useState } from 'react'
 import styled, { css, useTheme } from 'styled-components'
 import type { Theme } from 'styles/theme'
 import type { ButtonColor, ButtonIcon, ButtonSize, ButtonType } from 'commons/styles/ComponentsType'
@@ -29,79 +29,79 @@ const BtnCommon = css<{
 `
 
 const BtnColor = (color?: ButtonColor) => {
-  const theme = useTheme() as Theme
+  const theme = useTheme()
   switch (color) {
     case 'primary':
       return {
-        bg: theme.colors.btnPrimary,
-        hover: theme.colors.btnPrimaryHover,
-        disabled: theme.colors.btnPrimaryDisabled,
+        bg: (theme as Theme).colors.btnPrimary,
+        hover: (theme as Theme).colors.btnPrimaryHover,
+        disabled: (theme as Theme).colors.btnPrimaryDisabled,
       }
     case 'dark':
       return {
-        bg: theme.colors.btnDark,
-        hover: theme.colors.btnDarkHover,
-        disabled: theme.colors.btnDarkDisabled,
+        bg: (theme as Theme).colors.btnDark,
+        hover: (theme as Theme).colors.btnDarkHover,
+        disabled: (theme as Theme).colors.btnDarkDisabled,
       }
     case 'negative':
       return {
-        bg: theme.colors.btnNegative,
-        hover: theme.colors.btnNegativeHover,
-        disabled: theme.colors.btnNegativeDisabled,
+        bg: (theme as Theme).colors.btnNegative,
+        hover: (theme as Theme).colors.btnNegativeHover,
+        disabled: (theme as Theme).colors.btnNegativeDisabled,
       }
     case 'warning':
       return {
-        bg: theme.colors.btnWarning,
-        hover: theme.colors.btnWarningHover,
-        disabled: theme.colors.btnWarningDisabled,
+        bg: (theme as Theme).colors.btnWarning,
+        hover: (theme as Theme).colors.btnWarningHover,
+        disabled: (theme as Theme).colors.btnWarningDisabled,
       }
     case 'positive':
       return {
-        bg: theme.colors.btnPositive,
-        hover: theme.colors.btnPositiveHover,
-        disabled: theme.colors.btnPositiveDisabled,
+        bg: (theme as Theme).colors.btnPositive,
+        hover: (theme as Theme).colors.btnPositiveHover,
+        disabled: (theme as Theme).colors.btnPositiveDisabled,
       }
     case 'white':
       return {
-        bg: theme.colors.btnWhite,
-        hover: theme.colors.btnWhiteHover,
-        disabled: theme.colors.btnWhiteDisabled,
+        bg: (theme as Theme).colors.btnWhite,
+        hover: (theme as Theme).colors.btnWhiteHover,
+        disabled: (theme as Theme).colors.btnWhiteDisabled,
       }
     case 'blue':
       return {
-        bg: theme.colors.btnBlue,
-        hover: theme.colors.btnBlueHover,
-        disabled: theme.colors.btnDisabled,
+        bg: (theme as Theme).colors.btnBlue,
+        hover: (theme as Theme).colors.btnBlueHover,
+        disabled: (theme as Theme).colors.btnDisabled,
       }
     case 'gray':
       return {
-        bg: theme.colors.btnGray,
-        hover: theme.colors.btnGrayHover,
-        disabled: theme.colors.btnDisabled,
+        bg: (theme as Theme).colors.btnGray,
+        hover: (theme as Theme).colors.btnGrayHover,
+        disabled: (theme as Theme).colors.btnDisabled,
       }
     case 'lightGray':
       return {
-        bg: theme.colors.btnLightGray,
-        hover: theme.colors.btnLightGrayHover,
-        disabled: theme.colors.btnDisabled,
+        bg: (theme as Theme).colors.btnLightGray,
+        hover: (theme as Theme).colors.btnLightGrayHover,
+        disabled: (theme as Theme).colors.btnDisabled,
       }
     case 'green':
       return {
-        bg: theme.colors.btnGreen,
-        hover: theme.colors.btnGreenHover,
-        disabled: theme.colors.btnDisabled,
+        bg: (theme as Theme).colors.btnGreen,
+        hover: (theme as Theme).colors.btnGreenHover,
+        disabled: (theme as Theme).colors.btnDisabled,
       }
     case 'cyan': //청록색
       return {
-        bg: theme.colors.btnCyan,
-        hover: theme.colors.btnCyanHover,
-        disabled: theme.colors.btnDisabled,
+        bg: (theme as Theme).colors.btnCyan,
+        hover: (theme as Theme).colors.btnCyanHover,
+        disabled: (theme as Theme).colors.btnDisabled,
       }
   }
 }
 
-const BtnSize = (btnSize?: ButtonSize, thin?: boolean, ellipsis?: boolean) => {
-  const theme = useTheme() as Theme
+const useBtnSize = (btnSize?: ButtonSize, thin?: boolean, ellipsis?: boolean) => {
+  const theme = useTheme()
 
   switch (btnSize) {
     case 'lg':
@@ -109,44 +109,44 @@ const BtnSize = (btnSize?: ButtonSize, thin?: boolean, ellipsis?: boolean) => {
         padding: 0 25px;
         border-radius: ${ellipsis ? '48px' : '10px'};
         line-height: ${thin ? '58px' : '56px'};
-        font-size: ${theme.fontSize.text.lg};
-        font-weight: ${theme.fontWeight.bold};
+        font-size: ${(theme as Theme).fontSize.text.lg};
+        font-weight: ${(theme as Theme).fontWeight.bold};
       `
     case 'md':
       return css`
         padding: 0 25px;
         border-radius: ${ellipsis && '48px'};
         line-height: ${thin ? '48px' : '46px'};
-        font-size: ${theme.fontSize.text.lg};
-        font-weight: ${theme.fontWeight.bold};
+        font-size: ${(theme as Theme).fontSize.text.lg};
+        font-weight: ${(theme as Theme).fontWeight.bold};
       `
     case 'normal':
       return css`
         padding: 0 20px;
         border-radius: ${ellipsis && '18px'};
         line-height: ${thin ? '38px' : '36px'};
-        font-size: ${theme.fontSize.text.lg};
+        font-size: ${(theme as Theme).fontSize.text.lg};
       `
     case 'sm':
       return css`
         padding: 0 15px;
         border-radius: ${ellipsis && '18px'};
         line-height: ${thin ? '36px' : '34px'};
-        font-size: ${theme.fontSize.text.lg};
+        font-size: ${(theme as Theme).fontSize.text.lg};
       `
     case 'xsm':
       return css`
         padding: 0 15px;
         border-radius: ${ellipsis && '18px'};
         line-height: ${thin ? '34px' : '32px'};
-        font-size: ${theme.fontSize.text.md};
+        font-size: ${(theme as Theme).fontSize.text.md};
       `
     case 'xs':
       return css`
         padding: 0 5px;
         border-radius: ${ellipsis && '14px'};
         line-height: ${thin ? '24px' : '22px'};
-        font-size: ${theme.fontSize.text.sm};
+        font-size: ${(theme as Theme).fontSize.text.sm};
       `
   }
 }
@@ -177,12 +177,12 @@ const BtnIconCommon = css<{ btnSize?: ButtonSize }>`
 const BtnIcon = (
   iconName?: ButtonIcon | 'Write',
   color?: ButtonColor,
-  btnType?: ButtonType,
+  btntype?: ButtonType,
   disabled?: boolean,
   isHover?: boolean,
 ) => {
   let iconColor
-  if (btnType === 'border' || btnType === 'ghost') {
+  if (btntype === 'border' || btntype === 'ghost') {
     if (disabled) {
       iconColor = BtnColor(color)?.disabled
     } else if (isHover) {
@@ -313,7 +313,7 @@ const BtnIcon = (
 }
 
 const ButtonComponent = styled.button<{
-  btnType?: ButtonType
+  btntype?: ButtonType
   color?: ButtonColor
   btnSize?: ButtonSize
   thin?: boolean
@@ -327,7 +327,7 @@ const ButtonComponent = styled.button<{
   ${BtnCommon};
 
   ${props => {
-    switch (props.btnType) {
+    switch (props.btntype) {
       case 'normal':
         return css`
           border-color: ${BtnColor(props.color)?.bg};
@@ -386,7 +386,7 @@ const ButtonComponent = styled.button<{
   }};
 
   ${props => {
-    return BtnSize(props.btnSize, props.thin, props.ellipsis)
+    return useBtnSize(props.btnSize, props.thin, props.ellipsis)
   }}
 
   ${props => {
@@ -396,7 +396,7 @@ const ButtonComponent = styled.button<{
           &::after {
             ${BtnIconCommon}
             margin-left: 5px;
-            ${BtnIcon(props.iconName, props.color, props.btnType, props.disabled, props.isHover)}
+            ${BtnIcon(props.iconName, props.color, props.btntype, props.disabled, props.isHover)}
           }
         `
       case 'before':
@@ -404,7 +404,7 @@ const ButtonComponent = styled.button<{
           &::before {
             ${BtnIconCommon}
             margin-right: 5px;
-            ${BtnIcon(props.iconName, props.color, props.btnType, props.disabled, props.isHover)}
+            ${BtnIcon(props.iconName, props.color, props.btntype, props.disabled, props.isHover)}
           }
         `
       case 'center':
@@ -412,7 +412,7 @@ const ButtonComponent = styled.button<{
           &::before {
             margin: 5px 0;
             ${BtnIconCommon}
-            ${BtnIcon(props.iconName, props.color, props.btnType, props.disabled, props.isHover)};
+            ${BtnIcon(props.iconName, props.color, props.btntype, props.disabled, props.isHover)};
           }
         `
     }
@@ -422,7 +422,7 @@ const ButtonComponent = styled.button<{
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   maxWidth?: string
   text?: string
-  btnType?: ButtonType
+  btntype?: ButtonType
   btnSize?: ButtonSize
   color?: ButtonColor
   thin?: boolean
@@ -456,7 +456,7 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
   )
   return (
     <ButtonComponent
-      btnType={props.btnType ? props.btnType : 'normal'}
+      btntype={props.btntype ? props.btntype : 'normal'}
       btnSize={props.btnSize ? props.btnSize : 'normal'}
       color={props.color ? props.color : 'dark'}
       thin={props.thin && props.thin}

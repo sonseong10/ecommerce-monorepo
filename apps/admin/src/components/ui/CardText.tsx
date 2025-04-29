@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components'
-import React from 'react'
+
 import type { CardTextBoxColor, CardTextIcon } from 'commons/styles/ComponentsType'
 import { FontWeight, TextAlign, TitleSize } from 'styles/styleds'
 import ToolTip, { type ToolTipPosition } from './ToolTip'
 import { ElementGroup } from 'styles/components'
 import type { FontAlignType, FontSizeTitleType, FontWeightType } from 'styles/stylesVo'
+import { memo } from 'react'
 
 const Container = styled.section`
   margin-top: 40px !important;
@@ -42,6 +43,7 @@ const CardItemInfo = styled.dl<{ isActive: boolean }>`
 
 const CardTitle = styled.dt<{
   iconName?: CardTextIcon | string
+  size?: FontSizeTitleType
   weight?: FontWeightType
   color?: string
   align?: FontAlignType
@@ -196,4 +198,4 @@ function CardText(props: ICardTextProps): JSX.Element {
   )
 }
 
-export default React.memo(CardText)
+export default memo(CardText)

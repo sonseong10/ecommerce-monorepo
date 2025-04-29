@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import { memo, useCallback, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import type { Theme } from 'styles/theme'
 import { WFrom } from 'styles/styleds'
@@ -44,7 +44,7 @@ const Select2 = styled.span`
 const Selection = styled.span``
 
 const Select2Selection = styled.span<{ disable: boolean; theme: Theme }>`
-  background-color: ${props => (props.disable ? props.theme.colors.bgFrom : '#fff')};
+  background-color: ${props => (props.disable ? props.theme.colors.bgForm : '#fff')};
   margin-left: 0;
   display: block;
   cursor: pointer;
@@ -220,16 +220,16 @@ function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
     props.selectType === 'select'
       ? (props.select as number)
       : props.select !== undefined
+      ? props.data.findIndex(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          value => (value as any)[props.selectId as string] === props.select,
+        ) !== -1
         ? props.data.findIndex(
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             value => (value as any)[props.selectId as string] === props.select,
-          ) !== -1
-          ? props.data.findIndex(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              value => (value as any)[props.selectId as string] === props.select,
-            )
-          : undefined
-        : props.select,
+          )
+        : undefined
+      : props.select,
   )
 
   const isClear = props.placeholder !== undefined
@@ -324,7 +324,7 @@ function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
           break
       }
     },
-    [isActive],
+    [confirm, props, selectType, selected],
   )
   const clearHandler = useCallback(() => {
     setSelected(undefined)
@@ -335,9 +335,10 @@ function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
     if (props.change) {
       props.change()
     }
-  }, [])
+  }, [props])
   const searchHandler = useCallback((e: string) => {
     setSearchValue(e)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     searchReg = getSearchRegExp(e)
   }, [])
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -402,7 +403,7 @@ function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
           break
       }
     }
-  }, [props.select, props.data])
+  }, [props.select, props.data, props.selectId, selected, selectType])
 
   return (
     <SelectWrapper size={size} ref={selectWrapperRef}>
@@ -461,7 +462,7 @@ function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
     </SelectWrapper>
   )
 }
-export default React.memo(SelectBox)
+export default memo(SelectBox)
 
 export interface IUiSelectBoxProps<T> {
   id: string
