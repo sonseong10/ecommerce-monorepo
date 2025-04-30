@@ -4,6 +4,7 @@ import styled, {css} from 'styled-components';
 import {AbsPopupType} from '../AbsPopupType';
 import {useAbsPopupButton, useAbsPopupData, useAbsPopupTitle, useClosePopup} from '../store/absPopupHook';
 import {ButtonState, type IButton} from '../store/absPopupVo';
+import {Theme} from '../../../styles/theme';
 
 const MsgWrapper = styled.div<{
   width: number | string;
@@ -77,7 +78,8 @@ const headerStyle = () => {
     position: relative;
     min-height: 55px;
     padding: 15px 25px;
-    border-bottom: 1px solid ${(props) => (props.theme.colors ? props.theme.colors.borderPrimary : '#ebebeb')};
+    border-bottom: 1px solid
+      ${(props) => ((props.theme as Theme).colors ? (props.theme as Theme).colors.borderPrimary : '#ebebeb')};
     justify-content: center;
   `;
 };
@@ -104,7 +106,12 @@ const bodyStyle = css<{maxHeight?: number | string}>`
     margin-bottom: 13px;
   }
 `;
-const MobileMessagBody = css<{device: boolean; isButtonList?: boolean}>`
+const MobileMessagBody = css<{
+  type: AbsPopupType | string;
+  device: boolean;
+  maxHeight?: number | string;
+  isButtonList?: boolean;
+}>`
   ${(props) => {
     if (props.device) {
       return css`
@@ -141,7 +148,7 @@ const MsgBody = styled.div<{
       case AbsPopupType.ALERT:
       case AbsPopupType.CONFIRM:
         return css`
-          ${MobileMessagBody}
+          /* ${MobileMessagBody} */
         `;
       default:
         return css`

@@ -1,7 +1,5 @@
 function MainPage() {
-  return <>
-  
-  </>
+  return <div>123</div>;
 }
 
 export default MainPage

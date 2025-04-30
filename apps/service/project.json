@@ -1,8 +1,14 @@
 {
   "name": "service",
-  "projectType": "application",
   "sourceRoot": "apps/service/src",
+  "projectType": "application",
   "targets": {
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "service:build"
+      }
+    },
     "build": {
       "executor": "@nx/vite:build",
       "options": {
@@ -10,8 +16,8 @@
         "configFile": "apps/service/vite.config.ts"
       }
     },
-    "serve": {
-      "executor": "@nx/vite:dev-server",
+    "preview": {
+      "executor": "@nx/vite:preview",
       "options": {
         "buildTarget": "service:build"
       }

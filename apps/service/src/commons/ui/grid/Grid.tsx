@@ -1,24 +1,24 @@
 import React, { type ForwardedRef, type Key, useRef } from "react";
-import styled, { css, type StyledComponent } from "styled-components";
-import GridHeaderFixed from "./components/GridHeaderFixed";
-import GridRow from "./components/GridRow";
-import SortHeader from "./components/SortHeader";
-import SumRow from "./components/SumRow";
-import { TableContainer } from "./GridStyled";
-import type { IGrideSub, IGridPosition, IGridSetting, sortType } from "./GridVo";
-import { useIntersectionObserver } from "./store/GridHook";
-import AbsLoading from "commons/loading/AbsLoading";
+import styled, {css, type IStyledComponent} from 'styled-components';
+import GridHeaderFixed from './components/GridHeaderFixed';
+import GridRow from './components/GridRow';
+import SortHeader from './components/SortHeader';
+import SumRow from './components/SumRow';
+import {TableContainer} from './GridStyled';
+import type {IGrideSub, IGridPosition, IGridSetting, sortType} from './GridVo';
+import {useIntersectionObserver} from './store/GridHook';
+import AbsLoading from '../../loading/AbsLoading';
 
-const EmptyList = styled.tr<{ iconType?: string }>`
+const EmptyList = styled.tr<{iconType?: string}>`
   > td:first-of-type::before {
     display: block;
-    content: "";
-    ${props => {
+    content: '';
+    ${(props) => {
       switch (props.iconType) {
-        case "shipping":
+        case 'shipping':
           return css`
             padding: 85px 60px 5px 60px;
-            background: url("../../../images/icon/icon_all_count.svg") no-repeat center center;
+            background: url('../../../images/icon/icon_all_count.svg') no-repeat center center;
             background-size: 60px;
           `;
         default:
@@ -28,13 +28,13 @@ const EmptyList = styled.tr<{ iconType?: string }>`
   }
 `;
 
-const ScrollTable = styled.div<{ over?: boolean; height?: number | string }>`
-  ${props => (props.over ? "overflow: auto;" : "")}
-  ${props => {
+const ScrollTable = styled.div<{over?: boolean; height?: number | string}>`
+  ${(props) => (props.over ? 'overflow: auto;' : '')}
+  ${(props) => {
     if (props.height) {
       return css`
         display: block;
-        max-height: ${typeof props.height === "number" ? `${props.height}px` : props.height};
+        max-height: ${typeof props.height === 'number' ? `${props.height}px` : props.height};
         overscroll-behavior: contain;
 
         &::-webkit-scrollbar {
@@ -59,7 +59,7 @@ function getPropertyKey<T, K extends keyof T>(obj: T, key: K): Key {
 export interface IGridProps<Data, Setting, Not> {
   id?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  container?: StyledComponent<any, any>;
+  container?: IStyledComponent<any, any>;
   layoutOverflow?: boolean;
   setting?: Setting;
   rowId?: keyof Data;
@@ -80,7 +80,7 @@ export interface IGridProps<Data, Setting, Not> {
     select?: number;
     click?: (position: IGridPosition, value?: Data) => void;
   };
-  emptyInfo?: { element: React.FC<Not>; props: Not };
+  emptyInfo?: {element: React.FC<Not>; props: Not};
   /** 무한 리스트 만들기 위한 값 */
   infiniteInfo?: {
     /** 현제 페이지 번호 */
@@ -98,8 +98,8 @@ export interface IGridProps<Data, Setting, Not> {
   };
 }
 
-function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: string; message?: string }>(
-  props: IGridProps<Data, Setting, Not>,
+function Grid<Data, Setting extends IGridSetting<Data>[], Not extends {text?: string; message?: string}>(
+  props: IGridProps<Data, Setting, Not>
 ) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const change = (position: IGridPosition, value?: any) => {
@@ -156,7 +156,7 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
           <colgroup>
             {props.setting?.map((item, idx) => {
               if (item.display === undefined || item.display) {
-                return <col key={idx} style={{ width: item.width }}></col>;
+                return <col key={idx} style={{width: item.width}}></col>;
               }
             })}
           </colgroup>
