@@ -1,0 +1,20 @@
+{
+  "name": "storybook",
+  "projectType": "library",
+  "sourceRoot": "libs/storybook/src",
+  "targets": {
+    "storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook dev -p 4400 -c libs/storybook/.storybook"
+      }
+    },
+    "build-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook build -c libs/storybook/.storybook -o dist/storybook"
+      }
+    }
+  },
+  "tags": []
+}

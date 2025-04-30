@@ -1,5 +1,5 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
-import { lightTheme } from "/styles/theme.ts";
+import { lightTheme } from "../../styles/theme";
 
 <Meta title="Style/Colors" />
 
@@ -11,10 +11,11 @@ import { lightTheme } from "/styles/theme.ts";
         typeof v === "string" &&
         (v.match(/^#/) || v.match(/^rgb/) || k.match(/color/i))
       ) {
-        return <ColorItem key={k} title={k} colors={{ [`theme.colors.${k}`]: v }} />;
+        return <ColorItem key={k} title={k} colors={{ [`theme.colors.${k}`]: v }} subtitle='123'/>;
       } else if (typeof v === "object") {
         return (
           <ColorItem
+          subtitle='123'
             key={k}
             title={k}
             colors={Object.entries(v).reduce(

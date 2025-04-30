@@ -2,20 +2,20 @@ import {
   Meta,
   IconGallery,
   IconItem,
-  ArgsTable,
-  Canvas,
-  Story,
 } from "@storybook/blocks";
 import styled from "styled-components";
-import SVG from "/commons/styles/svgIcon.ts";
+import SVG from "../../commons/styles/svgIcon";
 import * as IconStories from './Icon.stories';
 
 export const ICon = styled.div`
   width: 40px;
   height: 40px;
-  background: ${props =>
-    props.name && props.color
-      ? `url(${SVG[props.name](props.color)}) no-repeat center`
+  background: ${({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+  name, color}) =>
+    name && color
+      ? `url(${SVG[name](color)}) no-repeat center`
       : ""};
   background-size: 20px;
 `;
@@ -34,7 +34,7 @@ export const ICon = styled.div`
   {Object.keys(SVG).map((i, idx) => {
     return (
       <IconItem key={idx} name={i}>
-        <ICon name={i} color="#25282b" />
+        <ICon color="#25282b" />
       </IconItem>
     );
   })}

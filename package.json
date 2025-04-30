@@ -2,6 +2,10 @@
   "devDependencies": {
     "@nx/react": "^20.8.1",
     "@nx/vite": "^20.8.1",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/core-server": "^8.6.12",
+    "@storybook/react-vite": "^8.6.12",
+    "storybook": "^8.6.12",
     "vite": "^6.3.3"
   }
 }
