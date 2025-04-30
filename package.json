@@ -1,5 +1,7 @@
 {
   "devDependencies": {
-    "@nx/react": "^20.8.1"
+    "@nx/react": "^20.8.1",
+    "@nx/vite": "^20.8.1",
+    "vite": "^6.3.3"
   }
 }

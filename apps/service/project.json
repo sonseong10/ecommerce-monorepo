@@ -1,0 +1,21 @@
+{
+  "name": "service",
+  "projectType": "application",
+  "sourceRoot": "apps/service/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/apps/service",
+        "configFile": "apps/service/vite.config.ts"
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "options": {
+        "buildTarget": "service:build"
+      }
+    }
+  },
+  "tags": []
+}

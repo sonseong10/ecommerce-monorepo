@@ -3,7 +3,7 @@
 .nx/*
 
 node_modules/
-apps/admin/node_modules/
+apps/*/node_modules/
 
 .emv
-apps/admin/.env
+apps/*/.env

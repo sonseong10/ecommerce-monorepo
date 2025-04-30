@@ -1,6 +1,7 @@
 {
   "projects": {
-    "admin": "apps/admin"
+    "admin": "apps/admin",
+    "service": "apps/service/react"
   },
   "installation": {
     "version": "20.8.1"

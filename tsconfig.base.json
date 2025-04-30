@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@admin/*": ["apps/admin/src/*"]
+      "@admin/*": ["apps/admin/src/*"],
+      "@service/*": ["apps/service/react/src/*"]
     },
     "rootDir": ".",
     "sourceMap": true,
