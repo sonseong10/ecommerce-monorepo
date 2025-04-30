@@ -1,0 +1,35 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import { lightTheme } from "/styles/theme.ts";
+
+<Meta title="Style/Colors" />
+
+# ColorTheme
+
+<ColorPalette>
+    {Object.entries(lightTheme.colors).map(([k, v]) => {
+      if (
+        typeof v === "string" &&
+        (v.match(/^#/) || v.match(/^rgb/) || k.match(/color/i))
+      ) {
+        return <ColorItem key={k} title={k} colors={{ [`theme.colors.${k}`]: v }} />;
+      } else if (typeof v === "object") {
+        return (
+          <ColorItem
+            key={k}
+            title={k}
+            colors={Object.entries(v).reduce(
+              (acc, [key, value]) =>
+                typeof value === "string" &&
+                (value.match(/^#/) ||
+                  value.match(/^rgb/) ||
+                  key.match(/color/i))
+                  ? { ...acc, [key]: value }
+                  : acc,
+              {}
+            )}
+          />
+        );
+      }
+      return null;
+    })}
+  </ColorPalette>

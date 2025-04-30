@@ -1,0 +1,101 @@
+import { Meta, Typeset } from '@storybook/blocks';
+
+<Meta title="Style/Typography" />
+
+export const textTypography = {
+  type: {
+    primary: '"Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  },
+  weight: {
+    regular: '400',
+    bold: '700',
+    extrabold: '800',
+    black: '900',
+  },
+  size: {
+    s1: 12,
+    s2: 14,
+    s3: 16,
+    m1: 20,
+    m2: 24,
+    m3: 28,
+    l1: 32,
+    l2: 40,
+    l3: 48,
+  },
+};
+
+export const numberTypography = {
+  type: {
+    primary: '"DMSans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  },
+  weight: {
+    regular: '400',
+    bold: '700',
+    extrabold: '800',
+    black: '900',
+  },
+  size: {
+    s1: 12,
+    s2: 14,
+    s3: 16,
+    m1: 20,
+    m2: 24,
+    m3: 28,
+    l1: 32,
+    l2: 40,
+    l3: 48,
+  },
+};
+
+export const SampleText1 = '다람쥐 헌 쳇바퀴에 타고파';
+export const SampleText2 = '1 2 3 4 5 6 7 8 9 0';
+
+# Typography
+
+**Font:** Noto Sans
+
+**Weights:** 400(regular), 700(bold), 800(extrabold), 900(black)
+
+**Use** 한글 & 영어 텍스트인 경우 적용
+
+<Typeset
+  fontSizes={[
+    Number(textTypography.size.s1),
+    Number(textTypography.size.s2),
+    Number(textTypography.size.s3),
+    Number(textTypography.size.m1),
+    Number(textTypography.size.m2),
+    Number(textTypography.size.m3),
+    Number(textTypography.size.l1),
+    Number(textTypography.size.l2),
+    Number(textTypography.size.l3),
+  ]}
+  fontWeight={textTypography.weight.black}
+  sampleText={SampleText1}
+  fontFamily={textTypography.type.primary}
+/>
+
+
+**Font:** DM Sans
+
+**Weights:** 400(regular), 700(bold), 800(extrabold), 900(black)
+
+**Use** 숫가 텍스트인 경우 적용
+
+<Typeset
+  fontSizes={[
+    Number(numberTypography.size.s1),
+    Number(numberTypography.size.s2),
+    Number(numberTypography.size.s3),
+    Number(numberTypography.size.m1),
+    Number(numberTypography.size.m2),
+    Number(numberTypography.size.m3),
+    Number(numberTypography.size.l1),
+    Number(numberTypography.size.l2),
+    Number(numberTypography.size.l3),
+  ]}
+  fontWeight={numberTypography.weight.black}
+  sampleText={SampleText2}
+  fontFamily={numberTypography.type.primary}
+/>
