@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import styled, { type IStyledComponent } from 'styled-components'
+import styled, { type StyledComponent } from 'styled-components'
 import usePopup from './store/absPopupHook'
 import { getPopup } from './AbsPopupType'
 import Spinner from '../loading/display/Spinner'
@@ -54,7 +54,7 @@ interface IPopupProps {
    * `
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  area?: IStyledComponent<'web', any>
+  area?: StyledComponent<'div', any>
 }
 
 function Popup(props: IPopupProps) {
@@ -67,7 +67,7 @@ function Popup(props: IPopupProps) {
           ''
         ) : (
           <>
-            {popupDo.map((popup, idx) => {
+            {popupDo.map((popup: any, idx: number) => {
               const SpecificStory = getPopup(popup.type)
               return (
                 <PopupStyle key={`${popup.type}_${idx}`}>

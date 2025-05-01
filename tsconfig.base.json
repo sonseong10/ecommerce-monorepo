@@ -5,7 +5,9 @@
     "baseUrl": ".",
     "paths": {
       "@admin/*": ["apps/admin/src/*"],
-      "@service/*": ["apps/service/react/src/*"]
+      "@service/*": ["apps/service/react/src/*"],
+      "@ecommerce/commons": ["libs/commons/src/index.ts"],
+      "@ecommerce/commons/*": ["libs/commons/src/*"]
     },
     "rootDir": ".",
     "sourceMap": true,
@@ -14,7 +16,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2020",
-    "module": "commonjs",
+    "module": "ESNext",
+    "verbatimModuleSyntax": true,
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

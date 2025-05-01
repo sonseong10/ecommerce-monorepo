@@ -7,6 +7,25 @@
   "installation": {
     "version": "20.8.1"
   },
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "nxCloudId": "681075a2b6d0796da0ecea93"
+  "nxCloudId": "681075a2b6d0796da0ecea93",
+  "plugins": [
+    {
+      "plugin": "@nx/react/router-plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start",
+        "watchDepsTargetName": "watch-deps",
+        "buildDepsTargetName": "build-deps",
+        "typecheckTargetName": "typecheck"
+      }
+    }
+  ],
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
+      }
+    }
+  }
 }

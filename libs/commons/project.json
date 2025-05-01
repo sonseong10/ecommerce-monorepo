@@ -1,0 +1,8 @@
+{
+  "name": "commons",
+  "sourceRoot": "commons/src",
+  "projectType": "library",
+  "tags": ["scope:commons", "type:ui"],
+  "// targets": "to see all targets run: nx show project commons --web",
+  "targets": {}
+}

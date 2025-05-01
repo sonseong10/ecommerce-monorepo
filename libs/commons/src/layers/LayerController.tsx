@@ -31,4 +31,4 @@ function Layer() {
   }
 }
 
-export default memo(Layer)
+export default Layer
