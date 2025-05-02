@@ -1,17 +1,107 @@
-import { FaGithub } from 'react-icons/fa'
-import { FcGoogle } from 'react-icons/fc'
-import Button from '../../components/ui/Button'
+import styled from 'styled-components'
+import Logo from '../../assets/images/dark-logo.svg'
 import { useAuth } from './authHook'
+import { ElementGroup } from 'src/styles/components'
+import Button from '../../components/ui/Button'
+import type { Theme } from 'src/styles/theme'
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--bg-grey);
+`
+
+const LoginForm = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  border-radius: 10px;
+  background-color: var(--background-body);
+  overflow: hidden;
+  box-shadow: 4px 4px 24px var(--disabled);
+`
+
+const LoginBox = styled.div`
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    line-height: 1;
+  }
+`
+
+const ImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 372px;
+  background-color: var(--primary);
+`
+
+const UserLoginForm = styled.form`
+  margin-bottom: 32px;
+
+  input {
+    padding: 4px 16px;
+    border: 1px solid var(--border-primary);
+    font-size: ${props => (props.theme as Theme).fontSize.text.lg};
+    min-height: 48px;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 8px;
+
+    &:focus {
+      border-color: var(--primary);
+      &::placeholder {
+        color: var(--primary);
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+`
+
+const EasyLoginWrapper = styled(ElementGroup.Row)`
+  flex-wrap: nowrap;
+  margin-top: 12px;
+
+  button {
+    width: 100%;
+  }
+`
 
 function BaiscUserLoginForm() {
   return (
     <>
-      <h3>통합플랫폼 어드민</h3>
-      <span>아이디</span>
-      <input type="text" />
-      <span>패스워드</span>
-      <input type="password" />
-      <Button text="로그인" color="primary" />
+      <UserLoginForm
+        action={void 0}
+        onSubmit={e => {
+          e.preventDefault()
+          console.log('login')
+        }}
+      >
+        <input id="id" type="text" placeholder="이메일" />
+        <input type="password" placeholder="비밀번호" />
+        <Button
+          text="로그인"
+          color="primary"
+          $btnSize="md"
+          onSubmit={e => {
+            e.preventDefault()
+            console.log('login')
+          }}
+        />
+      </UserLoginForm>
     </>
   )
 }
@@ -19,35 +109,43 @@ function BaiscUserLoginForm() {
 function EasyLoginForm() {
   const { onLogin } = useAuth()
   return (
-    <div>
-      <span>테스터&방문자용 간편로그인</span>
-      <div>
-        <div>
-          <FcGoogle />
-          <Button type="button" btntype="ghost" onClick={() => onLogin('Google')} text="Google"></Button>
-        </div>
+    <EasyLoginWrapper>
+      <Button type="button" $btnType="border" thin={true} onClick={() => onLogin('Google')} text="for Google" />
 
-        <div>
-          <FaGithub />
-          <Button type="button" btntype="ghost" onClick={() => onLogin('Github')} value="Github" text="Github"></Button>
-        </div>
-      </div>
-    </div>
+      <Button
+        type="button"
+        $btnType="border"
+        thin={true}
+        onClick={() => onLogin('Github')}
+        value="Github"
+        text="for Github"
+      />
+    </EasyLoginWrapper>
   )
 }
 
 function Login(): JSX.Element {
   return (
-    <div>
-      <div>
-        <div>{/* <img  alt="브랜드 로고" /> */}</div>
-        <div>
-          <BaiscUserLoginForm />
+    <Wrapper>
+      <LoginForm>
+        <ImageBox>
+          <img src={Logo} alt="로고" />
+        </ImageBox>
+        <LoginBox>
+          <div>
+            <h3>통합 어드민</h3>
 
-          <EasyLoginForm />
-        </div>
-      </div>
-    </div>
+            <BaiscUserLoginForm />
+          </div>
+
+          <div>
+            <span>방문자용 간편로그인</span>
+
+            <EasyLoginForm />
+          </div>
+        </LoginBox>
+      </LoginForm>
+    </Wrapper>
   )
 }
 

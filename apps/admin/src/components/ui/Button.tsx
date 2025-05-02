@@ -179,13 +179,13 @@ const BtnIcon = (
   color?: ButtonColor,
   btntype?: ButtonType,
   disabled?: boolean,
-  isHover?: boolean,
+  $isHover?: boolean,
 ) => {
   let iconColor
   if (btntype === 'border' || btntype === 'ghost') {
     if (disabled) {
       iconColor = BtnColor(color)?.disabled
-    } else if (isHover) {
+    } else if ($isHover) {
       iconColor = BtnColor(color)?.hover
     } else {
       iconColor = BtnColor(color)?.bg
@@ -313,21 +313,21 @@ const BtnIcon = (
 }
 
 const ButtonComponent = styled.button<{
-  btntype?: ButtonType
+  $btnType?: ButtonType
   color?: ButtonColor
-  btnSize?: ButtonSize
+  $btnSize?: ButtonSize
   thin?: boolean
   ellipsis?: boolean
   iconPosition?: 'before' | 'after' | 'center'
   iconName?: ButtonIcon | 'Write'
   disabled?: boolean
-  isHover?: boolean
+  $isHover?: boolean
   maxWidth?: string
 }>`
   ${BtnCommon};
 
   ${props => {
-    switch (props.btntype) {
+    switch (props.$btnType) {
       case 'normal':
         return css`
           border-color: ${BtnColor(props.color)?.bg};
@@ -386,7 +386,7 @@ const ButtonComponent = styled.button<{
   }};
 
   ${props => {
-    return useBtnSize(props.btnSize, props.thin, props.ellipsis)
+    return useBtnSize(props.$btnSize, props.thin, props.ellipsis)
   }}
 
   ${props => {
@@ -396,7 +396,7 @@ const ButtonComponent = styled.button<{
           &::after {
             ${BtnIconCommon}
             margin-left: 5px;
-            ${BtnIcon(props.iconName, props.color, props.btntype, props.disabled, props.isHover)}
+            ${BtnIcon(props.iconName, props.color, props.$btnType, props.disabled, props.$isHover)}
           }
         `
       case 'before':
@@ -404,7 +404,7 @@ const ButtonComponent = styled.button<{
           &::before {
             ${BtnIconCommon}
             margin-right: 5px;
-            ${BtnIcon(props.iconName, props.color, props.btntype, props.disabled, props.isHover)}
+            ${BtnIcon(props.iconName, props.color, props.$btnType, props.disabled, props.$isHover)}
           }
         `
       case 'center':
@@ -412,7 +412,7 @@ const ButtonComponent = styled.button<{
           &::before {
             margin: 5px 0;
             ${BtnIconCommon}
-            ${BtnIcon(props.iconName, props.color, props.btntype, props.disabled, props.isHover)};
+            ${BtnIcon(props.iconName, props.color, props.$btnType, props.disabled, props.$isHover)};
           }
         `
     }
@@ -422,8 +422,8 @@ const ButtonComponent = styled.button<{
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   maxWidth?: string
   text?: string
-  btntype?: ButtonType
-  btnSize?: ButtonSize
+  $btnType?: ButtonType
+  $btnSize?: ButtonSize
   color?: ButtonColor
   thin?: boolean
   ellipsis?: boolean
@@ -456,17 +456,17 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
   )
   return (
     <ButtonComponent
-      btntype={props.btntype ? props.btntype : 'normal'}
-      btnSize={props.btnSize ? props.btnSize : 'normal'}
+      $btnType={props.$btnType ? props.$btnType : 'normal'}
+      $btnSize={props.$btnSize ? props.$btnSize : 'normal'}
       color={props.color ? props.color : 'dark'}
-      thin={props.thin && props.thin}
+      thin={props.thin ? props.thin : undefined}
       ellipsis={props.ellipsis && props.ellipsis}
       iconPosition={props.iconPosition && props.iconPosition}
       iconName={props.iconName && props.iconName}
       onMouseEnter={hoverHandler}
       onMouseLeave={leaveHandler}
       onClick={clickHandler}
-      isHover={hover}
+      $isHover={hover}
       disabled={props.disabled && props.disabled}
       ref={ref}
       onMouseUp={props.onMouseUp}
