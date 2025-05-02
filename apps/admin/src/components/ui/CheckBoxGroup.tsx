@@ -1,8 +1,8 @@
-import { useCheckBoxGroup } from 'commons/ui/useUihook'
-import type { IValid } from 'commons/ui/useValid'
+import { useCheckBoxGroup } from '@ecommerce/commons'
+import type { IValid } from '@ecommerce/commons'
 import { memo, useCallback } from 'react'
 import styled, { css } from 'styled-components'
-import type { DirectionType } from '../../commons/styles/ComponentsType'
+import type { DirectionType } from '@ecommerce/commons'
 import CheckBox from './CheckBox'
 
 const CheckBoxGroupStyle = styled.div<{

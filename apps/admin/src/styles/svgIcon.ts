@@ -1,5 +1,5 @@
-import type { ButtonIcon } from '../commons/styles/ComponentsType'
-import commonsSVG from '../commons/styles/svgIcon'
+import type { ButtonIcon } from '@ecommerce/commons'
+import { commonSVG } from '@ecommerce/commons'
 
 const NavContents = (color?: string): string => {
   color = color?.indexOf('#') === -1 ? color : color?.substring(1, color.length)
@@ -17,7 +17,7 @@ const Insight = (color?: string): string => {
 }
 
 const CurrentSVG: { [key: ButtonIcon | string]: (color?: string) => string } = {
-  ...commonsSVG,
+  ...commonSVG,
   NavContents,
   NavCategory,
   Insight,

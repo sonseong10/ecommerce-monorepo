@@ -1,6 +1,6 @@
-import type { IValid } from '../../../commons/ui/useValid'
+import type { IValid } from '../../ui/reUi/useValid'
 import InputText, { type IInputProps, type IInputTextEventParam } from '../InputText'
-import { useInputText } from '../../../commons/ui/reUi/useUihook'
+import { useInputText } from '../../ui/reUi/useUihook'
 
 /**
  *
@@ -9,10 +9,10 @@ export interface IUiInputTextProps extends IInputProps {
   /** 필수 고유값 */
   id: string
   init?: string
-  valid?: IValid<string>
+  valid?: IValid<string | undefined>
 }
 
-export default function UiInputText(props: IUiInputTextProps): JSX.Element {
+export default function UiInputText(props: IUiInputTextProps) {
   const { inputTextValue, changeValue } = useInputText({
     id: props.id,
     valid: props.valid,

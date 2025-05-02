@@ -1,13 +1,13 @@
-import { useSelectorEq } from 'commons/store/common'
-import type { IState } from 'store/modules'
+import { useSelectorEq } from '@ecommerce/commons'
+import type { IState } from '../../../../store/modules'
 import { WorkRegisterUiId, type IRegisterWorkVo } from './registerVo'
 import { useDispatch } from 'react-redux'
 import { rdxSetReferrerList } from './registerR'
-import type { IMemberPopupReturnData } from 'components/popup/member/store/memberPopupVo'
+import type { IMemberPopupReturnData } from '../../../../components/popup/member/store/memberPopupVo'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import WorkRepository from 'service/work-repository'
-import { useIConPopup } from 'components/popup/popupHook'
+import WorkRepository from '../../../../service/work-repository'
+import { useIConPopup } from '../../../../components/popup/popupHook'
 
 export const useWorkRegister = () => {
   const iconPopup = useIConPopup()

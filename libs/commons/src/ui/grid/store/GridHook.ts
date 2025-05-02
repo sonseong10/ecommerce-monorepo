@@ -1,11 +1,11 @@
-import type { ICommonsStore } from 'commons'
-import { useSelectorEq } from 'commons/store/common'
+import type { ICommonsStore } from '@ecommerce/commons'
+import { useSelectorEq } from '../../../store/common'
 import { useEffect } from 'react'
 import { UiType, type IUiActionValue } from '../../uiVo'
 import { useUiAction } from '../../useUihook'
 import type { IGridPageableDo } from '../GridVo'
-import { addInit, privateUseInitCallback, privateUseRemoveCallback, removeEnd } from 'commons/ui/uiCore'
-import { useLoadingValue } from 'commons/loading/store/loadingHook'
+import { addInit, privateUseInitCallback, privateUseRemoveCallback, removeEnd } from '../../../ui/uiCore'
+import { useLoadingValue } from '../../../loading/store/loadingHook'
 
 type GridOptionType = 'gridSort' | 'gridSub' | 'pageable'
 

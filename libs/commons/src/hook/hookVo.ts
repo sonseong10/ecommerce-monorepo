@@ -22,7 +22,7 @@ export interface IUseParam<T extends HTMLElement> {
   initalChecked?: boolean
   placeholder?: string
   type?: InputType
-  target?: RefObject<T>
+  target?: RefObject<T | null>
   onChangeHandler?: IUseEventHandler
   onNextHandler?: IUseEventHandler
   onFocusOut?: IUseEventHandler

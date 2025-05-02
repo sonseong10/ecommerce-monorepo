@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components'
 
-import type { CardTextBoxColor, CardTextIcon } from 'commons/styles/ComponentsType'
-import { FontWeight, TextAlign, TitleSize } from 'styles/styleds'
+import type { CardTextBoxColor, CardTextIcon } from '@ecommerce/commons'
+import { FontWeight, TextAlign, TitleSize } from '../../styles/styleds'
 import ToolTip, { type ToolTipPosition } from './ToolTip'
-import { ElementGroup } from 'styles/components'
-import type { FontAlignType, FontSizeTitleType, FontWeightType } from 'styles/stylesVo'
+import { ElementGroup } from '../../styles/components'
+import type { FontAlignType, FontSizeTitleType, FontWeightType } from '../../styles/stylesVo'
 import { memo } from 'react'
 
 const Container = styled.section`

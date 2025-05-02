@@ -1,9 +1,9 @@
 import { memo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AddCardForm from './add-card-form'
-import type ImageUploader from 'service/image-uploader'
-import type DropDown from 'utils/dropdown'
-import type { ICardVo } from 'types/grobal-type'
+import type ImageUploader from '../../../service/image-uploader'
+import type DropDown from '../../../utils/dropdown'
+import type { ICardVo } from '../../../types/grobal-type'
 
 interface IMakerProps {
   FileInput: React.MemoExoticComponent<

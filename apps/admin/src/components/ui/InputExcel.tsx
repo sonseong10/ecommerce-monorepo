@@ -1,7 +1,7 @@
-import SVG from 'commons/styles/svgIcon'
+import { commonSVG } from '@ecommerce/commons'
 import { useCallback, useRef } from 'react'
 import styled from 'styled-components'
-import { Text } from 'styles/components'
+import { Text } from '../../styles/components'
 import Button from './Button'
 
 const InputFileWrap = styled.div<{ isActive: boolean }>`
@@ -43,7 +43,7 @@ const InputFileWrap = styled.div<{ isActive: boolean }>`
       white-space: nowrap;
       overflow: hidden;
 
-      background: url(${SVG.Excel('#515355')}) no-repeat 4px center;
+      background: url(${commonSVG.Excel('#515355')}) no-repeat 4px center;
       background-size: 16px;
       background-color: var(--body-background);
 

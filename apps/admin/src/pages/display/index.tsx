@@ -1,11 +1,11 @@
-import Accordion from 'components/ui/Accordion'
-import Button from 'components/ui/Button'
-import { UiInputFile } from 'components/ui/InputFile'
-import { UiInputText } from 'components/ui/InputText'
-import OptionGrid from 'components/ui/OptionGrid'
-import { UiRadioGroup } from 'components/ui/RadioGroup'
+import Accordion from '../../components/ui/Accordion'
+import Button from '../../components/ui/Button'
+import { UiInputFile } from '../../components/ui/InputFile'
+import { UiInputText } from '../../components/ui/InputText'
+import OptionGrid from '../../components/ui/OptionGrid'
+import { UiRadioGroup } from '../../components/ui/RadioGroup'
 import styled from 'styled-components'
-import { ElementGroup, Title } from 'styles/components'
+import { ElementGroup, Title } from '../../styles/components'
 
 const DisplayWrapper = styled(ElementGroup.Row)`
   position: relative;

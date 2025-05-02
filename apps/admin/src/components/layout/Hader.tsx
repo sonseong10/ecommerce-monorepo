@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSelectorEq } from 'commons/store/common'
-import type { IState } from 'store/modules'
-import Button from 'components/ui/Button'
-import { useAuth } from 'pages/auth/authHook'
+import { useSelectorEq } from '@ecommerce/commons'
+import type { IState } from '../../store/modules'
+import Button from '../../components/ui/Button'
+import { useAuth } from '../../pages/auth/authHook'
 import { memo } from 'react'
 
 const HeaderWrapper = styled.header`

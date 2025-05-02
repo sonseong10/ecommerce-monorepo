@@ -1,7 +1,7 @@
-import type { IRegisterWorkVo } from 'pages/work/register/store/registerVo'
+import type { IRegisterWorkVo } from '../../../../pages/work/register/store/registerVo'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import WorkRepository from 'service/work-repository'
+import WorkRepository from '../../../../service/work-repository'
 
 const workService = new WorkRepository()
 export const useInitDetail = () => {

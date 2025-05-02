@@ -1,9 +1,11 @@
 {
   "extends": "../../tsconfig.base.json",
+  "lib": ["dom", "dom.iterable", "es2018", "esnext"],
   "compilerOptions": {
     "jsx": "react-jsx",
     "strict": true,
-    "types": ["react"]
+    "types": ["react", "react-redux"],
+    "moduleResolution": "node"
   },
-  "include": ["src"]
+  "include": ["src", "../../apps/admin/src/utils/Http.ts"]
 }

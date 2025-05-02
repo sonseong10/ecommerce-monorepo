@@ -1,5 +1,5 @@
 import { createSlice, type Middleware, type PayloadAction } from '@reduxjs/toolkit'
-import type { ICommonsStore } from '../../index'
+import type { ICommonsStore } from '../../commons'
 
 const name = 'loading'
 

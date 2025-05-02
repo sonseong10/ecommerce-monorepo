@@ -1,4 +1,4 @@
-import { ValidType } from 'commons/ui/useValid'
+import { ValidType } from '@ecommerce/commons'
 import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Button from './Button'

@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import SelectBox, { UiSelectBox } from './SelectBox'
-import { ElementGroup } from 'styles/components'
+import { ElementGroup } from '../../styles/components'
 import DateOptionGroup, { UiDateOptionGroup } from './DateOptionGroup'
 import type { IRadioItem } from './RadioGroup'
 

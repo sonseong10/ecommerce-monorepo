@@ -1,9 +1,12 @@
-import AbsPopup from 'commons/popup/display/AbsPopup'
-import { usePopupData } from 'commons/popup/store/absPopupHook'
-import Grid from 'commons/ui/grid/Grid'
-import { Text } from 'styles/components'
-import type { Color } from 'styles/stylesVo'
+import { AbsPopup } from '@ecommerce/commons'
+import { usePopupData } from '@ecommerce/commons'
+import { Grid } from '@ecommerce/commons'
+import { Text } from '../../../styles/components'
+import type { Color } from '../../../styles/stylesVo'
 import { PopupType } from '../PopupType'
+import { memo } from 'react'
+
+const MemoAbsPopup = memo(AbsPopup)
 
 const GridPopup = (): JSX.Element => {
   const { popupDo } = usePopupData<{
@@ -13,7 +16,7 @@ const GridPopup = (): JSX.Element => {
   }>(PopupType.GRID)
 
   return (
-    <AbsPopup type={PopupType.GRID}>
+    <MemoAbsPopup type={PopupType.GRID}>
       {popupDo?.data &&
         popupDo.data?.data.length > 0 &&
         Grid({
@@ -22,7 +25,7 @@ const GridPopup = (): JSX.Element => {
           headerInfo: { fixed: 300 },
         })}
       {popupDo.data?.footerMsg && <Text color={popupDo.data?.footerMsg.color}>{popupDo.data?.footerMsg.text}</Text>}
-    </AbsPopup>
+    </MemoAbsPopup>
   )
 }
 

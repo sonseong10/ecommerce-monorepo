@@ -1,9 +1,9 @@
-import { useInputFile } from 'commons/ui/useUihook'
+import { useInputFile } from '@ecommerce/commons'
 import { useCallback, useRef } from 'react'
 import Button from './Button'
 import InputText from './InputText'
-import type { FileType } from 'commons/ui/uiVo'
-import type { IValid } from 'commons/ui/useValid'
+import type { FileType } from '@ecommerce/commons'
+import type { IValid } from '@ecommerce/commons'
 
 export interface IInputFileProps {
   id?: string

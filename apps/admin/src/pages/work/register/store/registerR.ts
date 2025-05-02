@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { IMemberPopupReturnData } from 'components/popup/member/store/memberPopupVo'
+import type { IMemberPopupReturnData } from '../../../../components/popup/member/store/memberPopupVo'
 
 export interface IMemberRegisterState {
   referrerList?: IMemberPopupReturnData[]

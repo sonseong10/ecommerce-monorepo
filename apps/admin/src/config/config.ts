@@ -14,12 +14,12 @@ export interface IConfig {
 }
 
 export const config: IConfig = {
-  Env: process.env.REACT_APP_UI_ENV,
+  Env: import.meta.env.VITE_APP_REACT_APP_UI_ENV,
   token: {
     name: 'token',
     header: 'Authorization',
   },
   Url: {
-    BACKEND_URL: process.env.REACT_APP_BACKEND_URL,
+    BACKEND_URL: import.meta.env.VITE_APP_BACKEND_URL,
   },
 }

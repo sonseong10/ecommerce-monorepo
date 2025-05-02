@@ -1,6 +1,6 @@
-import type { IRegisterWorkVo } from 'pages/work/register/store/registerVo'
+import type { IRegisterWorkVo } from '../../../../pages/work/register/store/registerVo'
 import { useEffect, useState } from 'react'
-import WorkRepository from 'service/work-repository'
+import WorkRepository from '../../../../service/work-repository'
 
 const workServie = new WorkRepository()
 export const useInitWorkList = () => {

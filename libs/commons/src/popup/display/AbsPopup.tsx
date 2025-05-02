@@ -1,10 +1,10 @@
-import SVG from '../../../commons/styles/svgIcon'
+import SVG from '../../styles/svgIcon'
 import { memo, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { AbsPopupType } from '../AbsPopupType'
 import { useAbsPopupButton, useAbsPopupData, useAbsPopupTitle, useClosePopup } from '../store/absPopupHook'
 import { ButtonState, type IButton } from '../store/absPopupVo'
-import type { Theme } from 'styles/theme'
+import type { Theme } from '../../styles/theme'
 
 const MsgWrapper = styled.div<{
   width: number | string
@@ -293,4 +293,5 @@ function AbsPopup(props: IAbsPopupProps) {
     </>
   )
 }
-export default memo(AbsPopup)
+
+export default AbsPopup

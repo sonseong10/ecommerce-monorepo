@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import CardRepository from 'service/card_repository'
+import CardRepository from '../../../../service/card_repository'
 import type { IMemberVo } from './manageVo'
 
 const memberService = new CardRepository()

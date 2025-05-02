@@ -1,4 +1,4 @@
-import type { ButtonIcon } from '../../commons/styles/ComponentsType'
+import type { ButtonIcon } from './ComponentsType'
 
 const Delete = (color?: string): string => {
   color = color?.indexOf('#') === -1 ? color : color?.substring(1, color.length)
@@ -207,7 +207,8 @@ const SVG: { [key: string | ButtonIcon]: (color?: string) => string } = {
   Cart,
 }
 
-export const commonSVG = {
+export const commonSVG: { [key: string | ButtonIcon]: (color?: string) => string } = {
+  ...SVG,
   close: Closed,
 }
 

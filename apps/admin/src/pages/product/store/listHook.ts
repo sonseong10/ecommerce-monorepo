@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import ProductRepository from 'service/product_repository'
+import ProductRepository from '../../../service/product_repository'
 import type { IProductVo } from './detailVo'
 
 const productRepository = new ProductRepository()

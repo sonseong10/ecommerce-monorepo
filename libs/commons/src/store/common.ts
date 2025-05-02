@@ -5,13 +5,11 @@ import {
   type AnyAction,
   configureStore,
 } from '@reduxjs/toolkit'
-import type { AbsIRes } from '../Http'
+import type { AbsIRes } from '../../../../apps/admin/src/utils/Http'
 import { useAbsAlert } from '../popup/store/absPopupHook'
-import { useSelector } from 'react-redux'
-import { shallowEqual } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import type { ICommonsStore } from '..'
-import { getLoadingMiddleware } from '../../commons/loading/store/loadingR'
+import { getLoadingMiddleware } from '../loading/store/loadingR'
 
 export type ExtraArg<T> = { store: () => T }
 export type AbsAsyncThunkConfig<RootState extends ICommonsStore, T = unknown> = {

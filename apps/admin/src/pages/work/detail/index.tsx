@@ -1,10 +1,10 @@
 import { useInitDetail } from './store/detailHook'
-import OptionGrid from 'components/ui/OptionGrid'
-import { ElementGroup, Text, Title } from 'styles/components'
+import OptionGrid from '../../../components/ui/OptionGrid'
+import { ElementGroup, Text, Title } from '../../../styles/components'
 import moment from 'moment'
 import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
-import Button from 'components/ui/Button'
+import Button from '../../../components/ui/Button'
 
 const ReferrerBadge = styled.div`
   a {

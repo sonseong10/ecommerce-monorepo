@@ -1,9 +1,9 @@
-import { useRadio } from 'commons/ui/useUihook'
-import type { IValid } from 'commons/ui/useValid'
+import { useRadio } from '@ecommerce/commons'
+import type { IValid } from '@ecommerce/commons'
 
 import styled, { css } from 'styled-components'
-import type { Theme } from 'styles/theme'
-import type { DirectionType, RadioType } from '../../commons/styles/ComponentsType'
+import type { Theme } from '../../styles/theme'
+import type { DirectionType, RadioType } from '@ecommerce/commons'
 import { memo } from 'react'
 
 const radioSvg = (color: string): string => {

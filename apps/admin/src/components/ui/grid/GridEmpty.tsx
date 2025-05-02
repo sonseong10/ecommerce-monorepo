@@ -1,4 +1,4 @@
-import { Text } from 'styles/components'
+import { Text } from '../../../styles/components'
 
 function GridEmpty(props: { text: string }) {
   return (

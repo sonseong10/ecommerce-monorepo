@@ -1,7 +1,5 @@
-'use client'
-
-import type { IUseInputEventParam, IUseInput, InputType } from '../../commons/hook/hookVo'
-import useInput from '../../commons/hook/useInput'
+import type { IUseInputEventParam, IUseInput, InputType } from '../hook/hookVo'
+import useInput from '../hook/useInput'
 import { memo, type RefObject, useEffect, useState, type WheelEvent } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -94,7 +92,7 @@ export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement>
  * @param props
  * @returns
  */
-function InputText(props: IInputProps): JSX.Element {
+function InputText(props: IInputProps) {
   const [prev, setPrev] = useState<NodeJS.Timeout>()
 
   const test = (value?: string) => {

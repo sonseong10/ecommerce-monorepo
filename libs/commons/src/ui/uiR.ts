@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { UiType, type IUi, type IUiAction, type FileType } from './uiVo'
-import { isHttp } from '../../commons/utils'
+import { isHttp } from '../utils'
 
 const name = 'ui'
 

@@ -1,7 +1,7 @@
-import { ElementGroup, Title } from 'styles/components'
+import { ElementGroup, Title } from '../../styles/components'
 import { useWorkCount } from './store/mainHook'
 import styled from 'styled-components'
-import Button from 'components/ui/Button'
+import Button from '../../components/ui/Button'
 
 const CardStyle = styled.div`
   width: calc(100% / 3);

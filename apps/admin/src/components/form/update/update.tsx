@@ -1,8 +1,8 @@
 import { type MemoExoticComponent } from 'react'
 import EditCardForm from './edit-card-form'
-import type ImageUploader from 'service/image-uploader'
-import type DropDown from 'utils/dropdown'
-import type { ICardVo } from 'types/grobal-type'
+import type ImageUploader from '../../../service/image-uploader'
+import type DropDown from '../../../utils/dropdown'
+import type { ICardVo } from '../../../types/grobal-type'
 
 interface IUpdateProps {
   FileInput: MemoExoticComponent<

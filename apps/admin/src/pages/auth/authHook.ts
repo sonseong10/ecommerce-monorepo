@@ -1,13 +1,13 @@
 import type { User } from 'firebase/auth'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import AuthService from 'service/auth_service'
-import CardRepository from 'service/card_repository'
-import { useIConPopup } from 'components/popup/popupHook'
+import AuthService from '../../service/auth_service'
+import CardRepository from '../../service/card_repository'
+import { useIConPopup } from '../../components/popup/popupHook'
 import { useDispatch } from 'react-redux'
 import { rdxInitUser } from './authR'
-import { useSelectorEq } from 'commons/store/common'
-import type { IState } from 'store/modules'
+import { useSelectorEq } from '@ecommerce/commons'
+import type { IState } from '../../store/modules'
 
 const authService = new AuthService()
 const cardRepository = new CardRepository()

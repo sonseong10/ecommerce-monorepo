@@ -1,4 +1,4 @@
-import type { IProductVo } from 'pages/product/store/detailVo'
+import type { IProductVo } from '../pages/product/store/detailVo'
 import { firebaseDatabase } from './firebase'
 import { ref, onValue, off, set, remove, getDatabase, push, query, limitToLast } from 'firebase/database'
 

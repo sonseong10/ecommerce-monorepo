@@ -2,11 +2,19 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "types": ["vite/client"],
+    "declaration": true,
     "jsx": "react-jsx",
     "module": "ESNext",
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "es2018", "esnext"],
     "skipLibCheck": true,
+    "useDefineForClassFields": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
 
     /* Linting */
     "strict": true,

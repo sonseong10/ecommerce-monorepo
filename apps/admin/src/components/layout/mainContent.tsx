@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import SideNavigation from './sideNavigation'
 import { Outlet } from 'react-router-dom'
 import Hader from './Hader'
-import { useContentHeight } from 'commons/layers/store/layerHook'
+import { useContentHeight } from '@ecommerce/commons'
 
 const MainContent = () => {
   const { set } = useContentHeight()

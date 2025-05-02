@@ -1,10 +1,10 @@
 // import styles from "styles/modules/detail.module.css";
 import { useInitMemberDetail } from './store/detailHook'
-import Button from 'components/ui/Button'
+import Button from '../../../components/ui/Button'
 import { useNavigate } from 'react-router-dom'
-import { ElementGroup, Title } from 'styles/components'
-import { useSelectorEq } from 'commons/store/common'
-import type { IState } from 'store/modules'
+import { ElementGroup, Title } from '../../../styles/components'
+import { useSelectorEq } from '@ecommerce/commons'
+import type { IState } from '../../../store/modules'
 
 const Detail = () => {
   const card = useInitMemberDetail()

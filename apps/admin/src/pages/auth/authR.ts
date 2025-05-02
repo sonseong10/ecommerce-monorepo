@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { User } from 'firebase/auth'
-import type { Grade } from 'store/storageVo'
+import type { Grade } from '../../store/storageVo'
 
 const name = 'auth'
 export interface IAuthState {

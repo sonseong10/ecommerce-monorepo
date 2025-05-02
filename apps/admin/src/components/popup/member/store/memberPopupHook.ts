@@ -1,15 +1,15 @@
-import type { ButtonState, PopupCallBackParam } from 'commons/popup/store/absPopupVo'
-import { useSelectorEq } from 'commons/store/common'
+import type { ButtonState, PopupCallBackParam } from '@ecommerce/commons'
+import { useSelectorEq } from '@ecommerce/commons'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import CardRepository from 'service/card_repository'
-import type { IState } from 'store/modules'
-import type { ICardVo } from 'types/grobal-type'
+import CardRepository from '../../../../service/card_repository'
+import type { IState } from '../../../../store/modules'
+import type { ICardVo } from '../../../../types/grobal-type'
 import type { IMemberPopupReturnData } from './memberPopupVo'
-import { rdxPopupOpen, rdxSetPopupData } from 'commons/popup/store/popupR'
-import { PopupType } from 'components/popup/PopupType'
+import { rdxPopupOpen, rdxSetPopupData } from '@ecommerce/commons'
+import { PopupType } from '../../../../components/popup/PopupType'
 import { WorkPopupButtonGroup } from '../MemberPopup'
-import type { ICommonsStore } from 'commons'
+import type { ICommonsStore } from '@ecommerce/commons'
 
 export const useMemberList = () => {
   const [memberList, setMembereList] = useState<ICardVo[]>([])

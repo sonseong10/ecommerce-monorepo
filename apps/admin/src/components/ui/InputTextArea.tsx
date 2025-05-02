@@ -1,11 +1,11 @@
-import type { IUseInputEventParam, IUseTextArea } from 'commons/hook/hookVo'
-import useTextArea from 'commons/hook/useTextArea'
-import { useInputText } from 'commons/ui/useUihook'
-import type { IValid } from 'commons/ui/useValid'
+import type { IUseInputEventParam, IUseTextArea } from '@ecommerce/commons'
+import { useTextArea } from '@ecommerce/commons'
+import { useInputText } from '@ecommerce/commons'
+import type { IValid } from '@ecommerce/commons'
 import { memo, type RefObject, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import type { Size } from 'styles/stylesVo'
-import type { Theme } from 'styles/theme'
+import type { Size } from '../../styles/stylesVo'
+import type { Theme } from '../../styles/theme'
 
 const TextArea = styled.textarea<{ size?: { width?: Size; height?: string } }>`
   padding: 10px;

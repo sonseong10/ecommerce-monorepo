@@ -1,15 +1,15 @@
 import { memo, useCallback, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import type { Theme } from 'styles/theme'
-import { WFrom } from 'styles/styleds'
+import type { Theme } from '../../styles/theme'
+import { WFrom } from '../../styles/styleds'
 import { useEffect } from 'react'
 import InputText from './InputText'
-import { getSearchRegExp, mouseUp } from 'commons/utils'
-import { useSelectBox } from 'commons/ui/useUihook'
-import type { IValid } from 'commons/ui/useValid'
-import { useConfirm } from 'components/popup/popupHook'
-import type { Size } from 'styles/stylesVo'
-import SVG from 'commons/styles/svgIcon'
+import { getSearchRegExp, mouseUp } from '@ecommerce/commons'
+import { useSelectBox } from '@ecommerce/commons'
+import type { IValid } from '@ecommerce/commons'
+import { useConfirm } from '../../components/popup/popupHook'
+import type { Size } from '../../styles/stylesVo'
+import { commonSVG } from '@ecommerce/commons'
 
 const SelectWrapper = styled.div<{ size: Size }>`
   display: inline-flex;
@@ -78,7 +78,7 @@ const Select2Arrow = styled.span<{ active: boolean }>`
   right: 1px;
   width: 30px;
   height: 34px;
-  background: url(${SVG.DownArrow('a8a9aa')}) no-repeat 2px center;
+  background: url(${commonSVG.DownArrow('a8a9aa')}) no-repeat 2px center;
   ${props =>
     props.active
       ? css`
@@ -170,7 +170,7 @@ const ClearIcon = styled.span`
   width: 18px;
   height: 34px;
   border: 0;
-  background: url(${SVG.Closed('999')}) no-repeat center 54%;
+  background: url(${commonSVG.Closed('999')}) no-repeat center 54%;
   background-size: 10px;
   font-size: 0;
   text-indent: -9999px;

@@ -1,5 +1,5 @@
 import { type AnyAction, configureStore, type ThunkAction } from '@reduxjs/toolkit'
-import { getLoadingMiddleware } from '../commons/loading/store/loadingR'
+import { getLoadingMiddleware } from '@ecommerce/commons'
 // import logger from "redux-logger";
 import rootReducer, { type IState } from './modules/index'
 
@@ -22,7 +22,7 @@ const initStore = () => {
       }).prepend(getLoadingMiddleware()),
     // .concat(logger)
     // 운영이 아닌곳에서만 데브툴 가능하게 처리
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: import.meta.env.VITE_APP_NODE_ENV !== 'production',
   })
   return store
 }

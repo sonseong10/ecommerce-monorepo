@@ -1,9 +1,9 @@
-import { rdxPopupOpen } from 'commons/popup/store/popupR'
-import { ButtonState } from 'commons/popup/store/absPopupVo'
+import { rdxPopupOpen } from '@ecommerce/commons'
+import { ButtonState } from '@ecommerce/commons'
 import { useDispatch } from 'react-redux'
 import { PopupType } from './PopupType'
-import { useAbsAlert, useAbsConfirm } from 'commons/popup/store/absPopupHook'
-import Button from 'components/ui/Button'
+import { useAbsAlert, useAbsConfirm } from '@ecommerce/commons'
+import Button from '../../components/ui/Button'
 import {
   AlertPopupButtonGroup,
   ConfirmPopupButtonGroup,

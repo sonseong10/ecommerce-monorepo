@@ -1,4 +1,4 @@
-import type { IMemberPopupReturnData } from 'components/popup/member/store/memberPopupVo'
+import type { IMemberPopupReturnData } from '../../../../components/popup/member/store/memberPopupVo'
 
 export enum WorkRegisterUiId {
   TITLE = 'workTitle',

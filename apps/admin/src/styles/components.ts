@@ -9,9 +9,9 @@ import {
   FlexAlighItem,
   FlexJustifyContent,
 } from '../styles/styleds'
-import type { DirectionType } from '../commons/styles/ComponentsType'
+import type { DirectionType } from '@ecommerce/commons'
 import type { Color, FontAlignType, FontSizeNomalType, FontSizeTitleType, FontWeightType } from './stylesVo'
-import { TableContainer as Table } from '../commons/ui/grid/GridStyled'
+import { TableContainer as Table } from '@ecommerce/commons'
 import type { Theme } from './theme'
 
 /**

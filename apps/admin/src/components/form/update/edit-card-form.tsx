@@ -3,9 +3,9 @@ import { validateEmail, validateName, validatePhone } from '../../../utils/valid
 
 import RanksDropdown from './components/ranks-dropdown'
 
-import type DropDown from 'utils/dropdown'
-import type ImageUploader from 'service/image-uploader'
-import type { ICardVo } from 'types/grobal-type'
+import type DropDown from '../../../utils/dropdown'
+import type ImageUploader from '../../../service/image-uploader'
+import type { ICardVo } from '../../../types/grobal-type'
 import ThemesDropdown from './components/themes-dropdown'
 import TeamsDropdown from './components/teams-dropdown'
 

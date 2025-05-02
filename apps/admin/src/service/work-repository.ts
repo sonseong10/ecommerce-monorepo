@@ -1,4 +1,4 @@
-import type { IRegisterWorkVo } from 'pages/work/register/store/registerVo'
+import type { IRegisterWorkVo } from '../pages/work/register/store/registerVo'
 import { firebaseDatabase } from './firebase'
 import { ref, onValue, off, set, remove, getDatabase, push } from 'firebase/database'
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import type { PositionType } from 'commons/styles/ComponentsType'
+import type { PositionType } from '@ecommerce/commons'
 
 const ScrollContainer = styled.div<{
   position?: PositionType

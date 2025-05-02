@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ListTitleBox, Title } from 'styles/components'
+import { ListTitleBox, Title } from '../../styles/components'
 
 const ListOption = styled.div`
   & > * {

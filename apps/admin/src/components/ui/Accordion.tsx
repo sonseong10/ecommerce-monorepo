@@ -1,8 +1,8 @@
-import SVG from 'commons/styles/svgIcon'
+import { commonSVG } from '@ecommerce/commons'
 import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Text, Title } from 'styles/components'
-import type { Color } from 'styles/stylesVo'
+import { Text, Title } from '../../styles/components'
+import type { Color } from '../../styles/stylesVo'
 
 const AccordionWrapper = styled.section`
   position: relative;
@@ -30,7 +30,7 @@ const ToggleIcon = styled.div<{ active: boolean }>`
     display: block;
     width: 24px;
     height: 24px;
-    background: url(${SVG.DownArrow('#484848')}) no-repeat center center;
+    background: url(${commonSVG.DownArrow('#484848')}) no-repeat center center;
     background-size: 24px;
     border: none;
     transform: ${props => (props.active ? 'rotate(180deg)' : 'rotate(0 deg)')};

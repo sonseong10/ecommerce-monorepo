@@ -1,4 +1,4 @@
-import { TableContainer } from 'styles/components'
+import { TableContainer } from '../../styles/components'
 
 export interface OptionCellData {
   title: string

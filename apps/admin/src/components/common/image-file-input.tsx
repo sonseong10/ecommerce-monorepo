@@ -2,7 +2,7 @@
 import { memo, useRef, useState } from 'react'
 import { FiCamera } from 'react-icons/fi'
 
-import type ImageUploader from 'service/image-uploader'
+import type ImageUploader from '../../service/image-uploader'
 
 const ImageFileInput = (props: {
   imageUploader?: ImageUploader

@@ -1,7 +1,7 @@
-import type { IGrideCell } from 'commons/ui/grid/GridVo'
-import { useGridCheckBox } from 'commons/ui/useGrid'
+import type { IGrideCell } from '@ecommerce/commons'
+import { useGridCheckBox } from '@ecommerce/commons'
 import { useNavigate } from 'react-router-dom'
-import { CellLink, ElementGroup, Text } from 'styles/components'
+import { CellLink, ElementGroup, Text } from '../../../styles/components'
 import Button from '../Button'
 import CheckBox from '../CheckBox'
 import moment from 'moment'
@@ -112,7 +112,7 @@ export function GridThumbnailCell(props: IGrideCell<[string]>) {
         width="105px"
         height="70px"
         onError={e => {
-          e.currentTarget.src = process.env.PUBLIC_URL + '/images/logo_ad.svg'
+          e.currentTarget.src = import.meta.env.PUBLIC_URL + '/images/logo_ad.svg'
           e.currentTarget.style.backgroundColor = '#CD3932'
           e.currentTarget.style.padding = '8px'
         }}

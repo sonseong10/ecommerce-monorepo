@@ -1,6 +1,6 @@
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
-import Button from 'components/ui/Button'
+import Button from '../../components/ui/Button'
 import { useAuth } from './authHook'
 
 function BaiscUserLoginForm() {

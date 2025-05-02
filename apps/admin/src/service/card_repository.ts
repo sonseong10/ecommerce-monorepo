@@ -1,6 +1,6 @@
 import { firebaseDatabase } from './firebase'
 import { ref, onValue, off, set, remove, query, orderByChild } from 'firebase/database'
-import type { IMemberVo } from 'pages/member/manage/store/manageVo'
+import type { IMemberVo } from '../pages/member/manage/store/manageVo'
 
 class CardRepository {
   syncCards(onUpdate: (value: { [key: string]: IMemberVo }) => void) {

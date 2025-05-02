@@ -1,6 +1,6 @@
 import styled, { useTheme, css } from 'styled-components'
-import type { TabType } from 'commons/styles/ComponentsType'
-import type { Theme } from 'styles/theme'
+import type { TabType } from '@ecommerce/commons'
+import type { Theme } from '../../styles/theme'
 
 const ItemStyle = () => {
   const theme = useTheme() as Theme

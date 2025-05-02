@@ -1,12 +1,12 @@
 import moment, { type MomentInput } from 'moment'
 import { memo, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useCalender } from 'commons/layers/store/layerHook'
-import { Input } from 'styles/components'
-import { isFullDate } from 'commons/utils'
-import { useInputText } from 'commons/ui/useUihook'
-import type { IValid } from 'commons/ui/useValid'
-import SVG from 'commons/styles/svgIcon'
+import { useCalender } from '@ecommerce/commons'
+import { Input } from '../../styles/components'
+import { isFullDate } from '@ecommerce/commons'
+import { useInputText } from '@ecommerce/commons'
+import type { IValid } from '@ecommerce/commons'
+import { commonSVG } from '@ecommerce/commons'
 
 const DatePicker = styled.div`
   display: inline-block;
@@ -24,13 +24,13 @@ const DatePickerInput = styled(Input)`
   &:focus {
     border-color: var(--border-focus);
     & + span {
-      background-image: url(${SVG.DatePicker('#1d1d1d')});
+      background-image: url(${commonSVG.DatePicker('#1d1d1d')});
     }
   }
 `
 
 const DatePickerIcon = styled.span`
-  background-image: url(${SVG.DatePicker('#8d8d8d')});
+  background-image: url(${commonSVG.DatePicker('#8d8d8d')});
   position: absolute;
   display: inline-block;
   top: 50%;

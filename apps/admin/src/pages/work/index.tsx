@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Spinner from 'components/ui/Spinner'
+import Spinner from '../../components/ui/Spinner'
 const WorkManage = lazy(() => import('./manage/manage'))
 const WorkRegister = lazy(() => import('./register/register'))
 const WorkDetail = lazy(() => import('./detail'))

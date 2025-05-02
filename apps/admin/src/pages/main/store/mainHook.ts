@@ -1,7 +1,7 @@
-import { useSelectorEq } from 'commons/store/common'
+import { useSelectorEq } from '@ecommerce/commons'
 import { useEffect, useState } from 'react'
-import WorkRepository from 'service/work-repository'
-import type { IState } from 'store/modules'
+import WorkRepository from '../../../service/work-repository'
+import type { IState } from '../../../store/modules'
 
 const workService = new WorkRepository()
 
@@ -16,17 +16,17 @@ export const useWorkCount = () => {
         let completed = 0
         const expectedWorks = Object.values(result).filter(work => work.workState === 0)
         expectedWorks.map(work => {
-          work.referrer.findIndex(i => i.code === code) > -1 && expected++
+          work.referrer.findIndex(({ code }: { code: string }) => code === code) > -1 && expected++
         })
 
         const progressWorks = Object.values(result).filter(work => work.workState === 1)
         progressWorks.map(work => {
-          work.referrer.findIndex(i => i.code === code) > -1 && progress++
+          work.referrer.findIndex(({ code }: { code: string }) => code === code) > -1 && progress++
         })
 
         const completedWorks = Object.values(result).filter(work => work.workState === 2)
         completedWorks.map(work => {
-          work.referrer.findIndex(i => i.code === code) > -1 && completed++
+          work.referrer.findIndex(({ code }: { code: string }) => code === code) > -1 && completed++
         })
 
         setCount([

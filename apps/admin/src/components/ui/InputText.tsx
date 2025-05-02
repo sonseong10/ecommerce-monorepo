@@ -1,9 +1,9 @@
-import type { IUseInput, IUseInputEventParam, InputType } from 'commons/hook/hookVo'
-import useInput from 'commons/hook/useInput'
-import { useInputText } from 'commons/ui/useUihook'
-import { type IValid, useValid } from 'commons/ui/useValid'
+import type { IUseInput, IUseInputEventParam, InputType } from '@ecommerce/commons'
+import { useInput } from '@ecommerce/commons'
+import { useInputText } from '@ecommerce/commons'
+import { type IValid, useValid } from '@ecommerce/commons'
 import { memo, type RefObject, useEffect, useState } from 'react'
-import { Input } from 'styles/components'
+import { Input } from '../../styles/components'
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string

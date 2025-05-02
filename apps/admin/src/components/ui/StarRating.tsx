@@ -1,4 +1,4 @@
-import SVG from 'commons/styles/svgIcon'
+import { commonSVG } from '@ecommerce/commons'
 import { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
@@ -26,10 +26,10 @@ const IconStyle = css<{ size?: number }>`
 
 export const Star = styled.button<{ size?: number }>`
   ${IconStyle}
-  background-image: url(${SVG.Star('ebb33d')});
+  background-image: url(${commonSVG.Star('ebb33d')});
 
   &.is-empty {
-    background-image: url(${SVG.Star('a8a8a8')});
+    background-image: url(${commonSVG.Star('a8a8a8')});
   }
 `
 

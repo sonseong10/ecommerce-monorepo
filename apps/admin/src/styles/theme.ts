@@ -1,5 +1,5 @@
 import baseStyled from 'styled-components'
-import { commonFonts, commonColors, commonHoverColors, commonDisabledColors } from '../commons/styles/commonTheme'
+import { commonFonts, commonColors, commonHoverColors, commonDisabledColors } from '@ecommerce/commons'
 
 /**
  * common에서 사용하는 테마 외의 값이 있을 경우 추가

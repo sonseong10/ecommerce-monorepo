@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 
-import Button from 'components/ui/Button'
-import { ElementGroup, TableContainer, Title } from 'styles/components'
+import Button from '../../../components/ui/Button'
+import { ElementGroup, TableContainer, Title } from '../../../styles/components'
 import { useInitWorkList, useRemoveWork } from './store/manageHook'
-import Grid from 'commons/ui/grid/Grid'
-import { GridNumberCell } from 'commons/ui/grid/AbsGridCell'
-import type { IGrideCell } from 'commons/ui/grid/GridVo'
-import type { IMemberPopupReturnData } from 'components/popup/member/store/memberPopupVo'
+import { Grid } from '@ecommerce/commons'
+import { GridNumberCell } from '@ecommerce/commons'
+import type { IGrideCell } from '@ecommerce/commons'
+import type { IMemberPopupReturnData } from '../../../components/popup/member/store/memberPopupVo'
 import styled from 'styled-components'
-import { useIConPopup } from 'components/popup/popupHook'
+import { useIConPopup } from '../../../components/popup/popupHook'
 
 function MoveRegisterPageBtn() {
   const navigate = useNavigate()

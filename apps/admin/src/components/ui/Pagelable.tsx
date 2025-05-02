@@ -1,9 +1,9 @@
-import { useInputValue, useSetInput } from 'commons/ui/useUihook'
+import { useInputValue, useSetInput } from '@ecommerce/commons'
 import { memo, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import { UiInputText } from './InputText'
-import SVG from 'commons/styles/svgIcon'
-import type { Theme } from 'styles/theme'
+import { commonSVG } from '@ecommerce/commons'
+import type { Theme } from '../../styles/theme'
 
 const Pagenation = styled.div`
   display: inline-flex;
@@ -63,12 +63,12 @@ const Prev = styled(MovePagenation)<{ disabled?: boolean }>`
   ${props =>
     props.disabled
       ? css`
-          background-image: url(${SVG.NextArrow('#999')});
+          background-image: url(${commonSVG.NextArrow('#999')});
           transform: rotate(180deg);
           pointer-events: none;
         `
       : css`
-          background-image: url(${SVG.NextArrow('#424242')});
+          background-image: url(${commonSVG.NextArrow('#424242')});
           transform: rotate(180deg);
           &:hover {
             opacity: 0.3;
@@ -80,12 +80,12 @@ const Next = styled(MovePagenation)<{ disabled?: boolean }>`
   ${props =>
     props.disabled
       ? css`
-          background-image: url(${SVG.NextArrow('#999')});
+          background-image: url(${commonSVG.NextArrow('#999')});
           pointer-events: none;
         `
       : css`
           margin-left: 10px;
-          background-image: url(${SVG.NextArrow('#424242')});
+          background-image: url(${commonSVG.NextArrow('#424242')});
           &:hover {
             opacity: 0.3;
           }

@@ -1,12 +1,12 @@
 import type { AnyAction, ReducersMapObject } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
-import { type ICommonsStore } from '../../commons'
-import CommonsSlim from '../../commons/store/CommonsSlim'
-import auth, { type IAuthState } from 'pages/auth/authR'
-import { Grade } from 'store/storageVo'
-import productDetail, { type IProductDetailState } from 'pages/product/store/detailR'
-import layers from 'commons/layers/store/layerR'
-import memberRegister, { type IMemberRegisterState } from 'pages/work/register/store/registerR'
+import { type ICommonsStore } from '@ecommerce/commons'
+import { CommonsSlim } from '@ecommerce/commons'
+import auth, { type IAuthState } from '../../pages/auth/authR'
+import { Grade } from '../../store/storageVo'
+import productDetail, { type IProductDetailState } from '../../pages/product/store/detailR'
+import { layers } from '@ecommerce/commons'
+import memberRegister, { type IMemberRegisterState } from '../../pages/work/register/store/registerR'
 
 export interface IInitStates {
   deviceType: boolean

@@ -1,8 +1,8 @@
 import { forwardRef, useCallback, useState } from 'react'
 import styled, { css, useTheme } from 'styled-components'
-import type { Theme } from 'styles/theme'
-import type { ButtonColor, ButtonIcon, ButtonSize, ButtonType } from 'commons/styles/ComponentsType'
-import SVG from 'styles/svgIcon'
+import type { Theme } from '../../styles/theme'
+import type { ButtonColor, ButtonIcon, ButtonSize, ButtonType } from '@ecommerce/commons'
+import SVG from '../../styles/svgIcon'
 
 const BtnCommon = css<{
   thin?: boolean

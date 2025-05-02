@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { ElementGroup, Text } from 'styles/components'
+import { ElementGroup, Text } from '../../styles/components'
 
 const ToolTipWrap = styled.div`
   position: relative;

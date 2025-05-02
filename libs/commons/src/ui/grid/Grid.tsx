@@ -1,5 +1,5 @@
 import { type ForwardedRef, type Key, useRef } from 'react'
-import styled, { css, type IStyledComponent } from 'styled-components'
+import styled, { css, type StyledComponent } from 'styled-components'
 import GridHeaderFixed from './components/GridHeaderFixed'
 import GridRow from './components/GridRow'
 import SortHeader from './components/SortHeader'
@@ -7,7 +7,7 @@ import SumRow from './components/SumRow'
 import { TableContainer } from './GridStyled'
 import type { IGrideSub, IGridPosition, IGridSetting, sortType } from './GridVo'
 import { useIntersectionObserver } from './store/GridHook'
-import AbsLoading from 'commons/loading/AbsLoading'
+import AbsLoading from '../../loading/AbsLoading'
 
 const EmptyList = styled.tr<{ iconType?: string }>`
   > td:first-of-type::before {
@@ -59,7 +59,7 @@ function getPropertyKey<T, K extends keyof T>(obj: T, key: K): Key {
 export interface IGridProps<Data, Setting, Not> {
   id?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  container?: IStyledComponent<any, any>
+  container?: StyledComponent<any, any>
   layoutOverflow?: boolean
   setting?: Setting
   rowId?: keyof Data

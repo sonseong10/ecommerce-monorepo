@@ -1,9 +1,9 @@
 import { memo, useEffect, useState } from 'react'
 import { BiChevronUp } from 'react-icons/bi'
 
-import DropDownProps from 'utils/dropdown'
-import type { ICardVo } from 'types/grobal-type'
-import DropDown from 'components/common/dropdown/dropdown'
+import DropDownProps from '../../../../utils/dropdown'
+import type { ICardVo } from '../../../../types/grobal-type'
+import DropDown from '../../../../components/common/dropdown/dropdown'
 
 interface IThemesDropdownProps {
   dropDown: DropDownProps

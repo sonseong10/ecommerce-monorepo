@@ -1,12 +1,12 @@
-import Button from 'components/ui/Button'
-import { UiDateOptionGroup } from 'components/ui/DateOptionGroup'
-import { UiInputText } from 'components/ui/InputText'
-import { UiInputTextArea } from 'components/ui/InputTextArea'
-import OptionGrid from 'components/ui/OptionGrid'
-import { UiSelectBox } from 'components/ui/SelectBox'
-import { ElementGroup, RowButtonGroup, Title } from 'styles/components'
+import Button from '../../../components/ui/Button'
+import { UiDateOptionGroup } from '../../../components/ui/DateOptionGroup'
+import { UiInputText } from '../../../components/ui/InputText'
+import { UiInputTextArea } from '../../../components/ui/InputTextArea'
+import OptionGrid from '../../../components/ui/OptionGrid'
+import { UiSelectBox } from '../../../components/ui/SelectBox'
+import { ElementGroup, RowButtonGroup, Title } from '../../../styles/components'
 import { WorkRegisterUiId } from './store/registerVo'
-import { useMemberPopup } from 'components/popup/member/store/memberPopupHook'
+import { useMemberPopup } from '../../../components/popup/member/store/memberPopupHook'
 import {
   useReferrerList,
   useReferrerListAction,

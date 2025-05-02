@@ -1,12 +1,12 @@
 import type { AsyncThunk, AsyncThunkPayloadCreator } from '@reduxjs/toolkit'
-import type { AbsIRes } from '../../commons/Http'
+import type { AbsIRes } from '@ecommerce/commons'
 import {
   absCreatePageThunk,
   absCreateThunk,
   type AbsAsyncThunkConfig,
   type StatePayloadCodeType,
   useAbsApi,
-} from '../../commons/store/common'
+} from '@ecommerce/commons'
 import type { Dispatch } from '../../store/configureStore'
 import type { IState } from '.'
 

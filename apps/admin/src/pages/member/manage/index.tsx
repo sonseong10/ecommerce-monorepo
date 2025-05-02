@@ -1,10 +1,10 @@
-import { UiInputText } from 'components/ui/InputText'
-import Button from 'components/ui/Button'
-import { ElementGroup, Title } from 'styles/components'
+import { UiInputText } from '../../../components/ui/InputText'
+import Button from '../../../components/ui/Button'
+import { ElementGroup, Title } from '../../../styles/components'
 import styled from 'styled-components'
-import type { IGrideCell } from 'commons/ui/grid/GridVo'
-import Grid from 'commons/ui/grid/Grid'
-import { GridButtonCell } from 'components/ui/grid/GridCell'
+import type { IGrideCell } from '@ecommerce/commons'
+import { Grid } from '@ecommerce/commons'
+import { GridButtonCell } from '../../../components/ui/grid/GridCell'
 import { useInitMember } from './store/manageHook'
 
 const Badge = styled.span<{ state: boolean }>`
