@@ -26,9 +26,9 @@ const ButtonStyle = styled.button`
 interface ButtonProprs {
   text: string;
   btnType?: "primary" | "";
-  iconPosition?: string;
-  iconName?: string;
-  btnSize?: 32 | 64;
+  $iconPosition?: string;
+  $iconName?: string;
+  $btnSize?: 32 | 64;
   color: string;
   thin?: boolean;
 }

@@ -108,15 +108,15 @@ function InputFile(props: IInputFileProps): JSX.Element {
         <Button
           title="등록"
           onClick={clickHandler}
-          btnSize="xsm"
-          iconName="Edit"
-          iconPosition="center"
+          $btnSize="xsm"
+          $iconName="Edit"
+          $iconPosition="center"
           color="white"
-          btntype="border"
-          thin
+          $btnType="border"
+          thin={true}
         />
       ) : (
-        <Button text={props.buttonText ? props.buttonText : '등록'} onClick={clickHandler} btnSize="xsm" />
+        <Button text={props.buttonText ? props.buttonText : '등록'} onClick={clickHandler} $btnSize="xsm" />
       )}
     </>
   )

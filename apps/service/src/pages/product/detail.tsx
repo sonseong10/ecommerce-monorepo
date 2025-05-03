@@ -277,7 +277,7 @@ function ProductDetail() {
               </div>
 
               <div>
-                <Button text="장바구니" btntype="border" btnsize="lg" thin color="primary" />
+                <Button text="장바구니" $btnType="border" btnsize="lg" thin color="primary" />
                 <Button text="바로구매" btnsize="lg" thin color="primary" />
               </div>
             </div>
@@ -486,8 +486,8 @@ function ProductDetail() {
               </div>
 
               <div>
-                <Button text="" btnsize="lg" thin btntype="border" iconname="BookMark" iconposition="center" />
-                <Button text="장바구니" btntype="border" btnsize="lg" thin color="primary" />
+                <Button text="" btnsize="lg" thin $btnType="border" iconname="BookMark" iconposition="center" />
+                <Button text="장바구니" $btnType="border" btnsize="lg" thin color="primary" />
                 <Button text="바로구매" btnsize="lg" thin color="primary" />
               </div>
             </div>

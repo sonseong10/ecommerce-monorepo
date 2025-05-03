@@ -15,15 +15,15 @@ const Detail = () => {
 
   return (
     <>
-      <ElementGroup.Row flexContent="between">
+      <ElementGroup.Row $flexContent="between">
         <Title size="md" weight="medium">
           {card?.name ? card?.name : '이름없음'}님 정보
         </Title>
 
         <ElementGroup.Row>
-          <Button text="목록" onClick={() => nav('/admin/member/manage')} thin btnSize="xsm" btntype="border" />
+          <Button text="목록" onClick={() => nav('/admin/member/manage')} thin $btnSize="xsm" $btnType="border" />
           {userCode === window.location?.href.split('/').pop() ? (
-            <Button text="정보수정" onClick={() => nav(`/admin/member/register/${userCode}`)} thin btnSize="xsm" />
+            <Button text="정보수정" onClick={() => nav(`/admin/member/register/${userCode}`)} thin $btnSize="xsm" />
           ) : (
             <></>
           )}

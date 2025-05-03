@@ -143,7 +143,7 @@ interface IToolTipProps {
 function ToolTip(props: IToolTipProps): JSX.Element {
   return (
     <ToolTipWrap>
-      <ElementGroup.Row flexContent="center" flexAlign="center">
+      <ElementGroup.Row $flexContent="center" flexAlign="center">
         <ToolTipIcon />
         <span>{props.text}</span>
       </ElementGroup.Row>

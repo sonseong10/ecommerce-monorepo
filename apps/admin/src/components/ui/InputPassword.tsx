@@ -81,13 +81,13 @@ const InputPassword = (props: IInputPasswordProps): JSX.Element => {
       />
       <PasswordIcon isShow={isShow}>
         <Button
-          thin
-          btntype="ghost"
+          thin={true}
+          $btnType="ghost"
           title={!isShow ? '비밀번호 감추기' : '비밀번호 보이기'}
           onMouseDown={change}
           onMouseUp={outChange}
-          iconName={isShow ? 'PasswordShow' : 'PasswordHide'}
-          iconPosition={'center'}
+          $iconName={isShow ? 'PasswordShow' : 'PasswordHide'}
+          $iconPosition={'center'}
         />
       </PasswordIcon>
     </PasswordWrap>

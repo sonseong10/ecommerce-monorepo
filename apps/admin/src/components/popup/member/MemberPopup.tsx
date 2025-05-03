@@ -41,11 +41,11 @@ function GridAddCell({ data }: IGrideCell<string[]>) {
     <Button
       text="추가"
       onClick={addMember}
-      btnSize="xsm"
+      $btnSize="xsm"
       disabled={
         returnData ? returnData.list.findIndex((item: IMemberPopupReturnData) => item.code === data[0]) > -1 : false
       }
-      thin
+      thin={true}
     />
   )
 }
@@ -85,10 +85,10 @@ function ResultList() {
               {item.team}팀 | {item.name}
             </span>
             <Button
-              iconName="Closed"
-              iconPosition="center"
-              btntype="ghost"
-              btnSize="sm"
+              $iconName="Closed"
+              $iconPosition="center"
+              $btnType="ghost"
+              $btnSize="sm"
               onClick={() => {
                 remove(item.code)
               }}
@@ -123,9 +123,9 @@ const ButtonGroupStyle = styled(RowButtonGroup)`
 export function WorkPopupButtonGroup() {
   const { close } = useClosePopup(PopupType.MEMBER)
   return (
-    <ButtonGroupStyle flexContent="center">
-      <Button text="취소" thin ellipsis btntype="border" onClick={() => close(ButtonState.NO)} />
-      <Button text="등록" thin ellipsis color="primary" onClick={() => close(ButtonState.OK)} />
+    <ButtonGroupStyle $flexContent="center">
+      <Button text="취소" thin={true} ellipsis $btnType="border" onClick={() => close(ButtonState.NO)} />
+      <Button text="등록" thin={true} ellipsis color="primary" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupStyle>
   )
 }

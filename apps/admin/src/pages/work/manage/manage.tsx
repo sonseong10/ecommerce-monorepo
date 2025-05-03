@@ -20,8 +20,8 @@ function MoveRegisterPageBtn() {
     <Button
       onClick={onOpenAddForm}
       type="button"
-      iconName="Edit"
-      iconPosition="before"
+      $iconName="Edit"
+      $iconPosition="before"
       color="primary"
       text="업무 작성"
     />
@@ -42,11 +42,11 @@ function GridDetailCell({ data }: IGrideCell<[string]>) {
 
   return (
     <Button
-      iconName="Link"
-      iconPosition="center"
-      btnSize="xsm"
+      $iconName="Link"
+      $iconPosition="center"
+      $btnSize="xsm"
       color="primary"
-      thin
+      thin={true}
       onClick={() => navigate(`/admin/work/detail/${data[0]}`)}
     />
   )
@@ -56,11 +56,11 @@ function GridRemoveCell({ data }: IGrideCell<[string]>) {
   const iconPopup = useIConPopup()
   return (
     <Button
-      iconName="Delete"
-      iconPosition="center"
-      btnSize="xsm"
+      $iconName="Delete"
+      $iconPosition="center"
+      $btnSize="xsm"
       color="negative"
-      thin
+      thin={true}
       onClick={() =>
         iconPopup(
           'confirm',
@@ -148,8 +148,8 @@ function WorkList() {
 function WorkManage() {
   return (
     <>
-      <ElementGroup.Row flexContent="between">
-        <Title size="md" weight="medium">
+      <ElementGroup.Row $flexContent="between">
+        <Title size="md" $fontWeight="medium">
           업무목록
         </Title>
         <MoveRegisterPageBtn />

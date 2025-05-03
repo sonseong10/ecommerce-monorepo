@@ -223,7 +223,7 @@ function AbsPopupButtonList(props: {type: AbsPopupType | string; device: boolean
             <Button
               key={idx}
               {...item}
-              btntype={item.state ? 'normal' : 'border'}
+              $btnType={item.state ? 'normal' : 'border'}
               isRadius
               onClick={close.bind(null, item?.state, undefined)}
             />

@@ -31,8 +31,8 @@ export function DeletePopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="취소" btntype="ghost" color="gray" btnsize="md" onClick={() => close(ButtonState.NO)} />
-      <Button text="삭제하기" btntype="ghost" color="negative" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="취소" $btnType="ghost" color="gray" btnsize="md" onClick={() => close(ButtonState.NO)} />
+      <Button text="삭제하기" $btnType="ghost" color="negative" btnsize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }
@@ -41,8 +41,8 @@ export function ConfirmPopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="취소" btntype="ghost" color="gray" btnsize="md" onClick={() => close(ButtonState.NO)} />
-      <Button text="확인" btntype="ghost" color="dark" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="취소" $btnType="ghost" color="gray" btnsize="md" onClick={() => close(ButtonState.NO)} />
+      <Button text="확인" $btnType="ghost" color="dark" btnsize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }
@@ -51,7 +51,7 @@ export function AlertPopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="확인" btntype="ghost" color="dark" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="확인" $btnType="ghost" color="dark" btnsize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }
@@ -60,8 +60,8 @@ export function ConfrimPopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="취소" btntype="ghost" btnsize="md" onClick={() => close(ButtonState.NO)} />
-      <Button text="삭제하기" btntype="ghost" color="negative" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="취소" $btnType="ghost" btnsize="md" onClick={() => close(ButtonState.NO)} />
+      <Button text="삭제하기" $btnType="ghost" color="negative" btnsize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }

@@ -190,8 +190,8 @@ export function GridContentInfoCell(props: IGrideCell<string[]>) {
 export function GridADLinkCell(props: IGrideCell<[string]>) {
   return (
     <Button
-      iconName={'PC'}
-      iconPosition="center"
+      $iconName={'PC'}
+      $iconPosition="center"
       $btnType="ghost"
       $btnSize="md"
       onClick={() => window.open(props.data[0])}

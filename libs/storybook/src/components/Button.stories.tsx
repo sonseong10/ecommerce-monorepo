@@ -10,4 +10,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {args:{color: "primary", text: "TestButton", iconName: 'Delete', iconPosition: 'center'}};
+export const Default: Story = {args:{color: "primary", text: "TestButton", $iconName: 'Delete', $iconPosition: 'center'}};

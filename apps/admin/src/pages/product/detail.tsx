@@ -74,9 +74,9 @@ const ProductOptionValue = ({ data }: IGrideCell<[number]>) => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductOptionSetting = (_props: IGrideCell<[number]>) => {
   return (
-    <ElementGroup.Row flexContent="center">
-      <Button iconName="Plus" iconPosition="center" />
-      <Button iconName="Delete" iconPosition="center" />
+    <ElementGroup.Row $flexContent="center">
+      <Button $iconName="Plus" $iconPosition="center" />
+      <Button $iconName="Delete" $iconPosition="center" />
     </ElementGroup.Row>
   )
 }
@@ -258,7 +258,7 @@ function PageButtonGroup() {
 
   return (
     <ElementGroup.Row>
-      <Button text="취소" btntype="ghost" onClick={back} />
+      <Button text="취소" $btnType="ghost" onClick={back} />
       <Button
         text={code ? '제품수정' : '제품등록'}
         color="primary"
@@ -299,7 +299,7 @@ function ProductDetail() {
 
   return (
     <>
-      <ElementGroup.Row flexContent="between">
+      <ElementGroup.Row $flexContent="between">
         <Title size="md" weight="medium">
           상품관리
         </Title>

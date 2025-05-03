@@ -47,12 +47,12 @@ function MemberList() {
           id: ['code'],
           element: GridButtonCell,
           button: {
-            iconName: 'Link',
-            iconPosition: 'center',
+            $iconName: 'Link',
+            $iconPosition: 'center',
             thin: true,
             color: 'primary',
             eventType: 'link',
-            btnSize: 'xsm',
+            $btnSize: 'xsm',
             link: {
               url: `/admin/member/detail`,
               paramidx: 0,
@@ -69,13 +69,13 @@ function MemberList() {
 function MemberManage() {
   return (
     <>
-      <ElementGroup.Row flexContent="between">
+      <ElementGroup.Row $flexContent="between">
         <Title size="md" weight="medium">
           직원검색
         </Title>
-        <ElementGroup.Row flexContent="end">
+        <ElementGroup.Row $flexContent="end">
           <UiInputText id="keyword" placeholder="직원이름 검색" />
-          <Button text="검색" btnSize="xsm" />
+          <Button text="검색" $btnSize="xsm" />
         </ElementGroup.Row>
       </ElementGroup.Row>
 

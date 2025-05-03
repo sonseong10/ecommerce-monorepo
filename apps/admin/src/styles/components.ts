@@ -27,7 +27,7 @@ export const Title = styled.h3<{
   mgBottom?: number
   mgTop?: number
   size?: FontSizeTitleType
-  weight?: FontWeightType
+  $fontWeight?: FontWeightType
   align?: FontAlignType
 }>`
   ${TitleSize};
@@ -72,7 +72,7 @@ export const Text = styled.p<{
 interface IElementGroup {
   flexAlign?: 'start' | 'center' | 'end' | 'strech'
   flexWrap?: boolean
-  flexContent?: 'start' | 'center' | 'end' | 'between' | 'around'
+  $flexContent?: 'start' | 'center' | 'end' | 'between' | 'around'
 }
 
 export const ElementGroup = {

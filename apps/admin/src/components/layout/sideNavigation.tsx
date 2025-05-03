@@ -1,92 +1,67 @@
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 
-import { BiHomeAlt, BiGroup, BiFile, BiCart, BiCar, BiSitemap } from 'react-icons/bi'
+const SNB = styled.aside`
+  position: fixed;
+  width: 240px;
+  height: calc(100vh - 60px);
 
-const SideNavigation = () => {
+  .snb-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 52px;
+    padding: 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+
+    &.isActive {
+      color: var(--primary);
+    }
+
+    &:hover {
+      background-color: var(--border-grey);
+    }
+  }
+`
+
+function SideNavigation() {
   const location = useLocation()
   const position = location.pathname.split('/')
-  // const [setMenuActive] = useState('main')
+  const [active, setMenuActive] = useState('main')
   useEffect(() => {
     if (position.length >= 4) {
-      // setMenuActive(position[position.length - 2]!)
+      setMenuActive(position[position.length - 2]!)
     } else {
-      // setMenuActive(position.pop()!)
+      setMenuActive(position.pop()!)
     }
   }, [position])
 
+  const menubar: { title: string; location: string }[] = [
+    { title: '메인', location: '/admin/main' },
+    { title: '인사관리', location: '/admin/member/manage' },
+    { title: '업무일지', location: '/admin/work/manage' },
+    { title: '상품관리', location: '/admin/product/list' },
+    { title: '배송관리', location: '/admin/delivery' },
+    { title: '진열관리', location: '/admin/display' },
+  ]
+
   return (
-    <div>
-      <article>
-        <div>
-          <nav className="snb">
-            <h3 className="visually-hidden">Side Navigation Bar</h3>
-            <ul className="snb-list">
-              <li className="snb-item">
-                <Link to={'/admin/main'}>
-                  <BiHomeAlt />
-                  메인
-                </Link>
-              </li>
-              <li className="snb-item">
-                <Link to="/admin/member/manage">
-                  <BiGroup />
-                  인사관리
-                </Link>
-              </li>
-              <li className="snb-item">
-                <Link to="/admin/work/manage">
-                  <BiFile />
-                  업무일지
-                </Link>
-              </li>
-              <li className="snb-item">
-                <Link to="/admin/product/list">
-                  <BiCart />
-                  상품관리
-                </Link>
-              </li>
-              <li className="snb-item">
-                <Link to="/admin/delivery">
-                  <BiCar />
-                  배송관리
-                </Link>
-              </li>
-
-              <li className="snb-item">
-                <Link to="/admin/display">
-                  <BiSitemap />
-                  진열관리
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <footer>
-          <dl>
-            <div>
-              <dt className="visually-hidden">made</dt>
-              <dd>ⓒJuly 2021</dd>
-            </div>
-            <div>
-              <dt className="visually-hidden">github link</dt>
-              <dd>
-                <address>
-                  <button
-                    onClick={() => {
-                      window.open('https://github.com/sonseong10', '_blank')
-                    }}
-                  >
-                    sonseong10
-                  </button>
-                </address>
-              </dd>
-            </div>
-          </dl>
-        </footer>
-      </article>
-    </div>
+    <SNB>
+      <nav className="snb">
+        <h3 className="visually-hidden">Side Navigation Bar</h3>
+        <ul className="snb-list">
+          {menubar.map(({ location, title }, index) => (
+            <li key={index}>
+              <Link to={location} className={`snb-item ${location.includes(active) ? 'isActive' : ''}`}>
+                {title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </SNB>
   )
 }
 

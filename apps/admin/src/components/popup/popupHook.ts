@@ -22,7 +22,7 @@ export interface IProductCallBack<U> {
 }
 const commonButton = {
   color: 'primary',
-  btnSize: 'md',
+  $btnSize: 'md',
   ellipsis: true,
   maxWidth: '125px',
 }

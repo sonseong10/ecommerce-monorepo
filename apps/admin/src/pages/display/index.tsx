@@ -42,12 +42,12 @@ const OrderList = styled.ol`
 function DisplayPage() {
   return (
     <>
-      <ElementGroup.Row flexContent="between">
-        <Title size="md" weight="medium">
+      <ElementGroup.Row $flexContent="between">
+        <Title size="md" $fontWeight="medium">
           진열관리
         </Title>
 
-        <Button text="등록" thin color="primary" btnSize="xsm" iconName="Save" iconPosition="before" />
+        <Button text="등록" thin color="primary" $btnSize="xsm" $iconName="Save" $iconPosition="before" />
       </ElementGroup.Row>
       <DisplayWrapper>
         <LeftGroup>
@@ -68,29 +68,29 @@ function DisplayPage() {
                             <ElementGroup.Row>
                               <UiInputFile id="dsd" />
                               <UiInputText id="dsdd" placeholder="이동할 페이지주소 입력" />
-                              <Button iconName="Plus" iconPosition="center" btntype="border" thin btnSize="sm" />
+                              <Button $iconName="Plus" $iconPosition="center" $btnType="border" thin $btnSize="sm" />
                               <Button
-                                iconName="Delete"
-                                iconPosition="center"
-                                btntype="border"
-                                thin
-                                btnSize="sm"
+                                $iconName="Delete"
+                                $iconPosition="center"
+                                $btnType="border"
+                                thin={true}
+                                $btnSize="sm"
                                 disabled
                               />
                               <Button
-                                iconName="UpArrow"
-                                iconPosition="center"
-                                btntype="border"
-                                thin
-                                btnSize="sm"
+                                $iconName="UpArrow"
+                                $iconPosition="center"
+                                $btnType="border"
+                                thin={true}
+                                $btnSize="sm"
                                 disabled
                               />
                               <Button
-                                iconName="DownArrow"
-                                iconPosition="center"
-                                btntype="border"
-                                thin
-                                btnSize="sm"
+                                $iconName="DownArrow"
+                                $iconPosition="center"
+                                $btnType="border"
+                                thin={true}
+                                $btnSize="sm"
                                 disabled
                               />
                             </ElementGroup.Row>
@@ -262,34 +262,76 @@ function DisplayPage() {
             <li>메인배너</li>
             <li>
               카테고리진열
-              <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="sm" disabled />
-                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="sm" />
-                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
+              <ElementGroup.Row $flexContent="end">
+                <Button
+                  $iconName="UpArrow"
+                  $iconPosition="center"
+                  $btnType="border"
+                  thin={true}
+                  $btnSize="sm"
+                  disabled
+                />
+                <Button $iconName="DownArrow" $iconPosition="center" $btnType="border" thin={true} $btnSize="sm" />
+                <Button
+                  $iconName="Delete"
+                  $iconPosition="center"
+                  $btnType="border"
+                  thin={true}
+                  $btnSize="xsm"
+                  disabled
+                />
               </ElementGroup.Row>
             </li>
             <li>
               상품진열
-              <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="sm" />
-                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="sm" />
-                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
+              <ElementGroup.Row $flexContent="end">
+                <Button $iconName="UpArrow" $iconPosition="center" $btnType="border" thin={true} $btnSize="sm" />
+                <Button $iconName="DownArrow" $iconPosition="center" $btnType="border" thin={true} $btnSize="sm" />
+                <Button
+                  $iconName="Delete"
+                  $iconPosition="center"
+                  $btnType="border"
+                  thin={true}
+                  $btnSize="xsm"
+                  disabled
+                />
               </ElementGroup.Row>
             </li>
             <li>
               카테고리진열
-              <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="xsm" />
-                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="xsm" />
-                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
+              <ElementGroup.Row $flexContent="end">
+                <Button $iconName="UpArrow" $iconPosition="center" $btnType="border" thin={true} $btnSize="xsm" />
+                <Button $iconName="DownArrow" $iconPosition="center" $btnType="border" thin={true} $btnSize="xsm" />
+                <Button
+                  $iconName="Delete"
+                  $iconPosition="center"
+                  $btnType="border"
+                  thin={true}
+                  $btnSize="xsm"
+                  disabled
+                />
               </ElementGroup.Row>
             </li>
             <li>
               상품진열
-              <ElementGroup.Row flexContent="end">
-                <Button iconName="UpArrow" iconPosition="center" btntype="border" thin btnSize="xsm" />
-                <Button iconName="DownArrow" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
-                <Button iconName="Delete" iconPosition="center" btntype="border" thin btnSize="xsm" disabled />
+              <ElementGroup.Row $flexContent="end">
+                <Button $iconName="UpArrow" $iconPosition="center" $btnType="border" thin={true} $btnSize="xsm" />
+                <Button
+                  $iconName="DownArrow"
+                  $iconPosition="center"
+                  $btnType="border"
+                  thin={true}
+                  $btnSize="xsm"
+                  disabled
+                />
+                <Button
+                  $iconName="Delete"
+                  $iconPosition="center"
+                  $btnType="border"
+                  thin={true}
+                  $btnSize="xsm"
+                  disabled
+                />
               </ElementGroup.Row>
             </li>
           </OrderList>

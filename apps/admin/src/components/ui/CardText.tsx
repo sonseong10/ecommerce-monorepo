@@ -42,9 +42,9 @@ const CardItemInfo = styled.dl<{ isActive: boolean }>`
 `
 
 const CardTitle = styled.dt<{
-  iconName?: CardTextIcon | string
+  $iconName?: CardTextIcon | string
   size?: FontSizeTitleType
-  weight?: FontWeightType
+  $fontWeight?: FontWeightType
   color?: string
   align?: FontAlignType
 }>`
@@ -71,7 +71,7 @@ const CardTitle = styled.dt<{
     }}
     /* 타이틀 & 컨텐츠 icon 스타일 */
     ${props =>
-      props.iconName &&
+      props.$iconName &&
       css`
         display: block;
         padding: 5px 0 5px 40px;
@@ -80,7 +80,7 @@ const CardTitle = styled.dt<{
         background-size: 30px;
       `};
   background-image: ${props => {
-    switch (props.iconName) {
+    switch (props.$iconName) {
       case 'ORDER_ALL':
         return `url("/images/icon/icon_all_od.png")`
       case 'PAYMENT_READY':
@@ -105,8 +105,8 @@ const CardTitle = styled.dt<{
   }};
 `
 const CardContents = styled.dd<{
-  iconName?: string
-  weight?: FontWeightType
+  $iconName?: string
+  $fontWeight?: FontWeightType
   color?: string
   size?: FontSizeTitleType
   align?: FontAlignType
@@ -139,12 +139,12 @@ interface ICardTextProps {
   data: Array<{
     title: {
       text: string
-      weight?: FontWeightType
+      $fontWeight?: FontWeightType
       align?: FontAlignType
       size?: FontSizeTitleType
       color?: string
-      iconName?: CardTextIcon | string
-      iconPosition?: 'before' | 'after' | 'center'
+      $iconName?: CardTextIcon | string
+      $iconPosition?: 'before' | 'after' | 'center'
     }
     contents: {
       text: string
@@ -152,8 +152,8 @@ interface ICardTextProps {
       align?: FontAlignType
       size?: FontSizeTitleType
       color?: string
-      iconName?: CardTextIcon | string
-      iconPosition?: 'before' | 'after' | 'center'
+      $iconName?: CardTextIcon | string
+      $iconPosition?: 'before' | 'after' | 'center'
       width?: string
     }
     change?: () => void
@@ -169,7 +169,7 @@ function CardText(props: ICardTextProps): JSX.Element {
         {props.data.map((item, idx) => (
           <CardItem key={idx} onClick={item.change}>
             <CardItemInfo isActive={item.change ? true : false}>
-              <CardTitle iconName={item.title.iconName} weight={item.title.weight} color={item.title.color}>
+              <CardTitle $iconName={item.title.$iconName} $fontWeight={item.title.$fontWeight} color={item.title.color}>
                 <ElementGroup.Row>
                   {item.title.text}
                   {item.toolTip && (
@@ -182,8 +182,8 @@ function CardText(props: ICardTextProps): JSX.Element {
                 </ElementGroup.Row>
               </CardTitle>
               <CardContents
-                iconName={item.contents.iconName}
-                weight={item.contents.weight}
+                $iconName={item.contents.$iconName}
+                $fontWeight={item.contents.weight}
                 color={item.contents.color}
                 size={item.contents.size}
                 align={item.contents.align}

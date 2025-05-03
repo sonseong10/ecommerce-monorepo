@@ -55,9 +55,9 @@ export const TitleSize = css<{
 `
 
 // 폰트 두께
-export const FontWeight = css<{ weight?: FontWeightType }>`
+export const FontWeight = css<{ $fontWeight?: FontWeightType }>`
   font-weight: ${props => {
-    switch (props.weight) {
+    switch (props.$fontWeight) {
       case 'thin':
         return (props.theme as Theme).fontWeight.thin
       case 'light':
@@ -113,10 +113,10 @@ export const FlexWrap = css<{ flexWrap?: boolean }>`
 
 // flex 메인축 방향 정렬
 export const FlexJustifyContent = css<{
-  flexContent?: FlexContentType
+  $flexContent?: FlexContentType
 }>`
   justify-content: ${props => {
-    switch (props.flexContent) {
+    switch (props.$flexContent) {
       case 'start':
         return 'flex-start'
       case 'center':

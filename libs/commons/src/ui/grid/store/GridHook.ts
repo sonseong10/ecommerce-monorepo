@@ -156,7 +156,7 @@ export const useGridSortInit = (gridid: string, sortid: string) => {
 }
 
 export const useIntersectionObserver = (
-  root: React.RefObject<HTMLElement>,
+  root: React.RefObject<HTMLElement | null>,
   gridId?: string,
   infiniteInfo?: {
     current: number

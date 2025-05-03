@@ -77,7 +77,7 @@ export interface IInputFileProps {
   fileChange?: (fileURL: string, fileName: string) => void
   delete?: () => void
   buttonText?: string
-  btntype?: string
+  $btnType?: string
   type?: string
 }
 
@@ -136,10 +136,10 @@ function InputExcel(props: IInputFileProps): JSX.Element {
             <DeleteExcelButton isActive={props.filename !== undefined && props.filename.length > 0}>
               <Button
                 title="삭제"
-                thin
-                iconName="Closed"
-                iconPosition="center"
-                btntype="border"
+                thin={true}
+                $iconName="Closed"
+                $iconPosition="center"
+                $btnType="border"
                 color="negative"
                 onClick={deleteItem}
               />
@@ -147,7 +147,7 @@ function InputExcel(props: IInputFileProps): JSX.Element {
           </div>
         )}
 
-        <Button text={props.buttonText ? props.buttonText : '등록'} onClick={clickHandler} btnSize="xsm" />
+        <Button text={props.buttonText ? props.buttonText : '등록'} onClick={clickHandler} $btnSize="xsm" />
       </InputFileWrap>
     </>
   )

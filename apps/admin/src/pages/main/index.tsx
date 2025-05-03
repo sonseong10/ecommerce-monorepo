@@ -44,12 +44,12 @@ function Card() {
 const HomePage = () => {
   return (
     <>
-      <ElementGroup.Row flexContent="between">
-        <Title size="md" weight="medium">
+      <ElementGroup.Row $flexContent="between">
+        <Title size="md" $fontWeight="medium">
           내업무 현황
         </Title>
 
-        <Button text="더보기" btntype="ghost" iconName="NextArrow" iconPosition="after" btnSize="xsm" />
+        <Button text="더보기" $btnType="ghost" $iconName="NextArrow" $iconPosition="after" $btnSize="xsm" />
       </ElementGroup.Row>
 
       <ElementGroup.Row>

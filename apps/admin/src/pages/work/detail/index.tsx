@@ -39,12 +39,12 @@ function WorkDetail() {
   const nav = useNavigate()
   return (
     <>
-      <ElementGroup.Row flexContent="between">
-        <Title size="md" weight="medium">
+      <ElementGroup.Row $flexContent="between">
+        <Title size="md" $fontWeight="medium">
           업무상세정보
         </Title>
 
-        <Button text="목록" thin btnSize="xsm" onClick={() => nav('/admin/work/manage')} />
+        <Button text="목록" thin={true} $btnSize="xsm" onClick={() => nav('/admin/work/manage')} />
       </ElementGroup.Row>
       <OptionGrid
         data={[

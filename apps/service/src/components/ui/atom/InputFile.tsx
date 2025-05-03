@@ -113,7 +113,7 @@ function InputFile(props: IInputFileProps): JSX.Element {
           iconname="Edit"
           iconposition="center"
           color="white"
-          btntype="border"
+          $btnType="border"
           thin
         />
       ) : (

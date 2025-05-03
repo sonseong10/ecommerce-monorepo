@@ -18,13 +18,13 @@ import styled from 'styled-components'
 
 function SubmitButton() {
   const { register } = useWorkRegister()
-  return <Button thin color="primary" text="저장" ellipsis onClick={register} />
+  return <Button thin={true} color="primary" text="저장" ellipsis onClick={register} />
 }
 function ButtonGroup() {
   const goToList = useToList()
   return (
-    <RowButtonGroup flexContent="center">
-      <Button thin text="취소" btntype="border" ellipsis onClick={goToList} />
+    <RowButtonGroup $flexContent="center">
+      <Button thin={true} text="취소" $btnType="border" ellipsis onClick={goToList} />
       <SubmitButton />
     </RowButtonGroup>
   )
@@ -36,10 +36,10 @@ function AddReferrerButton() {
   const list = useReferrerList()
   return (
     <Button
-      iconName="Plus"
-      iconPosition="before"
+      $iconName="Plus"
+      $iconPosition="before"
       text="추가"
-      btnSize="xsm"
+      $btnSize="xsm"
       onClick={() => {
         memberPopup({ list: list }, undefined, v => change(v ? v.list! : []))
       }}
@@ -87,10 +87,10 @@ function ReferrerList() {
               </span>
 
               <Button
-                iconName="Closed"
-                iconPosition="center"
-                btntype="ghost"
-                btnSize="xsm"
+                $iconName="Closed"
+                $iconPosition="center"
+                $btnType="ghost"
+                $btnSize="xsm"
                 onClick={() => chage(list.filter(item => item.code !== i.code))}
               />
             </li>
@@ -172,7 +172,7 @@ export default function WorkRegister() {
 
   return (
     <>
-      <Title size="md" weight="medium">
+      <Title size="md" $fontWeight="medium">
         업무등록
       </Title>
 

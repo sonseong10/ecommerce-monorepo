@@ -23,8 +23,8 @@ function GridroductDeleteCell(props: IGrideCell<[string]>) {
     <Button
       text="삭제"
       color="negative"
-      btntype="ghost"
-      btnSize="xsm"
+      $btnType="ghost"
+      $btnSize="xsm"
       onClick={() => {
         onDelete(props.data[0])
       }}
@@ -80,8 +80,8 @@ function List() {
         thin: true,
         color: 'primary',
         eventType: 'link',
-        btntype: 'ghost',
-        btnSize: 'xsm',
+        $btnType: 'ghost',
+        $btnSize: 'xsm',
         link: {
           url: `/admin/product/info`,
           paramidx: 0,
@@ -113,17 +113,17 @@ function ProductList() {
   const navigate = useNavigate()
   return (
     <>
-      <ElementGroup.Row flexContent="between">
-        <Title weight="medium" size="lg">
+      <ElementGroup.Row $flexContent="between">
+        <Title $fontWeight="medium" size="lg">
           상품목록
         </Title>
 
         <Button
           color="primary"
-          btnSize="xsm"
+          $btnSize="xsm"
           text="상품 등록"
-          iconName="NextArrow"
-          iconPosition="after"
+          $iconName="NextArrow"
+          $iconPosition="after"
           onClick={() => navigate('/admin/product/info')}
         />
       </ElementGroup.Row>
@@ -157,14 +157,14 @@ function ProductList() {
         ]}
       />
 
-      <ElementGroup.Row flexContent="center">
-        <Button btntype="border" thin text="초가화" />
-        <Button text="검색" thin />
+      <ElementGroup.Row $flexContent="center">
+        <Button $btnType="border" thin={true} text="초가화" />
+        <Button text="검색" thin={true} />
       </ElementGroup.Row>
 
       <List />
 
-      <ElementGroup.Row flexContent="center">
+      <ElementGroup.Row $flexContent="center">
         <Pagelable current={0} total={11} />
       </ElementGroup.Row>
     </>

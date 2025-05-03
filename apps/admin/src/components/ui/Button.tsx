@@ -100,10 +100,10 @@ const BtnColor = (color?: ButtonColor) => {
   }
 }
 
-const useBtnSize = (btnSize?: ButtonSize, thin?: boolean, ellipsis?: boolean) => {
+const useBtnSize = ($btnSize?: ButtonSize, thin?: boolean, ellipsis?: boolean) => {
   const theme = useTheme()
 
-  switch (btnSize) {
+  switch ($btnSize) {
     case 'lg':
       return css`
         padding: 0 25px;
@@ -151,7 +151,7 @@ const useBtnSize = (btnSize?: ButtonSize, thin?: boolean, ellipsis?: boolean) =>
   }
 }
 
-const BtnIconCommon = css<{ btnSize?: ButtonSize }>`
+const BtnIconCommon = css<{ $btnSize?: ButtonSize }>`
   content: '';
   display: inline-block;
   background-position: center center;
@@ -159,7 +159,7 @@ const BtnIconCommon = css<{ btnSize?: ButtonSize }>`
   background-size: 100%;
 
   ${props => {
-    switch (props.btnSize) {
+    switch (props.$btnSize) {
       case 'xs':
         return css`
           width: 12px;
@@ -175,14 +175,14 @@ const BtnIconCommon = css<{ btnSize?: ButtonSize }>`
 `
 
 const BtnIcon = (
-  iconName?: ButtonIcon | 'Write',
+  $iconName?: ButtonIcon | 'Write',
   color?: ButtonColor,
-  btntype?: ButtonType,
+  $btnType?: ButtonType,
   disabled?: boolean,
   $isHover?: boolean,
 ) => {
   let iconColor
-  if (btntype === 'border' || btntype === 'ghost') {
+  if ($btnType === 'border' || $btnType === 'ghost') {
     if (disabled) {
       iconColor = BtnColor(color)?.disabled
     } else if ($isHover) {
@@ -194,7 +194,7 @@ const BtnIcon = (
     iconColor = '#fff'
   }
 
-  switch (iconName) {
+  switch ($iconName) {
     case 'Delete':
       return css`
         background-image: url(${SVG.Delete(iconColor)});
@@ -318,8 +318,8 @@ const ButtonComponent = styled.button<{
   $btnSize?: ButtonSize
   thin?: boolean
   ellipsis?: boolean
-  iconPosition?: 'before' | 'after' | 'center'
-  iconName?: ButtonIcon | 'Write'
+  $iconPosition?: 'before' | 'after' | 'center'
+  $iconName?: ButtonIcon | 'Write'
   disabled?: boolean
   $isHover?: boolean
   maxWidth?: string
@@ -390,13 +390,13 @@ const ButtonComponent = styled.button<{
   }}
 
   ${props => {
-    switch (props.iconPosition) {
+    switch (props.$iconPosition) {
       case 'after':
         return css`
           &::after {
             ${BtnIconCommon}
             margin-left: 5px;
-            ${BtnIcon(props.iconName, props.color, props.$btnType, props.disabled, props.$isHover)}
+            ${BtnIcon(props.$iconName, props.color, props.$btnType, props.disabled, props.$isHover)}
           }
         `
       case 'before':
@@ -404,7 +404,7 @@ const ButtonComponent = styled.button<{
           &::before {
             ${BtnIconCommon}
             margin-right: 5px;
-            ${BtnIcon(props.iconName, props.color, props.$btnType, props.disabled, props.$isHover)}
+            ${BtnIcon(props.$iconName, props.color, props.$btnType, props.disabled, props.$isHover)}
           }
         `
       case 'center':
@@ -412,7 +412,7 @@ const ButtonComponent = styled.button<{
           &::before {
             margin: 5px 0;
             ${BtnIconCommon}
-            ${BtnIcon(props.iconName, props.color, props.$btnType, props.disabled, props.$isHover)};
+            ${BtnIcon(props.$iconName, props.color, props.$btnType, props.disabled, props.$isHover)};
           }
         `
     }
@@ -420,16 +420,16 @@ const ButtonComponent = styled.button<{
 `
 
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  maxWidth?: string
+  $maxWidth?: string
   text?: string
   $btnType?: ButtonType
   $btnSize?: ButtonSize
   color?: ButtonColor
   thin?: boolean
   ellipsis?: boolean
-  iconPosition?: 'before' | 'after' | 'center'
-  iconName?: ButtonIcon | 'Write'
-  isHover?: boolean
+  $iconPosition?: 'before' | 'after' | 'center'
+  $iconName?: ButtonIcon | 'Write'
+  $isHover?: boolean
   disabled?: boolean
 }
 
@@ -461,8 +461,8 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
       color={props.color ? props.color : 'dark'}
       thin={props.thin ? props.thin : undefined}
       ellipsis={props.ellipsis && props.ellipsis}
-      iconPosition={props.iconPosition && props.iconPosition}
-      iconName={props.iconName && props.iconName}
+      $iconPosition={props.$iconPosition && props.$iconPosition}
+      $iconName={props.$iconName && props.$iconName}
       onMouseEnter={hoverHandler}
       onMouseLeave={leaveHandler}
       onClick={clickHandler}
@@ -471,7 +471,7 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
       ref={ref}
       onMouseUp={props.onMouseUp}
       onMouseDown={props.onMouseDown}
-      maxWidth={props.maxWidth}
+      maxWidth={props.$maxWidth}
       className={props.className}
     >
       {props.text}

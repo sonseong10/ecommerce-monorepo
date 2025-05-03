@@ -105,7 +105,7 @@ const BtnColor = (color?: ButtonColor) => {
   }
 };
 
-const btnSize = (btnsize?: ButtonSize, thin?: boolean, ellipsis?: boolean) => {
+const $btnSize = (btnsize?: ButtonSize, thin?: boolean, ellipsis?: boolean) => {
   const theme = useTheme() as Theme;
 
   switch (btnsize) {
@@ -182,12 +182,12 @@ const BtnIconCommon = css<{btnsize?: ButtonSize}>`
 const BtnIcon = (
   iconname?: ButtonIcon | 'Category',
   color?: ButtonColor,
-  btntype?: ButtonType,
+  $btnType?: ButtonType,
   disabled?: boolean,
-  isHover?: boolean,
+  isHover?: boolean
 ) => {
   let iconColor;
-  if (btntype === 'border' || btntype === 'ghost') {
+  if ($btnType === 'border' || $btnType === 'ghost') {
     if (disabled) {
       iconColor = BtnColor(color)?.disabled;
     } else if (isHover) {
@@ -325,7 +325,7 @@ const BtnIcon = (
 };
 
 const ButtonComponent = styled.button<{
-  btntype?: ButtonType;
+  $btnType?: ButtonType;
   color?: ButtonColor;
   btnsize?: ButtonSize;
   thin?: boolean;
@@ -339,7 +339,7 @@ const ButtonComponent = styled.button<{
   ${BtnCommon};
 
   ${(props) => {
-    switch (props.btntype) {
+    switch (props.$btnType) {
       case 'normal':
         return css`
           border-color: ${BtnColor(props.color)?.bg};
@@ -398,7 +398,7 @@ const ButtonComponent = styled.button<{
   }};
 
   ${(props) => {
-    return btnSize(props.btnsize, props.thin, props.ellipsis);
+    return $btnSize(props.btnsize, props.thin, props.ellipsis);
   }}
 
   ${(props) => {
@@ -408,7 +408,7 @@ const ButtonComponent = styled.button<{
           &::after {
             ${BtnIconCommon}
             margin-left: 5px;
-            ${BtnIcon(props.iconname, props.color, props.btntype, props.disabled, props.ishover)}
+            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.ishover)}
           }
         `;
       case 'before':
@@ -416,7 +416,7 @@ const ButtonComponent = styled.button<{
           &::before {
             ${BtnIconCommon}
             margin-right: 5px;
-            ${BtnIcon(props.iconname, props.color, props.btntype, props.disabled, props.ishover)}
+            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.ishover)}
           }
         `;
       case 'center':
@@ -424,7 +424,7 @@ const ButtonComponent = styled.button<{
           &::before {
             margin: 5px 0;
             ${BtnIconCommon}
-            ${BtnIcon(props.iconname, props.color, props.btntype, props.disabled, props.ishover)};
+            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.ishover)};
           }
         `;
     }
@@ -434,7 +434,7 @@ const ButtonComponent = styled.button<{
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   maxWidth?: string;
   text?: string;
-  btntype?: ButtonType;
+  $btnType?: ButtonType;
   btnsize?: ButtonSize;
   color?: ButtonColor;
   thin?: boolean;
@@ -464,11 +464,11 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
         e.stopPropagation();
       }
     },
-    [props],
+    [props]
   );
   return (
     <ButtonComponent
-      btntype={props.btntype ? props.btntype : 'normal'}
+      $btnType={props.$btnType ? props.$btnType : 'normal'}
       btnsize={props.btnsize ? props.btnsize : 'normal'}
       color={props.color ? props.color : 'dark'}
       thin={props.thin && props.thin}
