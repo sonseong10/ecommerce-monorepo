@@ -16,7 +16,7 @@ const Detail = () => {
   return (
     <>
       <ElementGroup.Row $flexContent="between">
-        <Title size="md" weight="medium">
+        <Title size="md" $fontWeight="medium">
           {card?.name ? card?.name : '이름없음'}님 정보
         </Title>
 
