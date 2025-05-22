@@ -8,7 +8,7 @@ import SwiperCore from "swiper";
 import { Autoplay, Navigation, Pagination, Thumbs } from "swiper/modules";
 import {type SwiperProps, Swiper, SwiperSlide} from 'swiper/react';
 import { styled } from "styled-components";
-import {ProductList} from '../product/list';
+import {ProductList} from './product/list';
 import {ElementGroup, Title} from '../../styles/components';
 import {UiSelectBox} from '../../components/ui/atom/SelectBox';
 

@@ -11,8 +11,8 @@ import {FreeMode, Thumbs} from 'swiper/modules';
 import styled from 'styled-components';
 import {commonSVG} from '@ecommerce/commons';
 import {Link} from 'react-router-dom';
-import {UiSelectBox} from '../../components/ui/atom/SelectBox';
-import Button from '../../components/ui/atom/Button';
+import {UiSelectBox} from '../../../components/ui/atom/SelectBox';
+import Button from '../../../components/ui/atom/Button';
 
 SwiperCore.use([FreeMode, Thumbs]);
 
@@ -28,6 +28,7 @@ const ProductionSellingOverviewCategory = styled.nav`
   margin-top: 20px;
   padding: 0;
   border: none;
+  overflow-y: hidden;
 
   ol {
     display: flex;
@@ -37,14 +38,14 @@ const ProductionSellingOverviewCategory = styled.nav`
       display: flex;
       align-items: center;
       font-size: 15px;
-      color: var(--font-sub-grey);
+      color: var(--font-disabled);
 
       &:not(:last-child)::after {
         display: inline-block;
         width: 16px;
         height: 16px;
         margin: 0 5px;
-        background: url(${commonSVG.NextArrow('#898989')}) no-repeat center center;
+        background: url(${commonSVG.NextArrow('#a8a9aa')}) no-repeat center center;
         background-size: 16px;
         content: '';
       }
@@ -277,8 +278,8 @@ function ProductDetail() {
               </div>
 
               <div>
-                <Button text="장바구니" $btnType="border" btnsize="lg" thin color="primary" />
-                <Button text="바로구매" btnsize="lg" thin color="primary" />
+                <Button text="장바구니" $btnType="border" $btnSize="lg" thin color="primary" />
+                <Button text="바로구매" $btnSize="lg" thin color="primary" />
               </div>
             </div>
             <div></div>
@@ -486,9 +487,9 @@ function ProductDetail() {
               </div>
 
               <div>
-                <Button text="" btnsize="lg" thin $btnType="border" iconname="BookMark" iconposition="center" />
-                <Button text="장바구니" $btnType="border" btnsize="lg" thin color="primary" />
-                <Button text="바로구매" btnsize="lg" thin color="primary" />
+                <Button text="" $btnSize="lg" thin $btnType="border" iconname="BookMark" iconposition="center" />
+                <Button text="장바구니" $btnType="border" $btnSize="lg" thin color="primary" />
+                <Button text="바로구매" $btnSize="lg" thin color="primary" />
               </div>
             </div>
           </aside>

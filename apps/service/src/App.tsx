@@ -15,7 +15,7 @@ import Header from './components/layout/header/Header';
 
 const MainPage = lazy(() => import('./pages/main/mainPage'));
 const MarketPage = lazy(() => import('./pages/market/marketPage'));
-const ProductDetail = lazy(() => import('./pages/product/detail'));
+const ProductDetail = lazy(() => import('./pages/market/product/detail'));
 
 function App() {
   const {isDeviceType} = useDevice();

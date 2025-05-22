@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {Text} from '../../styles/components';
+import {Text} from '../../../styles/components';
 import {commonSVG} from '@ecommerce/commons';
 
 interface IProductListProps {
@@ -127,7 +127,7 @@ export function ProductList({products}: IProductListProps) {
       {products?.map((product) => (
         <li key={product.code}>
           <Link to={`/productions/${product.code}`}>
-            <div className='production-item-image'>
+            <div className="production-item-image">
               <img src={product.imageURL} alt={product.name} />
             </div>
             <div className="product-item_content">
