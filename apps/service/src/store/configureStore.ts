@@ -3,8 +3,7 @@ import {
   configureStore,
   type ThunkAction,
 } from "@reduxjs/toolkit";
-import { getLoadingMiddleware } from "../commons/loading/store/loadingR";
-// import logger from "redux-logger";
+import {getLoadingMiddleware} from '@ecommerce/commons';
 import rootReducer, { type IState } from "./modules/index";
 
 export type Store = ReturnType<typeof initStore>;

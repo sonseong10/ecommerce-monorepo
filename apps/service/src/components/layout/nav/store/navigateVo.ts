@@ -1,4 +1,4 @@
-import type { ButtonIcon } from "../../../../commons/styles/ComponentsType";
+import type {ButtonIcon} from '@ecommerce/commons';
 
 export interface INavigatesVO {
   name: string;
@@ -21,24 +21,24 @@ export enum GRADE {
 }
 
 export enum TOP {
-  CMS = "cms",
-  NONE = "none",
+  CMS = 'cms',
+  NONE = 'none',
 }
 
 export enum LEFT {
-  MANAGE = "manage",
-  REGISTER = "register",
-  LIST = "list",
-  AD = "ad",
-  CONTENTS = "contents",
-  CAMPAIGN = "campaign",
-  NONE = "none",
+  MANAGE = 'manage',
+  REGISTER = 'register',
+  LIST = 'list',
+  AD = 'ad',
+  CONTENTS = 'contents',
+  CAMPAIGN = 'campaign',
+  NONE = 'none',
 }
 
 export enum SEC {
-  SITE = "site",
-  SETTING = "setting",
-  CONDITION = "condition",
+  SITE = 'site',
+  SETTING = 'setting',
+  CONDITION = 'condition',
 }
 
 // NOTE: 필요한경우 추가
@@ -56,22 +56,17 @@ export function getRouter(a: TOP | LEFT | SEC | string, left?: LEFT): string {
   if (vo !== undefined) {
     return vo.router;
   }
-  return "/";
+  return '/';
 }
 
-export function getRouteVo(
-  id: TOP | LEFT | SEC | string
-): INavigatesVO | undefined;
+export function getRouteVo(id: TOP | LEFT | SEC | string): INavigatesVO | undefined;
 export function getRouteVo(top: TOP, left: LEFT): INavigatesVO | undefined;
-export function getRouteVo(
-  a: TOP | LEFT | SEC | string,
-  left?: LEFT
-): INavigatesVO | undefined {
-  const itemAr = left === undefined ? a.split(".") : [a, left];
-  const item = topList.filter(item => item.id === itemAr[0]);
+export function getRouteVo(a: TOP | LEFT | SEC | string, left?: LEFT): INavigatesVO | undefined {
+  const itemAr = left === undefined ? a.split('.') : [a, left];
+  const item = topList.filter((item) => item.id === itemAr[0]);
   if (item.length > 0) {
     if (itemAr.length > 1) {
-      const sub = leftList[item[0].id].filter(item => item.id === itemAr[1]);
+      const sub = leftList[item[0].id].filter((item) => item.id === itemAr[1]);
       if (sub.length > 0) {
         return sub[0];
       } else {
@@ -86,11 +81,7 @@ export function getRouteVo(
   return;
 }
 
-export const mainList: Array<string> = [
-  "관리자",
-  "ROLE_CMS_PARTNER",
-  "ROLE_CMS_AUTHOR",
-];
+export const mainList: Array<string> = ['관리자', 'ROLE_CMS_PARTNER', 'ROLE_CMS_AUTHOR'];
 const GradeList = [
   GRADE.SYSTEM + GRADE.SUPER,
   GRADE.SYSTEM + GRADE.SUPER + GRADE.ROLE_CMS_PARTNER + GRADE.ROLE_CMS_AUTHOR,
@@ -99,38 +90,38 @@ const GradeList = [
 ];
 export const topList: Array<INavigatesVO> = [
   {
-    name: "ALL",
+    name: 'ALL',
     id: TOP.CMS,
-    router: "/admin/cms/contents/manage",
+    router: '/admin/cms/contents/manage',
     grade: GradeList[1],
   },
 ];
-export const leftList: { [key: string]: Array<INavigatesVO> } = {
+export const leftList: {[key: string]: Array<INavigatesVO>} = {
   [TOP.CMS]: [
     {
-      name: "인사이트",
+      name: '인사이트',
       id: LEFT.MANAGE,
       grade: GradeList[2],
-      router: "/admin/cms/insight/manage",
-      icon: "Insight",
+      router: '/admin/cms/insight/manage',
+      icon: 'Insight',
     },
     {
-      name: "콘텐츠 관리",
+      name: '콘텐츠 관리',
       id: LEFT.MANAGE,
       grade: GradeList[1],
-      router: "/admin/cms/contents/manage",
-      icon: "NavContents",
+      router: '/admin/cms/contents/manage',
+      icon: 'NavContents',
     },
     {
-      name: "카테고리 관리",
+      name: '카테고리 관리',
       id: LEFT.CAMPAIGN,
       grade: GradeList[2],
-      router: "/admin/cms/category/manage",
-      icon: "NavCategory",
+      router: '/admin/cms/category/manage',
+      icon: 'NavCategory',
     },
   ],
 };
 
-export const secList: { [key: string]: Array<INavigatesVO> } = {};
+export const secList: {[key: string]: Array<INavigatesVO>} = {};
 
 export const popupList: Array<INavigatesVO> = [];

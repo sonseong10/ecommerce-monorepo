@@ -1,12 +1,12 @@
 import moment, { type MomentInput } from "moment";
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { useCalender } from "../../../commons/layers/store/layerHook";
+import {useCalender} from '@ecommerce/commons';
 import { Input } from "../../../styles/components";
-import { isFullDate } from "../../../commons/utils";
-import { useInputText } from "../../../commons/ui/useUihook";
-import type { IValid } from "../../../commons/ui/useValid";
-import SVG from "../../../commons/styles/svgIcon";
+import {isFullDate} from '@ecommerce/commons';
+import {useInputText} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
+import SVG from '../../../styles/svgIcon';
 
 const DatePicker = styled.div`
   display: inline-block;

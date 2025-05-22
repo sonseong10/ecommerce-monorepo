@@ -1,10 +1,10 @@
 import styled, {css} from 'styled-components';
 import {Link} from 'react-router-dom';
 import {TitleSize, TextSize, FontWeight, TextAlign, FlexWrap, FlexAlighItem, FlexJustifyContent} from './styleds';
-import type {DirectionType} from '../commons/styles/ComponentsType';
+import type {DirectionType} from '@ecommerce/commons';
 import type {Color, FontAlignType, FontSizeNomalType, FontSizeTitleType, FontWeightType} from './stylesVo';
-import {TableContainer as Table} from '../commons/ui/grid/GridStyled';
-import {Theme} from './theme';
+import {TableContainer as Table} from '@ecommerce/commons';
+import type {Theme} from './theme';
 
 /**
  * 컴포넌트 단위(width html tag) 스타일 정의 파일

@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import Logo from "../../../assets/images/logo.svg"
-import { Link } from "react-router-dom";
-import UiInputText from "../../../commons/components/ui/UiInputText";
-import Button from "../../ui/atom/Button";
-import SVG from "../../../commons/styles/svgIcon";
+import {Link} from 'react-router-dom';
+import Button from '../../ui/atom/Button';
+import {commonSVG} from '@ecommerce/commons/styles/svgIcon';
+import {UiInputText} from '@ecommerce/commons';
 
 const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
-  border-bottom: 1px solid #EAEDEF;
+  border-bottom: 1px solid #eaedef;
   background-color: #fff;
   z-index: 7;
 
@@ -42,71 +42,72 @@ const HeaderContainer = styled.header`
         font-size: 18px;
         line-height: 1;
         font-weight: bold;
-    
+
         &:hover,
         &.isActive {
-          color: var(--primary)
+          color: var(--primary);
         }
       }
     }
 
-  .gnb-right {
-    flex: 0 1 650px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    .search-wrapper {
-      position: relative;
-      margin-right: 14px;
-      &::after {
-        position: absolute;
-        top: 50%;
-        left: 6px;
-        display: block;
-        width: 24px;
-        height: 24px;
-        background: url(${SVG.Search("#999")}) no-repeat center center;
-        transform: translateY(-50%);
-        content: "";
-      }
-
-      #search {
-        padding-left: 34px;
-        height: 40px;
-      }
-    }
-
-    .auth-group {
+    .gnb-right {
+      flex: 0 1 650px;
       display: flex;
       align-items: center;
-      margin-right: 8px;
-      .cart-icon {
-        margin-right: 10px;
-        transform: translateY(2px);
+      justify-content: flex-end;
+
+      .search-wrapper {
+        position: relative;
+        margin-right: 14px;
         &::after {
-          display: inline-block;
+          position: absolute;
+          top: 50%;
+          left: 6px;
+          display: block;
           width: 24px;
           height: 24px;
-          background: url(${SVG.Cart("#1d1d1d")}) no-repeat center center;
-          content: "";
+          background: url(${commonSVG.Search('#999')}) no-repeat center center;
+          transform: translateY(-50%);
+          content: '';
+        }
+
+        #search {
+          padding-left: 34px;
+          height: 40px;
         }
       }
 
-      a:not(.cart-icon){
-        display: inline-block;
-        padding: 0 10px;
-        &:not(:last-child) {
-          border-right: 1px solid #EAEDEF;
+      .auth-group {
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+        .cart-icon {
+          margin-right: 10px;
+          transform: translateY(2px);
+          &::after {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: url(${commonSVG.Cart('#1d1d1d')}) no-repeat center center;
+            content: '';
+          }
+        }
+
+        a:not(.cart-icon) {
+          display: inline-block;
+          padding: 0 10px;
+          &:not(:last-child) {
+            border-right: 1px solid #eaedef;
+          }
         }
       }
-    }
 
-    button {
-      padding: 0 12px;
+      button {
+        padding: 0 12px;
+      }
     }
   }
-}`;
+`;
 
 const SubCategoryWrapper = styled.nav`
   border-bottom: 1px solid #EAEDEF;

@@ -1,37 +1,37 @@
-import { useCheckBoxGroup } from "../../../commons/ui/useUihook";
-import type { IValid } from "../../../commons/ui/useValid";
-import React from "react";
-import styled, { css } from "styled-components";
-import type { DirectionType } from "../../../commons/styles/ComponentsType";
-import CheckBox from "./CheckBox";
+import {useCheckBoxGroup} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
+import React from 'react';
+import styled, {css} from 'styled-components';
+import type {DirectionType} from '@ecommerce/commons';
+import CheckBox from './CheckBox';
 
 const CheckBoxGroupStyle = styled.div<{
   direction?: DirectionType;
   isBelong?: boolean;
 }>`
-  display: ${props => {
+  display: ${(props) => {
     switch (props.direction) {
-      case "row":
+      case 'row':
       default:
-        return "inline-flex";
-      case "col":
-        return "flex";
+        return 'inline-flex';
+      case 'col':
+        return 'flex';
     }
   }};
 
-  flex-direction: ${props => {
+  flex-direction: ${(props) => {
     switch (props.direction) {
-      case "row":
+      case 'row':
       default:
-        return "row";
-      case "col":
-        return "column";
+        return 'row';
+      case 'col':
+        return 'column';
     }
   }};
   flex-wrap: wrap;
   margin: 3px 0;
 
-  ${props => {
+  ${(props) => {
     if (props.isBelong) {
       return css`
         display: flex;
@@ -41,7 +41,7 @@ const CheckBoxGroupStyle = styled.div<{
         }
         &:before {
           display: block;
-          content: "";
+          content: '';
           width: 14px;
           height: 14px;
           position: absolute;
@@ -82,7 +82,7 @@ function CheckBoxGroupMemo(props: IInputCheckBoxProps): JSX.Element {
         if (props.change) {
           props.change(
             value,
-            (props.data as Array<ICheckBox>).filter((item) => !item.isAll).map((item) => item.id),
+            (props.data as Array<ICheckBox>).filter((item) => !item.isAll).map((item) => item.id)
           );
         }
       } else {
@@ -132,18 +132,11 @@ export interface IUiCheckBoxProps {
   onlyBox?: boolean;
   data?: Array<ICheckBox>;
   change?: (isAll: boolean, selected: Array<string>) => void;
-  valid?: IValid<{ isAll: boolean; value?: string[] }>;
+  valid?: IValid<{isAll: boolean; value?: string[]}>;
   init?: string[];
 }
 
 export function UiCheckBoxGroup(props: IUiCheckBoxProps): JSX.Element {
-  const { checkValue, changeValue } = useCheckBoxGroup(
-    props.name,
-    props.valid,
-    props.data,
-    props.init
-  );
-  return (
-    <CheckBoxGroup {...props} selected={checkValue} change={changeValue} />
-  );
+  const {checkValue, changeValue} = useCheckBoxGroup(props.name, props.valid, props.data, props.init);
+  return <CheckBoxGroup {...props} selected={checkValue} change={changeValue} />;
 }

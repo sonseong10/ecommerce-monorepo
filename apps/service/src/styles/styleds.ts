@@ -8,6 +8,7 @@ import type {
   FontWeightType,
   Size,
 } from './stylesVo';
+import type {Theme} from './theme';
 
 /**
  * 상속시킬 스타일(css) 정의 파일
@@ -17,16 +18,16 @@ import type {
 export const TextSize = css<{
   size?: FontSizeNomalType;
 }>`
-  font-size: ${props => {
+  font-size: ${(props) => {
     switch (props.size) {
-      case "sm":
-        return props.theme.fontSize.text.sm;
-      case "md":
-        return props.theme.fontSize.text.md;
-      case "lg":
-        return props.theme.fontSize.text.lg;
+      case 'sm':
+        return (props.theme as Theme).fontSize.text.sm;
+      case 'md':
+        return (props.theme as Theme).fontSize.text.md;
+      case 'lg':
+        return (props.theme as Theme).fontSize.text.lg;
       default:
-        return props.theme.fontSize.default;
+        return (props.theme as Theme).fontSize.default;
     }
   }};
 `;
@@ -35,40 +36,38 @@ export const TextSize = css<{
 export const TitleSize = css<{
   size?: FontSizeTitleType;
 }>`
-  font-size: ${props => {
+  font-size: ${(props) => {
     switch (props.size) {
-      case "xsm":
-        return props.theme.fontSize.title.xsm;
-      case "sm":
-        return props.theme.fontSize.title.sm;
-      case "md":
-        return props.theme.fontSize.title.md;
-      case "lg":
-        return props.theme.fontSize.title.lg;
-      case "xl":
-        return props.theme.fontSize.title.xl;
+      case 'xsm':
+        return (props.theme as Theme).fontSize.title.xsm;
+      case 'sm':
+        return (props.theme as Theme).fontSize.title.sm;
+      case 'md':
+        return (props.theme as Theme).fontSize.title.md;
+      case 'lg':
+        return (props.theme as Theme).fontSize.title.lg;
+      case 'xl':
+        return (props.theme as Theme).fontSize.title.xl;
       default:
-        return props.theme.fontSize.default;
+        return (props.theme as Theme).fontSize.default;
     }
   }};
 `;
 
 // 폰트 두께
-export const FontWeight = css<{ weight?: FontWeightType }>`
-  font-weight: ${props => {
+export const FontWeight = css<{weight?: FontWeightType}>`
+  font-weight: ${(props) => {
     switch (props.weight) {
-      case "thin":
-        return props.theme.fontWeight.thin;
-      case "light":
-        return props.theme.fontWeight.light;
-      case "medium":
-        return props.theme.fontWeight.medium;
-      case "regular":
-        return props.theme.fontWeight.regular;
-      case "exBold":
-        return props.theme.fontWeight.exBold;
+      case 'thin':
+        return (props.theme as Theme).fontWeight.thin;
+      case 'light':
+        return (props.theme as Theme).fontWeight.light;
+      case 'medium':
+        return (props.theme as Theme).fontWeight.medium;
+      case 'regular':
+        return (props.theme as Theme).fontWeight.regular;
       default:
-        return props.theme.fontWeight.bold;
+        return (props.theme as Theme).fontWeight.bold;
     }
   }};
 `;

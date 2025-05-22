@@ -4,12 +4,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 import {useState} from 'react';
-import {Swiper, SwiperSlide, SwiperProps} from 'swiper/react';
+import {Swiper, SwiperSlide, type SwiperProps} from 'swiper/react';
 import SwiperCore from 'swiper';
 
 import {FreeMode, Thumbs} from 'swiper/modules';
 import styled from 'styled-components';
-import SVG from '../../commons/styles/svgIcon';
+import {commonSVG} from '@ecommerce/commons';
 import {Link} from 'react-router-dom';
 import {UiSelectBox} from '../../components/ui/atom/SelectBox';
 import Button from '../../components/ui/atom/Button';
@@ -44,7 +44,7 @@ const ProductionSellingOverviewCategory = styled.nav`
         width: 16px;
         height: 16px;
         margin: 0 5px;
-        background: url(${SVG.NextArrow('#898989')}) no-repeat center center;
+        background: url(${commonSVG.NextArrow('#898989')}) no-repeat center center;
         background-size: 16px;
         content: '';
       }

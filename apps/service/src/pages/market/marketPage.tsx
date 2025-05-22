@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import { useState } from "react";
 import SwiperCore from "swiper";
 import { Autoplay, Navigation, Pagination, Thumbs } from "swiper/modules";
-import { SwiperProps, Swiper, SwiperSlide } from "swiper/react";
+import {type SwiperProps, Swiper, SwiperSlide} from 'swiper/react';
 import { styled } from "styled-components";
 import {ProductList} from '../product/list';
 import {ElementGroup, Title} from '../../styles/components';

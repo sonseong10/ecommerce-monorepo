@@ -1,7 +1,7 @@
 import  { useEffect, useRef } from "react";
 import { Outlet } from "react-router";
 import styled from "styled-components";
-import { useContentHeight } from "../../commons/layers/store/layerHook";
+import {useContentHeight} from '@ecommerce/commons';
 import Header from "./header/Header";
 
 

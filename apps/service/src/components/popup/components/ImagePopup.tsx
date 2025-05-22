@@ -1,8 +1,7 @@
-import AbsPopup from "commons/popup/display/AbsPopup";
-import { usePopupData } from "commons/popup/store/absPopupHook";
-import React from "react";
-import styled from "styled-components";
-import { PopupType } from "../PopupType";
+import {AbsPopup} from '@ecommerce/commons';
+import {usePopupData} from '@ecommerce/commons';
+import styled from 'styled-components';
+import {PopupType} from '../PopupType';
 
 const ImageWrap = styled.div`
   max-height: 600px;
@@ -17,7 +16,7 @@ const ImageBox = styled.img`
 `;
 
 const ImagePopup = (): JSX.Element => {
-  const { popupDo } = usePopupData<string>(PopupType.IMAGE);
+  const {popupDo} = usePopupData<string>(PopupType.IMAGE);
   return (
     <AbsPopup type={PopupType.IMAGE}>
       <ImageWrap>

@@ -1,12 +1,12 @@
 import type {AsyncThunk, AsyncThunkPayloadCreator} from '@reduxjs/toolkit';
-import type {AbsIRes} from '../../commons/Http';
+import type {AbsIRes} from '@ecommerce/commons';
 import {
   absCreatePageThunk,
   absCreateThunk,
   type AbsAsyncThunkConfig,
   type StatePayloadCodeType,
   useAbsApi,
-} from '../../commons/store/common';
+} from '@ecommerce/commons';
 import type {Dispatch} from '../configureStore';
 import type {IState} from '.';
 
@@ -33,6 +33,7 @@ export type AsyncThunkConfig = AbsAsyncThunkConfig<IState> & {
 };
 
 export interface IRes<T, P = undefined> extends AbsIRes<T, P> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   code: any;
   // AD 공통 사용중 단일 데이터 data, 페이지 데이터 page
   data?: T;

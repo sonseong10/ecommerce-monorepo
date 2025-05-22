@@ -1,9 +1,9 @@
-import { useInputFile } from "../../../commons/ui/useUihook";
-import React, { useCallback, useRef } from "react";
-import Button from "./Button";
-import InputText from "./InputText";
-import type { FileType } from "../../../commons/ui/uiVo";
-import type { IValid } from "../../../commons/ui/useValid";
+import {useInputFile} from '@ecommerce/commons';
+import React, {useCallback, useRef} from 'react';
+import Button from './Button';
+import InputText from './InputText';
+import type {FileType} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
 
 export interface IInputFileProps {
   id?: string;
@@ -21,16 +21,16 @@ export interface IInputFileProps {
 }
 
 function InputFile(props: IInputFileProps): JSX.Element {
-  const id = props.id === undefined ? "inputfile" : props.id;
+  const id = props.id === undefined ? 'inputfile' : props.id;
   const inputfile = useRef<HTMLInputElement>(null);
   const getFileType = (file: File): Promise<FileType> => {
-    return new Promise(res => {
-      const fileType = file.type.split("/").pop();
+    return new Promise((res) => {
+      const fileType = file.type.split('/').pop();
       switch (fileType) {
-        case "gif":
+        case 'gif':
           {
             const reader = new FileReader();
-            reader.onload = e => {
+            reader.onload = (e) => {
               res({
                 filename: file.name,
                 filetype: fileType,
@@ -40,19 +40,17 @@ function InputFile(props: IInputFileProps): JSX.Element {
             reader.readAsDataURL(file);
           }
           break;
-        case "jpg":
-        case "png":
-        case "jpeg":
+        case 'jpg':
+        case 'png':
+        case 'jpeg':
           {
             const image = new Image();
-            const canvas = document.createElement("canvas");
+            const canvas = document.createElement('canvas');
             image.src = URL.createObjectURL(file);
             image.onload = () => {
               canvas.width = image.width;
               canvas.height = image.height;
-              canvas
-                .getContext("2d")
-                ?.drawImage(image, 0, 0, image.width, image.height);
+              canvas.getContext('2d')?.drawImage(image, 0, 0, image.width, image.height);
               const dataURL = canvas.toDataURL(file.type, 1);
               res({
                 filename: file.name,
@@ -64,7 +62,7 @@ function InputFile(props: IInputFileProps): JSX.Element {
           break;
         default:
           {
-            res({ filename: file.name, filetype: fileType, file: file });
+            res({filename: file.name, filetype: fileType, file: file});
           }
           break;
       }
@@ -84,7 +82,7 @@ function InputFile(props: IInputFileProps): JSX.Element {
       if (props.changes) {
         props.changes(temp);
       }
-      e.target.value = "";
+      e.target.value = '';
     }
   };
   const clickHandler = useCallback(() => {
@@ -140,7 +138,7 @@ export interface IUiInputFileProps {
  * @returns
  */
 export function UiInputFile(props: IUiInputFileProps) {
-  const { inputFileValue, changeValue } = useInputFile(
+  const {inputFileValue, changeValue} = useInputFile(
     props.id,
     props.valid as IValid<FileType | FileType[]>,
     props.init
@@ -151,7 +149,7 @@ export function UiInputFile(props: IUiInputFileProps) {
   return (
     <InputFile
       id={props.id}
-      filename={inputFileValue.filename}
+      filename={inputFileValue!.filename}
       accept={props.accept}
       buttonText={props.buttonText}
       type={props.type}

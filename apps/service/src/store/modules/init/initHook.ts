@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import type {IState} from '..';
-import {useSelectorEq} from '../../../commons/store/common';
+import {useSelectorEq} from '@ecommerce/commons';
 import {DeviceType} from './initVo';
 import {getSession, setSession} from '../../../commons/storage/storageHook';
 import {SessionName} from '../../storageVo';
-import {rdxPopupReset} from '../../../commons/popup/store/popupR';
+import {rdxPopupReset} from '@ecommerce/commons';
 
 export function useSetDevice() {
   const setDevice = (type: DeviceType) => {
@@ -45,22 +45,22 @@ export function useDevice() {
 }
 
 function useInit() {
-  const [isInit, setInit] = useState(false);
+  const [isInit] = useState(false);
   const init = async () => {
     return {code: 200};
   };
   const dispatch = useDispatch();
-  const rePage = (e: PageTransitionEvent) => {
-    if (e.persisted) {
-      dispatch(rdxPopupReset());
-    }
-  };
   useEffect(() => {
+    const rePage = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        dispatch(rdxPopupReset());
+      }
+    };
     window.addEventListener('pageshow', rePage);
     return () => {
       window.removeEventListener('pageshow', rePage);
     };
-  }, []);
+  }, [dispatch]);
   return {init, isInit};
 }
 

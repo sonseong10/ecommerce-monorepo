@@ -1,13 +1,9 @@
-import type {
-  IUseInput,
-  IUseInputEventParam,
-  InputType,
-} from "../../../commons/hook/hookVo";
-import useInput from "../../../commons/hook/useInput";
-import { useInputText } from "../../../commons/ui/useUihook";
-import { type IValid, useValid } from "../../../commons/ui/useValid";
-import React, { type RefObject, useEffect, useState } from "react";
-import { Input } from "../../../styles/components";
+import type {IUseInput, IUseInputEventParam, InputType} from '@ecommerce/commons';
+import {useInput} from '@ecommerce/commons';
+import {useInputText} from '@ecommerce/commons';
+import {type IValid, useValid} from '@ecommerce/commons';
+import {memo, type RefObject, useEffect, useState} from 'react';
+import {Input} from '../../../styles/components';
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
@@ -26,15 +22,13 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 // TODO: InputText type에 text 디폴트로 설정 필요
 
 function InputText(props: IProps): JSX.Element {
-  const [prev, setPrev] = useState<number>();
+  const [prev, setPrev] = useState<NodeJS.Timeout>();
 
   const test = (value?: string) => {
     if (value) {
-      return props.isPrice
-        ? Number(value.replaceAll(",", "")).toLocaleString().toString()
-        : value;
+      return props.isPrice ? Number(value.replaceAll(',', '')).toLocaleString().toString() : value;
     } else {
-      return "";
+      return '';
     }
   };
 
@@ -42,7 +36,7 @@ function InputText(props: IProps): JSX.Element {
     if (prev !== undefined) {
       clearTimeout(prev);
     }
-    if (value.type === "next") {
+    if (value.type === 'next') {
       if (props.change) {
         props.change(value.value as string, value.id);
       }
@@ -53,7 +47,7 @@ function InputText(props: IProps): JSX.Element {
       const st = setTimeout(() => {
         if (props.change) {
           if (props.isPrice !== undefined && props.isPrice) {
-            props.change((value.value as string).replaceAll(",", ""), value.id);
+            props.change((value.value as string).replaceAll(',', ''), value.id);
           } else {
             props.change(value.value as string, value.id);
           }
@@ -97,11 +91,11 @@ function InputText(props: IProps): JSX.Element {
       inputSize={props.inputSize}
       maxLength={props.maxLength}
       hidden={props.hidden}
-      onWheel={e => e.currentTarget.blur()}
+      onWheel={(e) => e.currentTarget.blur()}
     />
   );
 }
-export default React.memo(InputText);
+export default memo(InputText);
 
 interface IValidProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
@@ -119,7 +113,7 @@ interface IValidProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function ValidInputText(props: IValidProps): JSX.Element {
-  const { validValue, changeValue } = useValid(
+  const {validValue, changeValue} = useValid(
     props.id ? props.id : `InputText${Math.random()}`,
     props.valid,
     (value?: string) => {
@@ -166,11 +160,7 @@ export interface IUiProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function UiInputText(props: IUiProps): JSX.Element {
-  const { inputTextValue, changeValue } = useInputText(
-    props.id,
-    props.valid,
-    props.init
-  );
+  const {inputTextValue, changeValue} = useInputText(props.id, props.valid, props.init);
   const nextHandler = (value: string) => {
     changeValue(value);
     if (props.next) {
@@ -182,7 +172,7 @@ export function UiInputText(props: IUiProps): JSX.Element {
   };
 
   const inputChange = (value: string) => {
-    changeValue(props.isPrice ? value.replaceAll(",", "") : value);
+    changeValue(props.isPrice ? value.replaceAll(',', '') : value);
     if (props.onchange) {
       props.onchange(value);
     }
@@ -203,7 +193,7 @@ export function UiInputText(props: IUiProps): JSX.Element {
       className={props.className}
       change={inputChange}
       next={nextHandler}
-      value={inputTextValue ? inputTextValue : ""}
+      value={inputTextValue ? inputTextValue : ''}
       isPrice={props.isPrice}
     />
   );

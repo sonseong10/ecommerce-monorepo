@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import type { Theme } from "../../../styles/theme";
-import { useCheckBox } from "../../../commons/ui/useUihook";
-import type { IValid } from "../../../commons/ui/useValid";
+import {useCheckBox} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
 
 const CheckSvg = (color: string): string => {
   color = color.indexOf("#") === -1 ? color : color.substring(1, color.length);

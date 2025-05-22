@@ -1,16 +1,15 @@
-import AbsPopup from "commons/popup/display/AbsPopup";
-import { usePopupData } from "commons/popup/store/absPopupHook";
-import Grid from "commons/ui/grid/Grid";
-import React from "react";
-import { Text } from "styles/components";
-import type { Color } from "styles/stylesVo";
-import { PopupType } from "../PopupType";
+import {AbsPopup} from '@ecommerce/commons';
+import {usePopupData} from '@ecommerce/commons';
+import {Grid} from '@ecommerce/commons';
+import {PopupType} from '../PopupType';
+import {Text} from 'src/styles/components';
+import type {Color} from 'src/styles/stylesVo';
 
 const GridPopup = (): JSX.Element => {
-  const { popupDo } = usePopupData<{
+  const {popupDo} = usePopupData<{
     setting: [];
     data: unknown[];
-    footerMsg?: { text: string; color?: Color };
+    footerMsg?: {text: string; color?: Color};
   }>(PopupType.GRID);
 
   return (
@@ -20,13 +19,9 @@ const GridPopup = (): JSX.Element => {
         Grid({
           setting: popupDo.data.setting,
           data: popupDo.data.data,
-          headerInfo: { fixed: 300 },
+          headerInfo: {fixed: 300},
         })}
-      {popupDo.data?.footerMsg && (
-        <Text color={popupDo.data?.footerMsg.color}>
-          {popupDo.data?.footerMsg.text}
-        </Text>
-      )}
+      {popupDo.data?.footerMsg && <Text color={popupDo.data?.footerMsg.color}>{popupDo.data?.footerMsg.text}</Text>}
     </AbsPopup>
   );
 };

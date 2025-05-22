@@ -1,12 +1,12 @@
 import {Suspense, lazy, useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {DefaultTheme, ThemeProvider} from 'styled-components';
+import {ThemeProvider, type DefaultTheme} from 'styled-components';
 import {lightTheme} from './styles/theme';
 import {GlobalStyle} from './styles/globalStyle';
-import Popup from './commons/popup/PopupController';
-import LoadingView from './commons/loading/LoadingView';
-import LayerController from './commons/layers/LayerController';
-import Spinner from './commons/loading/display/Spinner';
+import {Popup} from '@ecommerce/commons';
+import LoadingView from '../../../libs/commons/src/loading/LoadingView';
+import {LayerController} from '@ecommerce/commons';
+import Spinner from './components/ui/Spinner';
 import {SMBridgeCallBack} from './utils/SMBridge';
 import {checkFakePcAgent} from './store/modules/init/initVo';
 import {useDevice} from './store/modules/init/initHook';

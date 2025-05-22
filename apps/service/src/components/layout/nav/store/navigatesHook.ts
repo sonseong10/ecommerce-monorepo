@@ -1,20 +1,20 @@
 import { useDispatch } from "react-redux";
 import { useLocation, useMatch, useNavigate } from "react-router-dom";
-import { useSelectorEq } from "../../../../commons/store/common";
-import { rdxIsLeft, rdxMain } from "./navigatesR";
-import { GRADE, type INavigatesVO, mainList } from "./navigateVo";
-import type { IState } from "../../../../store/modules";
+import {useSelectorEq} from '@ecommerce/commons';
+import {rdxIsLeft, rdxMain} from './navigatesR';
+import {GRADE, type INavigatesVO, mainList} from './navigateVo';
+import type {IState} from '../../../../store/modules';
 
 /**
  * 권한별 메뉴활성화 Hook
  */
 export const useMain = () => {
-  const { mainSelected } = useSelectorEq((state: IState) => ({
+  const {mainSelected} = useSelectorEq((state: IState) => ({
     mainSelected: state.navigates.mainSelected,
   }));
   const dispatch = useDispatch();
   const setMain = async (selected: number) => {
-    dispatch(rdxMain({ grade: selected }));
+    dispatch(rdxMain({grade: selected}));
   };
   const selectedMain = () => {
     switch (mainSelected) {
@@ -26,19 +26,19 @@ export const useMain = () => {
       case GRADE.ROLE_CMS_AUTHOR:
         return mainList[2];
     }
-    return "";
+    return '';
   };
-  return { selectedMain, setMain };
+  return {selectedMain, setMain};
 };
 
 /**
  * 상단 네비게이션정보 반환
  */
 export const useTop = () => {
-  const { topList } = useSelectorEq((state: IState) => ({
+  const {topList} = useSelectorEq((state: IState) => ({
     topList: state?.navigates?.topList,
   }));
-  return { topList };
+  return {topList};
 };
 
 /**
@@ -47,7 +47,7 @@ export const useTop = () => {
 export const useTopSelected = () => {
   const location = useLocation();
   return () => {
-    const path = location.pathname.split("/");
+    const path = location.pathname.split('/');
     return path[2];
   };
 };
@@ -60,31 +60,31 @@ export const useSetTopSelected = () => {
   const setTop = async (selected: INavigatesVO) => {
     navigate(selected.router);
   };
-  return { setTop };
+  return {setTop};
 };
 
 /**
  * 1deps 네비게이션 정보와 evnet함수
  */
 export const useLeft = () => {
-  const { isLeft } = useSelectorEq((state: IState) => ({
+  const {isLeft} = useSelectorEq((state: IState) => ({
     isLeft: state.navigates?.isLeft,
   }));
   const dispatch = useDispatch();
   const activeLeft = async (active: boolean) => {
     dispatch(rdxIsLeft(active));
   };
-  return { isLeft, activeLeft };
+  return {isLeft, activeLeft};
 };
 
 /**
  * 1deps 네비게이션 정보 반환
  */
 export const useLeftList = () => {
-  const { leftList } = useSelectorEq((state: IState) => ({
+  const {leftList} = useSelectorEq((state: IState) => ({
     leftList: state.navigates.leftList,
   }));
-  return { leftList };
+  return {leftList};
 };
 
 /**
@@ -93,6 +93,7 @@ export const useLeftList = () => {
 export const useLeftSelected = () => {
   const navigate = useNavigate();
   const getLeftSelected = (item: INavigatesVO) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const matched = useMatch(item.match ? item.match : item.router);
     return matched;
   };
@@ -101,7 +102,7 @@ export const useLeftSelected = () => {
       navigate(selected.router);
     }
   };
-  return { getLeftSelected, setLeft };
+  return {getLeftSelected, setLeft};
 };
 
 /**
@@ -120,6 +121,7 @@ export const useSecList = (id: string) => {
 export const useSecSelected = () => {
   const navigate = useNavigate();
   const getSecSelected = (router: string) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const matched = useMatch(router);
     return matched;
   };

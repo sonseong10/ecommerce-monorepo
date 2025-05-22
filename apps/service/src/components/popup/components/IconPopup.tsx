@@ -1,8 +1,8 @@
-import AbsPopup from '../../../commons/popup/display/AbsPopup';
-import {useClosePopup, usePopupData} from '../../../commons/popup/store/absPopupHook';
-import {ButtonState} from '../../../commons/popup/store/absPopupVo';
-import SVG from '../../../commons/styles/svgIcon';
-import type {ButtonIcon} from '../../../commons/styles/ComponentsType';
+import {AbsPopup} from '@ecommerce/commons';
+import {useClosePopup, usePopupData} from '@ecommerce/commons';
+import {ButtonState} from '@ecommerce/commons';
+import {commonSVG} from '@ecommerce/commons';
+import type {ButtonIcon} from '@ecommerce/commons';
 import {ElementGroup, Text, Title} from '../../../styles/components';
 import {styled} from '../../../styles/theme';
 import {PopupType} from '../PopupType';
@@ -70,10 +70,9 @@ const Icon = styled.div<{name?: string; color?: string}>`
   margin-bottom: 18px;
   width: 100px;
   height: 100px;
-  background: ${(props: {name: string; color: string | undefined}) =>
-    props.name && props.color ? `url(${SVG[props.name as ButtonIcon](props.color)}) no-repeat center` : ''};
+  //
   background-size: 68%;
-  border: 4px solid ${(props: {color: string}) => (props.color ? props.color : '#000')};
+  border: 4px solid ${(props: {color?: string}) => (props?.color ? props.color : '#000')};
   border-radius: 50px;
 `;
 

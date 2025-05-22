@@ -1,19 +1,18 @@
-import type { IUseInputEventParam, IUseTextArea } from "../../../commons/hook/hookVo";
-import useTextArea from "../../../commons/hook/useTextArea";
-import { useInputText } from "../../../commons/ui/useUihook";
-import type { IValid } from "../../../commons/ui/useValid";
-import React, { type RefObject, useCallback, useEffect, useState } from "react";
-import styled, { type CSSObject } from "styled-components";
-import type { Size } from "../../../styles/stylesVo";
+import type {IUseInputEventParam, IUseTextArea} from '@ecommerce/commons';
+import {useTextArea} from '@ecommerce/commons';
+import {useInputText} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
+import React, {type RefObject, useCallback, useEffect, useState} from 'react';
+import styled, {type CSSObject} from 'styled-components';
+import type {Size} from '../../../styles/stylesVo';
+import type {Theme} from 'src/styles/theme';
 
-const TextArea = styled.textarea<{ size?: { width?: Size; height?: string } }>`
+const TextArea = styled.textarea<{size?: {width?: Size; height?: string}}>`
   padding: 10px;
-  width: ${props =>
-    props.size && props.size.width ? props.size.width : "100%"};
-  height: ${props =>
-    props.size && props.size.height ? props.size.height : "300px"};
+  width: ${(props) => (props.size && props.size.width ? props.size.width : '100%')};
+  height: ${(props) => (props.size && props.size.height ? props.size.height : '300px')};
   font: inherit;
-  font-size: ${props => props.theme.fontSize.text.default};
+  font-size: ${(props) => (props.theme as Theme).fontSize.text.md};
   border: 1px solid var(--border-primary);
   border-radius: 4px;
   resize: none;
@@ -40,8 +39,7 @@ const TextArea = styled.textarea<{ size?: { width?: Size; height?: string } }>`
   }
 `;
 
-interface ITextAreaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface ITextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   id?: string;
   type?: string;
   placeholder?: string;
@@ -60,7 +58,7 @@ interface ITextAreaProps
   change?: (value: string, id?: string) => void;
   next?: (value: IUseInputEventParam) => void;
   checkValid?: (value: boolean) => void;
-  size?: { width?: string; height?: string };
+  size?: {width?: string; height?: string};
 }
 
 const InputTextArea = (props: ITextAreaProps): JSX.Element => {
@@ -70,7 +68,7 @@ const InputTextArea = (props: ITextAreaProps): JSX.Element => {
       if (prev !== undefined) {
         clearTimeout(prev);
       }
-      if (value.type === "next") {
+      if (value.type === 'next') {
         if (props.change) {
           props.change(value.value as string, value.id);
         }
@@ -135,13 +133,9 @@ interface IUiProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function UiInputTextArea(props: IUiProps): JSX.Element {
-  const { inputTextValue, changeValue } = useInputText(
-    props.id,
-    props.valid,
-    props.init
-  );
+  const {inputTextValue, changeValue} = useInputText(props.id, props.valid, props.init);
   const nextHandler = (e: IUseInputEventParam) => {
-    changeValue(e.value !== undefined ? e.value : "");
+    changeValue(e.value !== undefined ? e.value : '');
     if (props.next) {
       props.next(e.value);
     }
@@ -160,7 +154,7 @@ export function UiInputTextArea(props: IUiProps): JSX.Element {
       change={changeValue}
       next={nextHandler}
       style={props.style}
-      value={inputTextValue ? inputTextValue : ""}
+      value={inputTextValue ? inputTextValue : ''}
     />
   );
 }

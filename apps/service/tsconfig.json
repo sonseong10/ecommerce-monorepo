@@ -1,8 +1,12 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "es5",
+    "baseUrl": ".",
+    "types": ["vite/client"],
+    "declaration": true,
     "useDefineForClassFields": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "es2018", "esnext"],
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -18,8 +22,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@ecommerce/commons": ["../../libs/commons/src/index.ts"],
+      "@ecommerce/commons/*": ["../../libs/commons/src/*"]
+    }
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{"path": "./tsconfig.node.json"}]
 }

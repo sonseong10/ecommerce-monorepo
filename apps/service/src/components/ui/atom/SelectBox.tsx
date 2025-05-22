@@ -3,10 +3,10 @@ import styled, {css} from 'styled-components';
 import type {Theme} from '../../../styles/theme';
 import {WFrom} from '../../../styles/styleds';
 import {useEffect} from 'react';
-import {getSearchRegExp, mouseUp} from '../../../commons/utils';
-import {useSelectBox} from '../../../commons/ui/useUihook';
-import type {IValid} from '../../../commons/ui/useValid';
-import SVG from '../../../commons/styles/svgIcon';
+import {getSearchRegExp, mouseUp} from '@ecommerce/commons';
+import {useSelectBox} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
+import {commonSVG} from '@ecommerce/commons';
 import type {Size} from '../../../styles/stylesVo';
 import {useConfirm} from '../../popup/popupHook';
 import InputText from './InputText';
@@ -73,7 +73,7 @@ const Select2Arrow = styled.span<{active: boolean}>`
   right: 1px;
   width: 30px;
   height: 34px;
-  background: url(${SVG.DownArrow('a8a9aa')}) no-repeat 2px center;
+  background: url(${commonSVG.DownArrow('a8a9aa')}) no-repeat 2px center;
   ${(props) =>
     props.active
       ? css`
@@ -126,14 +126,14 @@ const OptionItem = styled.li<{active: boolean; check?: boolean}>`
       }
       ${
         props.active
-          ? `background: url(${SVG.Check('ff4949')}) no-repeat right 0.6em center; 
+          ? `background: url(${commonSVG.Check('ff4949')}) no-repeat right 0.6em center; 
       color: var(--primary)`
           : ''
       }`;
     } else {
       if (props.active) {
         return `
-          background: url(${SVG.Check('ff4949')}) no-repeat right 0.6em center; 
+          background: url(${commonSVG.Check('ff4949')}) no-repeat right 0.6em center; 
           color: var(--primary)
         `;
       }
@@ -160,9 +160,9 @@ const SelectSearch = styled.div`
   & input {
     width: 100%;
     padding-left: 30px;
-    background: url(${SVG.Search('A8A9AA')}) no-repeat left 0.6em center;
+    background: url(${commonSVG.Search('A8A9AA')}) no-repeat left 0.6em center;
     &:focus {
-      background-image: url(${SVG.Search('7c7e80')});
+      background-image: url(${commonSVG.Search('7c7e80')});
     }
   }
 `;

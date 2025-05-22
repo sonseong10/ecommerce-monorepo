@@ -1,12 +1,12 @@
-import { UiType } from "../../../commons/ui/uiVo";
-import { useInputValue, useSetRadio, useUiAction } from "../../../commons/ui/useUihook";
-import type { IValid } from "../../../commons/ui/useValid";
-import moment from "moment";
-import React, { useCallback, useEffect, useState } from "react";
-import { DateGroup } from "../../../styles/components";
-import InputDate, { UiInputDate } from "./InputDate";
-import RadioGroup, { type IRadioItem, UiRadioGroup } from "./RadioGroup";
-import { UiDateOptionGroupType } from "../uiVo";
+import {UiType} from '@ecommerce/commons';
+import {useInputValue, useSetRadio, useUiAction} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
+import moment from 'moment';
+import React, {useCallback, useEffect, useState} from 'react';
+import {DateGroup} from '../../../styles/components';
+import InputDate, {UiInputDate} from './InputDate';
+import RadioGroup, {type IRadioItem, UiRadioGroup} from './RadioGroup';
+import {UiDateOptionGroupType} from '../uiVo';
 
 interface IDateOptionGroupProps {
   start?: string;
@@ -15,17 +15,17 @@ interface IDateOptionGroupProps {
   disableCondition?: {
     start?: {
       baseDate?: string;
-      directionType: "before" | "after";
+      directionType: 'before' | 'after';
       calc?: {
-        calcType: "day" | "month" | "year";
+        calcType: 'day' | 'month' | 'year';
         calcNum: number;
       };
     };
     end?: {
       baseDate?: string;
-      directionType: "before" | "after";
+      directionType: 'before' | 'after';
       calc?: {
-        calcType: "day" | "month" | "year";
+        calcType: 'day' | 'month' | 'year';
         calcNum: number;
       };
     };
@@ -36,12 +36,12 @@ interface IDateOptionGroupProps {
 }
 
 const DateList: Array<IRadioItem> = [
-  { id: "today", text: "오늘" },
-  { id: "yesterday", text: "어제" },
-  { id: "threeday", text: "3일" },
-  { id: "sevenday", text: "7일" },
-  { id: "month", text: "1개월" },
-  { id: "threemonth", text: "3개월" },
+  {id: 'today', text: '오늘'},
+  {id: 'yesterday', text: '어제'},
+  {id: 'threeday', text: '3일'},
+  {id: 'sevenday', text: '7일'},
+  {id: 'month', text: '1개월'},
+  {id: 'threemonth', text: '3개월'},
 ];
 
 function DateOptionGroup(props: IDateOptionGroupProps): JSX.Element {
@@ -88,8 +88,8 @@ function DateOptionGroup(props: IDateOptionGroupProps): JSX.Element {
         temp.setMonth(temp.getMonth() - 3);
         break;
     }
-    const tempE = moment(new Date()).format("YYYY-MM-DD");
-    const tempS = moment(temp).format("YYYY-MM-DD");
+    const tempE = moment(new Date()).format('YYYY-MM-DD');
+    const tempS = moment(temp).format('YYYY-MM-DD');
     setEnd(tempE);
     setStart(tempS);
     if (props.change) {
@@ -111,19 +111,11 @@ function DateOptionGroup(props: IDateOptionGroupProps): JSX.Element {
   return (
     <>
       <DateGroup>
-        <InputDate
-          value={start}
-          disableCondition={props.disableCondition?.start}
-          change={inputDateStartHandler}
-        />
+        <InputDate value={start} disableCondition={props.disableCondition?.start} change={inputDateStartHandler} />
         <span>-</span>
         <InputDate
           value={end}
-          disableCondition={
-            props.disableCondition
-              ? { ...props.disableCondition?.end, baseDate: start }
-              : undefined
-          }
+          disableCondition={props.disableCondition ? {...props.disableCondition?.end, baseDate: start} : undefined}
           change={inputDateEndHandler}
         />
       </DateGroup>
@@ -133,7 +125,7 @@ function DateOptionGroup(props: IDateOptionGroupProps): JSX.Element {
         <RadioGroup
           data={DateList}
           type="button"
-          name={props.name ? `termdte_${props.name}` : "termdate"}
+          name={props.name ? `termdte_${props.name}` : 'termdate'}
           selected={radio}
           change={radioSelectHandler}
         />
@@ -148,21 +140,21 @@ interface IUiDateOptionGroupProps {
   id: string;
   onlyDate?: boolean;
   list?: Array<IRadioItem>;
-  dataInit?: { start?: string; end?: string };
+  dataInit?: {start?: string; end?: string};
   disableCondition?: {
     start?: {
       baseDate?: string;
-      directionType: "before" | "after";
+      directionType: 'before' | 'after';
       calc?: {
-        calcType: "day" | "month" | "year";
+        calcType: 'day' | 'month' | 'year';
         calcNum: number;
       };
     };
     end?: {
       baseDate?: string;
-      directionType: "before" | "after";
+      directionType: 'before' | 'after';
       calc?: {
-        calcType: "day" | "month" | "year";
+        calcType: 'day' | 'month' | 'year';
         calcNum: number;
       };
     };
@@ -176,14 +168,14 @@ interface IUiDateOptionGroupProps {
 }
 
 export function UiDateOptionGroup(props: IUiDateOptionGroupProps): JSX.Element {
-  const { add, commit } = useUiAction();
+  const {add, commit} = useUiAction();
   const startValue = useInputValue(props.id + UiDateOptionGroupType.Start);
   const radio = useSetRadio(props.id + UiDateOptionGroupType.Radio);
   const inputDateStartHandler = () => {
-    radio.changeValue("");
+    radio.changeValue('');
   };
   const inputDateEndHandler = () => {
-    radio.changeValue("");
+    radio.changeValue('');
   };
   const radioSelectHandler = (select?: string | number) => {
     if (select !== undefined) {
@@ -192,7 +184,7 @@ export function UiDateOptionGroup(props: IUiDateOptionGroupProps): JSX.Element {
       const temp = new Date();
 
       if (props.callback) {
-        const { startDate, endDate } = props.callback(select);
+        const {startDate, endDate} = props.callback(select);
         tempE = endDate;
         tempS = startDate;
       } else {
@@ -213,8 +205,8 @@ export function UiDateOptionGroup(props: IUiDateOptionGroupProps): JSX.Element {
             temp.setMonth(temp.getMonth() - 3);
             break;
         }
-        tempE = moment().format("YYYY-MM-DD");
-        tempS = moment(temp).format("YYYY-MM-DD");
+        tempE = moment().format('YYYY-MM-DD');
+        tempS = moment(temp).format('YYYY-MM-DD');
       }
       add(UiType.INPUT_TEXT, props.id + UiDateOptionGroupType.Start, tempS);
       add(UiType.INPUT_TEXT, props.id + UiDateOptionGroupType.End, tempE);

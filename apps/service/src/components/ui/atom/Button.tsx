@@ -1,13 +1,8 @@
 import React, { forwardRef, useCallback, useState } from "react";
 import styled, { css, useTheme } from "styled-components";
 import type { Theme } from "../../../styles/theme";
-import type {
-  ButtonColor,
-  ButtonIcon,
-  ButtonSize,
-  ButtonType,
-} from "../../../commons/styles/ComponentsType";
-import SVG from "../../../commons/styles/svgIcon";
+import type {ButtonColor, ButtonIcon, ButtonSize, ButtonType} from '@ecommerce/commons';
+import SVG from '../../../styles/svgIcon';
 
 const BtnCommon = css<{
   thin?: boolean;
@@ -16,12 +11,12 @@ const BtnCommon = css<{
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border-width: ${props => (props.thin ? "1px" : "2px")};
+  border-width: ${(props) => (props.thin ? '1px' : '2px')};
   border-style: solid;
   border-radius: 4px;
   letter-spacing: -0.2px;
   transition: border 0.1s;
-  max-width: ${props => (props.maxWidth ? props.maxWidth : "auto")};
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth : 'auto')};
 
   &:hover {
     cursor: pointer;
@@ -36,67 +31,67 @@ const BtnCommon = css<{
 const BtnColor = (color?: ButtonColor) => {
   const theme = useTheme() as Theme;
   switch (color) {
-    case "primary":
+    case 'primary':
       return {
         bg: theme.colors.btnPrimary,
         hover: theme.colors.btnPrimaryHover,
         disabled: theme.colors.btnPrimaryDisabled,
       };
-    case "dark":
+    case 'dark':
       return {
         bg: theme.colors.btnDark,
         hover: theme.colors.btnDarkHover,
         disabled: theme.colors.btnDarkDisabled,
       };
-    case "negative":
+    case 'negative':
       return {
         bg: theme.colors.btnNegative,
         hover: theme.colors.btnNegativeHover,
         disabled: theme.colors.btnNegativeDisabled,
       };
-    case "warning":
+    case 'warning':
       return {
         bg: theme.colors.btnWarning,
         hover: theme.colors.btnWarningHover,
         disabled: theme.colors.btnWarningDisabled,
       };
-    case "positive":
+    case 'positive':
       return {
         bg: theme.colors.btnPositive,
         hover: theme.colors.btnPositiveHover,
         disabled: theme.colors.btnPositiveDisabled,
       };
-    case "white":
+    case 'white':
       return {
         bg: theme.colors.btnWhite,
         hover: theme.colors.btnWhiteHover,
         disabled: theme.colors.btnWhiteDisabled,
       };
-    case "blue":
+    case 'blue':
       return {
         bg: theme.colors.btnBlue,
         hover: theme.colors.btnBlueHover,
         disabled: theme.colors.btnDisabled,
       };
-    case "gray":
+    case 'gray':
       return {
         bg: theme.colors.btnGray,
         hover: theme.colors.btnGrayHover,
         disabled: theme.colors.btnDisabled,
       };
-    case "lightGray":
+    case 'lightGray':
       return {
         bg: theme.colors.btnLightGray,
         hover: theme.colors.btnLightGrayHover,
         disabled: theme.colors.btnDisabled,
       };
-    case "green":
+    case 'green':
       return {
         bg: theme.colors.btnGreen,
         hover: theme.colors.btnGreenHover,
         disabled: theme.colors.btnDisabled,
       };
-    case "cyan": //청록색
+    case 'cyan': //청록색
       return {
         bg: theme.colors.btnCyan,
         hover: theme.colors.btnCyanHover,
@@ -180,7 +175,7 @@ const BtnIconCommon = css<{btnsize?: ButtonSize}>`
 `;
 
 const BtnIcon = (
-  iconname?: ButtonIcon | 'Category',
+  iconname?: ButtonIcon | 'Category' | 'BookMark',
   color?: ButtonColor,
   $btnType?: ButtonType,
   disabled?: boolean,
@@ -331,7 +326,7 @@ const ButtonComponent = styled.button<{
   thin?: boolean;
   ellipsis?: boolean;
   iconposition?: 'before' | 'after' | 'center';
-  iconname?: ButtonIcon | 'Category';
+  iconname?: ButtonIcon | 'Category' | 'BookMark';
   disabled?: boolean;
   ishover?: boolean;
   maxWidth?: string;
@@ -440,7 +435,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   thin?: boolean;
   ellipsis?: boolean;
   iconposition?: 'before' | 'after' | 'center';
-  iconname?: ButtonIcon | 'Category';
+  iconname?: ButtonIcon | 'Category' | 'BookMark';
   isHover?: boolean;
   disabled?: boolean;
 }

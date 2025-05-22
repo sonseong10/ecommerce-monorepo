@@ -1,17 +1,17 @@
-import type { DirectionType, RadioType } from "../../../commons/styles/ComponentsType";
-import { useRadio } from "../../../commons/ui/useUihook";
-import type { IValid } from "../../../commons/ui/useValid";
-import React from "react";
-import styled, { css } from "styled-components";
-import type { Theme } from "../../../styles/theme";
+import type {DirectionType, RadioType} from '@ecommerce/commons';
+import {useRadio} from '@ecommerce/commons';
+import type {IValid} from '@ecommerce/commons';
+import React from 'react';
+import styled, {css} from 'styled-components';
+import type {Theme} from '../../../styles/theme';
 
 const radioSvg = (color: string): string => {
-  color = color.indexOf("#") === -1 ? color : color.substring(1, color.length);
+  color = color.indexOf('#') === -1 ? color : color.substring(1, color.length);
   return `"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='%23${color}' stroke-width='1.5'/%3E%3C/svg%3E"`;
 };
 
 const radioCheckdSvg = (color: string): string => {
-  color = color.indexOf("#") === -1 ? color : color.substring(1, color.length);
+  color = color.indexOf('#') === -1 ? color : color.substring(1, color.length);
   return `"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23${color}'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%23ffffff'/%3E%3C/svg%3E"`;
 };
 
@@ -19,23 +19,23 @@ const RadioBtnGroup = styled.div<{
   direction?: DirectionType;
   isBelong?: boolean;
 }>`
-  display: ${props => {
+  display: ${(props) => {
     switch (props.direction) {
-      case "row":
+      case 'row':
       default:
-        return "inline-flex";
-      case "col":
-        return "flex";
+        return 'inline-flex';
+      case 'col':
+        return 'flex';
     }
   }};
 
-  flex-direction: ${props => {
+  flex-direction: ${(props) => {
     switch (props.direction) {
-      case "row":
+      case 'row':
       default:
-        return "row";
-      case "col":
-        return "column";
+        return 'row';
+      case 'col':
+        return 'column';
     }
   }};
   flex-wrap: wrap;
@@ -43,7 +43,7 @@ const RadioBtnGroup = styled.div<{
     display: none;
   }
 
-  ${props => {
+  ${(props) => {
     if (props.isBelong) {
       return css`
         display: flex;
@@ -53,7 +53,7 @@ const RadioBtnGroup = styled.div<{
         }
         &:before {
           display: block;
-          content: "";
+          content: '';
           width: 14px;
           height: 14px;
           position: absolute;
@@ -72,9 +72,9 @@ const RadioItem = styled.p<{
   theme: Theme;
   onlyBox?: boolean;
 }>`
-  ${props => {
+  ${(props) => {
     switch (props.type) {
-      case "button":
+      case 'button':
         return css`
           &:first-child label {
             border-left: 1px solid var(--btn-dark);
@@ -96,7 +96,7 @@ const RadioItem = styled.p<{
             border-left: 0;
             color: var(--btn-dark);
             line-height: 33px;
-            font-size: ${props => props.theme.fontSize.text.lg};
+            font-size: ${(props) => (props.theme as Theme).fontSize.text.lg};
             text-align: center;
 
             &:hover {
@@ -105,9 +105,9 @@ const RadioItem = styled.p<{
             }
           }
         `;
-      case "radio":
+      case 'radio':
       default:
-        return css<{ onlyBox?: boolean }>`
+        return css<{onlyBox?: boolean}>`
           display: block;
           margin-right: 10px;
 
@@ -117,41 +117,35 @@ const RadioItem = styled.p<{
             background-size: 16px;
             background-position: left top 4px;
             background-repeat: no-repeat;
-            background-image: url(${props =>
-              radioSvg(props.theme.colors.borderPrimary)});
+            background-image: url(${(props) => radioSvg((props.theme as Theme).colors.borderPrimary)});
             vertical-align: middle;
             line-height: 1;
           }
 
           &:hover {
             input + label {
-              background-image: url(${props =>
-                radioSvg(props.theme.colors.borderHover)});
+              background-image: url(${(props) => radioSvg((props.theme as Theme).colors.borderHover)});
             }
             input:checked + label {
-              background-image: url(${props =>
-                radioCheckdSvg(props.theme.colors.borderFocus)});
+              background-image: url(${(props) => radioCheckdSvg((props.theme as Theme).colors.borderFocus)});
             }
           }
 
           input {
             &:checked + label {
-              background-image: url(${props =>
-                radioCheckdSvg(props.theme.colors.borderFocus)});
+              background-image: url(${(props) => radioCheckdSvg((props.theme as Theme).colors.borderFocus)});
             }
             &:disabled + label {
-              background-image: url(${props =>
-                radioSvg(props.theme.colors.borderPrimary)});
+              background-image: url(${(props) => radioSvg((props.theme as Theme).colors.borderPrimary)});
               color: var(--font-disabled);
             }
             &:checked:disabled + label {
-              background-image: url(${props =>
-                radioCheckdSvg(props.theme.colors.borderPrimary)});
+              background-image: url(${(props) => radioCheckdSvg((props.theme as Theme).colors.borderPrimary)});
               color: var(--font-disabled);
             }
           }
 
-          ${props => {
+          ${(props) => {
             if (props.onlyBox) {
               return css`
                 & {
@@ -184,15 +178,13 @@ export interface IRadioItem {
   disable?: boolean;
 }
 
-type RadioItemType =
-  | IRadioItem
-  | { [key: string]: string | number | boolean | undefined };
+type RadioItemType = IRadioItem | {[key: string]: string | number | boolean | undefined};
 
 export interface IProps {
   type?: RadioType;
   direction?: DirectionType;
   displayId?: string;
-  selectType?: "select" | "id";
+  selectType?: 'select' | 'id';
   selectId?: string;
   isBelong?: boolean;
   onlyBox?: boolean;
@@ -205,19 +197,15 @@ export interface IProps {
 }
 
 function RadioGroup(props: IProps): JSX.Element {
-  const selectType =
-    props.selectType === undefined ? "select" : props.selectType;
+  const selectType = props.selectType === undefined ? 'select' : props.selectType;
   const getSelected = () => {
     switch (selectType) {
-      case "select":
+      case 'select':
         return props.selected as number;
-      case "id":
+      case 'id':
         if (props.selectId !== undefined && props.selected !== undefined) {
           return props.data?.findIndex(
-            v =>
-              (v as { [key: string]: string | number | undefined })[
-                props.selectId as string
-              ] === props.selected
+            (v) => (v as {[key: string]: string | number | undefined})[props.selectId as string] === props.selected
           );
         } else {
           return undefined;
@@ -227,19 +215,17 @@ function RadioGroup(props: IProps): JSX.Element {
 
   const onChange = (idx: number) => {
     switch (selectType) {
-      case "select":
+      case 'select':
         if (props.change) {
           props.change(idx);
         }
         break;
-      case "id":
+      case 'id':
         if (props.data !== undefined) {
           if (props.changeId) {
             props.changeId(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              (props.data[idx] as { [key: string]: any })[
-                props.selectId as string
-              ]
+              (props.data[idx] as {[key: string]: any})[props.selectId as string]
             );
           }
         }
@@ -248,7 +234,7 @@ function RadioGroup(props: IProps): JSX.Element {
   };
 
   const getId = (item: RadioItemType) => {
-    return props.name + "_" + (item.id === undefined ? item.text : item.id);
+    return props.name + '_' + (item.id === undefined ? item.text : item.id);
   };
 
   return (
@@ -259,11 +245,7 @@ function RadioGroup(props: IProps): JSX.Element {
             type="radio"
             name={props.name}
             id={getId(item)}
-            disabled={
-              item.disable === undefined
-                ? props.disable
-                : (item.disable as boolean)
-            }
+            disabled={item.disable === undefined ? props.disable : (item.disable as boolean)}
             checked={idx === getSelected()}
             onChange={onChange.bind(null, idx)}
           />
@@ -281,13 +263,11 @@ export interface IUiRadioProps {
   type?: RadioType;
   direction?: DirectionType;
   displayId?: string;
-  selectType?: "select" | "id";
+  selectType?: 'select' | 'id';
   selectId?: string;
   isBelong?: boolean;
   onlyBox?: boolean;
-  data?: Array<
-    IRadioItem | { [key: string]: string | number | boolean | undefined }
-  >;
+  data?: Array<IRadioItem | {[key: string]: string | number | boolean | undefined}>;
   disable?: boolean;
   init?: string | number | boolean;
   valid?: IValid<string | number | undefined>;
@@ -295,18 +275,6 @@ export interface IUiRadioProps {
 }
 
 export function UiRadioGroup(props: IUiRadioProps): JSX.Element {
-  const { checkValue, changeValue } = useRadio(
-    props.name,
-    props.valid,
-    props.init,
-    props.change
-  );
-  return (
-    <RadioGroup
-      {...props}
-      selected={checkValue}
-      change={changeValue}
-      changeId={changeValue}
-    />
-  );
+  const {checkValue, changeValue} = useRadio(props.name, props.valid, props.init, props.change);
+  return <RadioGroup {...props} selected={checkValue} change={changeValue} changeId={changeValue} />;
 }

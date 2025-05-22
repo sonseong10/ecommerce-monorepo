@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {Text} from '../../styles/components';
-import SVG from '../../commons/styles/svgIcon';
+import {commonSVG} from '@ecommerce/commons';
 
 interface IProductListProps {
   products?: Array<{
@@ -74,11 +74,11 @@ const ProductCardList = styled.ul`
         line-height: 23px;
         font-weight: 700;
         em {
-          color: #35C5F0;
+          color: #35c5f0;
           margin-right: 4px;
         }
       }
-      
+
       .product-item-review {
         display: flex;
         align-items: center;
@@ -98,7 +98,7 @@ const ProductCardList = styled.ul`
             margin-right: 2px;
             width: 12px;
             height: 12px;
-            background: url(${SVG.Star('#35C5F0')}) no-repeat center center;
+            background: url(${commonSVG.Star('#35C5F0')}) no-repeat center center;
           }
 
           strong {
@@ -106,17 +106,15 @@ const ProductCardList = styled.ul`
             color: #424244;
           }
         }
-          
       }
     }
-    
-    
+
     &:hover {
       h4 {
         opacity: 0.5;
       }
 
-      img  {
+      img {
         transform: scale(1.2);
       }
     }
