@@ -320,15 +320,16 @@ const BtnIcon = (
 };
 
 const ButtonComponent = styled.button<{
+  id?: string;
   $btnType?: ButtonType;
+  $btnSize?: ButtonSize;
   color?: ButtonColor;
-  btnsize?: ButtonSize;
   thin?: boolean;
   ellipsis?: boolean;
   iconposition?: 'before' | 'after' | 'center';
   iconname?: ButtonIcon | 'Category' | 'BookMark';
   disabled?: boolean;
-  ishover?: boolean;
+  $ishover?: boolean;
   maxWidth?: string;
 }>`
   ${BtnCommon};
@@ -393,7 +394,7 @@ const ButtonComponent = styled.button<{
   }};
 
   ${(props) => {
-    return $btnSize(props.btnsize, props.thin, props.ellipsis);
+    return $btnSize(props.$btnSize, props.thin, props.ellipsis);
   }}
 
   ${(props) => {
@@ -403,7 +404,7 @@ const ButtonComponent = styled.button<{
           &::after {
             ${BtnIconCommon}
             margin-left: 5px;
-            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.ishover)}
+            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.$ishover)}
           }
         `;
       case 'before':
@@ -411,7 +412,7 @@ const ButtonComponent = styled.button<{
           &::before {
             ${BtnIconCommon}
             margin-right: 5px;
-            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.ishover)}
+            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.$ishover)}
           }
         `;
       case 'center':
@@ -419,7 +420,7 @@ const ButtonComponent = styled.button<{
           &::before {
             margin: 5px 0;
             ${BtnIconCommon}
-            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.ishover)};
+            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.$ishover)};
           }
         `;
     }
@@ -430,7 +431,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   maxWidth?: string;
   text?: string;
   $btnType?: ButtonType;
-  btnsize?: ButtonSize;
+  $btnSize?: ButtonSize;
   color?: ButtonColor;
   thin?: boolean;
   ellipsis?: boolean;
@@ -463,9 +464,10 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
   );
   return (
     <ButtonComponent
+      id={props.id ? props.id : ''}
       $btnType={props.$btnType ? props.$btnType : 'normal'}
-      btnsize={props.btnsize ? props.btnsize : 'normal'}
       color={props.color ? props.color : 'dark'}
+      $btnSize={props.$btnSize ? props.$btnSize : 'normal'}
       thin={props.thin && props.thin}
       ellipsis={props.ellipsis && props.ellipsis}
       iconposition={props.iconposition && props.iconposition}
@@ -473,7 +475,7 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
       onMouseEnter={hoverHandler}
       onMouseLeave={leaveHandler}
       onClick={clickHandler}
-      ishover={hover}
+      $ishover={hover}
       disabled={props.disabled && props.disabled}
       ref={ref}
       onMouseUp={props.onMouseUp}

@@ -42,7 +42,7 @@ const DownArrow = (color?: string): string => {
 
 const Search = (color?: string): string => {
   color = color?.indexOf('#') === -1 ? color : color?.substring(1, color.length)
-  return `"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' viewBox='0 0 18 18'%3E%3Cpath stroke='%23${color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8.156 14.063c3.262 0 5.906-2.645 5.906-5.907S11.418 2.25 8.157 2.25c-3.262 0-5.906 2.644-5.906 5.906 0 3.262 2.644 5.906 5.906 5.906zM12.332 12.333l3.417 3.417'/%3E%3C/svg%3E"`
+  return `"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M18.0387 18.6279L17.7441 18.3333L13.879 14.4683L13.5878 14.7012C12.376 15.6706 10.8396 16.25 9.16671 16.25C5.25469 16.25 2.08337 13.0787 2.08337 9.16665C2.08337 5.25463 5.25469 2.08331 9.16671 2.08331C13.0787 2.08331 16.25 5.25463 16.25 9.16665C16.25 10.8395 15.6706 12.3759 14.7012 13.5878L14.4683 13.879L18.6232 18.034L18.6256 18.0363C18.7029 18.1124 18.75 18.217 18.75 18.3333C18.75 18.5634 18.5635 18.75 18.3334 18.75C18.2182 18.75 18.1146 18.7038 18.0387 18.6279ZM9.16671 2.91665C5.71493 2.91665 2.91671 5.71487 2.91671 9.16665C2.91671 12.6184 5.71493 15.4166 9.16671 15.4166C12.6185 15.4166 15.4167 12.6184 15.4167 9.16665C15.4167 5.71487 12.6185 2.91665 9.16671 2.91665Z' fill='%23${color}'/%3E%3C/svg%3E"`
 }
 
 const Edit = (color?: string): string => {
