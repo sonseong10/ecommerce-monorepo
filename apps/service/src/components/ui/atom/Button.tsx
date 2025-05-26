@@ -175,7 +175,7 @@ const BtnIconCommon = css<{btnsize?: ButtonSize}>`
 `;
 
 const BtnIcon = (
-  iconname?: ButtonIcon | 'Category' | 'BookMark',
+  iconname?: ButtonIcon | 'Category' | 'BookMark' | 'Shere',
   color?: ButtonColor,
   $btnType?: ButtonType,
   disabled?: boolean,
@@ -316,6 +316,13 @@ const BtnIcon = (
       return css`
         background-image: url(${SVG.BookMark(iconColor)});
       `;
+    case 'Shere':
+      return css`
+        background-image: url(${SVG.Shere(iconColor)});
+        width: 40px;
+        height: 20px;
+        background-size: 18px;
+      `;
   }
 };
 
@@ -326,8 +333,8 @@ const ButtonComponent = styled.button<{
   color?: ButtonColor;
   thin?: boolean;
   ellipsis?: boolean;
-  iconposition?: 'before' | 'after' | 'center';
-  iconname?: ButtonIcon | 'Category' | 'BookMark';
+  $iconposition?: 'before' | 'after' | 'center';
+  $iconname?: ButtonIcon | 'Category' | 'BookMark' | 'Shere';
   disabled?: boolean;
   $ishover?: boolean;
   maxWidth?: string;
@@ -398,13 +405,13 @@ const ButtonComponent = styled.button<{
   }}
 
   ${(props) => {
-    switch (props.iconposition) {
+    switch (props.$iconposition) {
       case 'after':
         return css`
           &::after {
             ${BtnIconCommon}
             margin-left: 5px;
-            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.$ishover)}
+            ${BtnIcon(props.$iconname, props.color, props.$btnType, props.disabled, props.$ishover)}
           }
         `;
       case 'before':
@@ -412,7 +419,7 @@ const ButtonComponent = styled.button<{
           &::before {
             ${BtnIconCommon}
             margin-right: 5px;
-            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.$ishover)}
+            ${BtnIcon(props.$iconname, props.color, props.$btnType, props.disabled, props.$ishover)}
           }
         `;
       case 'center':
@@ -420,7 +427,7 @@ const ButtonComponent = styled.button<{
           &::before {
             margin: 5px 0;
             ${BtnIconCommon}
-            ${BtnIcon(props.iconname, props.color, props.$btnType, props.disabled, props.$ishover)};
+            ${BtnIcon(props.$iconname, props.color, props.$btnType, props.disabled, props.$ishover)};
           }
         `;
     }
@@ -435,8 +442,8 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   color?: ButtonColor;
   thin?: boolean;
   ellipsis?: boolean;
-  iconposition?: 'before' | 'after' | 'center';
-  iconname?: ButtonIcon | 'Category' | 'BookMark';
+  $iconposition?: 'before' | 'after' | 'center';
+  $iconname?: ButtonIcon | 'Category' | 'BookMark' | 'Shere';
   isHover?: boolean;
   disabled?: boolean;
 }
@@ -470,8 +477,8 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
       $btnSize={props.$btnSize ? props.$btnSize : 'normal'}
       thin={props.thin && props.thin}
       ellipsis={props.ellipsis && props.ellipsis}
-      iconposition={props.iconposition && props.iconposition}
-      iconname={props.iconname && props.iconname}
+      $iconposition={props.$iconposition && props.$iconposition}
+      $iconname={props.$iconname && props.$iconname}
       onMouseEnter={hoverHandler}
       onMouseLeave={leaveHandler}
       onClick={clickHandler}

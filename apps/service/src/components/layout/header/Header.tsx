@@ -370,7 +370,7 @@ function Header() {
               <Link to="/">회원가입</Link>
               <Link to="/">고객센터</Link>
             </div>
-            <Button id="wright-btn" text="글쓰기" color="primary" iconname="DownArrow" iconposition="after" />
+            <Button id="wright-btn" text="글쓰기" color="primary" $iconname="DownArrow" $iconposition="after" />
           </div>
         </div>
       </HeaderContainer>
