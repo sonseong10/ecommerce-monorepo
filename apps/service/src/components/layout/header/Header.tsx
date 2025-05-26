@@ -264,7 +264,7 @@ const SubCategoryWrapper = styled.nav`
   border-bottom: 1px solid #eaedef;
   background-color: #fff;
   nav {
-    padding: 0 60px;
+    padding: 0px 12px;
     max-width: 1256px;
     margin: 0 auto;
     ul {
@@ -296,6 +296,13 @@ const SubCategoryWrapper = styled.nav`
           }
         }
       }
+    }
+    @media screen and (min-width: 768px) {
+      padding: 0px 30px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      padding: 0px 46px;
     }
   }
 `;
