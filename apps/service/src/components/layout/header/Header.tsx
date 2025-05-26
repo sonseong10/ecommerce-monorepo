@@ -261,9 +261,13 @@ const HeaderContainer = styled.header`
 `;
 
 const SubCategoryWrapper = styled.nav`
+  position: sticky;
+  top: 51px;
   border-bottom: 1px solid #eaedef;
   background-color: #fff;
-  nav {
+  z-index: 10;
+
+  div {
     padding: 0px 12px;
     max-width: 1256px;
     margin: 0 auto;
@@ -305,6 +309,9 @@ const SubCategoryWrapper = styled.nav`
       padding: 0px 46px;
     }
   }
+  @media screen and (min-width: 768px) {
+    top: 81px;
+  }
 `;
 
 function SubCategory(): JSX.Element {
@@ -316,13 +323,13 @@ function SubCategory(): JSX.Element {
   ];
   return (
     <SubCategoryWrapper>
-      <nav>
+      <div>
         <ul>
           {data.map((item, index) => (
             <li key={index}>{item.loaction ? <Link to={item.loaction}>{item.name}</Link> : item.name}</li>
           ))}
         </ul>
-      </nav>
+      </div>
     </SubCategoryWrapper>
   );
 }
