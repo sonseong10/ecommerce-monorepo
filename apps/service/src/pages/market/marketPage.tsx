@@ -3,82 +3,163 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/pagination";
 
-import { useState } from "react";
-import SwiperCore from "swiper";
-import { Autoplay, Navigation, Pagination, Thumbs } from "swiper/modules";
+import {useEffect, useState} from 'react';
+import SwiperCore from 'swiper';
+import {Autoplay, Navigation, Pagination, Thumbs} from 'swiper/modules';
 import {type SwiperProps, Swiper, SwiperSlide} from 'swiper/react';
-import { styled } from "styled-components";
+import {styled} from 'styled-components';
 import {ProductList} from './product/list';
-import {ElementGroup, Title} from '../../styles/components';
-import {UiSelectBox} from '../../components/ui/atom/SelectBox';
+import { Title} from '../../styles/components';
 
 SwiperCore.use([Navigation, Thumbs, Pagination, Autoplay]);
 
-const PcCarousel = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+const BannerWrapper = styled.div`
+  margin: 0 auto;
+  overflow: hidden;
+`;
 
-  img {
-    display: inline-block;
-    width: 100%;
+const BannerImage = styled.img`
+  width: 100%;
+  height: 320px;
+  display: block;
+  object-fit: fill;
+
+  @media screen and (min-width: 1024px) {
     height: 380px;
-    object-fit: cover;
   }
 `;
 
-const PcContainer = styled.div`
-  overflow: auto;
-  width: 100%;
-  max-width: 1156px;
+const Container = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1256px) {
+    max-width: 1156px;
+  }
 `;
 
 const CategoryListStyle = styled.nav`
-  padding: 0 60px;
+  padding: 16px;
+
+  > .mb-hidden {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      margin: 20px 0;
+      line-height: normal;
+      display: flex;
+    }
+  }
+
   ul {
     display: flex;
-    justify-content: space-between;
-    margin: 48px 0 10px;
+    max-width: 100dvw;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     li {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      flex-direction: column;
       justify-content: center;
-      font-size: 16px;
-      line-height: 20px;
+      margin: 0 4px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
       text-align: center;
       color: #2f3438;
+      scroll-snap-align: start;
+      cursor: pointer;
+
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+
       div {
         background-color: #f4f6f8;
         width: 64px;
         height: 64px;
         border-radius: 12px;
         margin-bottom: 8px;
+
+        @media screen and (min-width: 768px) {
+          margin-bottom: 20px;
+          width: 90px;
+          height: 90px;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        margin: 0px 22px;
       }
     }
   }
+
+  @media screen and (min-width: 768px) {
+    padding: 0 40px;
+    margin: 0 auto 30px;
+  }
+
+  @media screen and (min-width: 1256px) {
+    padding: 0;
+  }
 `;
 
-function CategoryList() {
-  const list = [
-    '주방특가',
-    'BEST',
-    '오늘의딜',
-    '오픈런딜',
-    '행운출첵',
-    '프리미엄',
-    '초특가견적',
-    '득템찬스',
-    '오!쇼룸',
-    '특가/혜택',
-  ];
+function ResponsiveBannerImage({baseSrc, alt}: {baseSrc: string; alt: string}) {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const getSrcByWidth = () => {
+    if (windowWidth < 768) return `${baseSrc}?w=520`;
+    if (windowWidth < 1024) return `${baseSrc}?w=1280`;
+    if (windowWidth < 1256) return `${baseSrc}?w=1920`;
+    return `${baseSrc}?w=3840`;
+  };
+
+  return <BannerImage src={getSrcByWidth()} alt={alt} />;
+}
+
+const list = [
+  '주방특가',
+  'BEST',
+  '오늘의딜',
+  '오픈런딜',
+  '행운출첵',
+  '프리미엄',
+  '초특가견적',
+  '득템찬스',
+  '오!쇼룸',
+  '특가/혜택',
+];
+
+function CategoryList() {
   return (
     <CategoryListStyle>
+      <Title size="md" className="mb-hidden">
+        카테고리
+      </Title>
       <ul>
         {list.map((item, index) => (
           <li key={index}>
@@ -91,13 +172,8 @@ function CategoryList() {
   );
 }
 
-function MarketPage() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setThumbsSwiper] = useState<SwiperCore | null>(null);
-
-  // let initSetting: SwiperProps;
+function Banner() {
   const initControl: SwiperProps = {
-    onSwiper: setThumbsSwiper,
     autoplay: {
       delay: 2500,
       disableOnInteraction: false,
@@ -108,44 +184,38 @@ function MarketPage() {
     slideToClickedSlide: true,
     className: 'slide-control',
   };
-
   return (
-    <>
+    <BannerWrapper>
       <Swiper {...initControl}>
         {[
-          'https://image.ohou.se/i/bucketplace-v2-development/uploads/store/banners/store_home_banners/171171790632484864.png?w=3840',
-          'https://image.ohou.se/i/bucketplace-v2-development/uploads/store/banners/store_home_banners/171170685450755779.png?w=3840',
-          'https://image.ohou.se/i/bucketplace-v2-development/uploads/store/banners/store_home_banners/171170457343566350.png?w=3840',
-          'https://image.ohou.se/i/bucketplace-v2-development/uploads/store/banners/store_home_banners/171210842285547211.png?w=3840',
-        ].map((list, index) => {
+          'https://prs.ohousecdn.com/apne2/commerce/uploads/store/banners/store_home_banners/v1-371849026216000.png',
+          'https://image.ohousecdn.com/i/bucketplace-v2-development/uploads/store/banners/store_home_banners/172742509423309284.png',
+          'https://prs.ohousecdn.com/apne2/commerce/uploads/store/banners/store_home_banners/v1-371856314773568.png',
+        ].map((src, index) => {
           return (
             <SwiperSlide key={index}>
-              <PcCarousel>
-                <img src={list} alt="상품케로셀" />
-              </PcCarousel>
+              <ResponsiveBannerImage baseSrc={src} alt={`배너 ${index + 1}`} />
             </SwiperSlide>
           );
         })}
       </Swiper>
+    </BannerWrapper>
+  );
+}
 
-      <PcContainer>
+function MarketPage() {
+  return (
+    <>
+      <Container>
+        <Banner />
+      </Container>
+
+      <Container>
         <CategoryList />
-      </PcContainer>
+      </Container>
 
-      <PcContainer>
-        <ElementGroup.Row flexcontent="between">
-          <Title size="md">인기상품</Title>
-
-          <UiSelectBox
-            id="popularFilter"
-            data={[
-              {id: 'popular', text: '인기순'},
-              {id: 'new', text: '최신순'},
-            ]}
-            init={0}
-            size="sm"
-          />
-        </ElementGroup.Row>
+      <Container>
+        {/* TODO: radio filter 추가 */}
         <ProductList
           products={[
             {
@@ -236,31 +306,9 @@ function MarketPage() {
               grade: 4.8,
               reviewCount: 25498,
             },
-            {
-              code: '32ds9f2s1',
-              name: '쿠폰가 101,370/편안한 제주 25cm 필로우탑 본넬스프링 침대 매트리스S/SS/Q/K',
-              price: 109000,
-              discount: 45,
-              supplierName: '휴도',
-              imageURL:
-                'https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=1280&h=1280&c=c&webp=1',
-              grade: 4.8,
-              reviewCount: 18951,
-            },
-            {
-              code: '321ds92s1',
-              name: '[예약판매]페블 체어 미드센추리 패브릭 디자인 인테리어 철제 의자',
-              price: 54900,
-              discount: 39,
-              supplierName: '우드띠어리',
-              imageURL:
-                'https://prs.ohou.se/apne2/any/uploads/productions/v1-194793978269824.jpg?gif=1&w=1280&h=1280&c=c&webp=1',
-              grade: 4.8,
-              reviewCount: 411,
-            },
           ]}
         />
-      </PcContainer>
+      </Container>
     </>
   );
 }

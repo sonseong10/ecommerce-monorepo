@@ -19,11 +19,12 @@ interface IProductListProps {
 const ProductCardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 12px;
+  margin: 12px -10px 0;
+  padding: 0 16px;
 
   li {
     padding: 0 10px 30px 10px;
-    flex: 0 0 25%;
+    width: calc((100% / 2));
 
     a {
       .production-item-image {
@@ -118,6 +119,18 @@ const ProductCardList = styled.ul`
         transform: scale(1.2);
       }
     }
+
+    @media screen and (min-width: 768px) {
+      width: calc(100% / 4);
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 0 40px;
+  }
+
+  @media screen and (min-width: 1256px) {
+    padding: 0;
   }
 `;
 
