@@ -7,6 +7,7 @@ export * from './loading'
 export * from './utils'
 export * from './hook'
 export * from './components'
+export * from './styles/ComponentsType'
 
 export { getLoadingMiddleware } from './loading/store/loadingR'
 

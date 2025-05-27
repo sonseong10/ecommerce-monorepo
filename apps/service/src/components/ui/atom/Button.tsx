@@ -281,6 +281,11 @@ const BtnIcon = (
       return css`
         background-image: url(${SVG.Code(iconColor)});
       `;
+    case 'Check':
+      return css`
+        background-image: url(${SVG.Check(iconColor)});
+        background-size: 14px;
+      `;
     case 'Out':
       return css`
         background-image: url(${SVG.Out(iconColor)});

@@ -11,26 +11,37 @@ import SwiperCore from 'swiper';
 import {FreeMode, Thumbs, Pagination} from 'swiper/modules';
 import styled from 'styled-components';
 import {commonSVG} from '@ecommerce/commons';
-// import {Link} from 'react-router-dom';
 import {UiSelectBox} from '../../../components/ui/atom/SelectBox';
 import Button from '../../../components/ui/atom/Button';
 import {Link} from 'react-router-dom';
 import {ElementGroup} from 'src/styles/components';
+import TabMenu from 'src/components/ui/atom/TabMenu';
+import ReviewSummary from '../components/review/ReviewSummary';
+import ReviewList from '../components/review/ReviewList';
+import SectionTitle from 'src/components/ui/organism/SectionTitle';
 
 SwiperCore.use([FreeMode, Thumbs, Pagination]);
+
+const ParentContainer = styled.div`
+  background-color: #ededed;
+`;
 
 const Container = styled.div`
   overflow: auto;
   width: 100%;
   max-width: 1156px;
   margin: 0 auto;
+  padding: 0 10px;
   box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 10px;
 `;
 
 const ProductCategoryInfo = styled.nav`
   padding: 12px 15px;
   border: none;
   overflow-y: hidden;
+  background-color: #fff;
 
   ol {
     display: flex;
@@ -69,13 +80,13 @@ const ProductionSellingCover = styled.div`
 
 const ProductionSellingCoverImage = styled.div`
   width: 100%;
-  height: 558px;
+  height: 358px;
   overflow: hidden;
 
   .swiper-slide {
     div.item {
       width: 100%;
-      height: 558px;
+      height: 358px;
     }
 
     background-color: #0066ff;
@@ -140,15 +151,9 @@ const ProductionSellingCoverImage = styled.div`
 //     }
 //   }
 // `;
-const ProductProviderInfo = styled.div`
-  width: calc(100% - 30px);
-  margin: 0 auto;
-`;
 
-const ProductionSellingNavigationContent = styled.div`
-  background-color: #fafafa;
-  border-top: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
+const ProductProviderInfo = styled.div`
+  margin: 0 auto;
 `;
 
 const ProductInfo = styled.div`
@@ -276,8 +281,73 @@ const ProductInfo = styled.div`
 `;
 
 const ProductDetailContainer = styled.section`
+  max-height: 470px;
+  overflow-y: hidden;
   img {
     width: 100%;
+  }
+`;
+
+const DescriptionMoreWrap = styled.div`
+  position: relative;
+  padding: 10px 0;
+  width: 100%;
+
+  button {
+    width: 100%;
+    border-radius: 4px;
+
+    &::after {
+      background-size: 18px;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: -70px;
+    left: 0;
+    display: block;
+    padding-top: 80px;
+    width: 100%;
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff 80%);
+    content: '';
+  }
+`;
+
+const ProdcutTabNavigation = styled.div`
+  position: sticky;
+  top: 96px;
+  z-index: 1;
+
+  .tabmenu {
+    width: 100%;
+    border-bottom: 0;
+
+    li {
+      margin: 0;
+      width: calc(100% / 5);
+
+      button {
+        width: 100%;
+        min-height: 46px;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        font-weight: 700;
+        background-color: #fff;
+
+        &.is-active::before {
+          bottom: 0;
+          background: var(--primary);
+        }
+        span {
+          display: block;
+          font-weight: 400;
+          font-size: 12px;
+          color: #00000066;
+        }
+      }
+    }
   }
 `;
 
@@ -305,43 +375,40 @@ function ProductDetail() {
   };
 
   return (
-    <div>
-      <Container>
-        <ProductCategory />
-      </Container>
+    <ParentContainer>
+      <ProductCategory />
 
-      <Container>
-        <ProductionSellingContainer>
-          <ProductionSellingCover>
-            <ProductionSellingCoverImage>
-              <Swiper {...initControl}>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-              </Swiper>
-            </ProductionSellingCoverImage>
-            {/* <ProductionSellingCoverImageList>
+      <ProductionSellingContainer>
+        <ProductionSellingCover>
+          <ProductionSellingCoverImage>
+            <Swiper {...initControl}>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="item" />
+              </SwiperSlide>
+            </Swiper>
+          </ProductionSellingCoverImage>
+          {/* <ProductionSellingCoverImageList>
               <Swiper
                 onSwiper={setThumbsSwiper}
                 loop={true}
@@ -379,8 +446,9 @@ function ProductDetail() {
                 </SwiperSlide>
               </Swiper>
             </ProductionSellingCoverImageList> */}
-          </ProductionSellingCover>
+        </ProductionSellingCover>
 
+        <Container>
           <ProductProviderInfo>
             <ProductInfo>
               <div className="product-header">
@@ -461,194 +529,220 @@ function ProductDetail() {
               </div>
             </div>
           </ProductProviderInfo>
-        </ProductionSellingContainer>
-      </Container>
-
-      <ProductionSellingNavigationContent>
-        <Container>
-          <a href="#">상품정보</a>
-          <a href="#">
-            리뷰<span>49</span>
-          </a>
-          <a href="#">
-            문의<span>86</span>
-          </a>
-          <a href="#">배송/환불</a>
-          <a href="#">추천</a>
         </Container>
-      </ProductionSellingNavigationContent>
+      </ProductionSellingContainer>
 
+      <ProdcutTabNavigation>
+        <TabMenu
+          list={[
+            {id: '1', text: '상품정보'},
+            {id: '2', text: '리뷰', subText: '49'},
+            {id: '3', text: '문의', subText: '86'},
+            {id: '4', text: '배송/환불'},
+            {id: '5', text: '추천'},
+          ]}
+          active="1"
+          kinds="Button"
+          className="tabmenu"
+        ></TabMenu>
+      </ProdcutTabNavigation>
       <Container>
         <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
-          <div style={{display: 'inline-block'}}>
-            <div>
-              <ProductDetailContainer>
-                <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=720"
-                    srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=2560 3x"
-                    alt="판매자 공지 이미지"
-                  />
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=720"
-                    srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=2560 3x"
-                    alt="판매자 공지 이미지"
-                  />
-                  <div>
-                    <p style={{textAlign: 'center'}}>&nbsp;</p>
-                    <p style={{textAlign: 'center'}}>
-                      <strong>
-                        <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;주문 폭주로 크림버터 - 미니 주문시&nbsp;</span>
-                      </strong>
-                    </p>
-                    <p style={{textAlign: 'center'}}>&nbsp;</p>
-                    <p style={{textAlign: 'center'}}>
-                      <strong>
-                        <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;08/23~ 순차 출고됩니다.&nbsp;</span>
-                      </strong>
-                    </p>
-                    <p style={{textAlign: 'center'}}>&nbsp;</p>
-                    <p style={{textAlign: 'center'}}>
-                      <strong>
-                        <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;이용에 불편을 드려 죄송합니다.&nbsp;</span>
-                      </strong>
-                    </p>
-                    <p style={{textAlign: 'center'}}>&nbsp;</p>
-                    <p style={{textAlign: 'center'}}>
-                      <strong>
-                        <span style={{backgroundColor: '#fbeeb8'}}>그 외 주문건 17:00 이전 당일 출고됩니다.</span>
-                      </strong>
-                    </p>
-                    <p style={{textAlign: 'center'}}>&nbsp;</p>
-                    <p style={{textAlign: 'center'}}>&nbsp;</p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842629914688.jpg"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012574852291082.gif"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842845990976.jpg"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842926235648.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843146948608.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012577658198599.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012579378208588.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012581158220247.gif"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012582393495978.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012583137245967.gif"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843342553152.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012584992530169.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012585996794090.gif"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843444740160.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012587918704789.gif"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-197703056953472.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589049948196.png"
-                        alt=""
-                      />
-                    </p>
-                    <p style={{textAlign: 'center'}}>
-                      <img
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589742653044.png"
-                        alt=""
-                      />
-                    </p>
-                    <p>
-                      <img
-                        style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}
-                        src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170064069122766481.jpg"
-                        alt=""
-                      />
-                    </p>
-                  </div>
-                </div>
-              </ProductDetailContainer>
+          <ProductDetailContainer>
+            <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+              <img
+                src="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=720"
+                srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=2560 3x"
+                alt="판매자 공지 이미지"
+              />
+              <img
+                src="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=720"
+                srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=2560 3x"
+                alt="판매자 공지 이미지"
+              />
               <div>
-                <Button $iconname="DownArrow" $iconposition="after" text="펼치기" type="button"></Button>
+                <p style={{textAlign: 'center'}}>&nbsp;</p>
+                <p style={{textAlign: 'center'}}>
+                  <strong>
+                    <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;주문 폭주로 크림버터 - 미니 주문시&nbsp;</span>
+                  </strong>
+                </p>
+                <p style={{textAlign: 'center'}}>&nbsp;</p>
+                <p style={{textAlign: 'center'}}>
+                  <strong>
+                    <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;08/23~ 순차 출고됩니다.&nbsp;</span>
+                  </strong>
+                </p>
+                <p style={{textAlign: 'center'}}>&nbsp;</p>
+                <p style={{textAlign: 'center'}}>
+                  <strong>
+                    <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;이용에 불편을 드려 죄송합니다.&nbsp;</span>
+                  </strong>
+                </p>
+                <p style={{textAlign: 'center'}}>&nbsp;</p>
+                <p style={{textAlign: 'center'}}>
+                  <strong>
+                    <span style={{backgroundColor: '#fbeeb8'}}>그 외 주문건 17:00 이전 당일 출고됩니다.</span>
+                  </strong>
+                </p>
+                <p style={{textAlign: 'center'}}>&nbsp;</p>
+                <p style={{textAlign: 'center'}}>&nbsp;</p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842629914688.jpg"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012574852291082.gif"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842845990976.jpg"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842926235648.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843146948608.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012577658198599.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012579378208588.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012581158220247.gif"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012582393495978.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012583137245967.gif"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843342553152.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012584992530169.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012585996794090.gif"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843444740160.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012587918704789.gif"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-197703056953472.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589049948196.png"
+                    alt=""
+                  />
+                </p>
+                <p style={{textAlign: 'center'}}>
+                  <img
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589742653044.png"
+                    alt=""
+                  />
+                </p>
+                <p>
+                  <img
+                    style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}
+                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170064069122766481.jpg"
+                    alt=""
+                  />
+                </p>
               </div>
             </div>
-            <div>리뷰</div>
-            <div>문의</div>
-            <div>배송/환불</div>
-            <div>추천</div>
-          </div>
-          <aside style={{display: 'inline-block'}}>
+          </ProductDetailContainer>
+          <DescriptionMoreWrap>
+            <Button
+              $iconname="DownArrow"
+              $iconposition="after"
+              text="펼치기"
+              type="button"
+              color="primary"
+              $btnSize="lg"
+            />
+          </DescriptionMoreWrap>
+        </div>
+      </Container>
+
+      <Container>
+        <SectionTitle text="리뷰" subText="49" button={<Button color="primary" $btnType="ghost" text="리뷰남기기" />} />
+
+        <ReviewSummary />
+
+        <ElementGroup.Row></ElementGroup.Row>
+
+        <ReviewList />
+      </Container>
+
+      <Container>
+        <SectionTitle
+          text="문의"
+          subText="86"
+          dropDown={{state: false, change: () => {}}}
+          // eslint-disable-next-line no-constant-condition
+          button={1 < 3 ? <></> : <Button color="primary" $btnType="ghost" text="문의하기" />}
+        />
+      </Container>
+
+      <Container>
+        <SectionTitle text="배송/환불" dropDown={{state: false, change: () => {}}} />
+      </Container>
+      <Container></Container>
+      {/* <aside style={{display: 'inline-block'}}>
             <div>
               <section>
                 <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
@@ -674,10 +768,8 @@ function ProductDetail() {
                 <Button text="바로구매" $btnSize="lg" thin={true} color="primary" />
               </div>
             </div>
-          </aside>
-        </div>
-      </Container>
-    </div>
+          </aside> */}
+    </ParentContainer>
   );
 }
 

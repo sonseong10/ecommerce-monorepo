@@ -143,12 +143,12 @@ function TabList(props: {
     <List kinds={props.kinds}>
       <Item
         kinds={props.kinds}
-        className={props.id === props.active ? "is-active" : ""}
+        className={props.id === props.active ? 'is-active' : ''}
         onClick={setActive}
         disabled={props.disabled}
       >
         {props.itemText}
-        <span>{props.subText && props.subText}</span>
+        <span className="subText">{props.subText && props.subText}</span>
       </Item>
     </List>
   );
@@ -157,31 +157,30 @@ function TabList(props: {
 interface ITabListProps {
   id: string;
   text: string;
+  subText?: string;
   disabled?: boolean;
 }
 
 interface ITabProps {
   kinds?: TabType;
   list: Array<ITabListProps>;
-  subText?: string; // TabType이 BUTTON일때만 사용
   active?: string;
   click?: (id: string) => void;
+  className?: string;
 }
 
 function TabMenu(props: ITabProps): JSX.Element {
   return (
     <>
-      <TabWrapper kinds={props.kinds ? props.kinds : "Text"}>
+      <TabWrapper kinds={props.kinds ? props.kinds : 'Text'} className={props.className}>
         {props.list?.map((item: ITabListProps) => (
           <TabList
             key={item.id}
-            kinds={props.kinds ? props.kinds : "Text"}
+            kinds={props.kinds ? props.kinds : 'Text'}
             id={item.id}
             itemText={item.text}
+            subText={item.subText}
             active={props.active}
-            subText={
-              props.kinds === "Button" && props.subText ? props.subText : ""
-            }
             onClick={props.click?.bind(null, item.id)}
             disabled={item.disabled}
           />
