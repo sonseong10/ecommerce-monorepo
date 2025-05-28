@@ -19,6 +19,7 @@ import TabMenu from 'src/components/ui/atom/TabMenu';
 import ReviewSummary from '../components/review/ReviewSummary';
 import ReviewList from '../components/review/ReviewList';
 import SectionTitle from 'src/components/ui/organism/SectionTitle';
+import Inquiry from '../components/inquiry/Inquiry';
 
 SwiperCore.use([FreeMode, Thumbs, Pagination]);
 
@@ -723,23 +724,21 @@ function ProductDetail() {
 
         <ReviewSummary />
 
-        <ElementGroup.Row></ElementGroup.Row>
+        <ElementGroup.Row>
+          <Button text="베스트순" $btnType="ghost" $btnSize="xs" />
+          <Button text="최신순" $btnType="ghost" $btnSize="xs" />
+          <Button text="사진리뷰" $btnType="ghost" $btnSize="xs" />
+        </ElementGroup.Row>
 
         <ReviewList />
       </Container>
 
       <Container>
-        <SectionTitle
-          text="문의"
-          subText="86"
-          dropDown={{state: false, change: () => {}}}
-          // eslint-disable-next-line no-constant-condition
-          button={1 < 3 ? <></> : <Button color="primary" $btnType="ghost" text="문의하기" />}
-        />
+        <Inquiry />
       </Container>
 
       <Container>
-        <SectionTitle text="배송/환불" dropDown={{state: false, change: () => {}}} />
+        <SectionTitle text="배송/교환/환불" dropDown={{state: false, change: () => {}}} />
       </Container>
       <Container></Container>
       {/* <aside style={{display: 'inline-block'}}>
