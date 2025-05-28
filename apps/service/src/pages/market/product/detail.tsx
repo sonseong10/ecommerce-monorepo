@@ -20,6 +20,7 @@ import ReviewSummary from '../components/review/ReviewSummary';
 import ReviewList from '../components/review/ReviewList';
 import SectionTitle from 'src/components/ui/organism/SectionTitle';
 import Inquiry from '../components/inquiry/Inquiry';
+import Exchage from '../components/exchange/Exchange';
 
 SwiperCore.use([FreeMode, Thumbs, Pagination]);
 
@@ -737,10 +738,8 @@ function ProductDetail() {
         <Inquiry />
       </Container>
 
-      <Container>
-        <SectionTitle text="배송/교환/환불" dropDown={{state: false, change: () => {}}} />
-      </Container>
-      <Container></Container>
+      <Exchage />
+
       {/* <aside style={{display: 'inline-block'}}>
             <div>
               <section>
