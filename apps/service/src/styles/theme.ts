@@ -18,8 +18,8 @@ const fonts = {
 
 const colors = {
   ...commonColors,
-  primary: '#35C5F0',
-  btnPrimary: '#35C5F0',
+  primary: '#0aa5ff',
+  btnPrimary: '#0aa5ff',
 };
 
 const hoverColors = {
