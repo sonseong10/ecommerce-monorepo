@@ -21,11 +21,13 @@ import ReviewList from '../components/review/ReviewList';
 import SectionTitle from 'src/components/ui/organism/SectionTitle';
 import Inquiry from '../components/inquiry/Inquiry';
 import Exchage from '../components/exchange/Exchange';
+import SellingBox from '../components/selling/SellingBox';
 
 SwiperCore.use([FreeMode, Thumbs, Pagination]);
 
 const ParentContainer = styled.div`
   background-color: #ededed;
+  padding-bottom: 56px;
 `;
 
 const Container = styled.div`
@@ -377,40 +379,41 @@ function ProductDetail() {
   };
 
   return (
-    <ParentContainer>
-      <ProductCategory />
+    <>
+      <ParentContainer>
+        <ProductCategory />
 
-      <ProductionSellingContainer>
-        <ProductionSellingCover>
-          <ProductionSellingCoverImage>
-            <Swiper {...initControl}>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="item" />
-              </SwiperSlide>
-            </Swiper>
-          </ProductionSellingCoverImage>
-          {/* <ProductionSellingCoverImageList>
+        <ProductionSellingContainer>
+          <ProductionSellingCover>
+            <ProductionSellingCoverImage>
+              <Swiper {...initControl}>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="item" />
+                </SwiperSlide>
+              </Swiper>
+            </ProductionSellingCoverImage>
+            {/* <ProductionSellingCoverImageList>
               <Swiper
                 onSwiper={setThumbsSwiper}
                 loop={true}
@@ -448,326 +451,304 @@ function ProductDetail() {
                 </SwiperSlide>
               </Swiper>
             </ProductionSellingCoverImageList> */}
-        </ProductionSellingCover>
+          </ProductionSellingCover>
 
-        <Container>
-          <ProductProviderInfo>
-            <ProductInfo>
-              <div className="product-header">
-                <span className="brand-name">
-                  <a href="#">아에홈</a>
-                </span>
-                <div className="product-wrap">
-                  <strong className="product-name">
-                    크롬출시! 키노 LED 미니 머쉬룸 무선 조명 인테리어 2sizes(밝기/빛색 변경)
-                  </strong>
+          <Container>
+            <ProductProviderInfo>
+              <ProductInfo>
+                <div className="product-header">
+                  <span className="brand-name">
+                    <a href="#">아에홈</a>
+                  </span>
+                  <div className="product-wrap">
+                    <strong className="product-name">
+                      크롬출시! 키노 LED 미니 머쉬룸 무선 조명 인테리어 2sizes(밝기/빛색 변경)
+                    </strong>
 
-                  <Button $iconname="Shere" $iconposition="center" $btnType="ghost" />
-                </div>
-              </div>
-              <div className="product-content">
-                <p className="review-text">675개의 리뷰</p>
-                <div className="product-price-wrap">
-                  <p>
-                    <span className="price-discount">54%</span>
-                    <del className="price-origin">60,000원</del>
-                  </p>
-                  <div>
-                    <strong className="product-price">27,400원</strong>
+                    <Button $iconname="Shere" $iconposition="center" $btnType="ghost" />
                   </div>
                 </div>
+                <div className="product-content">
+                  <p className="review-text">675개의 리뷰</p>
+                  <div className="product-price-wrap">
+                    <p>
+                      <span className="price-discount">54%</span>
+                      <del className="price-origin">60,000원</del>
+                    </p>
+                    <div>
+                      <strong className="product-price">27,400원</strong>
+                    </div>
+                  </div>
+                </div>
+                <div className="product-delivery-wrap">
+                  <table>
+                    <thead></thead>
+                    <tbody>
+                      <tr>
+                        <td className="key">혜택</td>
+                        <td className="value">
+                          <strong>28P</strong> 적립 (WELCOME 0.1% 적립)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="key">배송</td>
+                        <td className="value">
+                          <span>2,500원</span>
+                          <p>
+                            17:00 까지 결제 시 <span className="point">오늘 출발</span>
+                          </p>
+
+                          <div>
+                            <p>일반택배</p>
+                            <span className="disclaimer">제주도/도서산간 지역 3,000원</span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <ElementGroup.Row flexcontent="between" className="provider-info">
+                  <Link to={'#'}>
+                    <strong>레나에너지</strong>
+                    <span>브랜드홈</span>
+                  </Link>
+
+                  <Button $iconname="BookMark" $iconposition="center" $btnType="ghost" />
+                </ElementGroup.Row>
+              </ProductInfo>
+              <div className="product-option-form" style={{display: 'none'}}>
+                <section>
+                  <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
+                  <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
+                  <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
+                </section>
+
+                <div>
+                  <span>주문금액</span>
+                  <strong>0원</strong>
+                </div>
+
+                <div>
+                  <Button text="장바구니" $btnType="border" $btnSize="lg" thin color="primary" />
+                  <Button text="바로구매" $btnSize="lg" thin color="primary" />
+                </div>
               </div>
-              <div className="product-delivery-wrap">
-                <table>
-                  <thead></thead>
-                  <tbody>
-                    <tr>
-                      <td className="key">혜택</td>
-                      <td className="value">
-                        <strong>28P</strong> 적립 (WELCOME 0.1% 적립)
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="key">배송</td>
-                      <td className="value">
-                        <span>2,500원</span>
-                        <p>
-                          17:00 까지 결제 시 <span className="point">오늘 출발</span>
-                        </p>
+            </ProductProviderInfo>
+          </Container>
+        </ProductionSellingContainer>
 
-                        <div>
-                          <p>일반택배</p>
-                          <span className="disclaimer">제주도/도서산간 지역 3,000원</span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <ElementGroup.Row flexcontent="between" className="provider-info">
-                <Link to={'#'}>
-                  <strong>레나에너지</strong>
-                  <span>브랜드홈</span>
-                </Link>
-
-                <Button $iconname="BookMark" $iconposition="center" $btnType="ghost" />
-              </ElementGroup.Row>
-            </ProductInfo>
-            <div className="product-option-form" style={{display: 'none'}}>
-              <section>
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-              </section>
-
-              <div>
-                <span>주문금액</span>
-                <strong>0원</strong>
-              </div>
-
-              <div>
-                <Button text="장바구니" $btnType="border" $btnSize="lg" thin color="primary" />
-                <Button text="바로구매" $btnSize="lg" thin color="primary" />
-              </div>
-            </div>
-          </ProductProviderInfo>
-        </Container>
-      </ProductionSellingContainer>
-
-      <ProdcutTabNavigation>
-        <TabMenu
-          list={[
-            {id: '1', text: '상품정보'},
-            {id: '2', text: '리뷰', subText: '49'},
-            {id: '3', text: '문의', subText: '86'},
-            {id: '4', text: '배송/환불'},
-            {id: '5', text: '추천'},
-          ]}
-          active="1"
-          kinds="Button"
-          className="tabmenu"
-        ></TabMenu>
-      </ProdcutTabNavigation>
-      <Container>
-        <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
-          <ProductDetailContainer>
-            <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
-              <img
-                src="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=720"
-                srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=2560 3x"
-                alt="판매자 공지 이미지"
-              />
-              <img
-                src="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=720"
-                srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=2560 3x"
-                alt="판매자 공지 이미지"
-              />
-              <div>
-                <p style={{textAlign: 'center'}}>&nbsp;</p>
-                <p style={{textAlign: 'center'}}>
-                  <strong>
-                    <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;주문 폭주로 크림버터 - 미니 주문시&nbsp;</span>
-                  </strong>
-                </p>
-                <p style={{textAlign: 'center'}}>&nbsp;</p>
-                <p style={{textAlign: 'center'}}>
-                  <strong>
-                    <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;08/23~ 순차 출고됩니다.&nbsp;</span>
-                  </strong>
-                </p>
-                <p style={{textAlign: 'center'}}>&nbsp;</p>
-                <p style={{textAlign: 'center'}}>
-                  <strong>
-                    <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;이용에 불편을 드려 죄송합니다.&nbsp;</span>
-                  </strong>
-                </p>
-                <p style={{textAlign: 'center'}}>&nbsp;</p>
-                <p style={{textAlign: 'center'}}>
-                  <strong>
-                    <span style={{backgroundColor: '#fbeeb8'}}>그 외 주문건 17:00 이전 당일 출고됩니다.</span>
-                  </strong>
-                </p>
-                <p style={{textAlign: 'center'}}>&nbsp;</p>
-                <p style={{textAlign: 'center'}}>&nbsp;</p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842629914688.jpg"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012574852291082.gif"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842845990976.jpg"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842926235648.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843146948608.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012577658198599.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012579378208588.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012581158220247.gif"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012582393495978.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012583137245967.gif"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843342553152.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012584992530169.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012585996794090.gif"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843444740160.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012587918704789.gif"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-197703056953472.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589049948196.png"
-                    alt=""
-                  />
-                </p>
-                <p style={{textAlign: 'center'}}>
-                  <img
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589742653044.png"
-                    alt=""
-                  />
-                </p>
-                <p>
-                  <img
-                    style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}
-                    src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170064069122766481.jpg"
-                    alt=""
-                  />
-                </p>
-              </div>
-            </div>
-          </ProductDetailContainer>
-          <DescriptionMoreWrap>
-            <Button
-              $iconname="DownArrow"
-              $iconposition="after"
-              text="펼치기"
-              type="button"
-              color="primary"
-              $btnSize="lg"
-            />
-          </DescriptionMoreWrap>
-        </div>
-      </Container>
-
-      <Container>
-        <SectionTitle text="리뷰" subText="49" button={<Button color="primary" $btnType="ghost" text="리뷰남기기" />} />
-
-        <ReviewSummary />
-
-        <ElementGroup.Row>
-          <Button text="베스트순" $btnType="ghost" $btnSize="xs" />
-          <Button text="최신순" $btnType="ghost" $btnSize="xs" />
-          <Button text="사진리뷰" $btnType="ghost" $btnSize="xs" />
-        </ElementGroup.Row>
-
-        <ReviewList />
-      </Container>
-
-      <Container>
-        <Inquiry />
-      </Container>
-
-      <Exchage />
-
-      {/* <aside style={{display: 'inline-block'}}>
-            <div>
-              <section>
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-              </section>
-
-              <div>
-                <span>주문금액</span>
-                <strong>0원</strong>
-              </div>
-
-              <div>
-                <Button
-                  text=""
-                  $btnSize="lg"
-                  thin={true}
-                  $btnType="border"
-                  $iconname="BookMark"
-                  $iconposition="center"
+        <ProdcutTabNavigation>
+          <TabMenu
+            list={[
+              {id: '1', text: '상품정보'},
+              {id: '2', text: '리뷰', subText: '49'},
+              {id: '3', text: '문의', subText: '86'},
+              {id: '4', text: '배송/환불'},
+              {id: '5', text: '추천'},
+            ]}
+            active="1"
+            kinds="Button"
+            className="tabmenu"
+          ></TabMenu>
+        </ProdcutTabNavigation>
+        <Container>
+          <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
+            <ProductDetailContainer>
+              <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+                <img
+                  src="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=720"
+                  srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/admins/productions/notice/170778069306610551.jpg?gif=1&amp;w=2560 3x"
+                  alt="판매자 공지 이미지"
                 />
-                <Button text="장바구니" $btnType="border" $btnSize="lg" thin={true} color="primary" />
-                <Button text="바로구매" $btnSize="lg" thin={true} color="primary" />
+                <img
+                  src="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=720"
+                  srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=2560 3x"
+                  alt="판매자 공지 이미지"
+                />
+                <div>
+                  <p style={{textAlign: 'center'}}>&nbsp;</p>
+                  <p style={{textAlign: 'center'}}>
+                    <strong>
+                      <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;주문 폭주로 크림버터 - 미니 주문시&nbsp;</span>
+                    </strong>
+                  </p>
+                  <p style={{textAlign: 'center'}}>&nbsp;</p>
+                  <p style={{textAlign: 'center'}}>
+                    <strong>
+                      <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;08/23~ 순차 출고됩니다.&nbsp;</span>
+                    </strong>
+                  </p>
+                  <p style={{textAlign: 'center'}}>&nbsp;</p>
+                  <p style={{textAlign: 'center'}}>
+                    <strong>
+                      <span style={{backgroundColor: '#fbeeb8'}}>&nbsp;이용에 불편을 드려 죄송합니다.&nbsp;</span>
+                    </strong>
+                  </p>
+                  <p style={{textAlign: 'center'}}>&nbsp;</p>
+                  <p style={{textAlign: 'center'}}>
+                    <strong>
+                      <span style={{backgroundColor: '#fbeeb8'}}>그 외 주문건 17:00 이전 당일 출고됩니다.</span>
+                    </strong>
+                  </p>
+                  <p style={{textAlign: 'center'}}>&nbsp;</p>
+                  <p style={{textAlign: 'center'}}>&nbsp;</p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842629914688.jpg"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012574852291082.gif"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842845990976.jpg"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262842926235648.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843146948608.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012577658198599.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012579378208588.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012581158220247.gif"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012582393495978.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012583137245967.gif"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843342553152.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012584992530169.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012585996794090.gif"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-262843444740160.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012587918704789.gif"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://prs.ohou.se/apne2/any/uploads/productions/descriptions/url/v1-197703056953472.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589049948196.png"
+                      alt=""
+                    />
+                  </p>
+                  <p style={{textAlign: 'center'}}>
+                    <img
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170012589742653044.png"
+                      alt=""
+                    />
+                  </p>
+                  <p>
+                    <img
+                      style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/descriptions/url/170064069122766481.jpg"
+                      alt=""
+                    />
+                  </p>
+                </div>
               </div>
-            </div>
-          </aside> */}
-    </ParentContainer>
+            </ProductDetailContainer>
+            <DescriptionMoreWrap>
+              <Button
+                $iconname="DownArrow"
+                $iconposition="after"
+                text="펼치기"
+                type="button"
+                color="primary"
+                $btnSize="lg"
+              />
+            </DescriptionMoreWrap>
+          </div>
+        </Container>
+
+        <Container>
+          <SectionTitle
+            text="리뷰"
+            subText="49"
+            button={<Button color="primary" $btnType="ghost" text="리뷰남기기" />}
+          />
+
+          <ReviewSummary />
+
+          <ElementGroup.Row>
+            <Button text="베스트순" $btnType="ghost" $btnSize="xs" />
+            <Button text="최신순" $btnType="ghost" $btnSize="xs" />
+            <Button text="사진리뷰" $btnType="ghost" $btnSize="xs" />
+          </ElementGroup.Row>
+
+          <ReviewList />
+        </Container>
+
+        <Container>
+          <Inquiry />
+        </Container>
+
+        <Exchage />
+      </ParentContainer>
+      <SellingBox />
+    </>
   );
 }
 
