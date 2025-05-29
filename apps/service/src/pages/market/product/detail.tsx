@@ -27,7 +27,10 @@ SwiperCore.use([FreeMode, Thumbs, Pagination]);
 
 const ParentContainer = styled.div`
   background-color: #ededed;
-  padding-bottom: 56px;
+
+  @media screen and (min-width: 768px) {
+    background-color: #fff;
+  }
 `;
 
 const Container = styled.div`
@@ -39,6 +42,12 @@ const Container = styled.div`
   box-sizing: border-box;
   background-color: #fff;
   margin-bottom: 10px;
+
+  @media screen and (min-width: 768px) {
+    width: calc(100% - 80px);
+    max-width: 100%;
+    min-height: 1px;
+  }
 `;
 
 const ProductCategoryInfo = styled.nav`
@@ -68,18 +77,41 @@ const ProductCategoryInfo = styled.nav`
       }
     }
   }
+
+  @media screen and (min-width: 768px) {
+    padding: 12px 34px;
+  }
 `;
 
 const ProductionSellingContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    margin-right: auto;
+    margin-bottom: 40px;
+    margin-left: auto;
+    width: calc(100% - 68px);
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 1px;
+  }
 `;
 
 const ProductionSellingCover = styled.div`
   display: flex;
-  flex-direction: row-reverse;
-  width: 100%;
+  @media screen and (min-width: 768px) {
+    flex-direction: column;
+    width: 50%;
+    margin-right: 12px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row-reverse;
+    width: 60%;
+  }
 `;
 
 const ProductionSellingCoverImage = styled.div`
@@ -122,42 +154,96 @@ const ProductionSellingCoverImage = styled.div`
       opacity: 1;
       background-color: #fff;
     }
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    flex: 1;
+    height: 344px;
+    border-radius: 8px;
+
+    .swiper-slide {
+      div.item {
+        height: 344px;
+      }
+    }
   }
 `;
 
-// const ProductionSellingCoverImageList = styled.div`
-//   .mySwiper {
-//     height: 558px;
-//     margin-right: 10px;
-//     div.swiper-slide {
-//       position: relative;
-//       width: 53px;
-//       border-radius: 4px;
-//       overflow: hidden;
-//       cursor: pointer;
+const ProductionSellingCoverImageList = styled.div`
+  display: none;
 
-//       &.swiper-slide-thumb-active::after {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         right: 0;
-//         bottom: 0;
-//         border-radius: 4px;
-//         border: 2px solid var(--primary);
-//         content: '';
-//       }
+  .mySwiper {
+    div.swiper-slide {
+      &.swiper-slide-thumb-active::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 4px;
+        border: 2px solid var(--primary);
+        content: '';
+      }
 
-//       background-color: #0066ff;
+      background-color: #0066ff;
 
-//       &:nth-child(even) {
-//         background-color: #ffc92c;
-//       }
-//     }
-//   }
-// `;
+      &:nth-child(even) {
+        background-color: #ffc92c;
+      }
+    }
+  }
 
-const ProductProviderInfo = styled.div`
-  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    display: block;
+
+    .mySwiper {
+      height: fit-content;
+
+      .swiper-wrapper {
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin-top: 8px;
+        height: auto;
+        gap: 10px;
+
+        div.swiper-slide {
+          width: calc((100% / 5) - 8px);
+          margin-bottom: 0 !important;
+          height: 60px !important;
+          border-radius: 4px;
+          overflow: hidden;
+          cursor: pointer;
+
+          div.item {
+            position: relative;
+            width: 60px;
+            height: 60px;
+          }
+
+          &.swiper-slide-thumb-active::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 4px;
+            border: 2px solid var(--primary);
+            content: '';
+          }
+
+          background-color: #0066ff;
+
+          &:nth-child(even) {
+            background-color: #ffc92c;
+          }
+        }
+      }
+    }
+  }
 `;
 
 const ProductInfo = styled.div`
@@ -192,6 +278,10 @@ const ProductInfo = styled.div`
         word-wrap: break-word;
         margin-right: 36px;
       }
+    }
+
+    button {
+      padding: 0;
     }
   }
 
@@ -282,6 +372,59 @@ const ProductInfo = styled.div`
       }
     }
   }
+
+  @media screen and (min-width: 768px) {
+    .product-header {
+      .brand-name {
+        margin: 0 0 4px;
+      }
+
+      .product-wrap {
+        .product-name {
+          font-size: 22px;
+          line-height: 33px;
+          min-height: 43px;
+        }
+      }
+    }
+
+    .product-content {
+      margin-top: 12px;
+
+      .review-text {
+        color: #0aa5ff;
+        font-weight: 700;
+      }
+
+      .product-price-wrap {
+        margin-top: 8px;
+
+        .price-discount {
+          font-size: 16px;
+          line-height: 19px;
+          padding-right: 6px;
+        }
+
+        .price-origin {
+          font-size: 16px;
+          line-height: 19px;
+        }
+
+        > div {
+          .product-price {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: normal;
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    .product-delivery-wrap {
+      padding: 20px 0;
+    }
+  }
 `;
 
 const ProductDetailContainer = styled.section`
@@ -368,7 +511,7 @@ function ProductCategory() {
 }
 
 function ProductDetail() {
-  const [thumbsSwiper] = useState<SwiperCore | null>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
 
   const initControl: SwiperProps = {
     loop: true,
@@ -382,7 +525,6 @@ function ProductDetail() {
     <>
       <ParentContainer>
         <ProductCategory />
-
         <ProductionSellingContainer>
           <ProductionSellingCover>
             <ProductionSellingCoverImage>
@@ -413,7 +555,7 @@ function ProductDetail() {
                 </SwiperSlide>
               </Swiper>
             </ProductionSellingCoverImage>
-            {/* <ProductionSellingCoverImageList>
+            <ProductionSellingCoverImageList>
               <Swiper
                 onSwiper={setThumbsSwiper}
                 loop={true}
@@ -450,90 +592,88 @@ function ProductDetail() {
                   <div className="item" />
                 </SwiperSlide>
               </Swiper>
-            </ProductionSellingCoverImageList> */}
+            </ProductionSellingCoverImageList>
           </ProductionSellingCover>
 
           <Container>
-            <ProductProviderInfo>
-              <ProductInfo>
-                <div className="product-header">
-                  <span className="brand-name">
-                    <a href="#">아에홈</a>
-                  </span>
-                  <div className="product-wrap">
-                    <strong className="product-name">
-                      크롬출시! 키노 LED 미니 머쉬룸 무선 조명 인테리어 2sizes(밝기/빛색 변경)
-                    </strong>
+            <ProductInfo>
+              <div className="product-header">
+                <span className="brand-name">
+                  <a href="#">아에홈</a>
+                </span>
+                <div className="product-wrap">
+                  <strong className="product-name">
+                    크롬출시! 키노 LED 미니 머쉬룸 무선 조명 인테리어 2sizes(밝기/빛색 변경)
+                  </strong>
 
-                    <Button $iconname="Shere" $iconposition="center" $btnType="ghost" />
-                  </div>
-                </div>
-                <div className="product-content">
-                  <p className="review-text">675개의 리뷰</p>
-                  <div className="product-price-wrap">
-                    <p>
-                      <span className="price-discount">54%</span>
-                      <del className="price-origin">60,000원</del>
-                    </p>
-                    <div>
-                      <strong className="product-price">27,400원</strong>
-                    </div>
-                  </div>
-                </div>
-                <div className="product-delivery-wrap">
-                  <table>
-                    <thead></thead>
-                    <tbody>
-                      <tr>
-                        <td className="key">혜택</td>
-                        <td className="value">
-                          <strong>28P</strong> 적립 (WELCOME 0.1% 적립)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="key">배송</td>
-                        <td className="value">
-                          <span>2,500원</span>
-                          <p>
-                            17:00 까지 결제 시 <span className="point">오늘 출발</span>
-                          </p>
-
-                          <div>
-                            <p>일반택배</p>
-                            <span className="disclaimer">제주도/도서산간 지역 3,000원</span>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <ElementGroup.Row flexcontent="between" className="provider-info">
-                  <Link to={'#'}>
-                    <strong>레나에너지</strong>
-                    <span>브랜드홈</span>
-                  </Link>
-
-                  <Button $iconname="BookMark" $iconposition="center" $btnType="ghost" />
-                </ElementGroup.Row>
-              </ProductInfo>
-              <div className="product-option-form" style={{display: 'none'}}>
-                <section>
-                  <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                  <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                  <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                </section>
-
-                <div>
-                  <span>주문금액</span>
-                  <strong>0원</strong>
-                </div>
-
-                <div>
-                  <Button text="장바구니" $btnType="border" $btnSize="lg" thin color="primary" />
-                  <Button text="바로구매" $btnSize="lg" thin color="primary" />
+                  <Button $iconname="Shere" $iconposition="center" $btnType="ghost" />
                 </div>
               </div>
-            </ProductProviderInfo>
+              <div className="product-content">
+                <p className="review-text">675개의 리뷰</p>
+                <div className="product-price-wrap">
+                  <p>
+                    <span className="price-discount">54%</span>
+                    <del className="price-origin">60,000원</del>
+                  </p>
+                  <div>
+                    <strong className="product-price">27,400원</strong>
+                  </div>
+                </div>
+              </div>
+              <div className="product-delivery-wrap">
+                <table>
+                  <thead></thead>
+                  <tbody>
+                    <tr>
+                      <td className="key">혜택</td>
+                      <td className="value">
+                        <strong>28P</strong> 적립 (WELCOME 0.1% 적립)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="key">배송</td>
+                      <td className="value">
+                        <span>2,500원</span>
+                        <p>
+                          17:00 까지 결제 시 <span className="point">오늘 출발</span>
+                        </p>
+
+                        <div>
+                          <p>일반택배</p>
+                          <span className="disclaimer">제주도/도서산간 지역 3,000원</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ElementGroup.Row flexcontent="between" className="provider-info">
+                <Link to={'#'}>
+                  <strong>레나에너지</strong>
+                  <span>브랜드홈</span>
+                </Link>
+
+                <Button $iconname="BookMark" $iconposition="center" $btnType="ghost" />
+              </ElementGroup.Row>
+            </ProductInfo>
+            <div className="product-option-form" style={{display: 'none'}}>
+              <section>
+                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
+                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
+                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
+              </section>
+
+              <div>
+                <span>주문금액</span>
+                <strong>0원</strong>
+              </div>
+
+              <div>
+                <Button text="장바구니" $btnType="border" $btnSize="lg" thin color="primary" />
+                <Button text="바로구매" $btnSize="lg" thin color="primary" />
+              </div>
+            </div>
           </Container>
         </ProductionSellingContainer>
 

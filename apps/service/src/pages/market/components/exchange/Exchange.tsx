@@ -11,6 +11,12 @@ const Container = styled.div`
   box-sizing: border-box;
   background-color: #fff;
   margin-bottom: 10px;
+
+  @media screen and (min-width: 768px) {
+    width: calc(100% - 80px);
+    max-width: 100%;
+    min-height: 1px;
+  }
 `;
 
 const ProductionSellingTable = styled.table`

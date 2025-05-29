@@ -2,10 +2,8 @@ import Button from 'src/components/ui/atom/Button';
 import {ElementGroup} from 'src/styles/components';
 import styled from 'styled-components';
 
-const SellingContainer = styled.div``;
-
 const MoblieSellingWrap = styled(ElementGroup.Row)`
-  position: fixed;
+  position: sticky;
   left: 0;
   bottom: 0;
   padding: 6px;
@@ -39,7 +37,7 @@ const bookmarkCount = 2024;
 
 function SellingBox() {
   return (
-    <SellingContainer>
+    <>
       {/* <aside style={{display: 'inline-block'}}>
             <div>
               <section>
@@ -78,7 +76,7 @@ function SellingBox() {
 
         <Button text="구매하기" color="primary" />
       </MoblieSellingWrap>
-    </SellingContainer>
+    </>
   );
 }
 
