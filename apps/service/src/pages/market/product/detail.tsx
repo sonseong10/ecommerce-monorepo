@@ -1,14 +1,3 @@
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/thumbs';
-
-import {useState} from 'react';
-import {Swiper, SwiperSlide, type SwiperProps} from 'swiper/react';
-import SwiperCore from 'swiper';
-
-import {FreeMode, Thumbs, Pagination} from 'swiper/modules';
 import styled from 'styled-components';
 import {commonSVG} from '@ecommerce/commons';
 import {UiSelectBox} from '../../../components/ui/atom/SelectBox';
@@ -22,8 +11,7 @@ import SectionTitle from 'src/components/ui/organism/SectionTitle';
 import Inquiry from '../components/inquiry/Inquiry';
 import Exchage from '../components/exchange/Exchange';
 import SellingBox from '../components/selling/SellingBox';
-
-SwiperCore.use([FreeMode, Thumbs, Pagination]);
+import ProductSellingCarousel from '../components/selling/Carousel';
 
 const ParentContainer = styled.div`
   background-color: #ededed;
@@ -81,6 +69,12 @@ const ProductCategoryInfo = styled.nav`
   @media screen and (min-width: 768px) {
     padding: 12px 34px;
   }
+
+  @media screen and (min-width: 1024px) {
+    margin: 0 auto;
+    padding: 12px 0;
+    max-width: 1136px;
+  }
 `;
 
 const ProductionSellingContainer = styled.div`
@@ -91,158 +85,17 @@ const ProductionSellingContainer = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     margin-right: auto;
-    margin-bottom: 40px;
     margin-left: auto;
+    margin-bottom: 40px;
     width: calc(100% - 68px);
     max-width: 100%;
     box-sizing: border-box;
     min-height: 1px;
   }
-`;
-
-const ProductionSellingCover = styled.div`
-  display: flex;
-  @media screen and (min-width: 768px) {
-    flex-direction: column;
-    width: 50%;
-    margin-right: 12px;
-  }
 
   @media screen and (min-width: 1024px) {
-    flex-direction: row-reverse;
-    width: 60%;
-  }
-`;
-
-const ProductionSellingCoverImage = styled.div`
-  width: 100%;
-  height: 358px;
-  overflow: hidden;
-
-  .swiper-slide {
-    div.item {
-      width: 100%;
-      height: 358px;
-    }
-
-    background-color: #0066ff;
-
-    &:nth-child(even) {
-      background-color: #ffc92c;
-    }
-  }
-
-  .swiper-pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .swiper-pagination-bullet {
-      width: 6px;
-      height: 6px;
-      border-radius: 100%;
-      background-color: #ededed;
-      opacity: 0.7;
-      transform: translateY(-50%);
-      transition: background-color 0.15s, width 0.15s, height 0.15s;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .swiper-pagination-bullet-active {
-      width: 8px;
-      height: 8px;
-      opacity: 1;
-      background-color: #fff;
-    }
-
-    @media screen and (min-width: 768px) {
-      display: none;
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    flex: 1;
-    height: 344px;
-    border-radius: 8px;
-
-    .swiper-slide {
-      div.item {
-        height: 344px;
-      }
-    }
-  }
-`;
-
-const ProductionSellingCoverImageList = styled.div`
-  display: none;
-
-  .mySwiper {
-    div.swiper-slide {
-      &.swiper-slide-thumb-active::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 4px;
-        border: 2px solid var(--primary);
-        content: '';
-      }
-
-      background-color: #0066ff;
-
-      &:nth-child(even) {
-        background-color: #ffc92c;
-      }
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    display: block;
-
-    .mySwiper {
-      height: fit-content;
-
-      .swiper-wrapper {
-        flex-wrap: wrap;
-        flex-direction: row;
-        margin-top: 8px;
-        height: auto;
-        gap: 10px;
-
-        div.swiper-slide {
-          width: calc((100% / 5) - 8px);
-          margin-bottom: 0 !important;
-          height: 60px !important;
-          border-radius: 4px;
-          overflow: hidden;
-          cursor: pointer;
-
-          div.item {
-            position: relative;
-            width: 60px;
-            height: 60px;
-          }
-
-          &.swiper-slide-thumb-active::after {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 4px;
-            border: 2px solid var(--primary);
-            content: '';
-          }
-
-          background-color: #0066ff;
-
-          &:nth-child(even) {
-            background-color: #ffc92c;
-          }
-        }
-      }
-    }
+    width: 1136px;
+    gap: 36px;
   }
 `;
 
@@ -498,6 +351,48 @@ const ProdcutTabNavigation = styled.div`
   }
 `;
 
+const ProductOptionForm = styled.div`
+  .total-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #2f3438;
+    font-weight: 700;
+    margin-top: 40px;
+
+    > span {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    > strong {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .selling-btn-group {
+    display: flex;
+    margin-top: 20px;
+    gap: 8px;
+
+    button {
+      flex: 1;
+      border-radius: 4px;
+    }
+  }
+`;
+
+const OptionGroup = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  div {
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+`;
+
 function ProductCategory() {
   return (
     <ProductCategoryInfo>
@@ -511,89 +406,12 @@ function ProductCategory() {
 }
 
 function ProductDetail() {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
-
-  const initControl: SwiperProps = {
-    loop: true,
-    spaceBetween: 0,
-    thumbs: {swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null},
-    className: 'mySwiper2',
-    pagination: true,
-  };
-
   return (
     <>
       <ParentContainer>
         <ProductCategory />
         <ProductionSellingContainer>
-          <ProductionSellingCover>
-            <ProductionSellingCoverImage>
-              <Swiper {...initControl}>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-              </Swiper>
-            </ProductionSellingCoverImage>
-            <ProductionSellingCoverImageList>
-              <Swiper
-                onSwiper={setThumbsSwiper}
-                loop={true}
-                spaceBetween={10}
-                slidesPerView={9}
-                freeMode={true}
-                direction="vertical"
-                modules={[FreeMode, Thumbs]}
-                className="mySwiper"
-                allowTouchMove={false}
-              >
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="item" />
-                </SwiperSlide>
-              </Swiper>
-            </ProductionSellingCoverImageList>
-          </ProductionSellingCover>
+          <ProductSellingCarousel />
 
           <Container>
             <ProductInfo>
@@ -657,23 +475,22 @@ function ProductDetail() {
                 <Button $iconname="BookMark" $iconposition="center" $btnType="ghost" />
               </ElementGroup.Row>
             </ProductInfo>
-            <div className="product-option-form" style={{display: 'none'}}>
-              <section>
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-                <UiSelectBox id="1" data={['dsadsadsa', 'dsadsa']} />
-              </section>
+            <ProductOptionForm>
+              <OptionGroup>
+                <UiSelectBox id="option1" data={['오렌지', '엘로우', '네이비', '블랙']} placeholder="색상" />
+                <UiSelectBox id="option2" data={['백색등', '주황등']} placeholder='조명' />
+              </OptionGroup>
 
-              <div>
+              <div className="total-price">
                 <span>주문금액</span>
                 <strong>0원</strong>
               </div>
 
-              <div>
-                <Button text="장바구니" $btnType="border" $btnSize="lg" thin color="primary" />
-                <Button text="바로구매" $btnSize="lg" thin color="primary" />
+              <div className="selling-btn-group">
+                <Button text="장바구니" $btnType="border" $btnSize="lg" thin={true} color="primary" />
+                <Button text="바로구매" $btnSize="lg" thin={true} color="primary" />
               </div>
-            </div>
+            </ProductOptionForm>
           </Container>
         </ProductionSellingContainer>
 
