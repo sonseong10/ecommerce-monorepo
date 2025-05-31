@@ -28,6 +28,16 @@ const Summary = styled.div`
     text-align: center;
     line-height: normal;
   }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+
+    > strong {
+      font-size: 34px;
+      margin-left: 12px;
+      font-weight: 700;
+    }
+  }
 `;
 
 const AverageReview = styled.div`
@@ -55,6 +65,28 @@ const AverageReview = styled.div`
           height: 6px;
           background-color: var(--primary);
           border-radius: 3px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    flex: 0 0 1;
+    padding: 0 40px;
+    ol {
+      li {
+        > .progress-bar {
+          width: 220px;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    ol {
+      li {
+        > .progress-bar {
+          width: 200px;
         }
       }
     }

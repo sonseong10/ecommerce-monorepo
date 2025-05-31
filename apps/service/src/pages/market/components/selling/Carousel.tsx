@@ -74,7 +74,6 @@ const ProductionSellingCoverImage = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    flex: 1;
     height: 344px;
     border-radius: 8px;
 
