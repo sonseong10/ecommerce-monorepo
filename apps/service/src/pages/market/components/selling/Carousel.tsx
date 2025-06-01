@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 
 import {useState} from 'react';
-import {Swiper, SwiperSlide, type SwiperProps} from 'swiper/react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore from 'swiper';
 import {FreeMode, Thumbs, Pagination} from 'swiper/modules';
 import styled from 'styled-components';
@@ -188,17 +188,16 @@ const ProductionSellingCoverImageList = styled.div`
 function ProductSellingCarousel() {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
 
-  const initControl: SwiperProps = {
-    loop: true,
-    spaceBetween: 0,
-    thumbs: {swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null},
-    className: 'mySwiper2',
-    pagination: true,
-  };
   return (
     <ProductionSellingCover>
       <ProductionSellingCoverImage>
-        <Swiper {...initControl}>
+        <Swiper
+          loop={true}
+          spaceBetween={0}
+          thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
+          className={'mySwiper2'}
+          pagination={true}
+        >
           <SwiperSlide>
             <div className="item" />
           </SwiperSlide>
@@ -230,7 +229,6 @@ function ProductSellingCarousel() {
           onSwiper={setThumbsSwiper}
           loop={true}
           spaceBetween={10}
-          slidesPerView={9}
           freeMode={true}
           direction="vertical"
           modules={[FreeMode, Thumbs]}

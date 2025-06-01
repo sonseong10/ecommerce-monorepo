@@ -43,8 +43,8 @@ const Select2 = styled.span`
 
 const Selection = styled.span``;
 
-const Select2Selection = styled.span<{disable: boolean; theme: Theme}>`
-  background-color: ${(props) => (props.disable ? props.theme.colors : '#fff')};
+const Select2Selection = styled.span<{$disable: boolean; theme: Theme}>`
+  background-color: ${(props) => (props.$disable ? props.theme.colors : '#fff')};
   margin-left: 0;
   display: block;
   cursor: pointer;
@@ -52,13 +52,13 @@ const Select2Selection = styled.span<{disable: boolean; theme: Theme}>`
 `;
 
 const Select2Value = styled.span<{
-  active: boolean;
+  $active: boolean;
   selected: boolean;
   theme: Theme;
 }>`
-  border: 1px solid ${(props) => (props.active ? props.theme.colors.borderFocus : props.theme.colors.borderPrimary)};
+  border: 1px solid ${(props) => (props.$active ? props.theme.colors.borderFocus : props.theme.colors.borderPrimary)};
   display: block;
-  border-radius: ${(props) => (props.active ? '4px 4px 0 0' : '4px')};
+  border-radius: ${(props) => (props.$active ? '4px 4px 0 0' : '4px')};
   width: 100%;
   height: 100%;
   padding-right: 30px;
@@ -67,7 +67,7 @@ const Select2Value = styled.span<{
   padding-left: 8px;
 `;
 
-const Select2Arrow = styled.span<{active: boolean}>`
+const Select2Arrow = styled.span<{$active: boolean}>`
   position: absolute;
   top: 1px;
   right: 1px;
@@ -75,7 +75,7 @@ const Select2Arrow = styled.span<{active: boolean}>`
   height: 34px;
   background: url(${commonSVG.DownArrow('a8a9aa')}) no-repeat 2px center;
   ${(props) =>
-    props.active
+    props.$active
       ? css`
           background-position: 7px center;
           transform: rotate(180deg);
@@ -126,14 +126,14 @@ const OptionItem = styled.li<{active: boolean; check?: boolean}>`
       }
       ${
         props.active
-          ? `background: url(${commonSVG.Check('ff4949')}) no-repeat right 0.6em center; 
+          ? `background: url(${commonSVG.Check('#0aa5ff')}) no-repeat right 0.6em center; 
       color: var(--primary)`
           : ''
       }`;
     } else {
       if (props.active) {
         return `
-          background: url(${commonSVG.Check('ff4949')}) no-repeat right 0.6em center; 
+          background: url(${commonSVG.Check('#0aa5ff')}) no-repeat right 0.6em center; 
           color: var(--primary)
         `;
       }
@@ -177,7 +177,7 @@ export interface ISelectBoxProps<T> {
   change?: (selected?: number, value?: T | undefined) => Promise<void> | void | Promise<number> | number;
   changeId?: (selected?: string, value?: T | undefined) => Promise<void> | void | Promise<string> | string;
   onChange?: (selected: string) => void;
-  disable?: boolean;
+  $disable?: boolean;
   search?: boolean;
   multiTitle?: string;
   data: Array<T>;
@@ -188,7 +188,7 @@ export interface ISelectBoxProps<T> {
 function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
   const size = props.size;
   const placeholder = props.placeholder || '선택';
-  const disable = props.disable || false;
+  const disable = props.$disable || false;
   const search = props.search || false;
   const selectType = props.selectType || 'select';
   const [isActive, setActive] = useState(false);
@@ -290,7 +290,7 @@ function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
           break;
       }
     },
-    [isActive]
+    [confirm, props, selectType, selected]
   );
   const clearHandler = useCallback(() => {
     setSelected(undefined);
@@ -372,12 +372,12 @@ function SelectBox<T>(props: ISelectBoxProps<T>): JSX.Element {
       </SelectHidden>
       <Select2>
         <Selection>
-          <Select2Selection disable={disable} onClick={toggleHandler}>
+          <Select2Selection $disable={disable} onClick={toggleHandler}>
             {isClear ? clear ? <ClearIcon onClick={clearHandler} /> : '' : ''}
-            <Select2Value active={isActive} selected={selected !== undefined}>
+            <Select2Value $active={isActive} selected={selected !== undefined}>
               {selectedValue()}
             </Select2Value>
-            <Select2Arrow active={isActive}></Select2Arrow>
+            <Select2Arrow $active={isActive}></Select2Arrow>
           </Select2Selection>
         </Selection>
         {isActive ? (

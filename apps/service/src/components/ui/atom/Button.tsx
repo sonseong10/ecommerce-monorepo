@@ -5,13 +5,13 @@ import type {ButtonColor, ButtonIcon, ButtonSize, ButtonType} from '@ecommerce/c
 import SVG from '../../../styles/svgIcon';
 
 const BtnCommon = css<{
-  thin?: boolean;
+  $thin?: boolean;
   maxWidth?: string;
 }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border-width: ${(props) => (props.thin ? '1px' : '2px')};
+  border-width: ${(props) => (props.$thin ? '1px' : '2px')};
   border-style: solid;
   border-radius: 4px;
   letter-spacing: -0.2px;
@@ -336,8 +336,8 @@ const ButtonComponent = styled.button<{
   $btnType?: ButtonType;
   $btnSize?: ButtonSize;
   color?: ButtonColor;
-  thin?: boolean;
-  ellipsis?: boolean;
+  $thin?: boolean;
+  $ellipsis?: boolean;
   $iconposition?: 'before' | 'after' | 'center';
   $iconname?: ButtonIcon | 'Category' | 'BookMark' | 'Shere';
   disabled?: boolean;
@@ -406,7 +406,7 @@ const ButtonComponent = styled.button<{
   }};
 
   ${(props) => {
-    return $btnSize(props.$btnSize, props.thin, props.ellipsis);
+    return $btnSize(props.$btnSize, props.$thin, props.$ellipsis);
   }}
 
   ${(props) => {
@@ -445,8 +445,8 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   $btnType?: ButtonType;
   $btnSize?: ButtonSize;
   color?: ButtonColor;
-  thin?: boolean;
-  ellipsis?: boolean;
+  $thin?: boolean;
+  $ellipsis?: boolean;
   $iconposition?: 'before' | 'after' | 'center';
   $iconname?: ButtonIcon | 'Category' | 'BookMark' | 'Shere';
   isHover?: boolean;
@@ -480,8 +480,8 @@ function Button(props: IButtonProps, ref?: React.ForwardedRef<HTMLButtonElement>
       $btnType={props.$btnType ? props.$btnType : 'normal'}
       color={props.color ? props.color : 'dark'}
       $btnSize={props.$btnSize ? props.$btnSize : 'normal'}
-      thin={props.thin && props.thin}
-      ellipsis={props.ellipsis && props.ellipsis}
+      $thin={props.$thin}
+      $ellipsis={props.$ellipsis}
       $iconposition={props.$iconposition && props.$iconposition}
       $iconname={props.$iconname && props.$iconname}
       onMouseEnter={hoverHandler}

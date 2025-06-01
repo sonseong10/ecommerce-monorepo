@@ -87,34 +87,34 @@ export const TextAlign = css<{ align?: FontAlignType }>`
 `;
 
 // flex 교차축에서 items의 정렬 방법 설정
-export const FlexAlighItem = css<{ flexAlign?: FlexAlignType }>`
-  align-items: ${props => {
-    switch (props.flexAlign) {
-      case "start":
-        return "flex-start";
-      case "center":
-        return "center";
-      case "end":
-        return "flex-end";
-      case "strech":
-        return "strech";
+export const FlexAlighItem = css<{$flexAlign?: FlexAlignType}>`
+  align-items: ${(props) => {
+    switch (props.$flexAlign) {
+      case 'start':
+        return 'flex-start';
+      case 'center':
+        return 'center';
+      case 'end':
+        return 'flex-end';
+      case 'strech':
+        return 'strech';
       default:
-        return "center";
+        return 'center';
     }
   }};
 `;
 
 // flex items의 줄바꿈 설정
-export const FlexWrap = css<{ flexWrap?: boolean }>`
-  flex-wrap: ${props => (props.flexWrap === true ? "wrap" : "nowrap")};
+export const FlexWrap = css<{$flexWrap?: boolean}>`
+  flex-wrap: ${(props) => (props.$flexWrap === true ? 'wrap' : 'nowrap')};
 `;
 
 // flex 메인축 방향 정렬
 export const FlexJustifyContent = css<{
-  flexcontent?: flexcontentType;
+  $flexContent?: flexcontentType;
 }>`
   justify-content: ${(props) => {
-    switch (props.flexcontent) {
+    switch (props.$flexContent) {
       case 'start':
         return 'flex-start';
       case 'center':

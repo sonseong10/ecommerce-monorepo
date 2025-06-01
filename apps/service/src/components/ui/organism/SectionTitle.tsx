@@ -31,7 +31,7 @@ const Container = styled(ElementGroup.Row)`
 
 function SectionTitle({text, subText, dropDown, button}: ISectionTitleProps) {
   return (
-    <Container flexcontent="between">
+    <Container $flexContent="between">
       <Title as={'h2'}>
         {text}
         {subText ? <span>{subText}</span> : null}

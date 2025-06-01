@@ -2,14 +2,14 @@ import styled, { useTheme, css } from "styled-components";
 import type {TabType} from '@ecommerce/commons';
 import type { Theme } from "../../../styles/theme";
 
-const WrapperStyle = (props: { kinds?: TabType }) => {
-  switch (props.kinds) {
-    case "Text":
+const WrapperStyle = (props: {$kinds?: TabType}) => {
+  switch (props.$kinds) {
+    case 'Text':
       return css`
         min-height: 30px;
         margin-bottom: 30px;
       `;
-    case "Button":
+    case 'Button':
       return css`
         min-height: 29px;
         border-bottom: 1px solid var(--border-focus);
@@ -18,24 +18,24 @@ const WrapperStyle = (props: { kinds?: TabType }) => {
   }
 };
 
-const ListStyle = (props: { kinds?: TabType }) => {
-  switch (props.kinds) {
-    case "Text":
+const ListStyle = (props: {$kinds?: TabType}) => {
+  switch (props.$kinds) {
+    case 'Text':
       return css`
         margin-left: 35px;
       `;
-    case "Button":
+    case 'Button':
       return css`
         margin-left: 7px;
       `;
   }
 };
 
-const ItemStyle = (props: { kinds?: TabType }) => {
+const ItemStyle = (props: {$kinds?: TabType}) => {
   const theme = useTheme() as Theme;
 
-  switch (props.kinds) {
-    case "Text":
+  switch (props.$kinds) {
+    case 'Text':
       return css`
         border: none;
         background: none;
@@ -68,7 +68,7 @@ const ItemStyle = (props: { kinds?: TabType }) => {
           transition: height 0.3s;
         }
       `;
-    case "Button":
+    case 'Button':
       return css`
         padding: 6px 20px;
         border: 1px solid var(--border-primary);
@@ -85,7 +85,7 @@ const ItemStyle = (props: { kinds?: TabType }) => {
 
           &::before {
             display: block;
-            content: "";
+            content: '';
             position: absolute;
             left: 0;
             right: 0;
@@ -103,14 +103,14 @@ const ItemStyle = (props: { kinds?: TabType }) => {
   }
 };
 
-const TabWrapper = styled.ul<{ kinds?: TabType }>`
+const TabWrapper = styled.ul<{$kinds?: TabType}>`
   display: flex;
   position: relative;
 
   ${WrapperStyle}
 `;
 
-const List = styled.li<{ kinds?: TabType }>`
+const List = styled.li<{$kinds?: TabType}>`
   ${ListStyle}
 
   &:first-child {
@@ -118,7 +118,7 @@ const List = styled.li<{ kinds?: TabType }>`
   }
 `;
 
-const Item = styled.button<{ kinds?: TabType }>`
+const Item = styled.button<{$kinds?: TabType}>`
   display: block;
   position: relative;
 
@@ -128,8 +128,8 @@ const Item = styled.button<{ kinds?: TabType }>`
 function TabList(props: {
   itemText: string;
   id?: string;
-  kinds?: TabType;
-  active?: string;
+  $kinds?: TabType;
+  $active?: string;
   subText?: string;
   onClick?: (id: string) => void;
   disabled?: boolean;
@@ -140,10 +140,10 @@ function TabList(props: {
     }
   };
   return (
-    <List kinds={props.kinds}>
+    <List $kinds={props.$kinds}>
       <Item
-        kinds={props.kinds}
-        className={props.id === props.active ? 'is-active' : ''}
+        $kinds={props.$kinds}
+        className={props.id === props.$active ? 'is-active' : ''}
         onClick={setActive}
         disabled={props.disabled}
       >
@@ -162,9 +162,9 @@ interface ITabListProps {
 }
 
 interface ITabProps {
-  kinds?: TabType;
+  $kinds?: TabType;
   list: Array<ITabListProps>;
-  active?: string;
+  $active?: string;
   click?: (id: string) => void;
   className?: string;
 }
@@ -172,15 +172,15 @@ interface ITabProps {
 function TabMenu(props: ITabProps): JSX.Element {
   return (
     <>
-      <TabWrapper kinds={props.kinds ? props.kinds : 'Text'} className={props.className}>
+      <TabWrapper $kinds={props.$kinds ? props.$kinds : 'Text'} className={props.className}>
         {props.list?.map((item: ITabListProps) => (
           <TabList
             key={item.id}
-            kinds={props.kinds ? props.kinds : 'Text'}
+            $kinds={props.$kinds ? props.$kinds : 'Text'}
             id={item.id}
             itemText={item.text}
             subText={item.subText}
-            active={props.active}
+            $active={props.$active}
             onClick={props.click?.bind(null, item.id)}
             disabled={item.disabled}
           />

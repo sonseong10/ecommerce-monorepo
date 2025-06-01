@@ -1,7 +1,6 @@
 import {AbsPopup} from '@ecommerce/commons';
 import {useClosePopup, usePopupData} from '@ecommerce/commons';
 import {ButtonState} from '@ecommerce/commons';
-import {commonSVG} from '@ecommerce/commons';
 import type {ButtonIcon} from '@ecommerce/commons';
 import {ElementGroup, Text, Title} from '../../../styles/components';
 import {styled} from '../../../styles/theme';
@@ -31,8 +30,8 @@ export function DeletePopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="취소" $btnType="ghost" color="gray" btnsize="md" onClick={() => close(ButtonState.NO)} />
-      <Button text="삭제하기" $btnType="ghost" color="negative" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="취소" $btnType="ghost" color="gray" $btnSize="md" onClick={() => close(ButtonState.NO)} />
+      <Button text="삭제하기" $btnType="ghost" color="negative" $btnSize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }
@@ -41,8 +40,8 @@ export function ConfirmPopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="취소" $btnType="ghost" color="gray" btnsize="md" onClick={() => close(ButtonState.NO)} />
-      <Button text="확인" $btnType="ghost" color="dark" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="취소" $btnType="ghost" color="gray" $btnSize="md" onClick={() => close(ButtonState.NO)} />
+      <Button text="확인" $btnType="ghost" color="dark" $btnSize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }
@@ -51,7 +50,7 @@ export function AlertPopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="확인" $btnType="ghost" color="dark" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="확인" $btnType="ghost" color="dark" $btnSize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }
@@ -60,8 +59,8 @@ export function ConfrimPopupButtonGroup(): JSX.Element {
   const {close} = useClosePopup(PopupType.ICON);
   return (
     <ButtonGroupWrapper>
-      <Button text="취소" $btnType="ghost" btnsize="md" onClick={() => close(ButtonState.NO)} />
-      <Button text="삭제하기" $btnType="ghost" color="negative" btnsize="md" onClick={() => close(ButtonState.OK)} />
+      <Button text="취소" $btnType="ghost" $btnSize="md" onClick={() => close(ButtonState.NO)} />
+      <Button text="삭제하기" $btnType="ghost" color="negative" $btnSize="md" onClick={() => close(ButtonState.OK)} />
     </ButtonGroupWrapper>
   );
 }
@@ -80,7 +79,7 @@ function IconPopup(): JSX.Element {
   const {popupDo} = usePopupData<IconPopupProps>(PopupType.ICON);
   return (
     <AbsPopup type={PopupType.ICON} borderShape={4}>
-      <ElementGroup.Col flexcontent="center">
+      <ElementGroup.Col $flexContent="center">
         <Icon name={popupDo.data?.iconType} color={popupDo.data?.iconColor} />
         {popupDo.data?.title && (
           <Title align="center" size="sm">

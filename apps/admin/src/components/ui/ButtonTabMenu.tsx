@@ -77,7 +77,7 @@ function TabList(props: {
   kinds?: TabType
   active?: string
   subText?: string
-  disable?: boolean
+  disable?: boolean | string
   onClick?: (id: string) => void
 }): JSX.Element {
   const setActive = () => {
@@ -90,7 +90,7 @@ function TabList(props: {
       <Item
         kinds={props.kinds}
         className={props.id === props.active ? 'is-active' : ''}
-        disabled={props.disable ? props.disable : false}
+        disabled={props.disable ? props.disable.toString() : 'false'}
         onClick={setActive}
       >
         {props.itemText}
@@ -122,7 +122,7 @@ function ButtonTabMenu(props: ITabProps): JSX.Element {
             key={item.id}
             id={item.id}
             itemText={item.text}
-            disable={item.disable ? item.disable : false}
+            disable={item.disable ? item.disable : 'false'}
             active={props.active}
             onClick={props.click?.bind(null, item.id)}
           />

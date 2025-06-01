@@ -563,7 +563,7 @@ function ProductDetail() {
                   </tbody>
                 </table>
               </div>
-              <ElementGroup.Row flexcontent="between" className="provider-info">
+              <ElementGroup.Row $flexContent="between" className="provider-info">
                 <Link to={'#'}>
                   <strong>레나에너지</strong>
                   <span>브랜드홈</span>
@@ -584,8 +584,8 @@ function ProductDetail() {
               </div>
 
               <div className="selling-btn-group">
-                <Button text="장바구니" $btnType="border" $btnSize="lg" thin={true} color="primary" />
-                <Button text="바로구매" $btnSize="lg" thin={true} color="primary" />
+                <Button text="장바구니" $btnType="border" $btnSize="lg" $thin={true} color="primary" />
+                <Button text="바로구매" $btnSize="lg" $thin={true} color="primary" />
               </div>
             </ProductOptionForm>
           </Container>
@@ -601,8 +601,8 @@ function ProductDetail() {
                 {id: '4', text: '배송/환불'},
                 {id: '5', text: '추천'},
               ]}
-              active="1"
-              kinds="Button"
+              $active="1"
+              $kinds="Button"
               className="tabmenu"
             ></TabMenu>
           </nav>
@@ -619,8 +619,7 @@ function ProductDetail() {
                       alt="판매자 공지 이미지"
                     />
                     <img
-                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=720"
-                      srcSet="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1080 1.5x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=1440 2x,https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif?gif=1&amp;w=2560 3x"
+                      src="https://image.ohou.se/i/bucketplace-v2-development/uploads/expert_users/notice_images/172362252135613721.gif"
                       alt="판매자 공지 이미지"
                     />
                     <div>
@@ -824,14 +823,14 @@ function ProductDetail() {
                   <Button
                     aria-label="북마크"
                     $btnSize="normal"
-                    thin={true}
+                    $thin={true}
                     $iconname="BookMark"
                     $iconposition="center"
                     $btnType="border"
                     className="bookmark-icon"
                   />
-                  <Button text="장바구니" $btnType="border" $btnSize="lg" thin={true} color="primary" />
-                  <Button text="바로구매" $btnSize="lg" thin={true} color="primary" />
+                  <Button text="장바구니" $btnType="border" $btnSize="lg" $thin={true} color="primary" />
+                  <Button text="바로구매" $btnSize="lg" $thin={true} color="primary" />
                 </div>
               </div>
             </ProductOptionForm>

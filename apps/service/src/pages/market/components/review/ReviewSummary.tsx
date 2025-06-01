@@ -103,7 +103,7 @@ function ReviewSummary(): JSX.Element {
     <Container>
       <Summary>
         <strong>4.9</strong>
-        <StarRating count={3.9} $size={'md'}></StarRating>
+        <StarRating score={4.3} $size={12}></StarRating>
       </Summary>
       <AverageReview>
         <ol>

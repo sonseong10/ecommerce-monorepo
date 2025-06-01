@@ -82,7 +82,7 @@ function ReviewItem() {
         <div>
           <span>가나다</span>
           <ElementGroup.Row>
-            <StarRating count={5} $size="sm" />
+            <StarRating score={4.8} $size={14} />
             <span className="date">
               <time dateTime="YYYY-MM-DD">2025.05.27</time> ∙ 내일의집 구매
             </span>
@@ -100,8 +100,8 @@ function ReviewItem() {
           $iconposition="before"
           $btnSize="xs"
           $btnType="border"
-          thin={true}
-          ellipsis={true}
+          $thin={true}
+          $ellipsis={true}
         />
       </ReviewFooter>
     </ReviewItemWrap>

@@ -81,13 +81,13 @@ function InquiryItem() {
         </InquiryInfo>
       </header>
       <InquiryContent>
-        <ElementGroup.Row flexAlign="start">
+        <ElementGroup.Row $flexAlign="start">
           <span aria-hidden>Q</span>
           <p>상품 쿠폰이 어디 있나요?</p>
         </ElementGroup.Row>
-        <ElementGroup.Row flexAlign="start">
+        <ElementGroup.Row $flexAlign="start">
           <span aria-hidden>A</span>
-          <ElementGroup.Col flexAlign="start">
+          <ElementGroup.Col $flexAlign="start">
             <AnswerTarget>
               <strong>레나에너지</strong>
               <time dateTime="YYYY-MM-DD">2025년 05월 27일</time>
