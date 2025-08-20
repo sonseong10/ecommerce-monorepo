@@ -5,7 +5,7 @@
     "storybook": "libs/storybook"
   },
   "installation": {
-    "version": "20.8.1"
+    "version": "21.3.11"
   },
   "nxCloudId": "681075a2b6d0796da0ecea93",
   "plugins": [
@@ -27,5 +27,6 @@
         "unitTestRunner": "none"
       }
     }
-  }
+  },
+  "continuousDependencies": []
 }

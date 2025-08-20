@@ -2,7 +2,6 @@
   "name": "ecommerce-monorepo",
   "private": true,
   "version": "0.1.0",
-  "type": "module",
   "scripts": {
     "dev:admin": "nx serve admin",
     "dev:service": "nx serve service",
