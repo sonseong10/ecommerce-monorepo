@@ -70,7 +70,7 @@ function MemberManage() {
   return (
     <>
       <ElementGroup.Row $flexContent="between">
-        <Title size="md" $fontWeight="medium">
+        <Title $size="md" $fontWeight="medium">
           직원검색
         </Title>
         <ElementGroup.Row $flexContent="end">

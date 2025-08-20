@@ -128,7 +128,7 @@ function Grid<Data, Setting extends IGridSetting<Data>[], Not extends { text?: s
     <Table
       id={props.id}
       direction="col"
-      over={props.layoutOverflow === undefined ? true : props.layoutOverflow}
+      $over={props.layoutOverflow === undefined ? 'true' : props.layoutOverflow}
       selected={props.selectInfo !== undefined}
       ref={props.headerInfo?.display !== undefined ? props.headerInfo?.scrollRef : null}
     >

@@ -48,7 +48,7 @@ const Search = (color?: string): string => {
 const Edit = (color?: string): string => {
   color = color?.indexOf('#') === -1 ? color : color?.substring(1, color.length)
   return `"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none' viewBox='0 0 28 28'%3E
-  %3Cmask id='8mgw08e0pa' width='28' height='28' x='0' y='0' maskUnits='userSpaceOnUse'%3E%3Cpath fill='%23fff' d='M0 0H28V28H0z'/%3E
+  %3Cmask id='8mgw08e0pa' width='28' height='28' x='0' y='0' maskUnits='userSpaceOnUse'%3E%3Cpath fill='%23${color}' d='M0 0H28V28H0z'/%3E
   %3C/mask%3E%3Cg mask='url(%238mgw08e0pa)'%3E%3Cpath fill='%23${color}' d='M21.81 8.51c.417-.416.647-.97.647-1.558 0-.589-.23-1.142-.647-1.558l-1.751-1.748C19.642 3.229 19.087 3 18.498 3c-.59 0-1.144.23-1.56.645L5.2 15.325v4.866h4.872L21.81 8.51zm-3.312-3.306l1.752 1.747-1.755 1.745-1.751-1.746 1.754-1.746zM7.408 17.987V16.24l7.772-7.734 1.751 1.748-7.77 7.733H7.407zM5.2 22.395h17.664v2.204H5.2v-2.204z'/%3E%3C/g%3E%3C/svg%3E"`
 }
 

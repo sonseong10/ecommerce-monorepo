@@ -34,22 +34,22 @@ export const TextSize = css<{
 
 // 타이틀 font  사이즈
 export const TitleSize = css<{
-  size?: FontSizeTitleType
+  $size?: FontSizeTitleType
 }>`
-  font-size: ${props => {
-    switch (props.size) {
+  font-size: ${({ $size, theme }) => {
+    switch ($size) {
       case 'xsm':
-        return (props.theme as Theme).fontSize.title.xsm
+        return (theme as Theme).fontSize.title.xsm
       case 'sm':
-        return (props.theme as Theme).fontSize.title.sm
+        return (theme as Theme).fontSize.title.sm
       case 'md':
-        return (props.theme as Theme).fontSize.title.md
+        return (theme as Theme).fontSize.title.md
       case 'lg':
-        return (props.theme as Theme).fontSize.title.lg
+        return (theme as Theme).fontSize.title.lg
       case 'xl':
-        return (props.theme as Theme).fontSize.title.xl
+        return (theme as Theme).fontSize.title.xl
       default:
-        return (props.theme as Theme).fontSize.default
+        return (theme as Theme).fontSize.default
     }
   }};
 `

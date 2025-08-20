@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-
 import Button from '../../../components/ui/Button'
 import { ElementGroup, TableContainer, Title } from '../../../styles/components'
 import { useInitWorkList, useRemoveWork } from './store/manageHook'
@@ -16,16 +15,7 @@ function MoveRegisterPageBtn() {
     navigate('/admin/work/register')
   }
 
-  return (
-    <Button
-      onClick={onOpenAddForm}
-      type="button"
-      $iconName="Edit"
-      $iconPosition="before"
-      color="primary"
-      text="업무 작성"
-    />
-  )
+  return <Button onClick={onOpenAddForm} $iconName="Edit" $iconPosition="before" color="primary" text="업무 작성" />
 }
 function GridMemberListCell({ data }: IGrideCell<[IMemberPopupReturnData[]]>) {
   return (
@@ -46,7 +36,6 @@ function GridDetailCell({ data }: IGrideCell<[string]>) {
       $iconPosition="center"
       $btnSize="xsm"
       color="primary"
-      thin={true}
       onClick={() => navigate(`/admin/work/detail/${data[0]}`)}
     />
   )
@@ -60,7 +49,6 @@ function GridRemoveCell({ data }: IGrideCell<[string]>) {
       $iconPosition="center"
       $btnSize="xsm"
       color="negative"
-      thin={true}
       onClick={() =>
         iconPopup(
           'confirm',
@@ -80,11 +68,11 @@ function GridRemoveCell({ data }: IGrideCell<[string]>) {
   )
 }
 
-const Badge = styled.span<{ state: number }>`
+const Badge = styled.span<{ $state: number }>`
   padding: 2px 8px;
   border-radius: 2px;
-  border: 1px solid ${props => (props.state === 0 ? '#ff3939' : props.state === 1 ? '#08df2c' : '#888888')};
-  color: ${props => (props.state === 0 ? '#ff3939' : props.state === 1 ? '#08df2c' : '#888')};
+  border: 1px solid ${({ $state }) => ($state === 0 ? '#ff3939' : $state === 1 ? '#08df2c' : '#888888')};
+  color: ${({ $state }) => ($state === 0 ? '#ff3939' : $state === 1 ? '#08df2c' : '#888')};
   font-weight: 500;
   font-size: 12px;
 `
@@ -103,7 +91,7 @@ function GridPriorityCell({ data }: IGrideCell<[number]>) {
     }
   }
 
-  return <Badge state={data[0]}>{setText()}</Badge>
+  return <Badge $state={data[0]}>{setText()}</Badge>
 }
 
 function GridStateCell({ data }: IGrideCell<[number]>) {
@@ -128,6 +116,7 @@ function WorkList() {
 
   return (
     <Grid
+      id="workGrid"
       container={TableContainer}
       data={list ? list : []}
       setting={[
@@ -149,7 +138,7 @@ function WorkManage() {
   return (
     <>
       <ElementGroup.Row $flexContent="between">
-        <Title size="md" $fontWeight="medium">
+        <Title $size="md" $fontWeight="medium">
           업무목록
         </Title>
         <MoveRegisterPageBtn />

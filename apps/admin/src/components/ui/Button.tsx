@@ -244,7 +244,6 @@ const BtnIcon = (
     case 'Edit':
       return css`
         background-image: url(${SVG.Edit(iconColor)});
-        background-size: 22px;
       `
     case 'Write':
       return css`
@@ -268,10 +267,10 @@ const BtnIcon = (
       `
     case 'Delivery':
       return css`
-        background-image: url(${SVG.Delivery(iconColor)});
         width: 20px;
         height: 20px;
         background-size: 20px;
+        background-image: url(${SVG.Delivery(iconColor)});
       `
     case 'PC':
       return css`
